@@ -1,0 +1,2646 @@
+<!doctype html>
+<head>
+	<meta charset="utf-8"/>
+	<title>GGZ cutscene interpreter</title>
+	
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	<!-- Favicon and mobile browser 'webpage as app' support -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#09004c">
+	
+	<!--For discord description -->
+	<meta property="og:title" content="Girls' Frontline Cutscene Interpreter" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://gfl.amaryllisworks.pw" />
+	<!--<meta property="og:image" content="http://my.site.com/images/thumb.png" />-->
+	<meta property="og:description" content="Read cutscenes from Girls' Frontline in the web browser." />
+	<meta name='description' content="Read cutscenes from Girls' Frontline in the web browser." />
+	
+	<!--Resources -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">  
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--<link type="text/css" rel="stylesheet" href="materialize.css"  media="screen,projection"/>-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<style type="text/css">
+body
+{
+	/*background-color: black;
+	color: white*/
+	text-align:center;
+	--bg-color: white;
+	--text-color: black;
+	--nav-color: #ee6e73;
+	--nav-color-hover: #bf4040;
+	--btn-color: #26a69a;
+	--card-color: #fff;
+	--collection-item-color:#fff;
+	--dropdown-text-color:#26a69a;
+	--dropdown-hover-color:#eee;
+	--settings-row-border-color: rgba(0, 0, 0, 0.12);
+	--colored-dialogue: brightness(0.6);
+	
+	background-color: var(--bg-color);
+	color: var(--text-color);
+}
+
+body.dark-theme{
+	--bg-color: #333333;
+	--text-color: white;
+	--nav-color:#1a237e;
+	--nav-color-hover:#3465a4;
+	--btn-color: #26a69a;
+	--card-color: #455a64;
+	--collection-item-color:#2b2b2b;
+	--dropdown-text-color: white;
+	--dropdown-hover-color: black;
+	
+	--settings-row-border-color: rgba(255, 255, 255, 0.5);
+	--colored-dialogue: brightness(1.0);
+}
+body.black-theme{
+	--bg-color: black;
+	--text-color: white;
+	--nav-color: #212121;
+	--btn-color: #455a64;
+	--card-color: #2e3436;
+	--collection-item-color: black;
+	--dropdown-text-color: white;
+	--dropdown-hover-color: black;
+	
+	--settings-row-border-color: rgba(255, 255, 255, 0.8);
+	--colored-dialogue: brightness(1.0);
+}
+
+nav {
+	background-color: var(--nav-color);
+}
+textarea{
+	color:var(--text-color);
+}
+input{
+	color:var(--text-color);
+}
+h2 {
+	margin: 1.424rem 0 1.424rem 0;
+}
+
+.textarea-wrapper{
+	/*border:1px solid red;*/
+	position:relative;
+	height:500px;
+	width:700px;
+	margin:15px auto
+}
+/*.textarea-wrapper::before {
+	content:"wrapper";
+	text-transform: uppercase;
+	left:0px;
+	position:absolute;
+	top:-18px;
+	font-size:16px;
+	color:red;
+}*/
+
+/*table, th, td {
+   border: 1px solid #222222;
+   border-collapse: collapse;
+}
+th {
+	background-color: purple;
+}*/
+
+.header-desktop{
+	display: inline-block;
+}
+.header-desktop-shorter{
+	display: none;
+}
+.header-mobile{
+	display: none;
+}
+
+.chapterTitles-mobile{
+	display: none;
+}
+
+#mobileWarning {
+	display:none;
+}
+
+@media screen and (max-width: 900px) {
+    .header-desktop{
+       display:none;
+    }
+    
+    .header-desktop-shorter{
+       display:inline-block;
+    }
+    
+    .chapterTitles-desktop{
+		display: none;
+	}
+	.chapterTitles-mobile{
+		display: block;
+	}
+    
+    .navbarButton{
+    	padding: 0 5px; /*Since text is hidden, remove the padding between buttons*/
+    }
+    
+    .modal {
+    	width:100%;
+    	max-height:100%;
+    	height:100%;
+    	top:0 !important;
+    }
+    .modal.modal-fixed-footer{
+    	height:100%;
+    }
+
+
+
+	#mobileWarning {
+		display:inline;
+	}
+	#TDollStuffInner {
+		display:none;
+	}
+
+}
+
+@media screen and (max-width: 500px) {
+    .header-desktop{
+       display:none;
+    }
+    .header-desktop-shorter{
+       display:none;
+    }
+    
+    .header-mobile{
+       display:inline-block;
+    }
+}
+
+.btn {
+	background-color: var(--btn-color);
+}
+.card {
+	background-color: var(--card-color);
+}
+.modal {
+	background-color: var(--bg-color);
+	/* sadly animating 'top' breaks the modal showing */
+	transition: width 0.2s ease-out, height 0.2s ease-out;
+}
+.collection .collection-item{
+	background-color: var(--collection-item-color)
+}
+.dropdown-content{
+	background-color: var(--card-color);
+}
+.dropdown-content li > a {
+	color: var(--dropdown-text-color);
+}
+.dropdown-content li:hover, .dropdown-content li.active {
+  background-color: var(--dropdown-hover-color);
+}
+
+.collapsible-header {
+	background-color: var(--collection-item-color);
+}
+
+.pagination{
+	max-width:700px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.pagination li a {
+	color: var(--text-color);
+}
+.pagination li.active {
+	background-color: var(--nav-color);
+}
+.pagination li.active:hover{
+	background-color:var(--nav-color-hover);
+}
+.pagination li {
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+/*Something I actually wrote myself*/
+.material-settings-table {
+	padding: 0px;
+}
+.material-settings-table td {
+	padding: 0px;
+}
+.material-settings-table p {
+	margin: 0px;
+}
+.material-settings-table tr {
+	border-bottom-color: var(--settings-row-border-color);
+}
+
+.material-settings-table .title {
+	font-weight: bold;
+	font-size:120%
+}
+.modal .modal-footer {
+	background-color: rgba(128,128,128,0.3);
+}
+.modal .modal-footer > a {
+	color: var(--text-color);
+}
+
+/*#head, #foot {
+	height: 6%;
+	min-height: 25px;
+	width: 100%;
+	background-color: #151515;
+	overflow: hidden;
+}
+
+#head a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+#head a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#head a.active {
+  background-color: #4CAF50;
+  color: white;
+}*/
+
+.tabs {
+    display:-webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
+
+
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  /*background-color: DodgerBlue;*/
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-container > div {
+  /*background-color: #f1f1f1;*/ /*I don't remember why I put this here. It makes the buttons square though. */
+  margin: 5px;
+  /*padding: 20px;
+  font-size: 30px;*/
+}
+
+/*tr:nth-child(odd) {
+    background-color: #000000CC;
+}
+tr:nth-child(even) {
+    background-color: #111111CC;
+}*/
+
+
+
+#verySimpleText{
+	text-align: left;
+	font-family: 'Noto Sans KR', sans-serif;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.coloredDialogue{
+	filter: var(--colored-dialogue);
+}
+
+/*To make everything nice and centered on desktop.*/
+@media screen and (min-width:701px) {
+
+	#verySimpleText{
+		margin-left: 0px;
+		margin-right: 0px;
+		width: 700px; 
+		margin: 0 auto;
+	}
+}
+
+/*.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.charName {
+  font-family: 'Noto Sans KR', sans-serif;
+  position: absolute;
+  top: 5px;
+  left: 16px;
+  font-size: 2vw;
+}
+
+.absText {
+      font-family: 'Noto Sans KR', sans-serif;
+  position: absolute;
+  top: 45px;
+  left: 16px;
+  font-size: 2.2vw;
+}*/
+
+
+/*.speakerName{
+	font-weight: bold;
+}*/
+
+
+
+.snow{
+	background-image:
+        url(snow1.png),
+           url(snow2.png),
+           url(snow3.png);
+	animation: snow 30s linear infinite;
+}
+
+@keyframes snow {
+    0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+    100% {background-position: 500px 1000px, 400px 400px, 300px 300px}
+}
+
+
+.storyText {
+	margin-top: 0.5ex;
+	margin-bottom: 0.5ex;
+	overflow-wrap: break-word;
+}
+
+.storyText.speakerName {
+	/*margin-top: 0;*/
+	font-weight: bold;
+}
+
+/*
+Blatantly stolen from gfl.zzzzz.kr 
+I have no idea how it works
+*/
+.storyImg{
+	position:relative;
+	overflow:hidden; /*Keep portraits within div */
+	width:100%;
+	margin-top:1.5rem;
+}
+.storydoll{
+	width:71%; /*You're probably wondering why this is 71% instead of 70%. After all, left:15% will create the remaining 30% to center the image right? Well it turns out that the heads of most images are slightly to the left and not centered. I think gfl.zzzzz.kr did it on purpose so it would look slightly more centered. */
+	position: absolute;
+	bottom: -30%;
+	z-index: 5; /*higher number means it's drawn in front */
+}
+.storydoll.one{
+	left:15%; /*Margin of 15%, which also creates a right margin of 15%, which adds up the remaining 30% in 'width' in storyImg class */
+}
+.storydoll.first.two{
+	right:35%
+}
+.storydoll.second.two{
+	left:35%
+}
+
+.storydoll.dim{
+	filter: brightness(50%);
+	z-index:4;
+}
+.storydoll.mask {
+	mask-position: center;
+	mask-size: 100%; /* I don't know why 100% works but it does */
+	-webkit-mask-size: 100%;
+	filter: brightness(300%) opacity(75%);
+}
+
+.maskcontainer{
+	z-index:5;
+}
+.maskcontainer.one{
+	left:35%; /*This is a guess, I don't know how it works */
+}
+.maskcontainer.first.two{
+	left:15%;
+}
+.maskcontainer.second.two{
+	left:55%
+}
+/*Should probably fix later */
+.maskcontainer.dim{
+	z-index:4;
+}
+.maskcontainer > div > img.dim{
+	filter: brightness(50%);
+}
+
+/*.storydoll.saying{
+	filter: brightness(100%);
+	z-index: 100;
+}*/
+
+#SearchResults {
+	cursor: pointer;
+	display: block;
+	text-align: left;
+}
+/*lol */
+.collection-item.waves-effect {
+	display: inherit;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-areas:
+		'menu main';
+	grid-template-columns:25% auto;
+	grid-gap:10px;
+	padding: 0px;
+
+}
+
+</style>
+<!-- tfw no bandwidth -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!--<script type="text/javascript" src="junk/materialize.js"></script>-->
+<!--<script src="phaser.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
+
+
+<!--Helper functions-->
+<script>
+	//https://stackoverflow.com/a/57401891
+	/*function adjustColor(color, amount) {
+		return '#' + color.replace(/^#/, '').replace(/../g, color => ('0'+Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
+	}*/
+	
+	//https://www.w3schools.com/js/js_cookies.asp
+	function setCookie(cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		var expires = "expires="+ d.toUTCString();
+		document.cookie = cname + "=" + cvalue + ";SameSite=Lax;" + expires + ";path=/";
+	}
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+	
+	//https://stackoverflow.com/a/29998400
+	function JavaSplit(string,separator,n) {
+		var split = string.split(separator);
+		if (split.length <= n)
+			return split;
+		var out = split.slice(0,n-1);
+		out.push(split.slice(n-1).join(separator));
+		return out;
+	}
+	
+	
+	/**
+	 * String.prototype.replaceAll() polyfill
+	 * https://gomakethings.com/how-to-replace-a-section-of-a-string-with-another-one-with-vanilla-js/
+	 * @author Chris Ferdinandi
+	 * @license MIT
+	 */
+	if (!String.prototype.replaceAll) {
+		String.prototype.replaceAll = function(str, newStr){
+
+			// If a regex pattern
+			if (Object.prototype.toString.call(str).toLowerCase() === '[object regexp]') {
+				return this.replace(str, newStr);
+			}
+
+			// If a string
+			return this.replace(new RegExp(str, 'g'), newStr);
+
+		};
+	}
+	
+	
+	function download(data, filename, type) {
+		var file = new Blob([data], {type: type});
+		if (window.navigator.msSaveOrOpenBlob) // IE10+
+		    window.navigator.msSaveOrOpenBlob(file, filename);
+		else { // Others
+		    var a = document.createElement("a"),
+		            url = URL.createObjectURL(file);
+		    a.href = url;
+		    a.download = filename;
+		    document.body.appendChild(a);
+		    a.click();
+		    setTimeout(function() {
+		        document.body.removeChild(a);
+		        window.URL.revokeObjectURL(url);  
+		    }, 0); 
+		}
+	}
+
+</script>
+<!--The main program-->
+<script>
+	/*
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Affero General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU Affero General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+	This program is written by Rhythm Lunatic.
+	*/
+
+
+	//I kept accidentally typing print ok
+	window.print = function(param)
+	{
+		console.log(param);
+	}
+	function consoleWarn(param)
+	{
+		console.log("%c "+param,'background: black; color: yellow')
+	}
+	
+	
+	
+	
+	
+	//Night mode
+	isDarkMode=false;
+	function NightMode()
+	{
+		let theme = "dark-theme"
+		if (document.body.classList.contains("dark-theme"))
+		{
+			theme='black-theme';
+			document.body.classList.replace("dark-theme",theme);
+			isDarkMode=true
+		}
+		else if (document.body.classList.contains("black-theme"))
+		{
+			theme='light-theme';
+			document.body.classList.replace("black-theme",theme);
+			isDarkMode=false;
+		}
+		else
+		{
+			document.body.classList.replace('light-theme',theme);
+			isDarkMode=true;
+		}
+		setCookie('theme',theme,180);
+	}
+	
+	//interpreter related
+	
+	
+	//For JSON structured or making your own
+	//Pro tip: use opcode2string.indexOf(s) to get the opcode number
+	const opcode2string = [
+		'stopBGM',
+		'bgm',
+		'bg',
+		'speaker',
+		'msg',
+		'portraits',
+		'INVALID - DO NOT USE',
+		'msgboxTransition',
+		'snowEffect',
+		'stopEffect',
+		'nightFilter',
+		'fadeOut',
+		'fadeIn',
+		'choice',
+		'destination',
+		'credits',
+		'credits2',
+		'soundEffect1',
+		'soundEffect2',
+		'video'
+		//'setMaskedPortrait'
+	]
+	
+	const OPCODES = {
+		STOPBGM : 0,
+		BGM : 1,
+		BG : 2,
+		SPEAKER : 3,
+		MSG : 4,
+		PORTRAIT : 5,
+		//NOPORTRAIT : 6,
+		MSGBOXTRANSITION : 7,
+		SNOWEFFECT : 8,
+		STOPEFFECTS : 9,
+		NIGHTFILTER : 10,
+		FADEOUT : 11,
+		FADEIN : 12,
+		CHOICE : 13,
+		DESTINATION : 14,
+		CREDITS : 15,
+		CREDITS2 : 16,
+		SE1: 17,
+		SE2: 18,
+		VIDEO: 19
+		//SETMASKEDPORTRAIT : 8
+	}
+	
+	const tag2opcode = {
+		"Speaker":OPCODES.SPEAKER,
+		"BIN":OPCODES.BG,
+		"BGM":OPCODES.BGM,
+		"下雪":OPCODES.SNOWEFFECT,
+		"火焰销毁":OPCODES.STOPEFFECTS,
+		"Night":OPCODES.NIGHTFILTER,
+		"黑屏1":OPCODES.FADEOUT,
+		"黑屏2":OPCODES.FADEIN,
+		'分支':OPCODES.DESTINATION,
+		'名单':OPCODES.CREDITS,
+		'名单2':OPCODES.CREDITS2,
+		"SE1":OPCODES.SE1,
+		"SE2":OPCODES.SE2
+		//"通讯框":OPCODES.SETMASKEDPORTRAIT,
+	}
+	
+
+	//To be loaded later or on-demand.
+	let PORTRAITS = {
+		101:["kiana/101.png"]
+
+	};
+	let MUSIC = undefined;
+	let CREDITSDATA = undefined;
+	let NAMES = {
+		204553:"Kiana"
+	}
+
+	let LANGUAGE_COLUMN = {
+		"en":1,
+		"cn":2,
+		"jp":3,
+		"kr":4,
+		"tcn":5
+	}
+	/*
+	Night backgrounds are generated using html canvas,
+	then to speed up their result is kept in memory in this table and indexed
+	by the name of the original file
+	*/
+	let nightBackgrounds = {};
+	//Check if nightBG generation is already queued for a BG
+	let nightBGQueue = {};
+	
+	//For CSS
+	var int2str = ['zero','one',  'two',   'three','four',  'five', 'six',  'seven',  'eight', 'nine']
+	var int2strPos = ['N','first','second','third','fourth','fifth','sixth','seventh','eighth','ninth']
+	
+	//I moved everything to gfl subdomain so it's fine now
+	//const portraitWebserver = "http://gfl.amaryllisworks.pw/pic/"
+	
+	function portraitStructToString(p)
+	{
+		return "name: "+p[0]+" | type: "+p[1]+" | dim: "+p[2]
+	}
+	
+	//Shamelessly stolen from http://www.permadi.com/tutorial/jsCanvasGrayscale/index.html
+	//Technically this could be reimplemented and run much faster if it was WebGL with a GLSL shader. Dunno if you can export it as an image like a canvas though.
+	function nightFilter(image)
+	{
+		//console.log("processing "+image.src);
+	  var myCanvas=document.createElement("canvas");
+	  var myCanvasContext=myCanvas.getContext("2d");
+
+		var imgWidth=image.naturalWidth;
+		var imgHeight=image.naturalHeight;
+	  // You'll get some string error if you fail to specify the dimensions
+	  myCanvas.width= imgWidth;
+	  myCanvas.height=imgHeight;
+	  myCanvasContext.drawImage(image,0,0);
+
+	  // This function cannot be called if the image is not from the same domain.
+	  // You'll get security error if you do.
+	  var imageData=myCanvasContext.getImageData(0,0, imgWidth, imgHeight);
+	  
+		//console.log(imageData.width +"x"+imageData.height);
+
+		//debugger;
+		/*
+		imageData.data is a massive array of every pixel in the image
+		order is R,G,B,A for every pixel, so it's pixels in image times 4
+		We're only modifying red and green here
+		*/
+		for (j=0; j<imageData.data.length; j+=4)
+		{
+			var red=imageData.data[j];
+			var green=imageData.data[j+1];
+			var blue=imageData.data[j+2];
+			//var alpha=imageData.data[j+3];
+			imageData.data[j]=red*.4;
+			imageData.data[j+1]=green*.4;
+			imageData.data[j+2]=blue*.8;
+			//imageData.data[j+3]=255;
+		   
+		}
+		 
+		//console.log("done!");
+		myCanvasContext.putImageData(imageData,0,0,0,0, imageData.width,   imageData.height);
+		return myCanvas.toDataURL();
+	}
+	
+	//Turns a storybox into a baked image
+	//for (let d of document.getElementsByClassName('storyImg')){bakeStoryBox(d)}
+	function bakeStoryBox(d)
+	{
+		if (d==undefined)
+			d=document.getElementById('storyBox0');
+			
+		let bg = d.getElementsByClassName('bg')[0]
+		let dolls = d.getElementsByClassName('storydoll');
+		
+		//Unique hash should be generated based on bg number, dolls present, and dim/mask on dolls so CPU is not wasted generating it again
+		let uint8toByte = function(n){let str= Number(n).toString(16); return str.length == 1 ? "0" + str : str}
+		let uint16toByte = function(n){
+			let str= Number(n).toString(16);
+			while (str.length < 4)
+				str='0'+str;
+			return str;
+		}
+		let booltoByte = function(b){return b ? 'F' : '0' }
+		
+		let checksum = uint8toByte(bg.getAttribute('bg'))+booltoByte(bg.classList.contains('nightBG'));
+		
+		//TODO: No mask support
+		for (var i = 0;i<2;i++)
+		{
+			let doll = d.getElementsByClassName(int2str[i])[0]
+			console.log(doll);
+			if(doll)
+			{
+				//Concatenate a string for src because I'm comparing strings anyways and it's unique
+				checksum+=doll.getAttribute('src').replace('/','_')+booltoByte(doll.classList.contains('dim'))
+			}
+			else
+				checksum+="0000"
+		}
+		
+		console.log(checksum)
+		
+		let canvas = document.createElement('canvas');
+		canvas.width = 1280; //GFL's cutscenes seem to be scaled to this resolution and not 1024x576.
+		canvas.height = 720;
+		
+		let ctx = canvas.getContext('2d');
+		ctx.drawImage(bg,0,0,canvas.width,canvas.height)
+		if (dolls.length > 0)
+		{
+			let doll = dolls[0]
+			ctx.drawImage(doll,canvas.width/2-doll.naturalWidth/2,50)
+		}
+		
+		d.innerHTML = "<img class='bakedStoryBox' style='width: 100%; position: relative; display: block;' src=\'"+canvas.toDataURL()+"\' checksum='"+checksum+"'>"
+		
+	}
+	
+	function sliceAndRemove(str, begin, end)
+	{
+		return str.slice(0,begin)+str.slice(end)
+	}
+	
+	function getFromTag(str,tag)
+	{
+		const beginTag = "<"+tag+">"
+		const endTag = "</"+tag+">"
+		var n = str.indexOf(beginTag)
+		if (n != -1){
+			return str.slice(n+beginTag.length, str.indexOf(endTag))
+		}
+		return null
+	}
+	function removeTag(str,tag)
+	{
+		const beginTag = "<"+tag+">"
+		const endTag = "</"+tag+">"
+		return sliceAndRemove(str,str.indexOf(beginTag),str.indexOf(endTag)+endTag.length)
+	}
+	
+	function playNewAudio(fileName)
+	{
+		let audioPlayer = document.getElementById('audioPlayer');
+		audioPlayer.getElementsByClassName('a_ogg')[0].src = fileName+".ogg"
+		audioPlayer.getElementsByClassName('a_mp3')[0].src = fileName+".mp3" //Imagine using a browser that doesn't support ogg
+		audioPlayer.load();
+		audioPlayer.play();
+	}
+	function playSFX(fileName)
+	{
+		let audioPlayer = document.getElementById('sfxPlayer');
+		audioPlayer.getElementsByClassName('sfx_ogg')[0].src = fileName+".ogg"
+		//audioPlayer.getElementsByClassName('a_mp3')[0].src = fileName+".mp3" //Imagine using a browser that doesn't support ogg
+		audioPlayer.load();
+		audioPlayer.play();
+	}
+	
+	//Input: string of gfl text, missionID
+	//output: structured lines (array with opcodes)
+	function convertGFLTextToOpcodes(out, missionID)
+	{
+		//console.log(out);
+		var lines = out.split(/\r?\n/);
+		//The GFL text structure is stupid so I'm going to convert it to my own.
+		let structuredLines = [];
+		
+		
+		for(i=0;i<lines.length;i++)
+		{
+			if (!lines[i])
+				continue;
+			//print(lines[i]);
+			//console.assert(lines[i].includes(':'),"This line is missing a \":\"... Bad line? | "+lines[i])
+			let [cmds,text] = JavaSplit(lines[i].replace("：",':').replace("；",";"),":",2)
+			console.assert(cmds,lines[i])
+			//There can be lines without any text so asserting is pointless
+			//console.assert(text,lines[i])
+			//console.log(text)
+			//
+			
+			//Yeah I know tags are supposed to be in order, No I don't really care sorry
+			
+			//So portraits are set in any order... But how the fuck are you supposed to tell when a name is if there's <> tags
+			//I'm just going to search portraits after removing <> tags, it probably won't matter
+			let numPortraits = 0;
+			let thisLineHadAtLeastTwoPortraits = (cmds.indexOf(";") != -1)
+			
+			//Apply dimming by checking position of <Speaker> command.
+			//If ; is before the <Speaker> tag it dims the left, if it's after it dims the right.
+			let shouldDimLeft = thisLineHadAtLeastTwoPortraits && cmds.lastIndexOf(";") < cmds.lastIndexOf("</Speaker>")
+			
+			
+			
+			//console.log(thisLineHadAtLeastTwoPortraits);
+			//Limit it to 5 because I don't want a dumb infinite loop that crashes the browser
+			let portraits = []
+			for(j=0;j<5;j++)
+			{
+				//console.log(cmds)
+				let charTagEnd = cmds.indexOf(")");
+				if (charTagEnd != -1)
+				{
+					//It's +1 to get rid of the ;
+					let charTagStart = Math.max(cmds.lastIndexOf(";",charTagEnd)+1,0)
+					let [charID,charSpr] = cmds.slice(charTagStart,charTagEnd).split("(")
+					//console.log(charID)
+					//console.log(charSpr)
+					//Ignore empty sprite IDs, they do nothing.
+					
+					//I know it's a hackjob fix but I don't think there's going to be () in any other tags
+					if (charTagEnd > cmds.indexOf("<Speaker>") && charTagEnd < cmds.indexOf("</Speaker>"))
+					{
+						//console.log("Parenthesis is inside the speaker tag, ignoring");
+						continue
+					}
+					
+					if (charSpr != undefined && charSpr && charID)
+					{
+						
+						let shouldDim = false;
+						if (thisLineHadAtLeastTwoPortraits)
+						{
+							//shouldDim = numPortraits < 1 ? shouldDimLeft : !shouldDimLeft
+							if (numPortraits < 1) //If we're handling the left portrait right now
+								shouldDim= shouldDimLeft;
+							else
+								shouldDim = !shouldDimLeft;
+						}
+						
+						//Search backwards for the previous mask value because the mask command is only applied once in GFL for some reason
+						let shouldMask = false;
+						//It's -2 because the last line is always MSGBOXTRANSITION.
+						for(var lll=structuredLines.length-2; lll>=0; lll--)
+						{
+							let m = structuredLines[lll];
+							if (m[0]==OPCODES.PORTRAIT)
+							{
+								if (m[1].length==0)
+									break;
+								else
+								{
+									for (let j=0;j<m[1].length;j++)
+									{
+										let p=m[1][j]
+										if (p[0] == charID)
+										{
+											shouldMask = p[3];
+											//console.log("Found previous portrait, previous mask value was "+shouldMask)
+											break;
+										}
+									}
+									break;
+								}
+							}
+						}
+						
+						
+						portraits.push([charID,charSpr,shouldDim,shouldMask])
+						//nextPortraitIsMasked = false;
+						numPortraits++;
+					}
+					//The () command sets the speaker to "".
+					//In fact () always sets the name, you just don't see it because <Speaker> is used in EN.
+					else
+					{
+						//structuredLines.push([OPCODES.PORTRAIT,[]])
+						structuredLines.push([OPCODES.SPEAKER,""])
+						//numPortraits=0;
+					}
+					cmds = sliceAndRemove(cmds,charTagStart,charTagEnd+1);
+				}
+				else
+				{
+					//console.log("Done... Let's exit");
+					break;
+				}
+			}
+			
+			let equalToLastPortraits = (function(){
+				for(var lll=structuredLines.length-2; lll>=0; lll--) //It's -2 because the last line is always MSGBOXTRANSITION.
+				{
+					let m = structuredLines[lll];
+					if (m[0]==OPCODES.PORTRAIT)
+					{
+						if (m[1].length == portraits.length)
+						{
+
+							for (let j=0;j<m[1].length;j++)
+							{
+								let p1=portraits[j];
+								let p2=m[1][j];
+								if (p1[0]==p2[0] && p1[1]==p2[1] && p1[2]==p2[2] && p1[3]==p2[3])
+								{
+								
+								}
+								else
+									return false;
+							}
+							return true;
+						}
+						return false;
+					}
+				}
+			})()
+			if (!equalToLastPortraits)
+				structuredLines.push([OPCODES.PORTRAIT,portraits]);
+				
+			
+			//Doesn't work if array size is less than 3
+			//There's also practically no reason to support this
+			/*let positionRes = getFromTag(cmds,"Position")
+			if (positionRes != null)
+			{
+				for(var lll=structuredLines.length-1; lll>=0; lll--)
+				{
+					let m = structuredLines[lll];
+					
+					if (m[0]==OPCODES.PORTRAIT)
+					{
+						//Because somehow arrays aren't references in javascript, I have to access the original var and then assign to it
+						structuredLines[lll][1][structuredLines[lll][1].length-1]=structuredLines[lll][1][structuredLines[lll][1].length-1].concat(positionRes.split(','))
+						//console.log('added position to portrait '+p)
+						console.log(structuredLines[lll])
+					}
+					else if (m[0]==OPCODES.MSGBOXTRANSITION)
+						break;
+				}
+			}*/
+			
+			let speakerRes = getFromTag(cmds,"Speaker")
+			//debugger;
+			if (speakerRes != undefined)
+			{
+				let prevLine = structuredLines[structuredLines.length-1]
+				//Optimization: If prevLine was another speaker line, overwrite it instead of writing another
+				if (prevLine[0]==OPCODES.SPEAKER)
+					structuredLines[structuredLines.length-1]=[OPCODES.SPEAKER,speakerRes]
+				else
+					structuredLines.push([OPCODES.SPEAKER,speakerRes])
+				cmds = removeTag(cmds,"Speaker")
+			}
+			
+			let bgmRes = getFromTag(cmds,"BGM")
+			
+			if (bgmRes != null)
+			{
+				if(bgmRes=="BGM_Empty")
+					structuredLines.push([OPCODES.STOPBGM])
+				else
+				{
+					//If music exists in db then rename it before pushing
+					structuredLines.push([OPCODES.BGM, MUSIC[bgmRes] || bgmRes])
+				}
+			}
+			
+			//It's impossble to filter out duplicate background commands ahead of time because the night command is applied after the background command
+			const tags = ["BIN","名单2","SE1","SE2"]
+			tags.forEach(tag => {
+				//console.log(tag);
+				let tagRes = getFromTag(cmds,tag);
+				//console.log(tagRes)
+				if (tagRes != null)
+				{
+					console.assert(tag2opcode[tag],"Tag "+tag+" not present in tag2opcode")
+					structuredLines.push([tag2opcode[tag],tagRes])
+					cmds = removeTag(cmds,tag)
+				}
+			})
+			
+			//For commands that don't have an argument and require no special behavior to parse.
+			/*const tagsNoArgs=['名单']
+			tags.forEach(tag => {
+				structuredLines.push([tag2opcode[tag]])
+				cmds=cmds.replace("<"+tag+">","");
+			})*/
+			if (missionID != undefined && cmds.includes('<名单>'))
+			{
+				structuredLines.push([OPCODES.CREDITS,missionID])
+				cmds=cmds.replace("<名单>","");
+			}
+			
+			
+			
+			//Destination label
+			let destRes = getFromTag(cmds,'分支')
+			if (destRes != null)
+			{
+				for(var lll=structuredLines.length-1; lll>=0; lll--)
+				{
+					let m = structuredLines[lll];
+					if(m[0]==OPCODES.MSGBOXTRANSITION)
+					{
+						structuredLines.splice(lll+1,0,[OPCODES.DESTINATION,destRes])
+						//console.log("Pushed label tag at idx "+(lll+1))
+						//console.log(structuredLinesToString(structuredLines))
+						break;
+					}
+				}
+				cmds = removeTag(cmds,'分支')
+			}
+			
+			
+			//Search backwards to find the last background command and set isNight flag true
+			if (cmds.includes("<Night>"))
+			{
+				for(var lll=structuredLines.length-1; lll>=0; lll--)
+				{
+					let m = structuredLines[lll];
+					console.assert(m)
+					if(m[0]==OPCODES.BG)
+					{
+						m.push(true)
+						break;
+					}
+				}
+				cmds=cmds.replace("<Night>","");
+			}
+			
+			let common_effect = getFromTag(cmds,'common_effect')
+			if (common_effect != null)
+			{
+				//<common_effect>%%code=DoomsdayClock01%%wait=1%%</common_effect>
+				let _cmds = common_effect.split("%%")
+				for (var j=0;j<_cmds.length;j++)
+				{
+					let _cmd = _cmds[j].split('=')
+					if (_cmd.length > 1)
+					{
+						let whitelistedCommands = [
+							"DoomsdayClock01",
+							"DoomsdayClock02",
+							"DoomsdayClock03",
+							"DoomsdayClock04",
+							"DoomsdayClock05",
+							"DoomsdayClock06",
+							"DoomsdayClock07"
+						]
+						if (whitelistedCommands.includes(_cmd[1]))
+						{
+							structuredLines.push([OPCODES.VIDEO,_cmd[1]])
+						}
+					}
+					
+					
+				}
+			}
+			
+			
+			//const tags = [
+			//var nextPortraitIsMasked = false;
+			//Since portraits are searched before modifiers...
+			while (cmds.includes("<通讯框>"))
+			{
+				let idxToCheck = 0;
+				
+				let posOfMaskCmd = cmds.indexOf("<通讯框>");
+				let posOfCmdDivider = cmds.indexOf(";")
+				//console.log(posOfCmdDivider+" "+posOfMaskCmd+" "+cmds)
+				//If this line had more than one portrait AND the ; is before the mask command, we should be masking the portrait at idx 1 instead of 0
+				if (posOfCmdDivider > -1 && posOfCmdDivider < posOfMaskCmd)
+				{
+					//console.log("checking portrait on right side to mask")
+					idxToCheck = 1;
+				}
+				
+				for(var lll=structuredLines.length-1; lll>=0; lll--)
+				{
+					let m = structuredLines[lll];
+					console.assert(m)
+					if(m[0]==OPCODES.MSG)
+					{
+						//consoleWarn("Found a message opcode before a portrait opcode... Messages shouldn't exist at this point")
+						break;
+					}
+					else if (m[0]==OPCODES.PORTRAIT)
+					{
+						//console.log("set mask true for portrait "+portraitStructToString(structuredLines[lll]))
+						//console.log(structuredLines[lll])
+						if (structuredLines[lll][1].length == 0) //Applying the mask command when there's no portraits is an actual thing MICA does. Is it to make my life harder? Who knows.
+						{
+							consoleWarn("WTF? Tried to set a mask command but there's no portraits.");
+							//consoleWarn(cmds)
+						}
+						else
+							structuredLines[lll][1][idxToCheck][3]=true;
+						break;
+					}
+				}
+				cmds=cmds.replace("<通讯框>","");
+			}
+			
+			//Now do text... But first check if there is any text (some lines are only commands)
+			if (text)
+			{
+				//Snow effect is on the right hand side for some reason
+				["火焰销毁",'下雪'].forEach(tag => {
+					let tagRes = getFromTag(text,tag);
+					if (tagRes != null)
+					{
+						structuredLines.push([tag2opcode[tag],tagRes])
+						text = removeTag(text,tag)
+					}
+				})
+				
+				
+				text.split("+").forEach(msg => {
+					//Check for choice tag here. <c> is always at the end, so it's fine
+					let choiceStart = msg.indexOf('<c>')
+					if (choiceStart != -1)
+					{
+						structuredLines.push([OPCODES.MSG, msg.slice(0,choiceStart)])
+						structuredLines.push([OPCODES.CHOICE, msg.slice(choiceStart+3).split('<c>')])
+					}
+					else
+						structuredLines.push([OPCODES.MSG,msg])
+				})
+			}
+			//open/close msgbox
+			structuredLines.push([OPCODES.MSGBOXTRANSITION])
+		}
+		return structuredLines;
+	}
+	
+	var curEpKey;
+	var currentEpisodeAsOpcodes;
+	
+	function structuredLinesToString(structuredLines)
+	{
+		let s = "";
+		structuredLines.forEach(line => {
+			s+=(opcode2string[line[0]] || "unknown opcode "+line[0])+';'
+			/*for(var i=1;i<line.length;i++)
+				s+=line[i]*/
+			if (typeof line == "object")
+			{
+				//console.log(line)
+				if (line[0]==OPCODES.PORTRAIT)
+				{
+				
+					
+					//s+=line[1].join(',')
+				}
+				else
+					s+=line.slice(1).join([separator = '|'])
+			}
+			else
+			{
+				s+="Hey idiot, this isn't an array -> "+line;
+				consoleWarn("This structured line isn't an array!!!!!!! " + line)
+			}
+			s+='\r\n'
+			//s+=line.toString()+"\r\n";
+		})
+		return s;
+	}
+	function stringToStructuredLines(s)
+	{
+		var lines = s.split(/\r?\n/);
+		let structuredLines = [];
+		for(i=0;i<lines.length;i++)
+		{
+			let newMsg = lines[i].split(';')
+			newMsg[0] = opcode2string.indexOf(newMsg[0])
+			if (newMsg[0] == OPCODES.PORTRAIT)
+			{
+				//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+				//Someone said the site stopped working because I used the operators so I had to change it back :V
+				//It also doesn't work on the old version of Firefox for Android and I want Tampermonkey
+				//newMsg[4] = (newMsg[4]?.toLowerCase() == "true")
+				//newMsg[5] = (newMsg[5]?.toLowerCase() == "true")
+				
+				newMsg[4] = (newMsg[4] != undefined ? newMsg[4].toLowerCase() == "true" : false)
+				newMsg[5] = (newMsg[5] != undefined ? newMsg[5].toLowerCase() == "true" : false)
+			}
+			structuredLines.push(newMsg)
+		}
+		return structuredLines;
+	}
+	
+	//Anti-XSS
+	function sanitize(string) {
+		const map = {
+			'&': '&amp;',
+			'<': '&lt;',
+			'>': '&gt;',
+			'"': '&quot;',
+			"'": '&#x27;',
+			"/": '&#x2F;',
+			"`": '&grave;'
+		};
+		const reg = /[&<>"'/]/ig;
+		return string.replace(reg, (match)=>(map[match]));
+	}
+	
+	//Converts GFL's text modifiers into HTML elements, as you might have guessed.
+	//TODO: Ignore ALL unknown/illegal codes, not just <script>
+	//let allowedHTMLTags = ['color','size','b','i','u','q','s']
+	function parseGFLTextModifiers(message) {
+		message = message.replaceAll("<script>","&lt;script&gt;").replaceAll("<\/script>","&lt;&#x2F;script&gt;")
+		message = message.replaceAll("\"","&quot;")
+		for(var ccc = 0; ccc < 50; ccc++)
+		{
+			/*if(ccc > 5)
+			{
+				consoleWarn("Encountered more than 5 color codes in a message... This is very unusual, so bailing out");
+				break;
+			}*/
+			//If you haven't already guessed, I don't know regex
+			let idx = message.indexOf("<color=");
+			if (idx != -1)
+			{
+				//print('parsing colors: '+message);
+				let end = message.indexOf('>',idx)
+				let color = message.slice(idx+7,end)
+				//console.log(color)
+				let spanTagStart = "<span class='coloredDialogue' style='color:"+color+"'>"
+				message = message.slice(0,idx)+spanTagStart+message.slice(end+1,message.indexOf("</color>"))+"</span>"+message.slice(message.indexOf("</color>")+8)
+				//console.log("new msg: "+message);
+			}
+			else
+			{
+				break;
+			}
+		}
+		for(var ccc = 0; ccc < 50; ccc++)
+		{
+			/*if(ccc > 5)
+			{
+				consoleWarn("Encountered more than 5 size codes in a message... This is very unusual, so bailing out");
+				break;
+			}*/
+			//If you haven't already guessed, I don't know regex
+			let idx = message.indexOf("<size=");
+			if (idx != -1)
+			{
+				//console.log(message);
+				let end = message.indexOf('>',idx)
+				let size = message.slice(idx+6,end)/45*100 //Assume default is 45px
+				let spanTagStart = "<span class='sizedDialogue' style='font-size:"+size+"%'>"
+				
+				message = message.slice(0,idx)+spanTagStart+message.slice(end+1,message.indexOf("</size>"))+"</span>"+message.slice(message.indexOf("</size>")+7)
+			}
+			else
+			{
+				break;
+			}
+		}
+		message = message.replaceAll("//n","<br>")
+		return message
+	
+	}
+	
+	/*function parseCommonEffect(message) {
+	
+	}*/
+	
+	//input: structuredLines (array), part (int starting at 0), partName (string. Optional, if present replaces the "Part X" header
+	//output: a div with the elements rendered
+	//This function does not cause side effects.
+	function renderStructuredLinesToDiv(structuredLines,part,partName,isNight,numParts)
+	{
+		
+		let thisPartDiv = document.createElement('div');
+		thisPartDiv.id = 'part'+part
+		let h3 = document.createElement('h3');
+		//console.log(partNum);
+		if (partName != undefined)
+			h3.innerText="Part "+(part+1)+": "+partName
+		else
+			h3.innerText="Part "+(part+1);
+		
+		
+		//partNum++;
+		thisPartDiv.appendChild(h3);
+		
+		//Add part to top
+		if (part != undefined && numParts != undefined && numParts > 1 && numParts < 25) //Don't bother if it's more than 25, it wastes too much CPU
+		{
+			let ul = document.createElement('ul')
+			ul.classList.add('pagination');
+			//ul.innerHTML = "<li class='disabled'><a style='color:var(--text-color); cursor:text;'>Jump to:</a></li>"
+			if (part==0)
+				ul.innerHTML = '<li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>'
+			else
+				ul.innerHTML = '<li class="waves-effect"><a onclick="document.getElementById(\'part'+(part-1)+'\').scrollIntoView()"><i class="material-icons">chevron_left</i></a></li>'
+			
+			let li = ''
+			for (var p = 0;p<numParts;p++)
+			{
+				li += '<li class="'+ (p==part ? 'active' : 'waves-effect')+ '"><a onclick="document.getElementById(\'part'+p+'\').scrollIntoView()">'+(p+1)+'</a></li>'
+				
+			}
+			if (part==numParts-1)
+				li += '<li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>'
+			else
+				li += '<li class="waves-effect"><a onclick="document.getElementById(\'part'+(part+1)+'\').scrollIntoView()"><i class="material-icons">chevron_right</i></a></li>'
+			
+			ul.innerHTML = ul.innerHTML + li
+			
+			
+			//It looks kind of ugly tbh
+			/*if (episode['part_names'] != undefined)
+				partJump+=': '+episode['part_names'][p]*/
+			//partJump+='</a></li>'
+			thisPartDiv.appendChild(ul);
+		}
+		
+		if (document.getElementById('showDebugOpcodeButton').checked)
+		{
+			let button = document.createElement('a');
+			//fuck your javascript
+			button.setAttribute("class","waves-effect waves-light btn");
+			button.setAttribute("onclick","showOpcodes('div_cutscene_iop_"+part+"')")
+			button.innerText="Show opcodes for this section (For debugging)"
+			thisPartDiv.appendChild(button);
+			thisPartDiv.appendChild(document.createElement('br'));
+		
+			let opcodesDiv = document.createElement('div');
+			opcodesDiv.id= "div_cutscene_iop_"+part
+			opcodesDiv.style="display: none;"
+			opcodesDiv.classList.add("textarea-wrapper");
+			opcodesDiv.innerHTML = "<textarea rows='6' cols='50' id='textarea_cutscene_"+part+"' readonly>"+structuredLinesToString(structuredLines)+"</textarea><br>"
+			//debugger;
+			//TLN.append_line_numbers_obj(opcodesDiv.firstElementChild,"textarea_cutscene_"+part)
+			thisPartDiv.appendChild(opcodesDiv)
+		}
+		
+		let playBGMbutton = document.createElement('a');
+		playBGMbutton.setAttribute("class","waves-effect waves-light btn");
+		/*if (!!document.getElementById('audioPlayer').canPlayType('audio/ogg;').replace(/no/,'') == false)
+		{
+			'<i class="material-icons left">music_note</i>Sorry, your browser is missing ogg support.'
+		}
+		else*/
+		playBGMbutton.innerHTML='<i class="material-icons left">music_note</i>Play audio for this cutscene'
+		
+
+		
+		//<img src="avgtexture/夜间蒙版.png" class="storydoll first one mask" style="mask-image: url(pic/pic_NPC-Helian.png);">
+		let maskThing = document.createElement('img');
+		//maskThing.src= "avgtexture/夜间蒙版.png";
+		maskThing.classList.add("storydoll");
+		maskThing.classList.add("mask");
+		maskThing.style="z-index: 10";
+		
+		
+		let lastSpeakerName = "";
+		let lastBGUsed = undefined; // [9,false];
+		//let didBGOrPortraitOrNameChange = false;
+		
+		let didBGChange = false;
+		let didPortraitsChange = false;
+		let didNameChange = false;
+		
+		let shownPortraits = []
+		
+		let fancyDisplayType = document.getElementById('fancyOrNot').checked;
+		let quickScroll = document.getElementById('quickScroll').checked;
+		let numStoryBoxRendered = part*1000+0; //For quick scroll. We start at a part because if there's multiple parts then it would jump back to the top and we don't want that.
+		
+		//let inlineText = document.getElementById('inlineText').checked
+		let advancedCSS = document.getElementById('advancedCSS').checked;
+		let skipGenerationOfDuplicateBoxes = document.getElementById('skipGenerationOfDuplicateBoxes').checked;
+		let showSFXButtons = document.getElementById('showSFXButtons').checked;
+		var snowDiv;
+		if (advancedCSS)
+		{
+			snowDiv = document.createElement('div');
+			snowDiv.classList.add('snow');
+			snowDiv.style='position: absolute; width:100%; height:100%;bottom: 0;'
+		}
+		let snowEffect = false
+		//let curDestination = null;
+		let languageColumn = LANGUAGE_COLUMN[currentLanguage]
+		
+		for(var i=0;i<structuredLines.length;i++)
+		{
+			let opcode = structuredLines[i][0]
+			//console.log(structuredLines[i]);
+			switch (opcode)
+			{
+				case OPCODES.BGM:
+					let newPlayBGMButton = playBGMbutton.cloneNode(true);
+					newPlayBGMButton.setAttribute("onclick","playNewAudio('audio/"+structuredLines[i][1]+"')")
+					thisPartDiv.appendChild(newPlayBGMButton);
+					break;
+				case OPCODES.SE1:
+				case OPCODES.SE2:
+					if (showSFXButtons)
+					{
+						let playSFXbutton = document.createElement('a');
+						playSFXbutton.setAttribute("class","waves-effect waves-light btn-small");
+						playSFXbutton.innerHTML='<i class="material-icons left">surround_sound</i>SFX: '+structuredLines[i][1]
+						playSFXbutton.setAttribute("onclick","playSFX('sfx/"+structuredLines[i][1]+"')")
+						thisPartDiv.appendChild(playSFXbutton);
+					}
+					break;
+				case OPCODES.STOPBGM:
+					//I'm sick of this
+					/*let stopBGMButton = document.createElement('a');
+					stopBGMButton.setAttribute("class","waves-effect waves-light btn");
+					stopBGMButton.innerHTML='<i class="material-icons left">music_note</i>Stop audio'
+					stopBGMButton.setAttribute('onclick',"document.getElementById('audioPlayer').pause()")
+					thisPartDiv.appendChild(stopBGMButton);*/
+					break;
+				case OPCODES.CHOICE:
+					structuredLines[i][1].forEach(c => {
+						let choiceButton = document.createElement('a');
+						choiceButton.setAttribute("class","waves-effect waves-light btn choiceButton");
+						choiceButton.setAttribute("style","margin-right: 5px; margin-bottom: 5px; text-transform:unset;")
+						choiceButton.innerText=c;
+						thisPartDiv.appendChild(choiceButton);
+					})
+					break;
+				case OPCODES.DESTINATION:
+					//curDestination = structuredLines[i][1]
+					let h5 = document.createElement('h5');
+					h5.setAttribute('id','choiceDestination_'+(part*100+structuredLines[i][1]));
+					h5.innerText="If choice "+structuredLines[i][1]+" was picked"
+					thisPartDiv.appendChild(h5);
+					break;
+				case OPCODES.SPEAKER:
+					let realName = NAMES[structuredLines[i][1]][0]
+					if (lastSpeakerName != realName)
+					{
+						lastSpeakerName=realName
+						didNameChange = true
+					}
+					else
+					{
+						//console.log("speaker command was called but already matches previous speaker...");
+					}
+					break;
+				case OPCODES.CREDITS:
+					console.assert(structuredLines[i][1]);
+					var creditsDiv = document.createElement('div');
+					creditsDiv.setAttribute('style','text-align:center;font-family:serif;');
+					if (CREDITSDATA)
+					{
+						creditsDiv.innerHTML = parseGFLTextModifiers(CREDITSDATA[structuredLines[i][1]])
+					}
+					else
+					{
+						creditsDiv.setAttribute('missionID',structuredLines[i][1]);
+						console.log("Fetching credits data...")
+						/*console.log("fetching "+fileName);
+						const response = await fetch("avgtxt/"+fileName);
+						const out = await response.text();
+						console.log("got "+fileName);*/
+						fetch('Language_AVG_US.txt')
+						.then(response => response.text())
+						.then(response => {
+							console.log("credits data loaded!");
+							CREDITSDATA = {}
+							response.split(/\r?\n/).forEach(l => {
+								if (l) { //Gotta check if the string is not empty
+									let kv = l.split('|')
+									//debugger;
+									CREDITSDATA[parseInt(kv[0])]=kv[1]
+								}
+							})
+							let interval=setInterval(function(){
+								let nBGs = document.querySelectorAll('div[missionID]');
+								if (nBGs.length == 0)
+								{
+									console.log("CreditsData: waiting for DOM to be ready before setting credits div for "+mID+"...");
+									return;
+								}
+								nBGs.forEach(el => {
+									el.innerHTML = parseGFLTextModifiers(CREDITSDATA[el.getAttribute('missionID')])
+								});
+								console.log("Set creditsDiv, exiting background task.");
+								clearInterval(interval);
+							},100);
+						});
+					}
+					thisPartDiv.appendChild(creditsDiv);
+					break;
+				case OPCODES.CREDITS2:
+					//TODO
+					//debugger;
+					var creditsDiv = document.createElement('div');
+					creditsDiv.innerHTML="<span class='coloredDialogue' style='color:red'>Credits2 command not implemented yet...</span>"
+					creditsDiv.setAttribute('style','text-align:center;font-family:serif;');
+					thisPartDiv.appendChild(creditsDiv);
+					break;
+					
+				case OPCODES.VIDEO:
+					//TODO
+					//debugger;
+					
+					var creditsDiv = document.createElement('div');
+					creditsDiv.setAttribute('class','bg');
+					creditsDiv.style = "width:100%; position:relative; display:block;";
+					creditsDiv.setAttribute('style','text-align:center;font-family:serif;');
+					creditsDiv.innerHTML="<video style='width:100%;' controls><source src='video/"+structuredLines[i][1]+".mp4' type='video/mp4;'><p>Your browser does not support MP4!!</p></video>"
+					thisPartDiv.appendChild(creditsDiv);
+					//numStoryBoxRendered++;
+					break;
+				case OPCODES.PORTRAIT:
+					if (!fancyDisplayType)
+						break;
+					shownPortraits = [];
+					didPortraitsChange = true;
+					//print(structuredLines[i])
+					for (pidx = 1;pidx<structuredLines[i].length;pidx++)
+					{
+						let portrait = structuredLines[i][pidx];
+						//[charID,charSpr,shouldDim,shouldMask,x,y]
+						let name = portrait[0]
+						let type = portrait[1]
+						if (name=='')
+						{
+							shownPortraits.push(portrait);
+							continue;
+						}
+
+						if (PORTRAITS[name] && PORTRAITS[name][type])
+						{
+							shownPortraits.push(portrait);
+							//console.log("NumPortraits: "+shownPortraits.length);
+						}
+						else if (PORTRAITS[name])
+						{
+							if (document.getElementById('showDebugOpcodeButton').checked)
+							{
+								let p = document.createElement('p');
+								p.innerHTML = "<span class='coloredDialogue' style='color:red'>PORTRAIT TYPE MISSING BELOW "+portraitStructToString(portrait)+"</span>";
+								p.classList.add("storyText");
+								thisPartDiv.appendChild(p);
+							}
+						
+							consoleWarn("Portrait type missing. Falling back to default.")
+							consoleWarn("idx: "+shownPortraits.length+" | "+portraitStructToString(portrait))
+							shownPortraits.push(portrait.slice(0)); //Clone array.. Maybe it's not necessary since I regenerate from scratch anyways
+							shownPortraits[shownPortraits.length-1][1]=0
+							
+							
+						}
+						else
+						{
+							if (document.getElementById('showDebugOpcodeButton').checked)
+							{
+								let p = document.createElement('p');
+								p.innerHTML = "<span class='coloredDialogue' style='color:red'>PORTRAIT MISSING BELOW: "+portrait[0]+"</span>";
+								p.classList.add("storyText");
+								thisPartDiv.appendChild(p);
+							}
+							consoleWarn(portraitStructToString(structuredLines[i]))
+							consoleWarn("Portrait missing from database.")
+							shownPortraits.push(['missing',0,portrait[3],portrait[4]]);
+						}
+					};
+					//console.log(shownPortraits)
+					break;
+				case OPCODES.BG:
+					if (!fancyDisplayType)
+						break;
+						
+					
+					let newBG = structuredLines[i][1]
+					//print(newBG)
+					if (newBG != lastBGUsed)
+					{
+						lastBGUsed=newBG;
+						didBGChange=true;
+					}
+					break;
+				case OPCODES.FADEIN:
+					isNight=false;
+					break;
+				case OPCODES.SNOWEFFECT:
+					snowEffect = true;
+					break;
+				case OPCODES.STOPEFFECTS:
+					snowEffect = false;
+					break;
+				case OPCODES.MSG:
+					//Spawn new BG with speaker and portrait here.
+					let message = parseGFLTextModifiers(structuredLines[i][languageColumn])
+					
+					if (fancyDisplayType)
+					{
+						if (didBGChange || didNameChange || didPortraitsChange)
+						{
+							if ((!skipGenerationOfDuplicateBoxes && didNameChange) || (didBGChange || didPortraitsChange))
+							{
+								let storyBox = document.createElement('div');
+								if (quickScroll)
+								{
+									//It's impossible to not have quickScroll unless it works backwards... So just ignore the errors on the last box I guess
+									//TODO: Make it not error on the last box... I don't think that's actually possible
+									storyBox.style.cursor='pointer';
+									storyBox.setAttribute('id','storyBox'+numStoryBoxRendered)
+									storyBox.setAttribute('onclick',"document.getElementById('storyBox"+(numStoryBoxRendered+1)+"').scrollIntoView({behavior:'auto',block:'center',inline:'center'});")
+									numStoryBoxRendered++;
+								}
+								storyBox.classList.add('storyImg');
+								let bgImage = document.createElement('img');
+								bgImage.setAttribute('class','bg');
+								bgImage.style = "width:100%; position:relative; display:block;";
+								
+								//It is entirely possible for there to be text without a BG being set, for some reason. It defaults to 9.
+								//This hack just checks if there's portraits and sets it, otherwise it skips BG generation
+								if (lastBGUsed == undefined && shownPortraits.length > 0)
+									lastBGUsed = "black";
+								
+								if (lastBGUsed != undefined)
+								{
+									//If 10, a fully transparent image is used and meant to show the stage underneath. So instead pick PlaybackBG1/PlaybackBG2.
+									//Read GF Syntax Information.md for more information.
+									//print(lastBGUsed)
+									if (lastBGUsed == 10)
+									{
+										bgImage.src = isNight ? 'avgtexture/PlaybackBG2.png' : 'avgtexture/PlaybackBG1.png'
+									}
+									else
+										bgImage.src = 'avgtexture/'+lastBGUsed+'.png'
+									
+									bgImage.setAttribute('bg',lastBGUsed);
+									//I don't think MICA ever accidentally colored the black wallpaper so I probably don't need to check
+									if (false) //If this is a night background
+									{
+										if (!nightBackgrounds[lastBGUsed[0]]) //If background not generated yet
+										{
+											bgImage.classList.add('nightBG');
+											if (!nightBGQueue[lastBGUsed[0]]) //If not queued for generation yet
+											{
+											
+												bgImage.onload = function(){ //Wait for image to finish loading. Then run nightFilter on img. Not that onload != DOM is ready! That's why there's a background task below.
+													let bgName = bgImage.getAttribute('bg')
+													nightBackgrounds[bgName]=nightFilter(bgImage)
+													console.log("NightBG: Generated "+bgName);
+													bgImage.onload = null;
+													
+												}
+												console.log("Queued generation of "+lastBGUsed[0]);
+											
+												//Use this array for storing background task.
+												//This task will check every 100 if night BG is generated and if all the night BG boxes are rendered and ready to be set.
+												nightBGQueue[lastBGUsed[0]]=setInterval(function(bgNum){
+													let nBGs = document.querySelectorAll('img.bg.nightBG[bg="'+bgNum+'"]'); //ex. document.querySelectorAll('[bg="2"]')
+													if (nBGs.length == 0 || !nightBackgrounds[bgNum])
+													{
+														console.log("NightBG: waiting for generation of bg "+bgNum+" to finish or DOM to be ready...");
+														return;
+													}
+													nBGs.forEach(el => {
+														el.src=nightBackgrounds[el.getAttribute('bg')]
+														//el.classList.remove('nightBG');
+													});
+													console.log("NightBG: set night BGs for "+bgNum+", killing background task "+nightBGQueue[bgNum]);
+													let t = nightBGQueue[bgNum]
+													clearInterval(t);
+												},100,lastBGUsed[0]);
+												
+												
+												
+
+											}
+										}
+										else
+										{
+											bgImage.src=nightBackgrounds[lastBGUsed[0]];
+										}
+									}
+									storyBox.appendChild(bgImage);
+								}
+								
+								for(var j=0;j<shownPortraits.length;j++)
+								{
+									if (!shownPortraits[j])
+									{
+										//console.log(structuredLines.slice(0,i));
+										console.log(structuredLinesToString(structuredLines.slice(0,i)));
+										debugger; //Because console.assert does not pause
+									}
+									else if (shownPortraits[j][0]=='') //Skip generating this one
+										continue;
+
+									let portraitImg = document.createElement('img');
+									//In case you forgot, it's ID and Type
+									portraitImg.src = 'pic/'+PORTRAITS[shownPortraits[j][0]][shownPortraits[j][1]];
+									
+									//console.log(portraitImg.src);
+									if (document.getElementById('showDebugOpcodeButton').checked)
+									{
+										if (shownPortraits[j].length > 4)
+												portraitImg.setAttribute('title',"ID: "+shownPortraits[j][0]+" | TYPE: "+shownPortraits[j][1]+ " | OFFSET: "+shownPortraits[j][4]+","+shownPortraits[j][5]);
+											else
+												portraitImg.setAttribute('title',"ID: "+shownPortraits[j][0]+" | TYPE: "+shownPortraits[j][1]);
+									}
+									
+									portraitImg.classList.add("storydoll");
+									if (shownPortraits[j][2]==true)
+										portraitImg.classList.add('dim')
+									portraitImg.classList.add(int2strPos[j+1]);
+									portraitImg.classList.add(int2str[shownPortraits.length]);
+									storyBox.appendChild(portraitImg);
+								}
+								
+								if (snowEffect && advancedCSS)
+									storyBox.appendChild(snowDiv.cloneNode(false));
+								
+								thisPartDiv.appendChild(storyBox);
+							}
+							/*if (inlineText)
+							{
+								let textboxDiv = document.createElement('div');
+								if (inlineText)
+									textboxDiv.style="color:white; position: absolute; bottom: 0%; width:100%; z-index: 100; padding-top: 30px; padding-bottom:10px; background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%)"
+								if (lastSpeakerName != "")
+								{
+									let p = document.createElement('p');
+									p.innerText = lastSpeakerName;
+									if (inlineText)
+										p.style="margin-left: 10px; margin-right:10px;"
+									//p.innerHTML = "<b>"+lastSpeakerName+"</b>";
+									p.classList.add("storyText");
+									p.classList.add("speakerName");
+									textboxDiv.appendChild(p);
+								}
+								storyBox.appendChild(textboxDiv)
+								
+								
+								thisPartDiv.appendChild(storyBox);
+							}
+							else
+							{*/
+								
+								if (lastSpeakerName != "")
+								{
+									let p = document.createElement('p');
+									p.innerText = lastSpeakerName;
+									//p.innerHTML = "<b>"+lastSpeakerName+"</b>";
+									p.classList.add("storyText");
+									p.classList.add("speakerName");
+									thisPartDiv.appendChild(p);
+								}
+							//}
+							
+							didBGChange = false;
+							didPortraitsChange = false;
+							didNameChange = false;
+						}
+						
+						//No, it's not well written. No, I don't know how to fix it.
+						/*if (inlineText)
+						{
+							let p = document.createElement('p');
+							p.classList.add('storyText')
+							p.style="color:white; margin-left: 10px; margin-right:10px; margin-bottom:5px; margin-top: 5px;"
+							p.innerHTML = message;
+							let d = thisPartDiv.lastChild.getElementsByTagName('div')[0].appendChild(p);
+						}
+						else
+						{*/
+							
+							let p = document.createElement('p');
+							p.classList.add('storyText')
+							p.innerHTML = message;
+							thisPartDiv.appendChild(p);
+						//}
+					}
+					else
+					{
+						let p = document.createElement('p');
+						if (lastSpeakerName == "")
+							p.innerHTML = message;
+						else
+							p.innerHTML = lastSpeakerName + ": "+message;
+						thisPartDiv.appendChild(p);
+					}
+					break;
+				default:
+					//console.log("unknown OPCODES..");
+			}
+		}
+		return thisPartDiv;
+	}
+	
+	//You're probably wondering why the fuck there's two of these functions when a routableKeyString is always passed in
+	//That's because I want to support running from an episode object without the keyString (for user stuff)
+	function runFromRoutableKeyString(value)
+	{
+		if (value == undefined)
+			value = curEpKey;
+		let [type,chapter,episode] = getKeysFromRoutableString(value)
+		run(CHAPTER_DB[type][chapter]['episodes'][episode],value)
+	}
+	
+	function runFromUserInput()
+	{
+		let out = document.getElementById('textarea1').value;
+		let structuredLines = document.getElementById('customIsTXTorIOP').checked ? stringToStructuredLines(out) : convertGFLTextToOpcodes(out);
+		currentEpisodeAsOpcodes = [structuredLines];
+		curEpKey = "";
+		let simpleTextDiv = document.getElementById("verySimpleText");
+		let NewSimpleTextDiv = document.createElement('div');
+		NewSimpleTextDiv.id="verySimpleText";
+		NewSimpleTextDiv.appendChild(renderStructuredLinesToDiv(structuredLines,0))
+		
+		simpleTextDiv.parentNode.replaceChild(NewSimpleTextDiv,simpleTextDiv);
+	}
+	
+	async function run(episode, routableKeyString)
+	{
+		currentEpisodeAsOpcodes = [];
+		curEpisodePart = 0;
+		curEpKey = routableKeyString;
+		
+		document.getElementById('chapterName').innerText = episode['name'];
+		let chapterDesc = document.getElementById('chapterDesc')
+		chapterDesc.style.display = ('description' in episode ? "inherit" : "none")
+		if ('description' in episode)
+		{
+			chapterDesc.innerText=episode['description']
+		}
+		
+		
+		//Instead of just one part, put all of them in the verySimpleText div.
+		let NewSimpleTextDiv = document.createElement('div');
+		NewSimpleTextDiv.id="verySimpleText";
+		
+		/*let exporterButton = document.createElement('a');
+		exporterButton.setAttribute("class","waves-effect waves-light btn modal-trigger");
+		exporterButton.setAttribute("href","#savePageModal");
+		exporterButton.innerText="Export options..."
+		NewSimpleTextDiv.appendChild(exporterButton);
+		NewSimpleTextDiv.appendChild(document.createElement('br'));*/
+		
+		//Don't keep audio running
+		document.getElementById('audioPlayer').pause();
+		
+		
+		let fileName = episode.parts;
+		let partName = null
+		let isNight = false
+		let missionID = null
+		if (episode['part_names'] != undefined)
+			partName=episode['part_names'][p]
+		if (episode['night'] != undefined)
+			isNight=episode['night'][p]
+		if(episode['mission_id'] != undefined)
+			missionID=episode['mission_id'][p]
+
+		//We have to await so it doesn't load the parts in the wrong order. Which is an actual thing that has happened.
+		console.log("fetching "+fileName);
+		
+		fetch("avgtxt/"+fileName)
+		.then(response => response.json())
+		.then(episode => {
+			console.log("got "+fileName);
+			Object.keys(episode).forEach(function(key) {
+				
+				
+				
+				
+				//console.log(fetchTextFile("avgtxt/"+fileName));
+				
+				//TODO: Add check if it's JSON (iop format) and then use a JSON parser if it is
+				//let structuredLines = convertGFLTextToOpcodes(out,missionID);
+				let structuredLines = episode[key]
+				for(i=0;i<structuredLines.length;i++)
+				{
+					structuredLines[i][0]=opcode2string.indexOf(structuredLines[i][0])
+					//console.log(opcode2string.indexOf(data[i][0]))
+				}
+				
+				if (document.getElementById('showDebugOpcodeButton').checked)
+				{
+					let button2 = document.createElement('a');
+					//fuck your javascript
+					button2.setAttribute("class","waves-effect waves-light btn");
+					button2.setAttribute("href","avgtxt/"+fileName);
+					button2.innerText="original text file for this section (For debugging)"
+					NewSimpleTextDiv.appendChild(button2);
+					NewSimpleTextDiv.appendChild(document.createElement('br'));
+					
+				}
+				NewSimpleTextDiv.appendChild(renderStructuredLinesToDiv(structuredLines,key,partName,isNight,episode.length));
+				//Now replace the old div...
+				/*let textboxDiv = document.getElementById("Textboxes");
+				textboxDiv.parentNode.replaceChild(newTextboxDiv,textboxDiv);*/
+				
+				currentEpisodeAsOpcodes.push(structuredLines);
+				
+			})
+
+			let simpleTextDiv = document.getElementById("verySimpleText")
+			simpleTextDiv.parentNode.replaceChild(NewSimpleTextDiv,simpleTextDiv);
+			
+			if (true && routableKeyString != undefined)
+			{
+				setCookie('lastViewedScene',routableKeyString,180);
+			}
+			
+			//I have no idea why this was commented out in the first place
+			if (routableKeyString != undefined)
+				window.location.assign("#"+routableKeyString)
+		})
+		
+		
+	}
+	
+	function reRunWithNewOpcodes()
+	{
+		let lines = document.getElementById("DebugTextArea").value;
+		//console.log(lines);
+		let newStructuredLines = stringToStructuredLines(lines);
+		console.log(newStructuredLines)
+		currentEpisodeAsOpcodes[curEpisodePart] = newStructuredLines;
+	}
+	
+	function showOpcodes(divId) {
+		let x = document.getElementById(divId);
+		if (x.style.display === "none") {
+			x.style.display = "block";
+			let t = x.getElementsByTagName('textarea')[0]
+			console.log(t.scrollHeight);
+			t.style.height = Math.min(t.scrollHeight, 500) + "px";
+		} else {
+			x.style.display = "none";
+		}
+	}
+	
+	
+	function getRoutableKeyString(type,chapter,episode)
+	{
+		return type+'-'+chapter+'-'+episode
+	}
+	function getKeysFromRoutableString(s)
+	{
+		return s.split('-');
+	}
+	
+	function onChapterSelected(value)
+	{
+		console.log(value);
+		//let [type,chapter,episode] = getKeysFromRoutableString(value)
+		runFromRoutableKeyString(value)
+	}
+	function goToNextEpisode()
+	{
+		//To make it jump to the top
+		document.getElementById('chapterName').scrollIntoView()
+		
+		let value = curEpKey;
+		console.log(value);
+		let [type,chapter,episode] = getKeysFromRoutableString(value)
+		episode++;
+		if (CHAPTER_DB[type][chapter]['episodes'][episode])
+		{
+			runFromRoutableKeyString(getRoutableKeyString(type,chapter,episode))
+			return true;
+		}
+		else
+		{
+			chapter++;
+			episode = 0;
+		}
+		
+		if (CHAPTER_DB[type][chapter]['episodes'][episode])
+		{
+			runFromRoutableKeyString(getRoutableKeyString(type,chapter,episode))
+			return true;
+		}
+		
+		return false;
+	}
+	
+	//name field is structured like type-chapter-episode
+	CHAPTER_DB=false;
+	
+	function generateTables() {
+		
+		console.log(CHAPTER_DB);
+		
+		var _dropDownTrigger_ = document.createElement('a');
+		_dropDownTrigger_.href = "#";
+		_dropDownTrigger_.classList.add('dropdown-trigger');
+		_dropDownTrigger_.classList.add('btn');
+		
+		var _dropDown_ = document.createElement('ul');
+		_dropDown_.classList.add('dropdown-content');
+		
+		var _li_ = document.createElement('li'),
+			_a_ = document.createElement('a');
+		
+		//No idea what this is supposed to do.
+		_a_.href="#!";
+		
+		for (const key in CHAPTER_DB)
+		{
+			//console.log(key)
+			let episodeContainer = document.getElementById(key+'Episodes')
+			//let trChapterDropdowns = _tr_.cloneNode(false);
+			//let trChapterDropdowns = 
+			for(i=0;i<CHAPTER_DB[key].length;i++)
+			{
+				//let td = _td_.cloneNode(false);
+				let flexBoxDiv = document.createElement('div');
+				/*let select = _select_.cloneNode(false);
+				select.setAttribute('id',"selectChapter"+i)
+				select.setAttribute('onchange','onChapterSelected(value);');*/
+				let dropDownTrigger = _dropDownTrigger_.cloneNode(true)
+				dropDownTrigger.setAttribute('data-target','dropdown-'+key+'-'+i)
+				
+				if (CHAPTER_DB[key][i].hasOwnProperty('shortName'))
+				{
+					let s = "<span class='chapterTitles-desktop'>"+CHAPTER_DB[key][i]['name']+"</span>"
+					s+=     "<span class='chapterTitles-mobile'>"+CHAPTER_DB[key][i]['shortName']+"</span>"
+					dropDownTrigger.innerHTML = s
+				}
+				else
+				{
+					dropDownTrigger.innerText=CHAPTER_DB[key][i]['name']
+				}
+				
+				let dropdown = _dropDown_.cloneNode(true);
+				dropdown.id = 'dropdown-'+key+'-'+i;
+				
+				//Now let's do the episodes
+				let curChapter = CHAPTER_DB[key][i]['episodes'];
+				for(j=0;j<curChapter.length;j++)
+				{
+					
+					let ep = _li_.cloneNode(true);
+					ep.innerHTML = "<a href='#"+getRoutableKeyString(key,i,j)+"' onclick=\"onChapterSelected('"+getRoutableKeyString(key,i,j)+"')\">"+curChapter[j]['name']+"</a>"
+					dropdown.appendChild(ep);
+					/*let option = _option_.cloneNode(false);
+					option.value=getRoutableKeyString(key,i,j)
+					option.innerText=curChapter[j]['name'];
+					select.appendChild(option);*/
+				}
+				//flexBoxDiv.appendChild(select);
+				flexBoxDiv.appendChild(dropDownTrigger);
+				flexBoxDiv.appendChild(dropdown);
+				
+				episodeContainer.appendChild(flexBoxDiv);
+				//td.appendChild(select);
+				//trChapterDropdowns.appendChild(td);
+			}
+		}
+		
+		//test = new FilterableList(CHAPTER_DB['side'][0]['episodes'],'name',"sideEpisodesWrapper")
+
+		//tbody.appendChild(trChapterDropdowns);
+		
+		//table.appendChild(thead);
+		//table.appendChild(tbody);
+		
+	}
+
+	currentLanguage="en"
+	function setLanguage(lang)
+	{
+		currentLanguage=lang;
+		setCookie("language",lang,180)
+		console.log("Set language to "+lang);
+	}
+
+	//Keep this at the bottom
+	window.onload=function()
+	{
+		setCheckboxFromCookie('fancyOrNot',true);
+		setCheckboxFromCookie('quickScroll',true);
+		//setCheckboxFromCookie('inlineText',false);
+		setCheckboxFromCookie('advancedCSS',true);
+		setCheckboxFromCookie('showDebugOpcodeButton',false);
+		setCheckboxFromCookie('skipGenerationOfDuplicateBoxes',false);
+		setCheckboxFromCookie('showSFXButtons',false);
+		
+		//Experimental
+		setCheckboxFromCookie('showExportButton',false);
+		setCheckboxFromCookie('showRenderButton',false);
+		
+		currentLanguage="en"
+		function setLanguage(lang)
+		{
+			currentLanguage=lang;
+			setCookie("language",lang,180)
+		}
+
+
+		document.querySelectorAll('.tabs').forEach(el => {
+			var instance = M.Tabs.init(el, null);
+			//instance.updateTabIndicator();
+		});
+		
+		/*document.querySelectorAll('.dropdown-trigger').forEach(elems => {
+			var instances = M.Dropdown.init(elems, {constrainWidth:false});
+		});*/
+		
+		 
+		document.querySelectorAll('.collapsible').forEach(elems => {
+			var instances = M.Collapsible.init(elems, null);
+		});
+		
+		document.querySelectorAll('.modal').forEach(el => {
+			var instance = M.Modal.init(el, null);
+			//instance.updateTabIndicator();
+		});
+		
+		M.FormSelect.init(document.querySelectorAll('select'), null);
+		
+		// Select the button
+		//const btn = document.querySelector(".nightMode-toggle");
+		// Check for dark mode preference at the OS level
+		const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+		// Get the user's theme preference from local storage, if it's available
+		//const currentTheme = localStorage.getItem("theme");
+		const currentTheme = getCookie('theme');
+		//print(currentTheme);
+
+
+		// If the user's preference in localStorage is dark...
+		if (currentTheme == "")
+		{
+			document.body.classList.toggle(prefersDarkScheme ? "dark-theme" : "light-theme")
+			setCookie('theme',prefersDarkScheme ? "dark-theme" : "light-theme",180);
+		}
+		else if (currentTheme == "black-theme") {
+			document.body.classList.toggle("black-theme");
+			isDarkMode=true
+		}
+		else if (currentTheme == "dark-theme") {
+		  // ...let's toggle the .dark-theme class on the body
+		  document.body.classList.toggle("dark-theme");
+		  isDarkMode=true
+		// Otherwise, if the user's preference in localStorage is light...
+		} else {
+		  // ...let's toggle the .light-theme class on the body
+		  document.body.classList.toggle("light-theme");
+		  isDarkMode=false;
+		}
+
+		//lmao
+		fetch('database.json')
+		.then(response => response.json())
+		.then(json => {
+			console.log("database.json loaded!");
+			PORTRAITS = json['portraits'];
+			NAMES = json['speakers'];
+
+			fetch('chapterDatabase.json')
+			.then(response => response.json())
+			.then(json => {
+				console.log("cutscene information loaded!");
+
+				CHAPTER_DB = json['story'];
+				generateTables();
+				document.querySelectorAll('.dropdown-trigger').forEach(elems => {
+					var instances = M.Dropdown.init(elems, {constrainWidth:false});
+				});
+				
+				if (true)
+				{
+					let [type,chapter,episode] = getKeysFromRoutableString(window.location.hash.slice(1))
+					if (type && chapter && episode && CHAPTER_DB[type][chapter]['episodes'][episode])
+						runFromRoutableKeyString(window.location.hash.slice(1));
+					else
+						runFromRoutableKeyString(getCookie('lastViewedScene'));
+				}
+			});
+		});
+
+		
+
+
+		var data = [
+			['bg',10],
+			['portraits', ['', 0, false], ['', 0, false]],
+			['msg', '……The subscriber you dialed is busy now, please leave a message after the beep.', '嘟嘟嘟……您所拨打的用户正忙，请在提示音后留言。', 'XXX', 'XXX', 'XXX\n'],
+			['portraits', ['', 0, false], ['', 0, false]],
+			['msg', 'Beep--', '哔——', 'XXX', 'XXX', 'XXX\n'],
+			['speaker', 204553],
+			['portraits', [101, 0, false], ['', 0, false]],
+			['msg', "I'm Kiana, I'm checking the Houkai now! Follow me!", '我是琪亚娜，目前位于极东地区长空市内的千羽学园，我知道你一定也在跟踪这起崩坏！我想告诉你，不管你走到哪里我都会找到你的！', 'XXX', 'XXX', 'XXX\n'],
+			['portraits', ['', 0, false], ['', 0, false]],
+			['msg', 'Boom!', '咔！', 'XXX', 'XXX', 'XXX\n'],
+			['speaker', 204553],
+			['portraits', [101, 0, true], ['', 0, false]],
+			['msg', '…This is too suddenly. We can check it in the "Senba High School" first!', '呼…该说的已经说完了，没想到这次的崩坏居然这么突然就发生了，不过按预期来看应该属于小型崩坏，爆发范围就锁定在这所千羽学园里吧！', 'XXX', 'XXX', 'XXX\n'],
+			['speaker', 204553],
+			['msg', 'All we need do is find the target before 「Shicksal」~', '接下来只要在「天命」组织赶到前找到目标就行~这次绝对不会让你逃走了！', 'XXX', 'XXX', 'XXX\n'],
+			['msg', '*Zombies roar*', '吼吼吼！！', 'XXX', 'XXX', 'XXX\n'],
+			['speaker', 204553],
+			['portraits', [101, 0, false], ['', 0, false]],
+			['msg', 'Houkai zombies… Lucky me, I prepared weapons.', '被崩坏感染的死士已经诞生了么…还好早有准备，事先把武器都准备好了。', 'XXX', 'XXX', 'XXX\n'],
+			['portraits', ['', 0, false], ['', 0, false]],
+			['msg', '*Pull the bolt*', '咔啦！', 'XXX', 'XXX', 'XXX\n'],
+			['speaker', 204553],
+			['portraits', [101, 0, false], ['', 0, false]],
+			['msg', 'Weapons… Ammo… ', '武器检察完毕，弹药装配…真不知道手上这些老家伙还能撑多久。', 'XXX', 'XXX', 'XXX\n'],
+			['speaker', 204553],
+			['msg', 'Alright, we need to escape from this library first.', '嘛~总之先按照预定计划逃离这个图书馆吧。', 'XXX', 'XXX', 'XXX\n'],
+		]
+		for(i=0;i<data.length;i++)
+		{
+			data[i][0]=opcode2string.indexOf(data[i][0])
+			//console.log(opcode2string.indexOf(data[i][0]))
+		}
+		//console.log(data)
+		/*let NewSimpleTextDiv = document.createElement('div');
+		NewSimpleTextDiv.id="verySimpleText";
+		NewSimpleTextDiv.appendChild(renderStructuredLinesToDiv(data))
+		let simpleTextDiv = document.getElementById("verySimpleText")
+		simpleTextDiv.parentNode.replaceChild(NewSimpleTextDiv,simpleTextDiv);*/
+		
+
+		//console.log(stringToStructuredLines)
+	}
+	
+	function setCheckboxFromCookie(idOfCheckbox,defaultValueIfNotSet)
+	{
+		let c = getCookie(idOfCheckbox);
+		if (c==undefined || c=="")
+		{
+			//Cookies can only be strings
+			c=defaultValueIfNotSet.toString();
+			setCookie(idOfCheckbox,defaultValueIfNotSet,180);
+		}
+		//console.assert(c);
+		console.assert(document.getElementById(idOfCheckbox),"no element named "+idOfCheckbox)
+		console.log("Setting "+idOfCheckbox+" to "+c);
+		document.getElementById(idOfCheckbox).checked = (c=='true');
+	}
+	function setCookieFromCheckbox(idOfCheckbox)
+	{
+		setCookie(idOfCheckbox,document.getElementById(idOfCheckbox).checked,180);
+	}
+
+
+	
+</script>
+<body>
+	
+
+	<nav class='nav-extended'>
+		<div class="nav-wrapper" id='theTop'>
+			<a href="#" class="brand-logo center" style="text-overflow: ellipsis; white-space: nowrap;">
+				<span class='header-desktop'>GGZ Cutscene Interpreter (beta)</span>
+				<span class='header-desktop-shorter'>GGZ Cutscene Interpreter</span>
+				<span class='header-mobile'>GGZ C.I.</span>
+			</a>
+
+			<ul id="nav-mobile" class="right">
+				<li><a class="waves-effect waves-light dropdown-trigger navbarButton" data-target="languageDropdown"><i class="material-icons left">language</i><span class='header-desktop'>Language</span></a></li>
+				<li><a onclick="NightMode()" class="waves-effect waves-light navbarButton"><i class="material-icons left">brightness_2</i><span class='header-desktop'>Night Mode</span></a></li>
+				<li><a href="#settingsModal" class="waves-effect waves-light modal-trigger navbarButton"><i class="material-icons left">settings</i><span class='header-desktop'>Settings</span></a></li>
+			</ul>
+		</div>
+		<div class="col s12 nav-content">
+			<ul class="tabs tabs-transparent">
+				<li class="tab col s3"><a href="#mainEpisodesWrapper">Main Story Chapters</a></li>
+				<li class="tab col s3"><a href="#eventEpisodesWrapper">Story Events</a></li>
+				<li class="tab col s3"><a href="#sideEpisodesWrapper">Side Stories</a></li>
+				<li class="tab col s3"><a href="#crossoverEpisodesWrapper">Crossover Stories</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<ul id='languageDropdown' class='dropdown-content' style='overflow:visible'>
+		<li><a onclick="setLanguage('en'); runFromRoutableKeyString()" href="#!">English</a></li>
+		<li><a onclick="setLanguage('cn'); runFromRoutableKeyString()" href="#!">中文 (Chinese)</a></li>
+		<li><a onclick="setLanguage('jp'); runFromRoutableKeyString()" href="#!">日本語 (Japanese)</a></li>
+	</ul>
+
+	<!-- Modal Structure -->
+	<div id="settingsModal" class="modal modal-fixed-footer">
+		<div class="modal-content">
+		<h4>Settings</h4>
+
+		<table class="material-settings-table">
+			<!--<tr>
+				<td style="width:100%" colspan="2">
+					<span class="title">Use system dark mode</span>
+					<p>Are you one of those cool kids that has Android 10 or iOS 13 or Windows 10? Turn this on to match your device&apos;s system preferences.</p>
+					
+					<div class="input-field col s12">
+						<select>
+						  <option value="1">Dark & Light</option>
+						  <option value="2">Black & Light</option>
+						  <option value="3">Disabled (Default)</option>
+						</select>
+					</div>
+				</td>
+			</tr>-->
+			<tr>
+				<td style="width:100%">
+					<span class="title">Display images and portraits in cutscenes</span>
+					<p>Turn it off if you want to save your mobile data or copy the text into a word processor.</p>
+				</td>
+				<td>
+					<div class="switch">
+						<label>
+						  <input type="checkbox" onclick="setCookieFromCheckbox('fancyOrNot'); runFromRoutableKeyString()" id="fancyOrNot">
+						  <span class="lever"></span>
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:100%">
+					<span class="title">Quick scrolling</span>
+					<p>Click or tap an image to jump to the next one in cutscenes.</p>
+				</td>
+				<td>
+					<div class="switch">
+						<label>
+						  <input type="checkbox" onclick="setCookieFromCheckbox('quickScroll'); runFromRoutableKeyString()" id="quickScroll">
+						  <span class="lever"></span>
+						</label>
+					</div>
+				</td>
+			</tr>
+			<!--<tr>
+				<td style="width:100%">
+					<span class="title">Inline Text</span>
+					<p>Make the text display on top of the image.</p>
+				</td>
+				<td>
+					<div class="switch">
+						<label>
+						  <input type="checkbox" onclick="setCookieFromCheckbox('inlineText'); runFromRoutableKeyString()" id="inlineText">
+						  <span class="lever"></span>
+						</label>
+					</div>
+				</td>
+			</tr>-->
+			<tr>
+				<td style="width:100%">
+					<span class="title">Advanced CSS Effects</span>
+					<p>Enable more demanding effects like snow animations. It might lag on mobile devices.</p>
+				</td>
+				<td>
+					<div class="switch">
+						<label>
+						  <input type="checkbox" onclick="setCookieFromCheckbox('advancedCSS'); runFromRoutableKeyString()" id="advancedCSS">
+						  <span class="lever"></span>
+						</label>
+					</div>
+				</td>
+			</tr>
+			<!--<tr>
+				<td style="width:100%" colspan="2">
+					<span class="title">Effect Detail Level</span>
+					<p>More advanced effects. Lower the value if your device is lagging.</p>
+					<p>Off: No fancy HTML stuff.</p>
+					<p>Medium: Night BGs are rendered and blue portrait masks display correctly.</p>
+					<p>High: CSS snow and fire effects are displayed.</p>
+					<div class="input-field col s12">
+						<select>
+						  <option value="1">Off</option>
+						  <option value="2">Medium</option>
+						  <option value="3">High</option>
+						</select>
+					</div>
+				</td>
+			</tr>-->
+			<tr>
+    			<td style="width:100%">
+    				<span class="title">Skip duplicate story CG boxes</span>
+    				<p>Skips generating a new CG box if only the speaker's name changed.</p>
+    			</td>
+    			<td>
+					<div class="switch">
+						<label>
+						  <input type="checkbox" id="skipGenerationOfDuplicateBoxes" onclick="setCookieFromCheckbox('skipGenerationOfDuplicateBoxes'); runFromRoutableKeyString()">
+						  <span class="lever"></span>
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:100%">
+					<span class="title">Show SFX buttons</span>
+					<p>If you don't care about sound effects being shown, turn this off.</p>
+					<p>This is off by default.</p>
+				</td>
+				<td>
+					<div class="switch">
+						<label>
+						  <input type="checkbox" id="showSFXButtons" onclick="setCookieFromCheckbox('showSFXButtons'); runFromRoutableKeyString()">
+						  <span class="lever"></span>
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:100%">
+					<span class="title">Debug Mode</span>
+					<p>Displays buttons for showing debug opcodes in cutscenes and warns if a portrait is missing. You probably don't want this enabled.</p>
+				</td>
+				<td>
+					<div class="switch">
+						<label>
+						  <input type="checkbox" id="showDebugOpcodeButton" onclick="setCookieFromCheckbox('showDebugOpcodeButton')">
+						  <span class="lever"></span>
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr style="border-bottom:none; height:75px">
+				<td style="width:100%">
+					<span class="title coloredDialogue" style='color:#33b5e5'>Experimental Settings</span>
+					<p>None of these work, don't bother turning them on.</p>
+				</td>
+				<br>
+			</tr>
+			<tr>
+				<td style="width:100%">
+					<span class="title">Show export button</span>
+					<p>Export current cutscene to an html document.</p>
+				</td>
+				<td>
+					<div class="switch">
+						<label>
+						  <input type="checkbox" id="showExportButton" onclick="setCookieFromCheckbox('showExportButton')">
+						  <span class="lever"></span>
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:100%">
+					<span class="title">Show render button</span>
+					<p>Display a button below every CG to render it and export as an image.</p>
+				</td>
+				<td>
+					<div class="switch">
+						<label>
+						  <input type="checkbox" id="showRenderButton" onclick="setCookieFromCheckbox('showRenderButton')">
+						  <span class="lever"></span>
+						</label>
+					</div>
+				</td>
+			</tr>
+		</table>
+		</div>
+		<div class="modal-footer">
+		  <a class="modal-close waves-effect waves-green btn-flat">Close</a>
+		</div>
+	</div>
+	<div id="savePageModal" class="modal">
+		<div class="modal-content">
+			<h4>Exporter</h4>
+			<p>This process will render all images used in the current cutscene to static images. <b>It will immediately start downloading files to your disk, and there will be a lot of them.</b></p>
+			<p>It will take a while to render! It will lag your browser! It will use a lot of memory and storage! <b>Make sure you have ~500MB of free space and at least 2GB of RAM! Save your work because the browser might crash!</b></p>
+			<p>Select your export option below.</p>
+		</div>
+		<div class="modal-footer">
+		  <a class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+		  <a class="modal-close waves-effect waves-green btn-flat disabled">self contained html</a>
+		  <a class="modal-close waves-effect waves-green btn-flat disabled">self contained js-compressed html</a>
+		  <a class="modal-close waves-effect waves-green btn-flat disabled">.odt</a>
+		  <a class="modal-close waves-effect waves-green btn-flat">zipped html</a>
+		  
+		</div>
+	</div>
+	<!-- Needs to be here so the modal for T-Doll search will be fullscreen on mobile devices. Otherwise it will be below the navbar.-->
+	<!--<div id="tDollDialogueActivity" class="modal modal-fixed-footer" style="overflow:hidden">
+		<nav style="position:initial;">
+			<div class="nav-wrapper blue" style="text-align: left;">
+			  <a href="#!" class="brand-logo modal-close" id='tDollDialogueName'>Insert T-Doll Name Here<i class="material-icons">arrow_back</i></a>
+			</div>
+		</nav>
+		<div id="tDollDialogue" class='modal-content'>
+		
+		</div>
+	</div>-->
+  
+	<noscript><h1>Turn on JavaScript. This is not a static webpage, it is literally interpreting the GFL text on the fly using JS and rendering it to HTML elements to display it in your browser.</h1></noscript>
+	<noscript><h3>Static HTTP pages are coming never. You'll have to look at the source code and write it yourself.</h3></noscript>
+	<div id='chapterSelect' class='navbar-fixed'>
+		<div class='row'>
+			<!--<a href=#modal1" class="modal-trigger" >Settings</a>-->
+
+			<!--Because materialize.js is stupid -->
+			<div class="col s12" id="mainEpisodesWrapper">
+				<div class="flex-container col s12" id="mainEpisodes"></div>
+			</div>
+			
+			<div class="col s12" id="eventEpisodesWrapper">
+				<p>All chapters are finally sorted. Continuum Turbulence is missing bad endings.</p>
+				<div class="flex-container col s12" id="eventEpisodes"></div>
+			</div>
+			<div class="col s12" id="sideEpisodesWrapper">
+				<div class="flex-container col s12" id="sideEpisodes"></div>
+			</div>
+			<div class="col s12" id="crossoverEpisodesWrapper">
+				<div class="flex-container col s12" id="crossoverEpisodes"></div>
+			</div>
+				
+		</div>
+		
+	</div>
+	
+	<!--I've completely forgotten why display:inline is required for this-->
+	<h2 id="chapterName" style="display:inline">Chapter Name Here</h2>
+	<h4 id="chapterDesc" style="font-size:1.5rem;line-height:100%;margin:1rem 0 .912rem 0;">Chapter Description Here</h4>
+	<br>
+	<a id="exportButton" href='#savePageModal' class="waves-effect waves-light btn modal-trigger" style='display:none'><i class="material-icons left">file_download</i>Export current chapter</a>
+
+
+	<hr>
+
+	<div id="verySimpleText"></div>
+	<a class="waves-effect waves-light btn" onclick="document.getElementById('theTop').scrollIntoView()"><i class="material-icons left">vertical_align_top</i>Back to top</a> <a class="waves-effect waves-light btn" onclick="goToNextEpisode();"><i class="material-icons left">chevron_right</i>Go to the next cutscene</a>
+	<hr>
+	<audio controls loop id="audioPlayer">
+		<source class='a_ogg' src="" type="audio/ogg"> <!-- Turns out putting something in makes firefox load it when you load the page, wasting bandwidth. But leaving it blank is fine. -->
+		<source class='a_mp3' src="" type="audio/mp3"> <!-- Because iOS doesn't support ogg -->
+		Your browser does not support the audio tag.
+	</audio>
+	<audio id='sfxPlayer'>
+		<source class='sfx_ogg' src="" type="audio/ogg">
+	</audio>
+	<p>Brought to you by the man who wrote the Girls' Frontline Cutscene Interpreter. You thought I'd stop at GFL?</p>
+	<p>If you want a feature or something is broken, <a onmousemove="(function(self){self.href='mailto:PatchouliSama765'+String.fromCharCode(64)+'gmail.com'})(this)" href="mailto:'hover mouse over the link twice to pass the bot check'"><b>email me</b></a>.</p>
+	<p><a href='/LICENSE.html'>The interpreter is free and open source software and licensed under AGPLv3.</a></p>
+	<p>Designed using <a href='https://materializecss.com'>Materialize</a>. <a href='https://github.com/Dogfalo/materialize/blob/master/LICENSE'>MIT license</a></p>
+</body>

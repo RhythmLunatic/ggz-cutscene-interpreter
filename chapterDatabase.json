@@ -1,0 +1,1762 @@
+{
+	"story": {
+		"main": [
+			{
+				"name": "Prologue",
+				"episodes": [
+					{
+						"name": "Prologue",
+						"parts": "prologue.json"
+					}
+				]
+			},
+			{
+				"name": "Playback Type 1 Data (Main Story?)",
+				"episodes": [
+					{
+						"name": "Apocalypse is here",
+						"parts": "type-1-1-chapter-1.json"
+					},
+					{
+						"name": "Kiana attack",
+						"parts": "type-1-1-chapter-2.json"
+					},
+					{
+						"name": "Strange Lightning",
+						"parts": "type-1-1-chapter-3.json"
+					},
+					{
+						"name": "Do Not Enter",
+						"parts": "type-1-1-chapter-4.json"
+					},
+					{
+						"name": "unquenchable desire",
+						"parts": "type-1-1-chapter-5.json"
+					},
+					{
+						"name": "Magic Cannon",
+						"parts": "type-1-1-chapter-6.json"
+					},
+					{
+						"name": "Curiosity killed the cat",
+						"parts": "type-1-1-chapter-7.json"
+					},
+					{
+						"name": "distaste",
+						"parts": "type-1-1-chapter-8.json"
+					},
+					{
+						"name": "Soul Watcher",
+						"parts": "type-1-1-chapter-9.json"
+					},
+					{
+						"name": "I hope I could catch up to you.",
+						"parts": "type-1-1-chapter-10.json"
+					},
+					{
+						"name": "Untouchable Houkai Source",
+						"parts": "type-1-1-chapter-11.json"
+					},
+					{
+						"name": "Sakura",
+						"parts": "type-3-15-chapter-1.json"
+					},
+					{
+						"name": "Energy Vessel",
+						"parts": "type-1-1-chapter-13.json"
+					},
+					{
+						"name": "To Be or Not to Be",
+						"parts": "type-1-1-chapter-14.json"
+					},
+					{
+						"name": "HOMU Paradise: Darkling Waltz",
+						"parts": "type-1-1-chapter-15.json"
+					},
+					{
+						"name": "HOMU Paradise: Snow Rhapsody",
+						"parts": "type-1-1-chapter-16.json"
+					},
+					{
+						"name": "Rhinegold",
+						"parts": "type-1-1-chapter-17.json"
+					},
+					{
+						"name": "Valkyrie Ride",
+						"parts": "type-1-1-chapter-18.json"
+					},
+					{
+						"name": "Siegfried",
+						"parts": "type-1-1-chapter-19.json"
+					},
+					{
+						"name": "Ragnarök",
+						"parts": "type-1-1-chapter-20.json"
+					},
+					{
+						"name": "Meet and redemption",
+						"parts": "type-1-2-chapter-21.json"
+					},
+					{
+						"name": "Investigator",
+						"parts": "type-2-5-chapter-3.json"
+					},
+					{
+						"name": "Rational spiral",
+						"parts": "type-1-2-chapter-23.json"
+					},
+					{
+						"name": "Apocalyptic Nightmare",
+						"parts": "type-2-8-chapter-3.json"
+					},
+					{
+						"name": "False Truth",
+						"parts": "type-2-27-chapter-2.json"
+					},
+					{
+						"name": "Crystal Waltz",
+						"parts": "type-2-26-chapter-2.json"
+					},
+					{
+						"name": "Moon Requiem",
+						"parts": "type-2-27-chapter-8.json"
+					},
+					{
+						"name": "Memory of Fox",
+						"parts": "type-1-3-chapter-1.json"
+					},
+					{
+						"name": "Broken Cocoon",
+						"parts": "type-2-27-chapter-18.json"
+					},
+					{
+						"name": "Saint",
+						"parts": "type-1-2-chapter-29.json"
+					},
+					{
+						"name": "Soulmaker",
+						"parts": "type-2-5-chapter-4.json"
+					},
+					{
+						"name": "Song of Hermit",
+						"parts": "type-1-2-chapter-31.json"
+					},
+					{
+						"name": "Aliyeid",
+						"parts": "type-1-2-chapter-32.json"
+					},
+					{
+						"name": "Knight of Apocalypse",
+						"parts": "type-1-3-chapter-2.json"
+					}
+				]
+			},
+			{
+				"name": "Playback Type 2 Data (Side Events?)",
+				"episodes": [
+					{
+						"name": "Top-secret Report",
+						"parts": "type-1-1-chapter-12.json"
+					},
+					{
+						"name": "HauntedHouse",
+						"parts": "type-2-3-chapter-1.json"
+					},
+					{
+						"name": "Sniper and impasse",
+						"parts": "type-1-2-chapter-22.json"
+					},
+					{
+						"name": "HauntedHouse",
+						"parts": "type-2-3-chapter-3.json"
+					},
+					{
+						"name": "HauntedHouse",
+						"parts": "type-2-3-chapter-4.json"
+					},
+					{
+						"name": "HauntedHouse",
+						"parts": "type-2-3-chapter-5.json"
+					},
+					{
+						"name": "HauntedHouse",
+						"parts": "type-2-3-chapter-6.json"
+					},
+					{
+						"name": "Chikage's Story",
+						"parts": "type-2-4-chapter-1.json"
+					},
+					{
+						"name": "Chikage's Story",
+						"parts": "type-2-4-chapter-2.json"
+					},
+					{
+						"name": "Chikage's Story",
+						"parts": "type-2-4-chapter-4.json"
+					},
+					{
+						"name": "Genkai Room",
+						"parts": "type-2-6-chapter-1.json"
+					},
+					{
+						"name": "Genkai Room",
+						"parts": "type-2-6-chapter-2.json"
+					},
+					{
+						"name": "Mirage Cabin",
+						"parts": "type-2-6-chapter-3.json"
+					},
+					{
+						"name": "Lost sister",
+						"parts": "type-2-7-chapter-1.json"
+					},
+					{
+						"name": "Lost sister",
+						"parts": "type-2-7-chapter-2.json"
+					},
+					{
+						"name": "Lost sister",
+						"parts": "type-2-7-chapter-3.json"
+					},
+					{
+						"name": "Lost sister",
+						"parts": "type-2-7-chapter-4.json"
+					},
+					{
+						"name": "Blessing of the Principal",
+						"parts": "type-2-7-chapter-5.json"
+					},
+					{
+						"name": "Awaken Nightmare",
+						"parts": "type-2-8-chapter-1.json"
+					},
+					{
+						"name": "Awaken Nightmare",
+						"parts": "type-2-8-chapter-2.json"
+					},
+					{
+						"name": "Candy House",
+						"parts": "type-2-9-chapter-1.json"
+					},
+					{
+						"name": "Candy House",
+						"parts": "type-2-9-chapter-2.json"
+					},
+					{
+						"name": "Snow Land",
+						"parts": "type-2-10-chapter-1.json"
+					},
+					{
+						"name": "Snow Land",
+						"parts": "type-2-10-chapter-2.json"
+					},
+					{
+						"name": "Greenstar dust",
+						"parts": "type-2-12-chapter-1.json"
+					},
+					{
+						"name": "Greenstar dust",
+						"parts": "type-2-12-chapter-2.json"
+					},
+					{
+						"name": "Greenstar dust",
+						"parts": "type-2-12-chapter-3.json"
+					},
+					{
+						"name": "Lost Child",
+						"parts": "type-2-13-chapter-1.json"
+					},
+					{
+						"name": "Sin",
+						"parts": "type-2-13-chapter-2.json"
+					},
+					{
+						"name": "MazeFortress",
+						"parts": "type-2-14-chapter-1.json"
+					},
+					{
+						"name": "Extra: Tales of a Haunted School",
+						"parts": "type-2-14-chapter-2.json"
+					},
+					{
+						"name": "Lost system",
+						"parts": "type-2-14-chapter-3.json"
+					},
+					{
+						"name": "Monitor",
+						"parts": "type-2-5-chapter-1.json"
+					},
+					{
+						"name": "Guardian",
+						"parts": "type-2-5-chapter-2.json"
+					},
+					{
+						"name": "Chronicles",
+						"parts": "type-4-22-chapter-5.json"
+					},
+					{
+						"name": "Schicksal anthem",
+						"parts": "type-1-2-chapter-24.json"
+					},
+					{
+						"name": "Investigator",
+						"parts": "type-2-5-chapter-3.json"
+					},
+					{
+						"name": "Thorn City",
+						"parts": "type-2-25-chapter-1.json"
+					},
+					{
+						"name": "Light and Shadow",
+						"parts": "type-1-2-chapter-25.json"
+					},
+					{
+						"name": "Dolly Factory",
+						"parts": "type-2-27-chapter-1.json"
+					},
+					{
+						"name": "Revenge",
+						"parts": "type-1-2-chapter-26.json"
+					},
+					{
+						"name": "Investigator",
+						"parts": "type-2-5-chapter-3.json"
+					},
+					{
+						"name": "Mysterious Deep",
+						"parts": "type-2-6-chapter-4.json"
+					},
+					{
+						"name": "Aurora Matrix",
+						"parts": "type-2-27-chapter-3.json"
+					},
+					{
+						"name": "Twilight Promise",
+						"parts": "type-2-27-chapter-4.json"
+					},
+					{
+						"name": "Blade of Shicksal",
+						"parts": "type-2-27-chapter-5.json"
+					},
+					{
+						"name": "Checkmate",
+						"parts": "type-2-27-chapter-6.json"
+					},
+					{
+						"name": "Infinity War",
+						"parts": "type-2-27-chapter-7.json"
+					},
+					{
+						"name": "Nina",
+						"parts": "type-3-19-chapter-1.json"
+					},
+					{
+						"name": "Glow",
+						"parts": "type-1-2-chapter-27.json"
+					},
+					{
+						"name": "Memory of Red Flame",
+						"parts": "type-2-25-chapter-2.json"
+					},
+					{
+						"name": "Verdict",
+						"parts": "type-1-2-chapter-28.json"
+					},
+					{
+						"name": "Revival of Morale",
+						"parts": "type-2-27-chapter-9.json"
+					},
+					{
+						"name": "Soulmaker",
+						"parts": "type-2-5-chapter-4.json"
+					},
+					{
+						"name": "Guardian Sword",
+						"parts": "type-2-27-chapter-11.json"
+					},
+					{
+						"name": "Red Envy",
+						"parts": "type-2-27-chapter-12.json"
+					},
+					{
+						"name": "Unyielding Glow",
+						"parts": "type-2-27-chapter-13.json"
+					},
+					{
+						"name": "Bloody Relatio",
+						"parts": "type-2-27-chapter-14.json"
+					},
+					{
+						"name": "Soulmaker",
+						"parts": "type-2-5-chapter-4.json"
+					},
+					{
+						"name": "Claszureme",
+						"parts": "type-2-27-chapter-17.json"
+					},
+					{
+						"name": "DLC",
+						"parts": "type-6-101-chapter-1.json"
+					}
+				]
+			},
+			{
+				"name": "Playback Type 3 Data",
+				"episodes": [
+					{
+						"name": "HauntedHouse",
+						"parts": "type-2-3-chapter-2.json"
+					},
+					{
+						"name": "Investigator",
+						"parts": "type-2-5-chapter-3.json"
+					},
+					{
+						"name": "Soulmaker",
+						"parts": "type-2-5-chapter-4.json"
+					}
+				]
+			},
+			{
+				"name": "Playback Type 4 Data",
+				"episodes": [
+					{
+						"name": "Houkai Detective Idol",
+						"parts": "type-4-19-chapter-1.json"
+					},
+					{
+						"name": "Houkai Detective Idol",
+						"parts": "type-4-19-chapter-2.json"
+					},
+					{
+						"name": "Houkai Detective Idol",
+						"parts": "type-4-19-chapter-3.json"
+					},
+					{
+						"name": "Houkai Pirate Idol",
+						"parts": "type-4-20-chapter-1.json"
+					},
+					{
+						"name": "Houkai Pirate Idol",
+						"parts": "type-4-20-chapter-2.json"
+					},
+					{
+						"name": "Chronicles",
+						"parts": "type-4-22-chapter-1.json"
+					},
+					{
+						"name": "Chronicles",
+						"parts": "type-4-22-chapter-2.json"
+					},
+					{
+						"name": "Chronicles",
+						"parts": "type-4-22-chapter-3.json"
+					},
+					{
+						"name": "Chronicles",
+						"parts": "type-4-22-chapter-4.json"
+					}
+				]
+			},
+			{
+				"name": "Playback Type 6 Data",
+				"episodes": [
+					{
+						"name": "Black Hole",
+						"parts": "type-1-2-chapter-30.json"
+					}
+				]
+			},
+			{
+				"name": "Unknown ExtData",
+				"episodes": [
+					{
+						"name": "Parts 0-9",
+						"parts": "StoryExtData-0.json"
+					},
+					{
+						"name": "Parts 10-19",
+						"parts": "StoryExtData-1.json"
+					},
+					{
+						"name": "Parts 20-29",
+						"parts": "StoryExtData-2.json"
+					},
+					{
+						"name": "Parts 30-39",
+						"parts": "StoryExtData-3.json"
+					},
+					{
+						"name": "Parts 40-49",
+						"parts": "StoryExtData-4.json"
+					},
+					{
+						"name": "Parts 50-59",
+						"parts": "StoryExtData-5.json"
+					},
+					{
+						"name": "Parts 60-69",
+						"parts": "StoryExtData-6.json"
+					},
+					{
+						"name": "Parts 70-79",
+						"parts": "StoryExtData-7.json"
+					},
+					{
+						"name": "Parts 80-89",
+						"parts": "StoryExtData-8.json"
+					},
+					{
+						"name": "Parts 90-99",
+						"parts": "StoryExtData-9.json"
+					},
+					{
+						"name": "Parts 100-109",
+						"parts": "StoryExtData-10.json"
+					},
+					{
+						"name": "Parts 110-119",
+						"parts": "StoryExtData-11.json"
+					},
+					{
+						"name": "Parts 120-129",
+						"parts": "StoryExtData-12.json"
+					},
+					{
+						"name": "Parts 130-139",
+						"parts": "StoryExtData-13.json"
+					},
+					{
+						"name": "Parts 140-149",
+						"parts": "StoryExtData-14.json"
+					},
+					{
+						"name": "Parts 150-159",
+						"parts": "StoryExtData-15.json"
+					},
+					{
+						"name": "Parts 160-169",
+						"parts": "StoryExtData-16.json"
+					},
+					{
+						"name": "Parts 170-179",
+						"parts": "StoryExtData-17.json"
+					},
+					{
+						"name": "Parts 180-189",
+						"parts": "StoryExtData-18.json"
+					},
+					{
+						"name": "Parts 190-199",
+						"parts": "StoryExtData-19.json"
+					},
+					{
+						"name": "Parts 200-209",
+						"parts": "StoryExtData-20.json"
+					},
+					{
+						"name": "Parts 210-219",
+						"parts": "StoryExtData-21.json"
+					},
+					{
+						"name": "Parts 220-229",
+						"parts": "StoryExtData-22.json"
+					},
+					{
+						"name": "Parts 230-239",
+						"parts": "StoryExtData-23.json"
+					},
+					{
+						"name": "Parts 240-249",
+						"parts": "StoryExtData-24.json"
+					},
+					{
+						"name": "Parts 250-259",
+						"parts": "StoryExtData-25.json"
+					},
+					{
+						"name": "Parts 260-269",
+						"parts": "StoryExtData-26.json"
+					},
+					{
+						"name": "Parts 270-279",
+						"parts": "StoryExtData-27.json"
+					},
+					{
+						"name": "Parts 280-289",
+						"parts": "StoryExtData-28.json"
+					},
+					{
+						"name": "Parts 290-299",
+						"parts": "StoryExtData-29.json"
+					},
+					{
+						"name": "Parts 300-309",
+						"parts": "StoryExtData-30.json"
+					},
+					{
+						"name": "Parts 310-319",
+						"parts": "StoryExtData-31.json"
+					},
+					{
+						"name": "Parts 320-329",
+						"parts": "StoryExtData-32.json"
+					},
+					{
+						"name": "Parts 330-339",
+						"parts": "StoryExtData-33.json"
+					},
+					{
+						"name": "Parts 340-349",
+						"parts": "StoryExtData-34.json"
+					},
+					{
+						"name": "Parts 350-359",
+						"parts": "StoryExtData-35.json"
+					},
+					{
+						"name": "Parts 360-369",
+						"parts": "StoryExtData-36.json"
+					},
+					{
+						"name": "Parts 370-379",
+						"parts": "StoryExtData-37.json"
+					},
+					{
+						"name": "Parts 380-389",
+						"parts": "StoryExtData-38.json"
+					},
+					{
+						"name": "Parts 390-399",
+						"parts": "StoryExtData-39.json"
+					},
+					{
+						"name": "Parts 400-409",
+						"parts": "StoryExtData-40.json"
+					},
+					{
+						"name": "Parts 410-419",
+						"parts": "StoryExtData-41.json"
+					},
+					{
+						"name": "Parts 420-429",
+						"parts": "StoryExtData-42.json"
+					},
+					{
+						"name": "Parts 430-439",
+						"parts": "StoryExtData-43.json"
+					},
+					{
+						"name": "Parts 440-449",
+						"parts": "StoryExtData-44.json"
+					},
+					{
+						"name": "Parts 450-459",
+						"parts": "StoryExtData-45.json"
+					},
+					{
+						"name": "Parts 460-469",
+						"parts": "StoryExtData-46.json"
+					},
+					{
+						"name": "Parts 470-479",
+						"parts": "StoryExtData-47.json"
+					},
+					{
+						"name": "Parts 480-489",
+						"parts": "StoryExtData-48.json"
+					},
+					{
+						"name": "Parts 490-499",
+						"parts": "StoryExtData-49.json"
+					},
+					{
+						"name": "Parts 500-509",
+						"parts": "StoryExtData-50.json"
+					},
+					{
+						"name": "Parts 510-519",
+						"parts": "StoryExtData-51.json"
+					},
+					{
+						"name": "Parts 520-529",
+						"parts": "StoryExtData-52.json"
+					},
+					{
+						"name": "Parts 530-539",
+						"parts": "StoryExtData-53.json"
+					},
+					{
+						"name": "Parts 540-549",
+						"parts": "StoryExtData-54.json"
+					},
+					{
+						"name": "Parts 550-559",
+						"parts": "StoryExtData-55.json"
+					},
+					{
+						"name": "Parts 560-569",
+						"parts": "StoryExtData-56.json"
+					},
+					{
+						"name": "Parts 570-579",
+						"parts": "StoryExtData-57.json"
+					},
+					{
+						"name": "Parts 580-589",
+						"parts": "StoryExtData-58.json"
+					},
+					{
+						"name": "Parts 590-599",
+						"parts": "StoryExtData-59.json"
+					},
+					{
+						"name": "Parts 600-609",
+						"parts": "StoryExtData-60.json"
+					},
+					{
+						"name": "Parts 610-619",
+						"parts": "StoryExtData-61.json"
+					},
+					{
+						"name": "Parts 620-629",
+						"parts": "StoryExtData-62.json"
+					},
+					{
+						"name": "Parts 630-639",
+						"parts": "StoryExtData-63.json"
+					},
+					{
+						"name": "Parts 640-649",
+						"parts": "StoryExtData-64.json"
+					},
+					{
+						"name": "Parts 650-659",
+						"parts": "StoryExtData-65.json"
+					},
+					{
+						"name": "Parts 660-669",
+						"parts": "StoryExtData-66.json"
+					},
+					{
+						"name": "Parts 670-679",
+						"parts": "StoryExtData-67.json"
+					},
+					{
+						"name": "Parts 680-689",
+						"parts": "StoryExtData-68.json"
+					},
+					{
+						"name": "Parts 690-699",
+						"parts": "StoryExtData-69.json"
+					},
+					{
+						"name": "Parts 700-709",
+						"parts": "StoryExtData-70.json"
+					},
+					{
+						"name": "Parts 710-719",
+						"parts": "StoryExtData-71.json"
+					},
+					{
+						"name": "Parts 720-729",
+						"parts": "StoryExtData-72.json"
+					},
+					{
+						"name": "Parts 730-739",
+						"parts": "StoryExtData-73.json"
+					},
+					{
+						"name": "Parts 740-749",
+						"parts": "StoryExtData-74.json"
+					},
+					{
+						"name": "Parts 750-759",
+						"parts": "StoryExtData-75.json"
+					},
+					{
+						"name": "Parts 760-769",
+						"parts": "StoryExtData-76.json"
+					},
+					{
+						"name": "Parts 770-779",
+						"parts": "StoryExtData-77.json"
+					},
+					{
+						"name": "Parts 780-789",
+						"parts": "StoryExtData-78.json"
+					},
+					{
+						"name": "Parts 790-799",
+						"parts": "StoryExtData-79.json"
+					},
+					{
+						"name": "Parts 800-809",
+						"parts": "StoryExtData-80.json"
+					},
+					{
+						"name": "Parts 810-819",
+						"parts": "StoryExtData-81.json"
+					},
+					{
+						"name": "Parts 820-829",
+						"parts": "StoryExtData-82.json"
+					},
+					{
+						"name": "Parts 830-839",
+						"parts": "StoryExtData-83.json"
+					},
+					{
+						"name": "Parts 840-849",
+						"parts": "StoryExtData-84.json"
+					},
+					{
+						"name": "Parts 850-859",
+						"parts": "StoryExtData-85.json"
+					},
+					{
+						"name": "Parts 860-869",
+						"parts": "StoryExtData-86.json"
+					},
+					{
+						"name": "Parts 870-879",
+						"parts": "StoryExtData-87.json"
+					},
+					{
+						"name": "Parts 880-889",
+						"parts": "StoryExtData-88.json"
+					},
+					{
+						"name": "Parts 890-899",
+						"parts": "StoryExtData-89.json"
+					},
+					{
+						"name": "Parts 900-909",
+						"parts": "StoryExtData-90.json"
+					},
+					{
+						"name": "Parts 910-919",
+						"parts": "StoryExtData-91.json"
+					},
+					{
+						"name": "Parts 920-929",
+						"parts": "StoryExtData-92.json"
+					},
+					{
+						"name": "Parts 930-939",
+						"parts": "StoryExtData-93.json"
+					},
+					{
+						"name": "Parts 940-949",
+						"parts": "StoryExtData-94.json"
+					},
+					{
+						"name": "Parts 950-959",
+						"parts": "StoryExtData-95.json"
+					},
+					{
+						"name": "Parts 960-969",
+						"parts": "StoryExtData-96.json"
+					},
+					{
+						"name": "Parts 970-979",
+						"parts": "StoryExtData-97.json"
+					},
+					{
+						"name": "Parts 980-989",
+						"parts": "StoryExtData-98.json"
+					},
+					{
+						"name": "Parts 990-999",
+						"parts": "StoryExtData-99.json"
+					},
+					{
+						"name": "Parts 1000-1009",
+						"parts": "StoryExtData-100.json"
+					},
+					{
+						"name": "Parts 1010-1019",
+						"parts": "StoryExtData-101.json"
+					},
+					{
+						"name": "Parts 1020-1029",
+						"parts": "StoryExtData-102.json"
+					},
+					{
+						"name": "Parts 1030-1039",
+						"parts": "StoryExtData-103.json"
+					},
+					{
+						"name": "Parts 1040-1049",
+						"parts": "StoryExtData-104.json"
+					},
+					{
+						"name": "Parts 1050-1059",
+						"parts": "StoryExtData-105.json"
+					},
+					{
+						"name": "Parts 1060-1069",
+						"parts": "StoryExtData-106.json"
+					},
+					{
+						"name": "Parts 1070-1079",
+						"parts": "StoryExtData-107.json"
+					},
+					{
+						"name": "Parts 1080-1089",
+						"parts": "StoryExtData-108.json"
+					},
+					{
+						"name": "Parts 1090-1099",
+						"parts": "StoryExtData-109.json"
+					},
+					{
+						"name": "Parts 1100-1109",
+						"parts": "StoryExtData-110.json"
+					},
+					{
+						"name": "Parts 1110-1119",
+						"parts": "StoryExtData-111.json"
+					},
+					{
+						"name": "Parts 1120-1129",
+						"parts": "StoryExtData-112.json"
+					},
+					{
+						"name": "Parts 1130-1139",
+						"parts": "StoryExtData-113.json"
+					},
+					{
+						"name": "Parts 1140-1149",
+						"parts": "StoryExtData-114.json"
+					},
+					{
+						"name": "Parts 1150-1159",
+						"parts": "StoryExtData-115.json"
+					},
+					{
+						"name": "Parts 1160-1169",
+						"parts": "StoryExtData-116.json"
+					},
+					{
+						"name": "Parts 1170-1179",
+						"parts": "StoryExtData-117.json"
+					},
+					{
+						"name": "Parts 1180-1189",
+						"parts": "StoryExtData-118.json"
+					},
+					{
+						"name": "Parts 1190-1199",
+						"parts": "StoryExtData-119.json"
+					},
+					{
+						"name": "Parts 1200-1209",
+						"parts": "StoryExtData-120.json"
+					},
+					{
+						"name": "Parts 1210-1219",
+						"parts": "StoryExtData-121.json"
+					},
+					{
+						"name": "Parts 1220-1229",
+						"parts": "StoryExtData-122.json"
+					},
+					{
+						"name": "Parts 1230-1239",
+						"parts": "StoryExtData-123.json"
+					},
+					{
+						"name": "Parts 1240-1249",
+						"parts": "StoryExtData-124.json"
+					},
+					{
+						"name": "Parts 1250-1259",
+						"parts": "StoryExtData-125.json"
+					},
+					{
+						"name": "Parts 1260-1269",
+						"parts": "StoryExtData-126.json"
+					},
+					{
+						"name": "Parts 1270-1279",
+						"parts": "StoryExtData-127.json"
+					},
+					{
+						"name": "Parts 1280-1289",
+						"parts": "StoryExtData-128.json"
+					},
+					{
+						"name": "Parts 1290-1299",
+						"parts": "StoryExtData-129.json"
+					},
+					{
+						"name": "Parts 1300-1309",
+						"parts": "StoryExtData-130.json"
+					},
+					{
+						"name": "Parts 1310-1319",
+						"parts": "StoryExtData-131.json"
+					},
+					{
+						"name": "Parts 1320-1329",
+						"parts": "StoryExtData-132.json"
+					},
+					{
+						"name": "Parts 1330-1339",
+						"parts": "StoryExtData-133.json"
+					},
+					{
+						"name": "Parts 1340-1349",
+						"parts": "StoryExtData-134.json"
+					},
+					{
+						"name": "Parts 1350-1359",
+						"parts": "StoryExtData-135.json"
+					},
+					{
+						"name": "Parts 1360-1369",
+						"parts": "StoryExtData-136.json"
+					},
+					{
+						"name": "Parts 1370-1379",
+						"parts": "StoryExtData-137.json"
+					},
+					{
+						"name": "Parts 1380-1389",
+						"parts": "StoryExtData-138.json"
+					},
+					{
+						"name": "Parts 1390-1399",
+						"parts": "StoryExtData-139.json"
+					},
+					{
+						"name": "Parts 1400-1409",
+						"parts": "StoryExtData-140.json"
+					},
+					{
+						"name": "Parts 1410-1419",
+						"parts": "StoryExtData-141.json"
+					},
+					{
+						"name": "Parts 1420-1429",
+						"parts": "StoryExtData-142.json"
+					},
+					{
+						"name": "Parts 1430-1439",
+						"parts": "StoryExtData-143.json"
+					},
+					{
+						"name": "Parts 1440-1449",
+						"parts": "StoryExtData-144.json"
+					},
+					{
+						"name": "Parts 1450-1459",
+						"parts": "StoryExtData-145.json"
+					},
+					{
+						"name": "Parts 1460-1469",
+						"parts": "StoryExtData-146.json"
+					},
+					{
+						"name": "Parts 1470-1479",
+						"parts": "StoryExtData-147.json"
+					},
+					{
+						"name": "Parts 1480-1489",
+						"parts": "StoryExtData-148.json"
+					},
+					{
+						"name": "Parts 1490-1499",
+						"parts": "StoryExtData-149.json"
+					},
+					{
+						"name": "Parts 1500-1509",
+						"parts": "StoryExtData-150.json"
+					},
+					{
+						"name": "Parts 1510-1519",
+						"parts": "StoryExtData-151.json"
+					},
+					{
+						"name": "Parts 1520-1529",
+						"parts": "StoryExtData-152.json"
+					},
+					{
+						"name": "Parts 1530-1539",
+						"parts": "StoryExtData-153.json"
+					},
+					{
+						"name": "Parts 1540-1549",
+						"parts": "StoryExtData-154.json"
+					},
+					{
+						"name": "Parts 1550-1559",
+						"parts": "StoryExtData-155.json"
+					},
+					{
+						"name": "Parts 1560-1569",
+						"parts": "StoryExtData-156.json"
+					},
+					{
+						"name": "Parts 1570-1579",
+						"parts": "StoryExtData-157.json"
+					},
+					{
+						"name": "Parts 1580-1589",
+						"parts": "StoryExtData-158.json"
+					},
+					{
+						"name": "Parts 1590-1599",
+						"parts": "StoryExtData-159.json"
+					},
+					{
+						"name": "Parts 1600-1609",
+						"parts": "StoryExtData-160.json"
+					},
+					{
+						"name": "Parts 1610-1619",
+						"parts": "StoryExtData-161.json"
+					},
+					{
+						"name": "Parts 1620-1629",
+						"parts": "StoryExtData-162.json"
+					},
+					{
+						"name": "Parts 1630-1639",
+						"parts": "StoryExtData-163.json"
+					},
+					{
+						"name": "Parts 1640-1649",
+						"parts": "StoryExtData-164.json"
+					},
+					{
+						"name": "Parts 1650-1659",
+						"parts": "StoryExtData-165.json"
+					},
+					{
+						"name": "Parts 1660-1669",
+						"parts": "StoryExtData-166.json"
+					},
+					{
+						"name": "Parts 1670-1679",
+						"parts": "StoryExtData-167.json"
+					},
+					{
+						"name": "Parts 1680-1689",
+						"parts": "StoryExtData-168.json"
+					},
+					{
+						"name": "Parts 1690-1699",
+						"parts": "StoryExtData-169.json"
+					},
+					{
+						"name": "Parts 1700-1709",
+						"parts": "StoryExtData-170.json"
+					},
+					{
+						"name": "Parts 1710-1719",
+						"parts": "StoryExtData-171.json"
+					},
+					{
+						"name": "Parts 1720-1729",
+						"parts": "StoryExtData-172.json"
+					},
+					{
+						"name": "Parts 1730-1739",
+						"parts": "StoryExtData-173.json"
+					},
+					{
+						"name": "Parts 1740-1749",
+						"parts": "StoryExtData-174.json"
+					},
+					{
+						"name": "Parts 1750-1759",
+						"parts": "StoryExtData-175.json"
+					},
+					{
+						"name": "Parts 1760-1769",
+						"parts": "StoryExtData-176.json"
+					},
+					{
+						"name": "Parts 1770-1779",
+						"parts": "StoryExtData-177.json"
+					},
+					{
+						"name": "Parts 1780-1789",
+						"parts": "StoryExtData-178.json"
+					},
+					{
+						"name": "Parts 1790-1799",
+						"parts": "StoryExtData-179.json"
+					},
+					{
+						"name": "Parts 1800-1809",
+						"parts": "StoryExtData-180.json"
+					},
+					{
+						"name": "Parts 1810-1819",
+						"parts": "StoryExtData-181.json"
+					},
+					{
+						"name": "Parts 1820-1829",
+						"parts": "StoryExtData-182.json"
+					},
+					{
+						"name": "Parts 1830-1839",
+						"parts": "StoryExtData-183.json"
+					},
+					{
+						"name": "Parts 1840-1849",
+						"parts": "StoryExtData-184.json"
+					},
+					{
+						"name": "Parts 1850-1859",
+						"parts": "StoryExtData-185.json"
+					},
+					{
+						"name": "Parts 1860-1869",
+						"parts": "StoryExtData-186.json"
+					},
+					{
+						"name": "Parts 1870-1879",
+						"parts": "StoryExtData-187.json"
+					},
+					{
+						"name": "Parts 1880-1889",
+						"parts": "StoryExtData-188.json"
+					},
+					{
+						"name": "Parts 1890-1899",
+						"parts": "StoryExtData-189.json"
+					},
+					{
+						"name": "Parts 1900-1909",
+						"parts": "StoryExtData-190.json"
+					},
+					{
+						"name": "Parts 1910-1919",
+						"parts": "StoryExtData-191.json"
+					},
+					{
+						"name": "Parts 1920-1929",
+						"parts": "StoryExtData-192.json"
+					},
+					{
+						"name": "Parts 1930-1939",
+						"parts": "StoryExtData-193.json"
+					},
+					{
+						"name": "Parts 1940-1949",
+						"parts": "StoryExtData-194.json"
+					},
+					{
+						"name": "Parts 1950-1959",
+						"parts": "StoryExtData-195.json"
+					},
+					{
+						"name": "Parts 1960-1969",
+						"parts": "StoryExtData-196.json"
+					},
+					{
+						"name": "Parts 1970-1979",
+						"parts": "StoryExtData-197.json"
+					},
+					{
+						"name": "Parts 1980-1989",
+						"parts": "StoryExtData-198.json"
+					},
+					{
+						"name": "Parts 1990-1999",
+						"parts": "StoryExtData-199.json"
+					},
+					{
+						"name": "Parts 2000-2009",
+						"parts": "StoryExtData-200.json"
+					},
+					{
+						"name": "Parts 2010-2019",
+						"parts": "StoryExtData-201.json"
+					},
+					{
+						"name": "Parts 2020-2029",
+						"parts": "StoryExtData-202.json"
+					},
+					{
+						"name": "Parts 2030-2039",
+						"parts": "StoryExtData-203.json"
+					},
+					{
+						"name": "Parts 2040-2049",
+						"parts": "StoryExtData-204.json"
+					},
+					{
+						"name": "Parts 2050-2059",
+						"parts": "StoryExtData-205.json"
+					},
+					{
+						"name": "Parts 2060-2069",
+						"parts": "StoryExtData-206.json"
+					},
+					{
+						"name": "Parts 2070-2079",
+						"parts": "StoryExtData-207.json"
+					},
+					{
+						"name": "Parts 2080-2089",
+						"parts": "StoryExtData-208.json"
+					},
+					{
+						"name": "Parts 2090-2099",
+						"parts": "StoryExtData-209.json"
+					},
+					{
+						"name": "Parts 2100-2109",
+						"parts": "StoryExtData-210.json"
+					},
+					{
+						"name": "Parts 2110-2119",
+						"parts": "StoryExtData-211.json"
+					},
+					{
+						"name": "Parts 2120-2129",
+						"parts": "StoryExtData-212.json"
+					},
+					{
+						"name": "Parts 2130-2139",
+						"parts": "StoryExtData-213.json"
+					},
+					{
+						"name": "Parts 2140-2149",
+						"parts": "StoryExtData-214.json"
+					},
+					{
+						"name": "Parts 2150-2159",
+						"parts": "StoryExtData-215.json"
+					},
+					{
+						"name": "Parts 2160-2169",
+						"parts": "StoryExtData-216.json"
+					},
+					{
+						"name": "Parts 2170-2179",
+						"parts": "StoryExtData-217.json"
+					},
+					{
+						"name": "Parts 2180-2189",
+						"parts": "StoryExtData-218.json"
+					},
+					{
+						"name": "Parts 2190-2199",
+						"parts": "StoryExtData-219.json"
+					},
+					{
+						"name": "Parts 2200-2209",
+						"parts": "StoryExtData-220.json"
+					},
+					{
+						"name": "Parts 2210-2219",
+						"parts": "StoryExtData-221.json"
+					},
+					{
+						"name": "Parts 2220-2229",
+						"parts": "StoryExtData-222.json"
+					},
+					{
+						"name": "Parts 2230-2239",
+						"parts": "StoryExtData-223.json"
+					},
+					{
+						"name": "Parts 2240-2249",
+						"parts": "StoryExtData-224.json"
+					},
+					{
+						"name": "Parts 2250-2259",
+						"parts": "StoryExtData-225.json"
+					},
+					{
+						"name": "Parts 2260-2269",
+						"parts": "StoryExtData-226.json"
+					},
+					{
+						"name": "Parts 2270-2279",
+						"parts": "StoryExtData-227.json"
+					},
+					{
+						"name": "Parts 2280-2289",
+						"parts": "StoryExtData-228.json"
+					},
+					{
+						"name": "Parts 2290-2299",
+						"parts": "StoryExtData-229.json"
+					},
+					{
+						"name": "Parts 2300-2309",
+						"parts": "StoryExtData-230.json"
+					},
+					{
+						"name": "Parts 2310-2319",
+						"parts": "StoryExtData-231.json"
+					},
+					{
+						"name": "Parts 2320-2329",
+						"parts": "StoryExtData-232.json"
+					},
+					{
+						"name": "Parts 2330-2339",
+						"parts": "StoryExtData-233.json"
+					},
+					{
+						"name": "Parts 2340-2349",
+						"parts": "StoryExtData-234.json"
+					},
+					{
+						"name": "Parts 2350-2359",
+						"parts": "StoryExtData-235.json"
+					},
+					{
+						"name": "Parts 2360-2369",
+						"parts": "StoryExtData-236.json"
+					},
+					{
+						"name": "Parts 2370-2379",
+						"parts": "StoryExtData-237.json"
+					},
+					{
+						"name": "Parts 2380-2389",
+						"parts": "StoryExtData-238.json"
+					},
+					{
+						"name": "Parts 2390-2399",
+						"parts": "StoryExtData-239.json"
+					},
+					{
+						"name": "Parts 2400-2409",
+						"parts": "StoryExtData-240.json"
+					},
+					{
+						"name": "Parts 2410-2419",
+						"parts": "StoryExtData-241.json"
+					},
+					{
+						"name": "Parts 2420-2429",
+						"parts": "StoryExtData-242.json"
+					},
+					{
+						"name": "Parts 2430-2439",
+						"parts": "StoryExtData-243.json"
+					},
+					{
+						"name": "Parts 2440-2449",
+						"parts": "StoryExtData-244.json"
+					},
+					{
+						"name": "Parts 2450-2459",
+						"parts": "StoryExtData-245.json"
+					},
+					{
+						"name": "Parts 2460-2469",
+						"parts": "StoryExtData-246.json"
+					},
+					{
+						"name": "Parts 2470-2479",
+						"parts": "StoryExtData-247.json"
+					},
+					{
+						"name": "Parts 2480-2489",
+						"parts": "StoryExtData-248.json"
+					},
+					{
+						"name": "Parts 2490-2499",
+						"parts": "StoryExtData-249.json"
+					},
+					{
+						"name": "Parts 2500-2509",
+						"parts": "StoryExtData-250.json"
+					},
+					{
+						"name": "Parts 2510-2519",
+						"parts": "StoryExtData-251.json"
+					},
+					{
+						"name": "Parts 2520-2529",
+						"parts": "StoryExtData-252.json"
+					},
+					{
+						"name": "Parts 2530-2539",
+						"parts": "StoryExtData-253.json"
+					},
+					{
+						"name": "Parts 2540-2549",
+						"parts": "StoryExtData-254.json"
+					},
+					{
+						"name": "Parts 2550-2559",
+						"parts": "StoryExtData-255.json"
+					},
+					{
+						"name": "Parts 2560-2569",
+						"parts": "StoryExtData-256.json"
+					},
+					{
+						"name": "Parts 2570-2579",
+						"parts": "StoryExtData-257.json"
+					},
+					{
+						"name": "Parts 2580-2589",
+						"parts": "StoryExtData-258.json"
+					},
+					{
+						"name": "Parts 2590-2599",
+						"parts": "StoryExtData-259.json"
+					},
+					{
+						"name": "Parts 2600-2609",
+						"parts": "StoryExtData-260.json"
+					},
+					{
+						"name": "Parts 2610-2619",
+						"parts": "StoryExtData-261.json"
+					},
+					{
+						"name": "Parts 2620-2629",
+						"parts": "StoryExtData-262.json"
+					},
+					{
+						"name": "Parts 2630-2639",
+						"parts": "StoryExtData-263.json"
+					},
+					{
+						"name": "Parts 2640-2649",
+						"parts": "StoryExtData-264.json"
+					},
+					{
+						"name": "Parts 2650-2659",
+						"parts": "StoryExtData-265.json"
+					},
+					{
+						"name": "Parts 2660-2669",
+						"parts": "StoryExtData-266.json"
+					},
+					{
+						"name": "Parts 2670-2679",
+						"parts": "StoryExtData-267.json"
+					},
+					{
+						"name": "Parts 2680-2689",
+						"parts": "StoryExtData-268.json"
+					},
+					{
+						"name": "Parts 2690-2699",
+						"parts": "StoryExtData-269.json"
+					},
+					{
+						"name": "Parts 2700-2709",
+						"parts": "StoryExtData-270.json"
+					},
+					{
+						"name": "Parts 2710-2719",
+						"parts": "StoryExtData-271.json"
+					},
+					{
+						"name": "Parts 2720-2729",
+						"parts": "StoryExtData-272.json"
+					},
+					{
+						"name": "Parts 2730-2739",
+						"parts": "StoryExtData-273.json"
+					},
+					{
+						"name": "Parts 2740-2749",
+						"parts": "StoryExtData-274.json"
+					},
+					{
+						"name": "Parts 2750-2759",
+						"parts": "StoryExtData-275.json"
+					},
+					{
+						"name": "Parts 2760-2769",
+						"parts": "StoryExtData-276.json"
+					},
+					{
+						"name": "Parts 2770-2779",
+						"parts": "StoryExtData-277.json"
+					},
+					{
+						"name": "Parts 2780-2789",
+						"parts": "StoryExtData-278.json"
+					},
+					{
+						"name": "Parts 2790-2799",
+						"parts": "StoryExtData-279.json"
+					},
+					{
+						"name": "Parts 2800-2809",
+						"parts": "StoryExtData-280.json"
+					},
+					{
+						"name": "Parts 2810-2819",
+						"parts": "StoryExtData-281.json"
+					},
+					{
+						"name": "Parts 2900-2909",
+						"parts": "StoryExtData-290.json"
+					},
+					{
+						"name": "Parts 2910-2919",
+						"parts": "StoryExtData-291.json"
+					},
+					{
+						"name": "Parts 2920-2929",
+						"parts": "StoryExtData-292.json"
+					},
+					{
+						"name": "Parts 2930-2939",
+						"parts": "StoryExtData-293.json"
+					},
+					{
+						"name": "Parts 2940-2949",
+						"parts": "StoryExtData-294.json"
+					},
+					{
+						"name": "Parts 2950-2959",
+						"parts": "StoryExtData-295.json"
+					},
+					{
+						"name": "Parts 2960-2969",
+						"parts": "StoryExtData-296.json"
+					},
+					{
+						"name": "Parts 2970-2979",
+						"parts": "StoryExtData-297.json"
+					},
+					{
+						"name": "Parts 2980-2989",
+						"parts": "StoryExtData-298.json"
+					},
+					{
+						"name": "Parts 2990-2999",
+						"parts": "StoryExtData-299.json"
+					},
+					{
+						"name": "Parts 3000-3009",
+						"parts": "StoryExtData-300.json"
+					},
+					{
+						"name": "Parts 3010-3019",
+						"parts": "StoryExtData-301.json"
+					},
+					{
+						"name": "Parts 3020-3029",
+						"parts": "StoryExtData-302.json"
+					},
+					{
+						"name": "Parts 3030-3039",
+						"parts": "StoryExtData-303.json"
+					},
+					{
+						"name": "Parts 3040-3049",
+						"parts": "StoryExtData-304.json"
+					},
+					{
+						"name": "Parts 3050-3059",
+						"parts": "StoryExtData-305.json"
+					},
+					{
+						"name": "Parts 3060-3069",
+						"parts": "StoryExtData-306.json"
+					},
+					{
+						"name": "Parts 3070-3079",
+						"parts": "StoryExtData-307.json"
+					},
+					{
+						"name": "Parts 3080-3089",
+						"parts": "StoryExtData-308.json"
+					},
+					{
+						"name": "Parts 3090-3099",
+						"parts": "StoryExtData-309.json"
+					},
+					{
+						"name": "Parts 3100-3109",
+						"parts": "StoryExtData-310.json"
+					}
+				]
+			},
+			{
+				"name": "Unknown SubData",
+				"episodes": [
+					{
+						"name": "Parts 0-9",
+						"parts": "StorySubData-0.json"
+					},
+					{
+						"name": "Parts 10-19",
+						"parts": "StorySubData-1.json"
+					},
+					{
+						"name": "Parts 20-29",
+						"parts": "StorySubData-2.json"
+					},
+					{
+						"name": "Parts 30-39",
+						"parts": "StorySubData-3.json"
+					},
+					{
+						"name": "Parts 40-49",
+						"parts": "StorySubData-4.json"
+					},
+					{
+						"name": "Parts 50-59",
+						"parts": "StorySubData-5.json"
+					},
+					{
+						"name": "Parts 60-69",
+						"parts": "StorySubData-6.json"
+					},
+					{
+						"name": "Parts 70-79",
+						"parts": "StorySubData-7.json"
+					},
+					{
+						"name": "Parts 80-89",
+						"parts": "StorySubData-8.json"
+					},
+					{
+						"name": "Parts 90-99",
+						"parts": "StorySubData-9.json"
+					},
+					{
+						"name": "Parts 100-109",
+						"parts": "StorySubData-10.json"
+					},
+					{
+						"name": "Parts 110-119",
+						"parts": "StorySubData-11.json"
+					},
+					{
+						"name": "Parts 120-129",
+						"parts": "StorySubData-12.json"
+					},
+					{
+						"name": "Parts 130-139",
+						"parts": "StorySubData-13.json"
+					}
+				]
+			},
+			{
+				"name": "Unknown InsideData",
+				"episodes": [
+					{
+						"name": "Parts 0-10",
+						"parts": "StoryInsideData.json"
+					}
+				]
+			}
+		],
+		"side": [],
+		"event": [],
+		"crossover": []
+	}
+}
