@@ -1,0 +1,58 @@
+{
+    "name": "GFL C.I.",
+    "short_name": "GFL C.I.",
+    "icons": [
+        {
+            "src": "/android-chrome-maskable-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/android-chrome-maskable-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "monochrome any"
+        },
+        {
+            "src": "/android-chrome-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png",
+            "purpose": "monochrome any"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name":"Main Story Chapters",
+            "short_name": "Story Chapters",
+            "url": "/#mainEpisodesWrapper",
+            "description":"Browse and read the main chapters."
+        },
+        {
+            "name":"Event Chapters",
+            "url": "/#eventEpisodesWrapper",
+            "description":"Browse and read major story events."
+        },
+        {
+            "name":"Side Stories",
+            "url": "/#sideEpisodesWrapper",
+            "description":"Browse and read side stories."
+        },
+        {
+            "name":"Crossover Event Stories",
+            "short_name": "Crossover Chapters",
+            "url": "/#crossoverEpisodesWrapper",
+            "description":"Browse and read collaboration events."
+        }
+    ],
+    "theme_color": "#09004c",
+    "background_color": "#09004c",
+    "display": "standalone",
+    "start_url":"/"
+}

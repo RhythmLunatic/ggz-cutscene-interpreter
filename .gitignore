@@ -1,0 +1,8 @@
+avgtexture/*
+avgtxt/*
+pic/*
+audio/*
+build/test/*
+build/GameData/*
+build/dialogue.tab
+build/TextMap_aio.tsv

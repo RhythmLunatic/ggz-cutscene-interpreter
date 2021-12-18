@@ -11,320 +11,605 @@
 				]
 			},
 			{
-				"name": "Playback Type 1 Data (Main Story?)",
+				"name": "Chapter of Memories",
+				"nameMultilang": [
+					320196,
+					"Chapter of Memories",
+					"追溯篇",
+					"追想編",
+					null,
+					null
+				],
 				"episodes": [
 					{
-						"name": "Apocalypse is here",
+						"name": "Chapter 1: Apocalypse is here",
 						"parts": "type-1-1-chapter-1.json"
 					},
 					{
-						"name": "Kiana attack",
+						"name": "Chapter 2: Kiana attack",
 						"parts": "type-1-1-chapter-2.json"
 					},
 					{
-						"name": "Strange Lightning",
+						"name": "Chapter 3: Strange Lightning",
 						"parts": "type-1-1-chapter-3.json"
 					},
 					{
-						"name": "Do Not Enter",
+						"name": "Extra: 1: Do Not Enter",
 						"parts": "type-1-1-chapter-4.json"
 					},
 					{
-						"name": "unquenchable desire",
+						"name": "Extra: 2: unquenchable desire",
 						"parts": "type-1-1-chapter-5.json"
 					},
 					{
-						"name": "Magic Cannon",
+						"name": "Chapter 4: Magic Cannon",
 						"parts": "type-1-1-chapter-6.json"
 					},
 					{
-						"name": "Curiosity killed the cat",
+						"name": "Chapter 5: Curiosity killed the cat",
 						"parts": "type-1-1-chapter-7.json"
 					},
 					{
-						"name": "distaste",
+						"name": "Extra: 3: distaste",
 						"parts": "type-1-1-chapter-8.json"
 					},
 					{
-						"name": "Soul Watcher",
+						"name": "Extra: 4: Soul Watcher",
 						"parts": "type-1-1-chapter-9.json"
 					},
 					{
-						"name": "I hope I could catch up to you.",
+						"name": "Extra: 5: I hope I could catch up to you.",
 						"parts": "type-1-1-chapter-10.json"
 					},
 					{
-						"name": "Untouchable Houkai Source",
+						"name": "Chapter 6: Untouchable Houkai Source",
 						"parts": "type-1-1-chapter-11.json"
 					},
 					{
-						"name": "Sakura",
-						"parts": "type-3-15-chapter-1.json"
+						"name": "Chapter 7: Top-secret Report",
+						"parts": "type-1-1-chapter-12.json"
 					},
 					{
-						"name": "Energy Vessel",
+						"name": "Extra: 6: Energy Vessel",
 						"parts": "type-1-1-chapter-13.json"
 					},
 					{
-						"name": "To Be or Not to Be",
+						"name": "Chapter 8: To Be or Not to Be",
 						"parts": "type-1-1-chapter-14.json"
 					},
 					{
-						"name": "HOMU Paradise: Darkling Waltz",
+						"name": "Extra: 7: HOMU Paradise: Darkling Waltz",
 						"parts": "type-1-1-chapter-15.json"
 					},
 					{
-						"name": "HOMU Paradise: Snow Rhapsody",
+						"name": "Extra: 8: HOMU Paradise: Snow Rhapsody",
 						"parts": "type-1-1-chapter-16.json"
 					},
 					{
-						"name": "Rhinegold",
+						"name": "Chapter 9: Rhinegold",
 						"parts": "type-1-1-chapter-17.json"
 					},
 					{
-						"name": "Valkyrie Ride",
+						"name": "Chapter 10: Valkyrie Ride",
 						"parts": "type-1-1-chapter-18.json"
 					},
 					{
-						"name": "Siegfried",
+						"name": "Chapter 11: Siegfried",
 						"parts": "type-1-1-chapter-19.json"
 					},
 					{
-						"name": "Ragnarök",
+						"name": "Chapter 12: Ragnarök",
 						"parts": "type-1-1-chapter-20.json"
-					},
-					{
-						"name": "Meet and redemption",
-						"parts": "type-1-2-chapter-21.json"
-					},
-					{
-						"name": "Investigator",
-						"parts": "type-2-5-chapter-3.json"
-					},
-					{
-						"name": "Rational spiral",
-						"parts": "type-1-2-chapter-23.json"
-					},
-					{
-						"name": "Apocalyptic Nightmare",
-						"parts": "type-2-8-chapter-3.json"
-					},
-					{
-						"name": "False Truth",
-						"parts": "type-2-27-chapter-2.json"
-					},
-					{
-						"name": "Crystal Waltz",
-						"parts": "type-2-26-chapter-2.json"
-					},
-					{
-						"name": "Moon Requiem",
-						"parts": "type-2-27-chapter-8.json"
-					},
-					{
-						"name": "Memory of Fox",
-						"parts": "type-1-3-chapter-1.json"
-					},
-					{
-						"name": "Broken Cocoon",
-						"parts": "type-2-27-chapter-18.json"
-					},
-					{
-						"name": "Saint",
-						"parts": "type-1-2-chapter-29.json"
-					},
-					{
-						"name": "Soulmaker",
-						"parts": "type-2-5-chapter-4.json"
-					},
-					{
-						"name": "Song of Hermit",
-						"parts": "type-1-2-chapter-31.json"
-					},
-					{
-						"name": "Aliyeid",
-						"parts": "type-1-2-chapter-32.json"
-					},
-					{
-						"name": "Knight of Apocalypse",
-						"parts": "type-1-3-chapter-2.json"
 					}
 				]
 			},
 			{
-				"name": "Playback Type 2 Data (Side Events?)",
+				"name": "HauntedHouse",
+				"nameMultilang": [
+					100183,
+					"HauntedHouse",
+					"雾海庄园",
+					"霧海荘園",
+					null,
+					null
+				],
 				"episodes": [
 					{
-						"name": "Top-secret Report",
-						"parts": "type-1-1-chapter-12.json"
-					},
-					{
-						"name": "HauntedHouse",
+						"name": "Season 1: HauntedHouse",
 						"parts": "type-2-3-chapter-1.json"
 					},
 					{
-						"name": "Sniper and impasse",
-						"parts": "type-1-2-chapter-22.json"
+						"name": "Season 2: HauntedHouse",
+						"parts": "type-2-3-chapter-2.json"
 					},
 					{
-						"name": "HauntedHouse",
+						"name": "Season 3: HauntedHouse",
 						"parts": "type-2-3-chapter-3.json"
 					},
 					{
-						"name": "HauntedHouse",
+						"name": "Season 4: HauntedHouse",
 						"parts": "type-2-3-chapter-4.json"
 					},
 					{
-						"name": "HauntedHouse",
+						"name": "Season 5: HauntedHouse",
 						"parts": "type-2-3-chapter-5.json"
 					},
 					{
-						"name": "HauntedHouse",
+						"name": "Season 6: HauntedHouse",
 						"parts": "type-2-3-chapter-6.json"
+					}
+				]
+			},
+			{
+				"name": "Sakura",
+				"nameMultilang": [
+					19936,
+					"Sakura",
+					"八重樱",
+					"八重桜",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Sakura",
+						"parts": "type-3-15-chapter-1.json"
+					}
+				]
+			},
+			{
+				"name": "Chapter of Birth",
+				"nameMultilang": [
+					260005,
+					"Chapter of Birth",
+					"新生篇",
+					"新生編",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Chapter 1: Meet and redemption",
+						"parts": "type-1-2-chapter-21.json"
 					},
 					{
-						"name": "Chikage's Story",
-						"parts": "type-2-4-chapter-1.json"
+						"name": "Chapter 2: Sniper and impasse",
+						"parts": "type-1-2-chapter-22.json"
 					},
 					{
-						"name": "Chikage's Story",
-						"parts": "type-2-4-chapter-2.json"
+						"name": "Chapter 3: Rational spiral",
+						"parts": "type-1-2-chapter-23.json"
 					},
 					{
-						"name": "Chikage's Story",
-						"parts": "type-2-4-chapter-4.json"
-					},
-					{
-						"name": "Genkai Room",
-						"parts": "type-2-6-chapter-1.json"
-					},
-					{
-						"name": "Genkai Room",
-						"parts": "type-2-6-chapter-2.json"
-					},
-					{
-						"name": "Mirage Cabin",
-						"parts": "type-2-6-chapter-3.json"
-					},
-					{
-						"name": "Lost sister",
-						"parts": "type-2-7-chapter-1.json"
-					},
-					{
-						"name": "Lost sister",
-						"parts": "type-2-7-chapter-2.json"
-					},
-					{
-						"name": "Lost sister",
-						"parts": "type-2-7-chapter-3.json"
-					},
-					{
-						"name": "Lost sister",
-						"parts": "type-2-7-chapter-4.json"
-					},
-					{
-						"name": "Blessing of the Principal",
-						"parts": "type-2-7-chapter-5.json"
-					},
-					{
-						"name": "Awaken Nightmare",
-						"parts": "type-2-8-chapter-1.json"
-					},
-					{
-						"name": "Awaken Nightmare",
-						"parts": "type-2-8-chapter-2.json"
-					},
-					{
-						"name": "Candy House",
-						"parts": "type-2-9-chapter-1.json"
-					},
-					{
-						"name": "Candy House",
-						"parts": "type-2-9-chapter-2.json"
-					},
-					{
-						"name": "Snow Land",
-						"parts": "type-2-10-chapter-1.json"
-					},
-					{
-						"name": "Snow Land",
-						"parts": "type-2-10-chapter-2.json"
-					},
-					{
-						"name": "Greenstar dust",
-						"parts": "type-2-12-chapter-1.json"
-					},
-					{
-						"name": "Greenstar dust",
-						"parts": "type-2-12-chapter-2.json"
-					},
-					{
-						"name": "Greenstar dust",
-						"parts": "type-2-12-chapter-3.json"
-					},
-					{
-						"name": "Lost Child",
-						"parts": "type-2-13-chapter-1.json"
-					},
-					{
-						"name": "Sin",
-						"parts": "type-2-13-chapter-2.json"
-					},
-					{
-						"name": "MazeFortress",
-						"parts": "type-2-14-chapter-1.json"
-					},
-					{
-						"name": "Extra: Tales of a Haunted School",
-						"parts": "type-2-14-chapter-2.json"
-					},
-					{
-						"name": "Lost system",
-						"parts": "type-2-14-chapter-3.json"
-					},
-					{
-						"name": "Monitor",
-						"parts": "type-2-5-chapter-1.json"
-					},
-					{
-						"name": "Guardian",
-						"parts": "type-2-5-chapter-2.json"
-					},
-					{
-						"name": "Chronicles",
-						"parts": "type-4-22-chapter-5.json"
-					},
-					{
-						"name": "Schicksal anthem",
+						"name": "Chapter 4: Schicksal anthem",
 						"parts": "type-1-2-chapter-24.json"
 					},
 					{
-						"name": "Investigator",
+						"name": "Chapter 5: Light and Shadow",
+						"parts": "type-1-2-chapter-25.json"
+					},
+					{
+						"name": "Chapter 6: Revenge",
+						"parts": "type-1-2-chapter-26.json"
+					},
+					{
+						"name": "Chapter 7: Glow",
+						"parts": "type-1-2-chapter-27.json"
+					},
+					{
+						"name": "Chapter 8: Verdict",
+						"parts": "type-1-2-chapter-28.json"
+					},
+					{
+						"name": "Chapter 9: Saint",
+						"parts": "type-1-2-chapter-29.json"
+					},
+					{
+						"name": "Chapter 10: Black Hole",
+						"parts": "type-1-2-chapter-30.json"
+					},
+					{
+						"name": "Chapter 11: Song of Hermit",
+						"parts": "type-1-2-chapter-31.json"
+					},
+					{
+						"name": "Chapter 12: Aliyeid",
+						"parts": "type-1-2-chapter-32.json"
+					}
+				]
+			},
+			{
+				"name": "Chikage's Story",
+				"nameMultilang": [
+					320209,
+					"Chikage's Story",
+					"千影物语",
+					"千影物語",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: Chikage's Story",
+						"parts": "type-2-4-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Chikage's Story",
+						"parts": "type-2-4-chapter-2.json"
+					},
+					{
+						"name": "Extra: 2: Chikage's Story",
+						"parts": "type-2-4-chapter-4.json"
+					}
+				]
+			},
+			{
+				"name": "Genkai Room",
+				"nameMultilang": [
+					320213,
+					"Genkai Room",
+					"幻海密室",
+					"幻海密室",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: Genkai Room",
+						"parts": "type-2-6-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Genkai Room",
+						"parts": "type-2-6-chapter-2.json"
+					},
+					{
+						"name": "Season 3: Mirage Cabin",
+						"parts": "type-2-6-chapter-3.json"
+					}
+				]
+			},
+			{
+				"name": "Lost sister",
+				"nameMultilang": [
+					14982,
+					"Lost sister",
+					"迷路修女",
+					"迷子の修道女",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: Lost sister",
+						"parts": "type-2-7-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Lost sister",
+						"parts": "type-2-7-chapter-2.json"
+					},
+					{
+						"name": "Season 3: Lost sister",
+						"parts": "type-2-7-chapter-3.json"
+					},
+					{
+						"name": "Season 4: Lost sister",
+						"parts": "type-2-7-chapter-4.json"
+					},
+					{
+						"name": "Season 5: Blessing of the Principal",
+						"parts": "type-2-7-chapter-5.json"
+					}
+				]
+			},
+			{
+				"name": "Awaken Nightmare",
+				"nameMultilang": [
+					320215,
+					"Awaken Nightmare",
+					"苏生的梦魇",
+					"蘇りし夢魘",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: Awaken Nightmare",
+						"parts": "type-2-8-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Awaken Nightmare",
+						"parts": "type-2-8-chapter-2.json"
+					},
+					{
+						"name": "Season 3: Apocalyptic Nightmare",
+						"parts": "type-2-8-chapter-3.json"
+					}
+				]
+			},
+			{
+				"name": "Candy House",
+				"nameMultilang": [
+					320216,
+					"Candy House",
+					"糖果屋",
+					"お菓子の家",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: Candy House",
+						"parts": "type-2-9-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Candy House",
+						"parts": "type-2-9-chapter-2.json"
+					}
+				]
+			},
+			{
+				"name": "Snow Land",
+				"nameMultilang": [
+					18964,
+					"Snow Land",
+					"荒野雪原",
+					"荒野雪原",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: Snow Land",
+						"parts": "type-2-10-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Snow Land",
+						"parts": "type-2-10-chapter-2.json"
+					}
+				]
+			},
+			{
+				"name": "Greenstar dust",
+				"nameMultilang": [
+					19100,
+					"Greenstar dust",
+					"翠色星屑",
+					"翠色の星屑",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: Greenstar dust",
+						"parts": "type-2-12-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Greenstar dust",
+						"parts": "type-2-12-chapter-2.json"
+					},
+					{
+						"name": "Season 3: Greenstar dust",
+						"parts": "type-2-12-chapter-3.json"
+					}
+				]
+			},
+			{
+				"name": "Lost Child",
+				"nameMultilang": [
+					33501,
+					"Lost Child",
+					"原罪迷子",
+					"罪と蘇生",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: Lost Child",
+						"parts": "type-2-13-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Sin",
+						"parts": "type-2-13-chapter-2.json"
+					}
+				]
+			},
+			{
+				"name": "MazeFortress",
+				"nameMultilang": [
+					234802,
+					"MazeFortress",
+					"迷宫要塞",
+					"迷宮要塞",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: MazeFortress",
+						"parts": "type-2-14-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Extra: Tales of a Haunted School",
+						"parts": "type-2-14-chapter-2.json"
+					},
+					{
+						"name": "Season 3: Lost system",
+						"parts": "type-2-14-chapter-3.json"
+					}
+				]
+			},
+			{
+				"name": "OtherWorld",
+				"nameMultilang": [
+					19984,
+					"OtherWorld",
+					"里世界",
+					"裏世界",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: Monitor",
+						"parts": "type-2-5-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Guardian",
+						"parts": "type-2-5-chapter-2.json"
+					},
+					{
+						"name": "Season 3: Investigator",
 						"parts": "type-2-5-chapter-3.json"
 					},
+					{
+						"name": "Season 3: Investigator",
+						"parts": "type-2-5-chapter-3.json"
+					},
+					{
+						"name": "Season 3: Investigator",
+						"parts": "type-2-5-chapter-3.json"
+					},
+					{
+						"name": "Season 3: Investigator",
+						"parts": "type-2-5-chapter-3.json"
+					},
+					{
+						"name": "Season 4: Soulmaker",
+						"parts": "type-2-5-chapter-4.json"
+					},
+					{
+						"name": "Season 4: Soulmaker",
+						"parts": "type-2-5-chapter-4.json"
+					},
+					{
+						"name": "Season 4: Soulmaker",
+						"parts": "type-2-5-chapter-4.json"
+					},
+					{
+						"name": "Season 4: Soulmaker",
+						"parts": "type-2-5-chapter-4.json"
+					}
+				]
+			},
+			{
+				"name": "Houkai Detective Idol",
+				"nameMultilang": [
+					320222,
+					"Houkai Detective Idol",
+					"崩坏侦探少女",
+					"崩壊探偵少女",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: Houkai Detective Idol",
+						"parts": "type-4-19-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Houkai Detective Idol",
+						"parts": "type-4-19-chapter-2.json"
+					},
+					{
+						"name": "Season 3: Houkai Detective Idol",
+						"parts": "type-4-19-chapter-3.json"
+					}
+				]
+			},
+			{
+				"name": "Houkai Pirate Idol",
+				"nameMultilang": [
+					320223,
+					"Houkai Pirate Idol",
+					"崩坏海盗少女",
+					"崩壊海賊少女",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: Houkai Pirate Idol",
+						"parts": "type-4-20-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Houkai Pirate Idol",
+						"parts": "type-4-20-chapter-2.json"
+					}
+				]
+			},
+			{
+				"name": "Chronicles",
+				"nameMultilang": [
+					19648,
+					"Chronicles",
+					"崩坏编年史",
+					"崩壊編年史",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 1: Chronicles",
+						"parts": "type-4-22-chapter-1.json"
+					},
+					{
+						"name": "Season 2: Chronicles",
+						"parts": "type-4-22-chapter-2.json"
+					},
+					{
+						"name": "Season 3: Chronicles",
+						"parts": "type-4-22-chapter-3.json"
+					},
+					{
+						"name": "Season 4: Chronicles",
+						"parts": "type-4-22-chapter-4.json"
+					},
+					{
+						"name": "Season 5: Chronicles",
+						"parts": "type-4-22-chapter-5.json"
+					}
+				]
+			},
+			{
+				"name": "Thorn City",
+				"nameMultilang": [
+					320300,
+					"Thorn City",
+					"荆棘城",
+					"棘の城",
+					null,
+					null
+				],
+				"episodes": [
 					{
 						"name": "Thorn City",
 						"parts": "type-2-25-chapter-1.json"
 					},
 					{
-						"name": "Light and Shadow",
-						"parts": "type-1-2-chapter-25.json"
-					},
+						"name": "Memory of Red Flame",
+						"parts": "type-2-25-chapter-2.json"
+					}
+				]
+			},
+			{
+				"name": "Others",
+				"nameMultilang": [
+					320298,
+					"Others",
+					"其他",
+					"その他",
+					null,
+					null
+				],
+				"episodes": [
 					{
 						"name": "Dolly Factory",
 						"parts": "type-2-27-chapter-1.json"
 					},
 					{
-						"name": "Revenge",
-						"parts": "type-1-2-chapter-26.json"
-					},
-					{
-						"name": "Investigator",
-						"parts": "type-2-5-chapter-3.json"
-					},
-					{
-						"name": "Mysterious Deep",
-						"parts": "type-2-6-chapter-4.json"
+						"name": "False Truth",
+						"parts": "type-2-27-chapter-2.json"
 					},
 					{
 						"name": "Aurora Matrix",
@@ -347,28 +632,12 @@
 						"parts": "type-2-27-chapter-7.json"
 					},
 					{
-						"name": "Nina",
-						"parts": "type-3-19-chapter-1.json"
-					},
-					{
-						"name": "Glow",
-						"parts": "type-1-2-chapter-27.json"
-					},
-					{
-						"name": "Memory of Red Flame",
-						"parts": "type-2-25-chapter-2.json"
-					},
-					{
-						"name": "Verdict",
-						"parts": "type-1-2-chapter-28.json"
+						"name": "Moon Requiem",
+						"parts": "type-2-27-chapter-8.json"
 					},
 					{
 						"name": "Revival of Morale",
 						"parts": "type-2-27-chapter-9.json"
-					},
-					{
-						"name": "Soulmaker",
-						"parts": "type-2-5-chapter-4.json"
 					},
 					{
 						"name": "Guardian Sword",
@@ -387,86 +656,111 @@
 						"parts": "type-2-27-chapter-14.json"
 					},
 					{
-						"name": "Soulmaker",
-						"parts": "type-2-5-chapter-4.json"
-					},
-					{
 						"name": "Claszureme",
 						"parts": "type-2-27-chapter-17.json"
 					},
 					{
-						"name": "DLC",
+						"name": "Broken Cocoon",
+						"parts": "type-2-27-chapter-18.json"
+					}
+				]
+			},
+			{
+				"name": "Mysterious Deep",
+				"nameMultilang": [
+					320280,
+					"Mysterious Deep",
+					"幻海深渊",
+					"幻海の深淵",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 4: Mysterious Deep",
+						"parts": "type-2-6-chapter-4.json"
+					}
+				]
+			},
+			{
+				"name": "Nina",
+				"nameMultilang": [
+					320295,
+					"Nina",
+					"妮娜",
+					"ニーナ",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Nina",
+						"parts": "type-3-19-chapter-1.json"
+					}
+				]
+			},
+			{
+				"name": "Crystal Waltz",
+				"nameMultilang": [
+					320274,
+					"Crystal Waltz",
+					"水晶圆舞曲",
+					"水晶円舞曲",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Season 2: Crystal Waltz",
+						"parts": "type-2-26-chapter-2.json"
+					}
+				]
+			},
+			{
+				"name": "Chapter of Smriti",
+				"nameMultilang": [
+					320302,
+					"Chapter of Smriti",
+					"传承篇",
+					"伝承編",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Chapter 1: Memory of Fox",
+						"parts": "type-1-3-chapter-1.json"
+					},
+					{
+						"name": "Chapter 2: Knight of Apocalypse",
+						"parts": "type-1-3-chapter-2.json"
+					},
+					{
+						"name": "Chapter 3: Box of God",
+						"parts": "type-1-3-chapter-3.json"
+					}
+				]
+			},
+			{
+				"name": "DLC",
+				"nameMultilang": [
+					325001,
+					"DLC",
+					"逐火之蛾",
+					"火を追う蛾",
+					null,
+					null
+				],
+				"episodes": [
+					{
+						"name": "Foreword: DLC",
 						"parts": "type-6-101-chapter-1.json"
 					}
 				]
-			},
-			{
-				"name": "Playback Type 3 Data",
-				"episodes": [
-					{
-						"name": "HauntedHouse",
-						"parts": "type-2-3-chapter-2.json"
-					},
-					{
-						"name": "Investigator",
-						"parts": "type-2-5-chapter-3.json"
-					},
-					{
-						"name": "Soulmaker",
-						"parts": "type-2-5-chapter-4.json"
-					}
-				]
-			},
-			{
-				"name": "Playback Type 4 Data",
-				"episodes": [
-					{
-						"name": "Houkai Detective Idol",
-						"parts": "type-4-19-chapter-1.json"
-					},
-					{
-						"name": "Houkai Detective Idol",
-						"parts": "type-4-19-chapter-2.json"
-					},
-					{
-						"name": "Houkai Detective Idol",
-						"parts": "type-4-19-chapter-3.json"
-					},
-					{
-						"name": "Houkai Pirate Idol",
-						"parts": "type-4-20-chapter-1.json"
-					},
-					{
-						"name": "Houkai Pirate Idol",
-						"parts": "type-4-20-chapter-2.json"
-					},
-					{
-						"name": "Chronicles",
-						"parts": "type-4-22-chapter-1.json"
-					},
-					{
-						"name": "Chronicles",
-						"parts": "type-4-22-chapter-2.json"
-					},
-					{
-						"name": "Chronicles",
-						"parts": "type-4-22-chapter-3.json"
-					},
-					{
-						"name": "Chronicles",
-						"parts": "type-4-22-chapter-4.json"
-					}
-				]
-			},
-			{
-				"name": "Playback Type 6 Data",
-				"episodes": [
-					{
-						"name": "Black Hole",
-						"parts": "type-1-2-chapter-30.json"
-					}
-				]
-			},
+			}
+		],
+		"side": [],
+		"event": [
 			{
 				"name": "Unknown ExtData",
 				"episodes": [
@@ -1753,10 +2047,519 @@
 						"parts": "StoryInsideData.json"
 					}
 				]
+			},
+			{
+				"name": "Unknown Kyusyo Data",
+				"episodes": [
+					{
+						"name": "Parts 0-9",
+						"parts": "StoryKyusyoData-0.json"
+					},
+					{
+						"name": "Parts 10-19",
+						"parts": "StoryKyusyoData-1.json"
+					},
+					{
+						"name": "Parts 20-29",
+						"parts": "StoryKyusyoData-2.json"
+					},
+					{
+						"name": "Parts 30-39",
+						"parts": "StoryKyusyoData-3.json"
+					},
+					{
+						"name": "Parts 40-49",
+						"parts": "StoryKyusyoData-4.json"
+					},
+					{
+						"name": "Parts 50-59",
+						"parts": "StoryKyusyoData-5.json"
+					},
+					{
+						"name": "Parts 60-69",
+						"parts": "StoryKyusyoData-6.json"
+					},
+					{
+						"name": "Parts 70-79",
+						"parts": "StoryKyusyoData-7.json"
+					},
+					{
+						"name": "Parts 80-89",
+						"parts": "StoryKyusyoData-8.json"
+					},
+					{
+						"name": "Parts 90-99",
+						"parts": "StoryKyusyoData-9.json"
+					},
+					{
+						"name": "Parts 100-109",
+						"parts": "StoryKyusyoData-10.json"
+					},
+					{
+						"name": "Parts 110-119",
+						"parts": "StoryKyusyoData-11.json"
+					},
+					{
+						"name": "Parts 120-129",
+						"parts": "StoryKyusyoData-12.json"
+					},
+					{
+						"name": "Parts 130-139",
+						"parts": "StoryKyusyoData-13.json"
+					}
+				]
 			}
 		],
-		"side": [],
-		"event": [],
-		"crossover": []
+		"crossover": [
+			{
+				"name": "Houkai Gakuen 2nd x Girls' Frontline",
+				"shortName": "HG2 x GFL",
+				"episodes": [
+					{
+						"name": "Full Episode",
+						"parts": "hg2-gfl.json"
+					}
+				]
+			}
+		]
+	},
+	"routing": {
+		"prologue.json": "main-0-0",
+		"type-1-1-chapter-1.json": "main-1-0",
+		"type-1-1-chapter-2.json": "main-1-1",
+		"type-1-1-chapter-3.json": "main-1-2",
+		"type-1-1-chapter-4.json": "main-1-3",
+		"type-1-1-chapter-5.json": "main-1-4",
+		"type-1-1-chapter-6.json": "main-1-5",
+		"type-1-1-chapter-7.json": "main-1-6",
+		"type-1-1-chapter-8.json": "main-1-7",
+		"type-1-1-chapter-9.json": "main-1-8",
+		"type-1-1-chapter-10.json": "main-1-9",
+		"type-1-1-chapter-11.json": "main-1-10",
+		"type-1-1-chapter-12.json": "main-1-11",
+		"type-1-1-chapter-13.json": "main-1-12",
+		"type-1-1-chapter-14.json": "main-1-13",
+		"type-1-1-chapter-15.json": "main-1-14",
+		"type-1-1-chapter-16.json": "main-1-15",
+		"type-1-1-chapter-17.json": "main-1-16",
+		"type-1-1-chapter-18.json": "main-1-17",
+		"type-1-1-chapter-19.json": "main-1-18",
+		"type-1-1-chapter-20.json": "main-1-19",
+		"type-2-3-chapter-1.json": "main-2-0",
+		"type-2-3-chapter-2.json": "main-2-1",
+		"type-2-3-chapter-3.json": "main-2-2",
+		"type-2-3-chapter-4.json": "main-2-3",
+		"type-2-3-chapter-5.json": "main-2-4",
+		"type-2-3-chapter-6.json": "main-2-5",
+		"type-3-15-chapter-1.json": "main-3-0",
+		"type-1-2-chapter-21.json": "main-4-0",
+		"type-1-2-chapter-22.json": "main-4-1",
+		"type-1-2-chapter-23.json": "main-4-2",
+		"type-1-2-chapter-24.json": "main-4-3",
+		"type-1-2-chapter-25.json": "main-4-4",
+		"type-1-2-chapter-26.json": "main-4-5",
+		"type-1-2-chapter-27.json": "main-4-6",
+		"type-1-2-chapter-28.json": "main-4-7",
+		"type-1-2-chapter-29.json": "main-4-8",
+		"type-1-2-chapter-30.json": "main-4-9",
+		"type-1-2-chapter-31.json": "main-4-10",
+		"type-1-2-chapter-32.json": "main-4-11",
+		"type-2-4-chapter-1.json": "main-5-0",
+		"type-2-4-chapter-2.json": "main-5-1",
+		"type-2-4-chapter-4.json": "main-5-2",
+		"type-2-6-chapter-1.json": "main-6-0",
+		"type-2-6-chapter-2.json": "main-6-1",
+		"type-2-6-chapter-3.json": "main-6-2",
+		"type-2-7-chapter-1.json": "main-7-0",
+		"type-2-7-chapter-2.json": "main-7-1",
+		"type-2-7-chapter-3.json": "main-7-2",
+		"type-2-7-chapter-4.json": "main-7-3",
+		"type-2-7-chapter-5.json": "main-7-4",
+		"type-2-8-chapter-1.json": "main-8-0",
+		"type-2-8-chapter-2.json": "main-8-1",
+		"type-2-8-chapter-3.json": "main-8-2",
+		"type-2-9-chapter-1.json": "main-9-0",
+		"type-2-9-chapter-2.json": "main-9-1",
+		"type-2-10-chapter-1.json": "main-10-0",
+		"type-2-10-chapter-2.json": "main-10-1",
+		"type-2-12-chapter-1.json": "main-11-0",
+		"type-2-12-chapter-2.json": "main-11-1",
+		"type-2-12-chapter-3.json": "main-11-2",
+		"type-2-13-chapter-1.json": "main-12-0",
+		"type-2-13-chapter-2.json": "main-12-1",
+		"type-2-14-chapter-1.json": "main-13-0",
+		"type-2-14-chapter-2.json": "main-13-1",
+		"type-2-14-chapter-3.json": "main-13-2",
+		"type-2-5-chapter-1.json": "main-14-0",
+		"type-2-5-chapter-2.json": "main-14-1",
+		"type-2-5-chapter-3.json": "main-14-5",
+		"type-2-5-chapter-4.json": "main-14-9",
+		"type-4-19-chapter-1.json": "main-15-0",
+		"type-4-19-chapter-2.json": "main-15-1",
+		"type-4-19-chapter-3.json": "main-15-2",
+		"type-4-20-chapter-1.json": "main-16-0",
+		"type-4-20-chapter-2.json": "main-16-1",
+		"type-4-22-chapter-1.json": "main-17-0",
+		"type-4-22-chapter-2.json": "main-17-1",
+		"type-4-22-chapter-3.json": "main-17-2",
+		"type-4-22-chapter-4.json": "main-17-3",
+		"type-4-22-chapter-5.json": "main-17-4",
+		"type-2-25-chapter-1.json": "main-18-0",
+		"type-2-25-chapter-2.json": "main-18-1",
+		"type-2-27-chapter-1.json": "main-19-0",
+		"type-2-27-chapter-2.json": "main-19-1",
+		"type-2-27-chapter-3.json": "main-19-2",
+		"type-2-27-chapter-4.json": "main-19-3",
+		"type-2-27-chapter-5.json": "main-19-4",
+		"type-2-27-chapter-6.json": "main-19-5",
+		"type-2-27-chapter-7.json": "main-19-6",
+		"type-2-27-chapter-8.json": "main-19-7",
+		"type-2-27-chapter-9.json": "main-19-8",
+		"type-2-27-chapter-11.json": "main-19-9",
+		"type-2-27-chapter-12.json": "main-19-10",
+		"type-2-27-chapter-13.json": "main-19-11",
+		"type-2-27-chapter-14.json": "main-19-12",
+		"type-2-27-chapter-17.json": "main-19-13",
+		"type-2-27-chapter-18.json": "main-19-14",
+		"type-2-6-chapter-4.json": "main-20-0",
+		"type-3-19-chapter-1.json": "main-21-0",
+		"type-2-26-chapter-2.json": "main-22-0",
+		"type-1-3-chapter-1.json": "main-23-0",
+		"type-1-3-chapter-2.json": "main-23-1",
+		"type-1-3-chapter-3.json": "main-23-2",
+		"type-6-101-chapter-1.json": "main-24-0",
+		"StoryExtData-0.json": "event-0-0",
+		"StoryExtData-1.json": "event-0-1",
+		"StoryExtData-2.json": "event-0-2",
+		"StoryExtData-3.json": "event-0-3",
+		"StoryExtData-4.json": "event-0-4",
+		"StoryExtData-5.json": "event-0-5",
+		"StoryExtData-6.json": "event-0-6",
+		"StoryExtData-7.json": "event-0-7",
+		"StoryExtData-8.json": "event-0-8",
+		"StoryExtData-9.json": "event-0-9",
+		"StoryExtData-10.json": "event-0-10",
+		"StoryExtData-11.json": "event-0-11",
+		"StoryExtData-12.json": "event-0-12",
+		"StoryExtData-13.json": "event-0-13",
+		"StoryExtData-14.json": "event-0-14",
+		"StoryExtData-15.json": "event-0-15",
+		"StoryExtData-16.json": "event-0-16",
+		"StoryExtData-17.json": "event-0-17",
+		"StoryExtData-18.json": "event-0-18",
+		"StoryExtData-19.json": "event-0-19",
+		"StoryExtData-20.json": "event-0-20",
+		"StoryExtData-21.json": "event-0-21",
+		"StoryExtData-22.json": "event-0-22",
+		"StoryExtData-23.json": "event-0-23",
+		"StoryExtData-24.json": "event-0-24",
+		"StoryExtData-25.json": "event-0-25",
+		"StoryExtData-26.json": "event-0-26",
+		"StoryExtData-27.json": "event-0-27",
+		"StoryExtData-28.json": "event-0-28",
+		"StoryExtData-29.json": "event-0-29",
+		"StoryExtData-30.json": "event-0-30",
+		"StoryExtData-31.json": "event-0-31",
+		"StoryExtData-32.json": "event-0-32",
+		"StoryExtData-33.json": "event-0-33",
+		"StoryExtData-34.json": "event-0-34",
+		"StoryExtData-35.json": "event-0-35",
+		"StoryExtData-36.json": "event-0-36",
+		"StoryExtData-37.json": "event-0-37",
+		"StoryExtData-38.json": "event-0-38",
+		"StoryExtData-39.json": "event-0-39",
+		"StoryExtData-40.json": "event-0-40",
+		"StoryExtData-41.json": "event-0-41",
+		"StoryExtData-42.json": "event-0-42",
+		"StoryExtData-43.json": "event-0-43",
+		"StoryExtData-44.json": "event-0-44",
+		"StoryExtData-45.json": "event-0-45",
+		"StoryExtData-46.json": "event-0-46",
+		"StoryExtData-47.json": "event-0-47",
+		"StoryExtData-48.json": "event-0-48",
+		"StoryExtData-49.json": "event-0-49",
+		"StoryExtData-50.json": "event-0-50",
+		"StoryExtData-51.json": "event-0-51",
+		"StoryExtData-52.json": "event-0-52",
+		"StoryExtData-53.json": "event-0-53",
+		"StoryExtData-54.json": "event-0-54",
+		"StoryExtData-55.json": "event-0-55",
+		"StoryExtData-56.json": "event-0-56",
+		"StoryExtData-57.json": "event-0-57",
+		"StoryExtData-58.json": "event-0-58",
+		"StoryExtData-59.json": "event-0-59",
+		"StoryExtData-60.json": "event-0-60",
+		"StoryExtData-61.json": "event-0-61",
+		"StoryExtData-62.json": "event-0-62",
+		"StoryExtData-63.json": "event-0-63",
+		"StoryExtData-64.json": "event-0-64",
+		"StoryExtData-65.json": "event-0-65",
+		"StoryExtData-66.json": "event-0-66",
+		"StoryExtData-67.json": "event-0-67",
+		"StoryExtData-68.json": "event-0-68",
+		"StoryExtData-69.json": "event-0-69",
+		"StoryExtData-70.json": "event-0-70",
+		"StoryExtData-71.json": "event-0-71",
+		"StoryExtData-72.json": "event-0-72",
+		"StoryExtData-73.json": "event-0-73",
+		"StoryExtData-74.json": "event-0-74",
+		"StoryExtData-75.json": "event-0-75",
+		"StoryExtData-76.json": "event-0-76",
+		"StoryExtData-77.json": "event-0-77",
+		"StoryExtData-78.json": "event-0-78",
+		"StoryExtData-79.json": "event-0-79",
+		"StoryExtData-80.json": "event-0-80",
+		"StoryExtData-81.json": "event-0-81",
+		"StoryExtData-82.json": "event-0-82",
+		"StoryExtData-83.json": "event-0-83",
+		"StoryExtData-84.json": "event-0-84",
+		"StoryExtData-85.json": "event-0-85",
+		"StoryExtData-86.json": "event-0-86",
+		"StoryExtData-87.json": "event-0-87",
+		"StoryExtData-88.json": "event-0-88",
+		"StoryExtData-89.json": "event-0-89",
+		"StoryExtData-90.json": "event-0-90",
+		"StoryExtData-91.json": "event-0-91",
+		"StoryExtData-92.json": "event-0-92",
+		"StoryExtData-93.json": "event-0-93",
+		"StoryExtData-94.json": "event-0-94",
+		"StoryExtData-95.json": "event-0-95",
+		"StoryExtData-96.json": "event-0-96",
+		"StoryExtData-97.json": "event-0-97",
+		"StoryExtData-98.json": "event-0-98",
+		"StoryExtData-99.json": "event-0-99",
+		"StoryExtData-100.json": "event-0-100",
+		"StoryExtData-101.json": "event-0-101",
+		"StoryExtData-102.json": "event-0-102",
+		"StoryExtData-103.json": "event-0-103",
+		"StoryExtData-104.json": "event-0-104",
+		"StoryExtData-105.json": "event-0-105",
+		"StoryExtData-106.json": "event-0-106",
+		"StoryExtData-107.json": "event-0-107",
+		"StoryExtData-108.json": "event-0-108",
+		"StoryExtData-109.json": "event-0-109",
+		"StoryExtData-110.json": "event-0-110",
+		"StoryExtData-111.json": "event-0-111",
+		"StoryExtData-112.json": "event-0-112",
+		"StoryExtData-113.json": "event-0-113",
+		"StoryExtData-114.json": "event-0-114",
+		"StoryExtData-115.json": "event-0-115",
+		"StoryExtData-116.json": "event-0-116",
+		"StoryExtData-117.json": "event-0-117",
+		"StoryExtData-118.json": "event-0-118",
+		"StoryExtData-119.json": "event-0-119",
+		"StoryExtData-120.json": "event-0-120",
+		"StoryExtData-121.json": "event-0-121",
+		"StoryExtData-122.json": "event-0-122",
+		"StoryExtData-123.json": "event-0-123",
+		"StoryExtData-124.json": "event-0-124",
+		"StoryExtData-125.json": "event-0-125",
+		"StoryExtData-126.json": "event-0-126",
+		"StoryExtData-127.json": "event-0-127",
+		"StoryExtData-128.json": "event-0-128",
+		"StoryExtData-129.json": "event-0-129",
+		"StoryExtData-130.json": "event-0-130",
+		"StoryExtData-131.json": "event-0-131",
+		"StoryExtData-132.json": "event-0-132",
+		"StoryExtData-133.json": "event-0-133",
+		"StoryExtData-134.json": "event-0-134",
+		"StoryExtData-135.json": "event-0-135",
+		"StoryExtData-136.json": "event-0-136",
+		"StoryExtData-137.json": "event-0-137",
+		"StoryExtData-138.json": "event-0-138",
+		"StoryExtData-139.json": "event-0-139",
+		"StoryExtData-140.json": "event-0-140",
+		"StoryExtData-141.json": "event-0-141",
+		"StoryExtData-142.json": "event-0-142",
+		"StoryExtData-143.json": "event-0-143",
+		"StoryExtData-144.json": "event-0-144",
+		"StoryExtData-145.json": "event-0-145",
+		"StoryExtData-146.json": "event-0-146",
+		"StoryExtData-147.json": "event-0-147",
+		"StoryExtData-148.json": "event-0-148",
+		"StoryExtData-149.json": "event-0-149",
+		"StoryExtData-150.json": "event-0-150",
+		"StoryExtData-151.json": "event-0-151",
+		"StoryExtData-152.json": "event-0-152",
+		"StoryExtData-153.json": "event-0-153",
+		"StoryExtData-154.json": "event-0-154",
+		"StoryExtData-155.json": "event-0-155",
+		"StoryExtData-156.json": "event-0-156",
+		"StoryExtData-157.json": "event-0-157",
+		"StoryExtData-158.json": "event-0-158",
+		"StoryExtData-159.json": "event-0-159",
+		"StoryExtData-160.json": "event-0-160",
+		"StoryExtData-161.json": "event-0-161",
+		"StoryExtData-162.json": "event-0-162",
+		"StoryExtData-163.json": "event-0-163",
+		"StoryExtData-164.json": "event-0-164",
+		"StoryExtData-165.json": "event-0-165",
+		"StoryExtData-166.json": "event-0-166",
+		"StoryExtData-167.json": "event-0-167",
+		"StoryExtData-168.json": "event-0-168",
+		"StoryExtData-169.json": "event-0-169",
+		"StoryExtData-170.json": "event-0-170",
+		"StoryExtData-171.json": "event-0-171",
+		"StoryExtData-172.json": "event-0-172",
+		"StoryExtData-173.json": "event-0-173",
+		"StoryExtData-174.json": "event-0-174",
+		"StoryExtData-175.json": "event-0-175",
+		"StoryExtData-176.json": "event-0-176",
+		"StoryExtData-177.json": "event-0-177",
+		"StoryExtData-178.json": "event-0-178",
+		"StoryExtData-179.json": "event-0-179",
+		"StoryExtData-180.json": "event-0-180",
+		"StoryExtData-181.json": "event-0-181",
+		"StoryExtData-182.json": "event-0-182",
+		"StoryExtData-183.json": "event-0-183",
+		"StoryExtData-184.json": "event-0-184",
+		"StoryExtData-185.json": "event-0-185",
+		"StoryExtData-186.json": "event-0-186",
+		"StoryExtData-187.json": "event-0-187",
+		"StoryExtData-188.json": "event-0-188",
+		"StoryExtData-189.json": "event-0-189",
+		"StoryExtData-190.json": "event-0-190",
+		"StoryExtData-191.json": "event-0-191",
+		"StoryExtData-192.json": "event-0-192",
+		"StoryExtData-193.json": "event-0-193",
+		"StoryExtData-194.json": "event-0-194",
+		"StoryExtData-195.json": "event-0-195",
+		"StoryExtData-196.json": "event-0-196",
+		"StoryExtData-197.json": "event-0-197",
+		"StoryExtData-198.json": "event-0-198",
+		"StoryExtData-199.json": "event-0-199",
+		"StoryExtData-200.json": "event-0-200",
+		"StoryExtData-201.json": "event-0-201",
+		"StoryExtData-202.json": "event-0-202",
+		"StoryExtData-203.json": "event-0-203",
+		"StoryExtData-204.json": "event-0-204",
+		"StoryExtData-205.json": "event-0-205",
+		"StoryExtData-206.json": "event-0-206",
+		"StoryExtData-207.json": "event-0-207",
+		"StoryExtData-208.json": "event-0-208",
+		"StoryExtData-209.json": "event-0-209",
+		"StoryExtData-210.json": "event-0-210",
+		"StoryExtData-211.json": "event-0-211",
+		"StoryExtData-212.json": "event-0-212",
+		"StoryExtData-213.json": "event-0-213",
+		"StoryExtData-214.json": "event-0-214",
+		"StoryExtData-215.json": "event-0-215",
+		"StoryExtData-216.json": "event-0-216",
+		"StoryExtData-217.json": "event-0-217",
+		"StoryExtData-218.json": "event-0-218",
+		"StoryExtData-219.json": "event-0-219",
+		"StoryExtData-220.json": "event-0-220",
+		"StoryExtData-221.json": "event-0-221",
+		"StoryExtData-222.json": "event-0-222",
+		"StoryExtData-223.json": "event-0-223",
+		"StoryExtData-224.json": "event-0-224",
+		"StoryExtData-225.json": "event-0-225",
+		"StoryExtData-226.json": "event-0-226",
+		"StoryExtData-227.json": "event-0-227",
+		"StoryExtData-228.json": "event-0-228",
+		"StoryExtData-229.json": "event-0-229",
+		"StoryExtData-230.json": "event-0-230",
+		"StoryExtData-231.json": "event-0-231",
+		"StoryExtData-232.json": "event-0-232",
+		"StoryExtData-233.json": "event-0-233",
+		"StoryExtData-234.json": "event-0-234",
+		"StoryExtData-235.json": "event-0-235",
+		"StoryExtData-236.json": "event-0-236",
+		"StoryExtData-237.json": "event-0-237",
+		"StoryExtData-238.json": "event-0-238",
+		"StoryExtData-239.json": "event-0-239",
+		"StoryExtData-240.json": "event-0-240",
+		"StoryExtData-241.json": "event-0-241",
+		"StoryExtData-242.json": "event-0-242",
+		"StoryExtData-243.json": "event-0-243",
+		"StoryExtData-244.json": "event-0-244",
+		"StoryExtData-245.json": "event-0-245",
+		"StoryExtData-246.json": "event-0-246",
+		"StoryExtData-247.json": "event-0-247",
+		"StoryExtData-248.json": "event-0-248",
+		"StoryExtData-249.json": "event-0-249",
+		"StoryExtData-250.json": "event-0-250",
+		"StoryExtData-251.json": "event-0-251",
+		"StoryExtData-252.json": "event-0-252",
+		"StoryExtData-253.json": "event-0-253",
+		"StoryExtData-254.json": "event-0-254",
+		"StoryExtData-255.json": "event-0-255",
+		"StoryExtData-256.json": "event-0-256",
+		"StoryExtData-257.json": "event-0-257",
+		"StoryExtData-258.json": "event-0-258",
+		"StoryExtData-259.json": "event-0-259",
+		"StoryExtData-260.json": "event-0-260",
+		"StoryExtData-261.json": "event-0-261",
+		"StoryExtData-262.json": "event-0-262",
+		"StoryExtData-263.json": "event-0-263",
+		"StoryExtData-264.json": "event-0-264",
+		"StoryExtData-265.json": "event-0-265",
+		"StoryExtData-266.json": "event-0-266",
+		"StoryExtData-267.json": "event-0-267",
+		"StoryExtData-268.json": "event-0-268",
+		"StoryExtData-269.json": "event-0-269",
+		"StoryExtData-270.json": "event-0-270",
+		"StoryExtData-271.json": "event-0-271",
+		"StoryExtData-272.json": "event-0-272",
+		"StoryExtData-273.json": "event-0-273",
+		"StoryExtData-274.json": "event-0-274",
+		"StoryExtData-275.json": "event-0-275",
+		"StoryExtData-276.json": "event-0-276",
+		"StoryExtData-277.json": "event-0-277",
+		"StoryExtData-278.json": "event-0-278",
+		"StoryExtData-279.json": "event-0-279",
+		"StoryExtData-280.json": "event-0-280",
+		"StoryExtData-281.json": "event-0-281",
+		"StoryExtData-290.json": "event-0-282",
+		"StoryExtData-291.json": "event-0-283",
+		"StoryExtData-292.json": "event-0-284",
+		"StoryExtData-293.json": "event-0-285",
+		"StoryExtData-294.json": "event-0-286",
+		"StoryExtData-295.json": "event-0-287",
+		"StoryExtData-296.json": "event-0-288",
+		"StoryExtData-297.json": "event-0-289",
+		"StoryExtData-298.json": "event-0-290",
+		"StoryExtData-299.json": "event-0-291",
+		"StoryExtData-300.json": "event-0-292",
+		"StoryExtData-301.json": "event-0-293",
+		"StoryExtData-302.json": "event-0-294",
+		"StoryExtData-303.json": "event-0-295",
+		"StoryExtData-304.json": "event-0-296",
+		"StoryExtData-305.json": "event-0-297",
+		"StoryExtData-306.json": "event-0-298",
+		"StoryExtData-307.json": "event-0-299",
+		"StoryExtData-308.json": "event-0-300",
+		"StoryExtData-309.json": "event-0-301",
+		"StoryExtData-310.json": "event-0-302",
+		"StorySubData-0.json": "event-1-0",
+		"StorySubData-1.json": "event-1-1",
+		"StorySubData-2.json": "event-1-2",
+		"StorySubData-3.json": "event-1-3",
+		"StorySubData-4.json": "event-1-4",
+		"StorySubData-5.json": "event-1-5",
+		"StorySubData-6.json": "event-1-6",
+		"StorySubData-7.json": "event-1-7",
+		"StorySubData-8.json": "event-1-8",
+		"StorySubData-9.json": "event-1-9",
+		"StorySubData-10.json": "event-1-10",
+		"StorySubData-11.json": "event-1-11",
+		"StorySubData-12.json": "event-1-12",
+		"StorySubData-13.json": "event-1-13",
+		"StoryInsideData.json": "event-2-0",
+		"StoryKyusyoData-0.json": "event-3-0",
+		"StoryKyusyoData-1.json": "event-3-1",
+		"StoryKyusyoData-2.json": "event-3-2",
+		"StoryKyusyoData-3.json": "event-3-3",
+		"StoryKyusyoData-4.json": "event-3-4",
+		"StoryKyusyoData-5.json": "event-3-5",
+		"StoryKyusyoData-6.json": "event-3-6",
+		"StoryKyusyoData-7.json": "event-3-7",
+		"StoryKyusyoData-8.json": "event-3-8",
+		"StoryKyusyoData-9.json": "event-3-9",
+		"StoryKyusyoData-10.json": "event-3-10",
+		"StoryKyusyoData-11.json": "event-3-11",
+		"StoryKyusyoData-12.json": "event-3-12",
+		"StoryKyusyoData-13.json": "event-3-13",
+		"hg2-gfl.json": "crossover-0-0"
 	}
 }

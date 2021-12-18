@@ -1,7 +1,7 @@
 <!doctype html>
 <head>
 	<meta charset="utf-8"/>
-	<title>GGZ cutscene interpreter</title>
+	<title>GG cutscene interpreter</title>
 	
 	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -16,12 +16,12 @@
 	<meta name="theme-color" content="#09004c">
 	
 	<!--For discord description -->
-	<meta property="og:title" content="Girls' Frontline Cutscene Interpreter" />
+	<meta property="og:title" content="Guns Girl Cutscene Interpreter" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="http://gfl.amaryllisworks.pw" />
+	<meta property="og:url" content="http://ggz.amaryllisworks.pw" />
 	<!--<meta property="og:image" content="http://my.site.com/images/thumb.png" />-->
-	<meta property="og:description" content="Read cutscenes from Girls' Frontline in the web browser." />
-	<meta name='description' content="Read cutscenes from Girls' Frontline in the web browser." />
+	<meta property="og:description" content="Read cutscenes from Guns Girl in the web browser." />
+	<meta name='description' content="Read cutscenes from Guns Girl in the web browser." />
 	
 	<!--Resources -->
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -136,7 +136,7 @@ th {
 	display:none;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1250px) {
     .header-desktop{
        display:none;
     }
@@ -711,13 +711,28 @@ I have no idea how it works
 		204553:"Kiana"
 	}
 
-	let LANGUAGE_COLUMN = {
+	const LANGUAGE_COLUMN = {
+		"tID":0,
 		"en":1,
 		"cn":2,
 		"jp":3,
-		"kr":4,
-		"tcn":5
+		"en_re":4,
+		//"tcn":5,
+		//"en_re":6
 	}
+	const LANGUAGE_NAMES = [
+		"(Text ID - For Debugging Only)",
+		"English",
+		"Chinese",
+		"Japanese",
+		"English (Retranslated)"
+		//"Korean",
+		//"Traditional Chinese(?)",
+	]
+
+	//Oh no
+	let customLanguage = undefined;
+
 	/*
 	Night backgrounds are generated using html canvas,
 	then to speed up their result is kept in memory in this table and indexed
@@ -1250,7 +1265,7 @@ I have no idea how it works
 	{
 		let s = "";
 		structuredLines.forEach(line => {
-			s+=(opcode2string[line[0]] || "unknown opcode "+line[0])+';'
+			s+=(opcode2string[line[0]] || "unknown opcode "+line[0])+';;'
 			/*for(var i=1;i<line.length;i++)
 				s+=line[i]*/
 			if (typeof line == "object")
@@ -1258,12 +1273,15 @@ I have no idea how it works
 				//console.log(line)
 				if (line[0]==OPCODES.PORTRAIT)
 				{
-				
 					
-					//s+=line[1].join(',')
+					s+=line[1].join(',')
+					if (line[2]!=undefined)
+					{
+						s+=";;"+line[2].join(',')
+					}
 				}
 				else
-					s+=line.slice(1).join([separator = '|'])
+					s+=line.slice(1).join([separator = ';;'])
 			}
 			else
 			{
@@ -1314,9 +1332,17 @@ I have no idea how it works
 		return string.replace(reg, (match)=>(map[match]));
 	}
 	
-	//Converts GFL's text modifiers into HTML elements, as you might have guessed.
+	//
 	//TODO: Ignore ALL unknown/illegal codes, not just <script>
 	//let allowedHTMLTags = ['color','size','b','i','u','q','s']
+
+	/**
+	 * @author AmWorks
+	 * @date 2021-12-15
+	 * @param {string} message
+	 * @returns {string} HTML elements as string
+	 * @description Converts GFL's text modifiers into HTML elements, as you might have guessed.
+	 */
 	function parseGFLTextModifiers(message) {
 		message = message.replaceAll("<script>","&lt;script&gt;").replaceAll("<\/script>","&lt;&#x2F;script&gt;")
 		message = message.replaceAll("\"","&quot;")
@@ -1379,6 +1405,18 @@ I have no idea how it works
 	//input: structuredLines (array), part (int starting at 0), partName (string. Optional, if present replaces the "Part X" header
 	//output: a div with the elements rendered
 	//This function does not cause side effects.
+
+
+	/**
+	 * @date 2021-11-21
+	 * @param {any[]} structuredLines array
+	 * @param {number} part
+	 * @param {string=} partName - if present replaces the "Part X" header
+	 * @param {boolean=} isNight
+	 * @param {number=} numParts
+	 * @returns {any[]}
+	 * @description Takes a structuredLines array and returns it rendered as an HTML Div. This function does not cause side effects.
+	 */
 	function renderStructuredLinesToDiv(structuredLines,part,partName,isNight,numParts)
 	{
 		
@@ -1493,7 +1531,7 @@ I have no idea how it works
 		}
 		let snowEffect = false
 		//let curDestination = null;
-		let languageColumn = LANGUAGE_COLUMN[currentLanguage]
+		//let languageColumn = LANGUAGE_COLUMN[currentLanguage]
 		
 		for(var i=0;i<structuredLines.length;i++)
 		{
@@ -1503,6 +1541,7 @@ I have no idea how it works
 			{
 				case OPCODES.BGM:
 					let newPlayBGMButton = playBGMbutton.cloneNode(true);
+					//
 					newPlayBGMButton.setAttribute("onclick","playNewAudio('audio/"+structuredLines[i][1]+"')")
 					thisPartDiv.appendChild(newPlayBGMButton);
 					break;
@@ -1542,7 +1581,11 @@ I have no idea how it works
 					thisPartDiv.appendChild(h5);
 					break;
 				case OPCODES.SPEAKER:
-					let realName = NAMES[structuredLines[i][1]][0]
+					let realName;
+					if (isNaN(structuredLines[i][1]))
+						realName = structuredLines[i][1];
+					else
+						realName = NAMES[structuredLines[i][1]][0];
 					if (lastSpeakerName != realName)
 					{
 						lastSpeakerName=realName
@@ -1699,8 +1742,23 @@ I have no idea how it works
 					break;
 				case OPCODES.MSG:
 					//Spawn new BG with speaker and portrait here.
-					let message = parseGFLTextModifiers(structuredLines[i][languageColumn])
 					
+					//Is this even needed? It would just show 'undefined' anyways
+					let message = "XXX (No text in this language)";
+
+					//I sure love how JavaScript doesn't have a break statement in for loops
+					for(let jj=0;jj < currentLanguage.length;jj++)
+					{
+						let languageColumn = LANGUAGE_COLUMN[currentLanguage[jj]]+1; //Have to add +1 because 0th element is the "msg" tag
+						//console.log(currentLanguage[jj]+": "+languageColumn);
+						//console.log(structuredLines[i][languageColumn]);
+						if (structuredLines[i].length > languageColumn && structuredLines[i][languageColumn] != undefined)
+						{
+							message = parseGFLTextModifiers(structuredLines[i][languageColumn]);
+							break;
+						}
+					}
+						
 					if (fancyDisplayType)
 					{
 						if (didBGChange || didNameChange || didPortraitsChange)
@@ -1735,6 +1793,10 @@ I have no idea how it works
 									if (lastBGUsed == 10)
 									{
 										bgImage.src = isNight ? 'avgtexture/PlaybackBG2.png' : 'avgtexture/PlaybackBG1.png'
+									}
+									else if (lastBGUsed.startsWith("gfl://"))
+									{
+										bgImage.src = "http://gfl.amaryllisworks.pw/avgtexture/"+lastBGUsed.slice(6)+'.png'
 									}
 									else
 										bgImage.src = 'avgtexture/'+lastBGUsed+'.png'
@@ -1878,10 +1940,95 @@ I have no idea how it works
 						else
 						{*/
 							
-							let p = document.createElement('p');
-							p.classList.add('storyText')
-							p.innerHTML = message;
-							thisPartDiv.appendChild(p);
+							if (!document.getElementById('multilanguageEnabled').checked)
+							{
+
+								let p = document.createElement('p');
+								p.classList.add('storyText')
+								p.innerHTML = message;
+								thisPartDiv.appendChild(p);
+							}
+							else
+							{
+								let table = document.createElement('table');
+								table.setAttribute("style","border: 1px solid black; margin-bottom:10px;");
+								let tbody = document.createElement("tbody");
+								let _tr = document.createElement('tr');
+								let dialogue = structuredLines[i]
+								let enabledLanguages = getSetMultilangugages(false);
+
+								let reversedLanguageKeys = Object.keys(LANGUAGE_COLUMN);
+
+								for (let ii=1;ii<dialogue.length;ii++)
+								{
+
+									let langName = LANGUAGE_NAMES[ii-1];
+									let langKey = reversedLanguageKeys[ii-1];
+									if (enabledLanguages.includes(langKey))
+									{
+										let text = dialogue[ii];
+										if (text == undefined)
+											text="(No text for this language)"
+										else
+											text=parseGFLTextModifiers(text)
+										let tr = _tr.cloneNode(true);
+										let trInner = "<td>"
+											trInner += langName;
+										trInner+="</td><td>"
+										trInner+=text+"</td>"
+										tr.innerHTML=trInner
+										tbody.appendChild(tr)
+									}
+									
+								}
+								if (customLanguage != undefined)
+								{
+									let dialogueID = dialogue[1]
+									let text = parseGFLTextModifiers(customLanguage[dialogue[1]] || "");
+									let icon_name = customLanguage[dialogue[1]]!=undefined ? "create" : "add";
+
+									let tr = _tr.cloneNode(true);
+									let trInner = "<td>Custom <a style='cursor:pointer;'><i class='material-icons'>"+icon_name+"</i></a></td>"
+									
+									trInner+="<td><span text-id='"+dialogueID+"''>"+text+"</span>"
+									trInner+='<div class="input-field col s12" style="display:none">'
+									trInner+='<textarea id="textarea"'+dialogueID+' class="materialize-textarea"></textarea>'
+									//Is this even necessary?
+									//trInner+='<label for="textarea'+dialogueID+'">ID:'+dialogueID+'</label>'
+									trInner+='</div></td>'
+									tr.innerHTML=trInner
+									tr.getElementsByTagName("a")[0].addEventListener("click", function(event){
+										//print(event);
+										if (event.target.innerText=="add")
+											event.target.innerText="create"
+										//console.log(tr);
+										let textCol = tr.childNodes[1];
+										//console.log(textCol);
+										let span = textCol.getElementsByTagName("span")[0]
+										let textDiv = textCol.getElementsByTagName("div")[0]
+										if (span.style.display == "none")
+										{
+											textDiv.setAttribute("style","display:none")
+											span.innerHTML = parseGFLTextModifiers(textCol.getElementsByTagName("textarea")[0].value) //Yes it's innerHTML, </i> is supported
+											customLanguage[span.getAttribute('text-id')]=textCol.getElementsByTagName("textarea")[0].value
+											console.log("Updated customLanguage ["+span.getAttribute('text-id')+"]: "+customLanguage[span.getAttribute('text-id')])
+											//Let's see how long this works before it starts crashing browsers.
+											localStorage.setItem("customLanguage",JSON.stringify(customLanguage));
+											span.setAttribute("style","")
+										}
+										else
+										{
+											span.setAttribute("style","display:none")
+											textCol.getElementsByTagName("textarea")[0].value = customLanguage[span.getAttribute('text-id')]
+											M.textareaAutoResize(textCol.getElementsByTagName("textarea")[0])
+											textDiv.setAttribute("style","")
+										}
+									})
+									tbody.appendChild(tr)
+								}
+								table.appendChild(tbody);
+								thisPartDiv.appendChild(table);
+							}
 						//}
 					}
 					else
@@ -1973,7 +2120,10 @@ I have no idea how it works
 		.then(response => response.json())
 		.then(episode => {
 			console.log("got "+fileName);
-			Object.keys(episode).forEach(function(key) {
+			var keys = Object.keys(episode)
+			for(var j = 0; j < keys.length;j++)
+			{
+				
 				
 				
 				
@@ -1982,7 +2132,7 @@ I have no idea how it works
 				
 				//TODO: Add check if it's JSON (iop format) and then use a JSON parser if it is
 				//let structuredLines = convertGFLTextToOpcodes(out,missionID);
-				let structuredLines = episode[key]
+				let structuredLines = episode[keys[j]]
 				for(i=0;i<structuredLines.length;i++)
 				{
 					structuredLines[i][0]=opcode2string.indexOf(structuredLines[i][0])
@@ -2000,14 +2150,14 @@ I have no idea how it works
 					NewSimpleTextDiv.appendChild(document.createElement('br'));
 					
 				}
-				NewSimpleTextDiv.appendChild(renderStructuredLinesToDiv(structuredLines,key,partName,isNight,episode.length));
+				NewSimpleTextDiv.appendChild(renderStructuredLinesToDiv(structuredLines,j,partName,isNight,keys.length));
 				//Now replace the old div...
 				/*let textboxDiv = document.getElementById("Textboxes");
 				textboxDiv.parentNode.replaceChild(newTextboxDiv,textboxDiv);*/
 				
-				currentEpisodeAsOpcodes.push(structuredLines);
+				//currentEpisodeAsOpcodes.push(structuredLines);
 				
-			})
+			}
 
 			let simpleTextDiv = document.getElementById("verySimpleText")
 			simpleTextDiv.parentNode.replaceChild(NewSimpleTextDiv,simpleTextDiv);
@@ -2174,12 +2324,68 @@ I have no idea how it works
 		
 	}
 
-	currentLanguage="en"
+	currentLanguage=['en_re','en','cn']
+	/**
+	 * @author RL
+	 * @date 2021-12-15
+	 * @param {string[]} lang
+	 * @returns {undefined}
+	 */
 	function setLanguage(lang)
 	{
+		if (lang==undefined)
+		{
+			lang = [document.getElementById("language1").value,document.getElementById("language2").value,document.getElementById("language3").value]
+		}
 		currentLanguage=lang;
-		setCookie("language",lang,180)
-		console.log("Set language to "+lang);
+		setCookie("language",lang.join(","),180)
+		console.log("Set languages to "+lang);
+	}
+
+
+	/**
+	 * @author RL
+	 * @date 2021-12-11
+	 * @param {bool} updateCookies=false
+	 * @returns {string[]}
+	 */
+	function getSetMultilangugages(updateCookies=false)
+	{
+		var inputs = document.getElementById("settingsLanguagesColumn").getElementsByTagName("input");
+		var enabled = [];
+		for (var i=0; i < inputs.length; i++)
+		{
+			let element = inputs[i];
+			if (element.checked)
+				enabled.push(element.getAttribute("name"))
+		}
+		if (updateCookies==true)
+			setCookie("multiLanguage",enabled.join(","),180);
+		return enabled;
+		//setCookie("multi")
+	}
+
+	function exportCustomLanguage()
+	{
+		let text = "";
+		let keys = Object.keys(customLanguage);
+		for (var i = 0; i < keys.length; i++)
+		{
+			let line = customLanguage[keys[i]];
+			text+=keys[i]+"\tXXX\t"+line+"\n";
+		}
+
+		var element = document.createElement('a');
+		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+		element.setAttribute('download', "textMap_custom.tsv");
+
+		element.style.display = 'none';
+		document.body.appendChild(element);
+
+		element.click();
+
+		document.body.removeChild(element);
+
 	}
 
 	//Keep this at the bottom
@@ -2192,17 +2398,74 @@ I have no idea how it works
 		setCheckboxFromCookie('showDebugOpcodeButton',false);
 		setCheckboxFromCookie('skipGenerationOfDuplicateBoxes',false);
 		setCheckboxFromCookie('showSFXButtons',false);
+		setCheckboxFromCookie('multilanguageEnabled',false);
 		
+		//Set up language options
+		let lang = getCookie("language")
+		if (lang != "" && lang.split(",").length >= 3)
+		{
+			setLanguage(lang.split(","))
+		}
+
+		/*
+		<select id="language1" class='LanguageSelect'>
+			<option value="1">Option 1</option>
+			<option value="2">Option 2</option>
+			<option value="3">Option 3</option>
+		</select>
+		*/
+		let langSelects = document.getElementsByClassName("LanguageSelect");
+		for (var i = 0; i < langSelects.length; i++)
+		{
+			for (var j = 1; j < LANGUAGE_NAMES.length;j++)
+			{
+				let lang = LANGUAGE_NAMES[j];
+				let lang_key= Object.keys(LANGUAGE_COLUMN)[j];
+
+				let option = document.createElement("option");
+				option.setAttribute("value",lang_key);
+				option.innerText=lang;
+				langSelects[i].appendChild(option);
+				langSelects[i].setAttribute("onchange",'setLanguage();')
+			}
+		}
+		document.getElementById("language1").value = currentLanguage[0]
+		document.getElementById("language2").value = currentLanguage[1]
+		document.getElementById("language3").value = currentLanguage[2]
+
+
+		//Set up the multilanguage options
+		var multilanguages_enabled = getCookie("multiLanguage").split(",");
+		if (getCookie("multiLanguage")=="")
+			multilanguages_enabled=['en','cn','jp','en_re'];
+		for (var i = 1; i < LANGUAGE_NAMES.length;i++)
+		{
+			let lang = LANGUAGE_NAMES[i];
+			let lang_key= Object.keys(LANGUAGE_COLUMN)[i];
+			//for ()
+			let label = document.createElement("label");
+			label.setAttribute("style","margin-right: 20px;");
+			let h ="<input type=\"checkbox\" class=\"filled-in\"  "
+			h+="onclick='getSetMultilangugages(true)'"
+			if (multilanguages_enabled.includes(lang_key))
+				h+="checked=\"checked\"";
+
+			h+="name='"+lang_key+"'/><span style='color:var(--text-color);'>"+LANGUAGE_NAMES[i]+"</span>"
+			label.innerHTML=h
+			document.getElementById("settingsLanguagesColumn").appendChild(label);
+		}
+		let cc = localStorage.getItem("customLanguage");
+		if (cc!=undefined)
+		{
+			customLanguage = JSON.parse(cc);
+			document.getElementById("exportLanguageBtn").classList.remove("disabled");
+		}
+
+
+
 		//Experimental
 		setCheckboxFromCookie('showExportButton',false);
 		setCheckboxFromCookie('showRenderButton',false);
-		
-		currentLanguage="en"
-		function setLanguage(lang)
-		{
-			currentLanguage=lang;
-			setCookie("language",lang,180)
-		}
 
 
 		document.querySelectorAll('.tabs').forEach(el => {
@@ -2225,6 +2488,8 @@ I have no idea how it works
 		});
 		
 		M.FormSelect.init(document.querySelectorAll('select'), null);
+
+		document.getElementById('file-input-json').addEventListener('change', handleFileSelect, false);
 		
 		// Select the button
 		//const btn = document.querySelector(".nightMode-toggle");
@@ -2354,6 +2619,110 @@ I have no idea how it works
 	}
 
 
+	//HANDLE FILE INPUT FOR CUSTOM CUTSCENE...
+	function dragOverHandler(ev) {
+		ev.preventDefault();
+	}
+
+	function dropHandler(ev) {
+		console.log(ev);
+		console.log('File(s) dropped');
+
+		  // Prevent default behavior (Prevent file from being opened)
+		  ev.preventDefault();
+
+		  if (ev.dataTransfer.items) {
+			// Use DataTransferItemList interface to access the file(s)
+			for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+			  // If dropped items aren't files, reject them
+			  if (ev.dataTransfer.items[i].kind === 'file') {
+				var file = ev.dataTransfer.items[i].getAsFile();
+				processUserFile(file)
+				console.log('... file[' + i + '].name = ' + file.name);
+			  }
+			}
+		} else {
+			// Use DataTransfer interface to access the file(s)
+			for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+			  console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
+			}
+		}
+	}
+
+	function handleFileSelect(evt) {
+		console.log(evt.target.name);
+		var files = evt.target.files;
+		var output = [];
+		for (var i = 0, f; f = files[i]; i++) {
+			processUserFile(f);
+			
+		}
+	  }
+
+	function processUserFile(f) {
+		let NewSimpleTextDiv = document.createElement('div');
+		NewSimpleTextDiv.id="verySimpleText";
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			
+			var content = e.target.result;
+			try {
+
+				var episode = JSON.parse(content);
+				var keys = Object.keys(episode)
+			//	print(keys)
+				for(var i = 0; i < keys.length;i++)
+				{
+					let structuredLines = episode[keys[i]]
+					for(var j=0;j<structuredLines.length;j++)
+					{
+						structuredLines[j][0]=opcode2string.indexOf(structuredLines[j][0])
+					}
+					NewSimpleTextDiv.appendChild(renderStructuredLinesToDiv(structuredLines,i,null,false,keys.length));
+				}
+				let simpleTextDiv = document.getElementById("verySimpleText")
+				simpleTextDiv.parentNode.replaceChild(NewSimpleTextDiv,simpleTextDiv);
+				document.getElementById("customCutsceneError").setAttribute("style","color:red;display:none;");
+			}
+			catch (e)
+			{
+				document.getElementById("customCutsceneError").setAttribute("style","color:red;display:block;");
+				document.getElementById("customCutsceneError").innerText=e.message;
+			}
+		};
+		reader.readAsText(f)
+	}
+
+	function processCustomLanguage(e) {
+		var file = e.target.files[0];
+		if (!file)
+			return;
+		
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			const contents = e.target.result;
+			const lines = contents.split(/\r\n|\n/);
+			customLanguage = {}
+			let numAdded = 0;
+			for (let i = 0; i < lines.length; i++)
+			{
+				let text = lines[i].split("\t")
+				if (text[2] != "")
+				{
+					numAdded++;
+					customLanguage[text[0]]=text[2];
+				}
+			}
+			document.getElementById("importMessage").innerText="Imported "+numAdded+" lines.";
+			document.getElementById("exportLanguageBtn").classList.remove("disabled");
+			localStorage.setItem("customLanguage",JSON.stringify(customLanguage));
+			//console.log("Imported "+numAdded+" lines.");
+
+		};
+		reader.readAsText(file);
+	}
+
+
 	
 </script>
 <body>
@@ -2368,7 +2737,8 @@ I have no idea how it works
 			</a>
 
 			<ul id="nav-mobile" class="right">
-				<li><a class="waves-effect waves-light dropdown-trigger navbarButton" data-target="languageDropdown"><i class="material-icons left">language</i><span class='header-desktop'>Language</span></a></li>
+				<li><a href="#languageModal" class="waves-effect waves-light modal-trigger navbarButton"><i class="material-icons left">language</i><span class='header-desktop'>Language</span></a></li>
+				<!--<li><a class="waves-effect waves-light dropdown-trigger navbarButton" data-target="languageDropdown"><i class="material-icons left">language</i><span class='header-desktop'>Language</span></a></li>-->
 				<li><a onclick="NightMode()" class="waves-effect waves-light navbarButton"><i class="material-icons left">brightness_2</i><span class='header-desktop'>Night Mode</span></a></li>
 				<li><a href="#settingsModal" class="waves-effect waves-light modal-trigger navbarButton"><i class="material-icons left">settings</i><span class='header-desktop'>Settings</span></a></li>
 			</ul>
@@ -2379,15 +2749,10 @@ I have no idea how it works
 				<li class="tab col s3"><a href="#eventEpisodesWrapper">Story Events</a></li>
 				<li class="tab col s3"><a href="#sideEpisodesWrapper">Side Stories</a></li>
 				<li class="tab col s3"><a href="#crossoverEpisodesWrapper">Crossover Stories</a></li>
+				<li class="tab col s3"><a href="#customCutsceneWrapper">Write your own cutscene (WIP)</a></li>
 			</ul>
 		</div>
 	</nav>
-
-	<ul id='languageDropdown' class='dropdown-content' style='overflow:visible'>
-		<li><a onclick="setLanguage('en'); runFromRoutableKeyString()" href="#!">English</a></li>
-		<li><a onclick="setLanguage('cn'); runFromRoutableKeyString()" href="#!">中文 (Chinese)</a></li>
-		<li><a onclick="setLanguage('jp'); runFromRoutableKeyString()" href="#!">日本語 (Japanese)</a></li>
-	</ul>
 
 	<!-- Modal Structure -->
 	<div id="settingsModal" class="modal modal-fixed-footer">
@@ -2565,6 +2930,90 @@ I have no idea how it works
 		  <a class="modal-close waves-effect waves-green btn-flat">Close</a>
 		</div>
 	</div>
+	<div id="languageModal" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<table class="material-settings-table">
+				<tr>
+					<td style="width:100%" colspan="2">
+
+						<span class='title'>Language Selection</span>
+						<p>If a line of dialogue is not translated in the primary language, it will fall back to the secondary language and then the tertiary language if the secondary is untranslated.</p>
+						<!--It is automatically generated by JavaScript, check onLoad func and languages Array-->
+						<div class="input-field col s12">
+							<select id="language1" class='LanguageSelect'>
+							</select>
+							<label>Primary Language</label>
+						</div>
+						<div class="input-field col s12" >
+							<select id="language2" class='LanguageSelect'>
+							</select>
+							<label>Secondary Language</label>
+						</div>
+						<div class="input-field col s12">
+							<select id="language3" class='LanguageSelect'>
+							</select>
+							<label>Tertiary Language</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:100%">
+						<span class="title">Multilanguage mode</span>
+						<p>Language selection option will be ignored and all languages will be shown side by side.</p>
+						<p>Languages to show:</p>
+						<!--It is automatically generated by JavaScript, check onLoad func and languages Array-->
+						<div id="settingsLanguagesColumn">
+							<!--<label style="margin-right: 20px;">
+							  <input type="checkbox" class="filled-in" checked="checked" />
+							  <span>English</span>
+							</label>
+							<label>
+							  <input type="checkbox" class="filled-in" checked="checked" />
+							  <span>English</span>
+							</label>-->
+	
+						</div>
+					</td>
+					<td>
+						<div class="switch">
+							<label>
+							  <input type="checkbox" id="multilanguageEnabled" onclick="setCookieFromCheckbox('multilanguageEnabled'); runFromRoutableKeyString()">
+							  <span class="lever"></span>
+							</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:100%" colspan="2">
+						<span class="title">Import/Export Language Keys</span>
+						<p>If you have the original game files dumped and would like to add additional languages or quickly modify the TextMap.tsv file, you can do it here.</p>
+						<p>Column 2 will be imported. Only one langauge can be imported into the interpreter at a time!</p>
+						<p>The imported language will automatically be added to multilanguage mode and named "Imported".</p>
+						<div ondrop='dropHandler(event)' ondragover="dragOverHandler(event);" style="display:inline;">
+							<a class="waves-effect waves-light btn" onclick="document.getElementById('file-input-language').click();"><i class="material-icons left">folder_open</i>Import</a>	
+							<input id="file-input-language" type="file" accept='.tsv,.txt' name="jsonInput" style="display: none;" onchange="processCustomLanguage(event)"/>
+						</div>
+						<a class="waves-effect waves-light btn disabled" id="exportLanguageBtn" onclick="exportCustomLanguage()"><i class="material-icons left">save</i>Export</a>
+						<!--<div class="input-field col s6">
+							<input id="first_name" type="text" class="validate">
+							<label for="first_name">Column to Import/Export</label>
+						</div>-->
+						<p id="importMessage"></p>
+						<br>
+						<label style="margin-right: 20px;">
+							<input type="checkbox" class="filled-in" checked="checked" />
+							<span>Save to localStorage and autosave every 5 minutes</span>
+						</label>
+						<br>
+						<a class="waves-effect waves-light btn"><i class="material-icons left">save</i>Save now</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="modal-footer">
+		  <a class="modal-close waves-effect waves-green btn-flat" onclick="runFromRoutableKeyString()">Close</a>
+		</div>
+	</div>
 	<div id="savePageModal" class="modal">
 		<div class="modal-content">
 			<h4>Exporter</h4>
@@ -2581,19 +3030,9 @@ I have no idea how it works
 		  
 		</div>
 	</div>
-	<!-- Needs to be here so the modal for T-Doll search will be fullscreen on mobile devices. Otherwise it will be below the navbar.-->
-	<!--<div id="tDollDialogueActivity" class="modal modal-fixed-footer" style="overflow:hidden">
-		<nav style="position:initial;">
-			<div class="nav-wrapper blue" style="text-align: left;">
-			  <a href="#!" class="brand-logo modal-close" id='tDollDialogueName'>Insert T-Doll Name Here<i class="material-icons">arrow_back</i></a>
-			</div>
-		</nav>
-		<div id="tDollDialogue" class='modal-content'>
-		
-		</div>
-	</div>-->
+
   
-	<noscript><h1>Turn on JavaScript. This is not a static webpage, it is literally interpreting the GFL text on the fly using JS and rendering it to HTML elements to display it in your browser.</h1></noscript>
+	<noscript><h1>Turn on JavaScript. The website takes json files containing the cutscene information and renders them in your browser.</h1></noscript>
 	<noscript><h3>Static HTTP pages are coming never. You'll have to look at the source code and write it yourself.</h3></noscript>
 	<div id='chapterSelect' class='navbar-fixed'>
 		<div class='row'>
@@ -2614,7 +3053,38 @@ I have no idea how it works
 			<div class="col s12" id="crossoverEpisodesWrapper">
 				<div class="flex-container col s12" id="crossoverEpisodes"></div>
 			</div>
-				
+			<div class="col s12" id="customCutsceneWrapper">
+				<div id="customCutscene">
+					<p>WIP... Currently only .json loading works. It will automatically render when loaded.</p>
+					<p id='customCutsceneError' style='color:red;display:none;'>Test</p>
+					<a class="waves-effect waves-light btn disabled" onclick="document.getElementById('file-input-txt').click();"><i class="material-icons right">folder_open</i>Load .txt</a>
+					<div ondrop='dropHandler(event)' ondragover="dragOverHandler(event);" style="display:inline;">
+						<a class="waves-effect waves-light btn" onclick="document.getElementById('file-input-json').click();"><i class="material-icons right">folder_open</i>Load .json</a>	
+						<input id="file-input-json" type="file" accept='.json' name="jsonInput" style="display: none;" />
+					</div>
+					
+					<input id="file-input-txt" type="file"  accept='.txt'  name="txtInput" style="display: none;" multiple />
+					<br>
+					<div style='padding-top:10px'>
+						<p style='text-align:left;'>Part 1</p>
+						<textarea placeholder="Type in your txt (GFL) or iop (Interpreter) styled codes here." id="textarea1"></textarea>
+					</div>
+					<a class="waves-effect waves-light btn disabled" onclick=""><i class="material-icons add">folder_open</i>Add another part</a>
+					<a class="waves-effect waves-light btn disabled" onclick=""><i class="material-icons delete">folder_open</i>Delete last part</a>
+					<p>Select 'json' if you've been using the longer raw syntax. Select 'iop' if you've been using the interpreter's shorthand syntax.</p>
+					<div class="switch">
+						<label>
+						  txt
+						  <input type="checkbox" checked onclick="" id="customIsTXTorIOP">
+						  <span class="lever"></span>
+						  iop
+						</label>
+					</div>
+					<br>
+					<a class="waves-effect waves-light btn disabled" onclick="runFromUserInput();"><i class="material-icons right">code</i>Run!</a>
+				    
+				</div>
+			</div>
 		</div>
 		
 	</div>
@@ -2640,7 +3110,10 @@ I have no idea how it works
 		<source class='sfx_ogg' src="" type="audio/ogg">
 	</audio>
 	<p>Brought to you by the man who wrote the Girls' Frontline Cutscene Interpreter. You thought I'd stop at GFL?</p>
+	<p>Special thanks to the archivers at <a href="https://hoyostans.be/">Hoyostans</a> and special thanks to Mister Spaceman for retranslating the dialogue!</p>
 	<p>If you want a feature or something is broken, <a onmousemove="(function(self){self.href='mailto:PatchouliSama765'+String.fromCharCode(64)+'gmail.com'})(this)" href="mailto:'hover mouse over the link twice to pass the bot check'"><b>email me</b></a>.</p>
-	<p><a href='/LICENSE.html'>The interpreter is free and open source software and licensed under AGPLv3.</a></p>
+	<p><a href='/LICENSE.html'>The interpreter is free and open source software and licensed under AGPLv3.</a> Source code is available <a href="https://github.com/RhythmLunatic/ggz-cutscene-interpreter">here.</a></p>
 	<p>Designed using <a href='https://materializecss.com'>Materialize</a>. <a href='https://github.com/Dogfalo/materialize/blob/master/LICENSE'>MIT license</a></p>
+	<hr>
+	<p>I'm currently jobless so if you're reading this and you need a programmer, email me. I have 5 years of experience with lua and some experience with Python, C++, JavaScript, and C#.</p>
 </body>
