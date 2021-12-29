@@ -80,20 +80,13 @@ else:
 				f.write(str(textID)+"\t"+"\t".join(textMap[textID])+"\n")
 
 
-if os.path.exists("TextMap_custom.tsv"):
-	with open("TextMap_custom.tsv",'r') as f:
-		f.readline() # skip line 1
-		while True:
-			line = f.readline()
-			if not line:
-				break
-			#elif line.strip()=="":
-			#	continue
-			line=line.split('\t')
-			line[-1]=line[-1].rstrip() #Strip newline char
-			tID = int(line[0])
-			if tID in textMap and line[-1] != "":
-				textMap[tID][3] = line[-1].replace("{","<").replace("}",">")
+if os.path.exists("TextMap_retranslated.json"):
+	with open("TextMap_retranslated.json",'r',encoding='utf8') as f:
+		textMap_retranslated = JSON.loads(f.read())
+		for fakeID in textMap_retranslated:
+			tID = int(fakeID)
+			if tID in textMap:
+				textMap[tID][3] = textMap_retranslated[fakeID].replace("{","<").replace("}",">")
 
 #Remove "XXX"
 for _id in textMap:
@@ -138,9 +131,10 @@ print("done.")
 
 #commandsList = []
 
-def getLastCommandOf(commandsList,t):
+def getLastCommandOf(commandsList:list,opcode:str):
+	"""Given a list of opcodes and the type to search, return the last opcode of the type specified."""
 	for i in range(len(commandsList)-1,-1,-1):
-		if commandsList[i][0]==t:
+		if commandsList[i][0]==opcode:
 			return commandsList[i]
 		#else:
 		#	print(commandsList[i][0]+" != "+t)
@@ -153,6 +147,20 @@ emptyPortrait = ['',0,False]
 #def shouldDimThis(thisPosition,
 
 def getStoryTSV(fileName):
+	"""Converts a story TSV into a dict of lists, with the dict being indexed by the part ID.
+	
+	After conversion it looks something like this:
+	{
+		1:[
+			[TEXT10000,aaa,bbbb],
+			[TEXT123131223, ccccc dddddd]
+		],
+		2:[
+			...
+		],
+		...
+	}
+	"""
 	with open(os.path.join("GameData",fileName),'r') as storyData:
 		storyData.readline()
 		lastPart = -1
@@ -185,7 +193,11 @@ unconvertedLines_Kyusyo = getStoryTSV('KyusyoStoryData.tsv')
 
 #sys.exit(0)
 class StoryDataStruct():
-	def __init__(self, StoryTextV2, _type=0):
+	"""Convert a StoryData list into a struct.
+		_type: If 0 (default), column 3 is the text.
+		If 1, column 1 is the text.
+	"""
+	def __init__(self, StoryTextV2:list, _type=0):
 		#self.DialogueID = int(l[0])
 		if _type == 1:
 			if RepresentsInt(StoryTextV2[1]):
@@ -221,10 +233,15 @@ class StoryDataStruct():
 			self.CGID=StoryTextV2[13]
 			self.BGID = StoryTextV2[14]
 
+	
+		if self.BGID=="0":
+			self.BGID="black"
+
 
 portraitBlacklist = [0,802,803,804,805] #Portraits without an image
 
-def convertPart(section,partNumber:int,_type=0):
+def convertPart(section:dict,partNumber:int,_type=0):
+	"""Given a dict containing all the unconverted lines and the part to convert, return a list of structured opcodes."""
 	commandsList = []
 	if partNumber not in section:
 		print("MISSING ID "+str(partNumber)+"!!!!")
@@ -275,10 +292,12 @@ def convertPart(section,partNumber:int,_type=0):
 			#print(lastBGcmd)
 			#if lastBGcmd:
 			#	print(lastBGcmd[1]==StoryTextV2.BGID)
-			if lastBGcmd and lastBGcmd[1] != StoryTextV2.BGID and StoryTextV2.BGID!="0": #Skip duplicates
+			if lastBGcmd and lastBGcmd[1] != StoryTextV2.BGID: #Skip duplicates
+				#if StoryTextV2.BGID=="0":
+				#	StoryTextV2.BGID="black"
 				print("Pushed new BG "+StoryTextV2.BGID)
 				commandsList.append(['bg',StoryTextV2.BGID])
-			elif lastBGcmd==None and StoryTextV2.BGID!="0":
+			elif lastBGcmd==None and StoryTextV2.BGID!="black":
 				print("No previous BG, adding "+StoryTextV2.BGID)
 				commandsList.append(['bg',StoryTextV2.BGID])
 				
@@ -305,29 +324,6 @@ def convertPart(section,partNumber:int,_type=0):
 			print("ID "+str(StoryTextV2.text)+" not present in text db, assuming command with no message")
 			#print(StoryTextV2)
 	return commandsList
-
-#convertPart(unconvertedLines_Kyusyo,20)
-#sys.exit(0)
-"""{
-			"name":"Playback Type 1 Data (Main Story?)",
-			"episodes":[]
-		},
-		{
-			"name":"Playback Type 2 Data (Side Events?)",
-			"episodes":[]
-		},
-		{
-			"name":"Playback Type 3 Data",
-			"episodes":[]
-		},
-		{
-			"name":"Playback Type 4 Data",
-			"episodes":[]
-		},
-		{
-			"name":"Playback Type 6 Data",
-			"episodes":[]
-		}"""
 		
 story = {
 	"main":[
@@ -347,13 +343,139 @@ story = {
 	"crossover":[]
 }
 
+#Prologue... Not in the playback archive for some reason.
+#Additionally, 1152 runs before 1135 as seen on YouTube but this might be a glitch.
+parts = {
+	"1":convertPart(unconvertedLines_Ext,1152),
+	"2":convertPart(unconvertedLines_Ext,1135),
+}
+with open("../avgtxt/prologue.json",'wb') as f:
+	f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
+
+
+#All stories in the playback archive.
+unconvertedLines_Playback = getStoryTSV('PlaybackStoryData.tsv')
+
+# Search for matching chapter name
+def getIndexFromKey(k:str):
+	for i in range(len(story['main'])):
+		ep = story['main'][i]
+		#print(ep)
+		if ep['name']==k:
+			return i
+	return -1
+
+
+#ID	Type	ExType	ExTitle	ExTitleText	SeasonID	SeasonTitle	SeasonText	BannerID	BannerTitle	BannerText	Title	TitleText	DialogueID	IsSub	UnlockLevel
+class PlayBackStoryTitleDataStruct():
+	def __init__(self,info) -> None:
+		d = info.split("\t")
+		#Story types:
+		#1 = Main?
+		#2 = Side stories? Halloween event is here?
+		self.StoryType = int(d[1])
+		self.ExType = int(d[2]) #Seems to control grouping. Genkai Room and Mysterious Deep are supposed to be in the same group and are both Group 6.
+		self.StoryTitle = int(d[3]) #The chapter title, but I'm not sure how it's determined when there are two different titles in the same group.
+		self.StoryTitle=[self.StoryTitle]+textMap[self.StoryTitle]
+		#Column 4 seems to be unused
+		self.EpisodeNumber = int(d[5])
+		self.EpisodePrefix = int(d[6]) #Episode 1, Episode 2, etc
+		#Column 7 is unused
+		#Column 8 is irrelevant (Just the graphic to display in-game)
+		self.EpisodeTitle = int(d[9])
+		#Column 10 is unused
+		self.PartName = int(d[11]) #Segment 1, Segment 2, etc. Sometimes there's names though
+		#Column 12 is unused
+		self.DialogueID = int(d[13]) #part to pull from in PlaybackStoryData
+		self.IsSub = d[14]=="1" #Marks extra chapters
+	
+	def getChapterName(self)->str:
+		if self.EpisodePrefix==self.EpisodeTitle:
+			return textMap[self.EpisodePrefix][0]
+		else:
+			return textMap[self.EpisodePrefix][0]+": "+textMap[self.EpisodeTitle][0]
+
+
+playbackData = []
+with open(os.path.join("GameData",'PlayBackStoryTitleData.tsv'),'r') as storyDatabase:
+	storyDatabase.readline()
+	storyDatabase.readline()
+	storyDatabase.readline()
+	storyDatabase.readline()
+	while True:
+		l = storyDatabase.readline()
+		if not l.strip():
+			break
+		playbackData.append(PlayBackStoryTitleDataStruct(l))
+
+
+parts = {}
+
+#Hueristic to skip parts that exist in the playback archive
+allUsedLinesSoFar = []
+
+for i in range(len(playbackData)):
+	#lastData = playbackData[i]
+	thisData:PlayBackStoryTitleDataStruct = playbackData[i]
+	
+	newPart = convertPart(unconvertedLines_Playback,thisData.DialogueID,1)
+	if newPart:
+
+		#Hueristic checking
+		for line in newPart:
+			if line[0]=="msg":
+				allUsedLinesSoFar.append(line[1])
+
+		#Add to parts dict, contains the data for this part.
+		parts[thisData.DialogueID]=newPart
+		if thisData.DialogueID==91:
+			parts[thisData.DialogueID].insert(0,['bgm','The Sound of the End'])
+
+	if i==len(playbackData)-1 or thisData.EpisodeNumber != playbackData[i+1].EpisodeNumber:
+		if parts:
+			fileName = "type-"+str(thisData.StoryType)+"-"+str(thisData.ExType)+"-chapter-"+str(thisData.EpisodeNumber)+'-'+str(thisData.DialogueID)+'.json'
+			print(parts.keys())
+			with open("../avgtxt/"+fileName,'wb') as f:
+				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
+				print("Generated "+fileName+" containing "+str(len(parts)))
+
+
+			#if storyType == 6:
+			#	storyType = 5
+			idx = getIndexFromKey(thisData.StoryTitle[1])
+			if idx==-1:
+				story['main'].append({
+					"name":thisData.StoryTitle[1],
+					"nameMultilang":thisData.StoryTitle,
+					#"shortName":"HG2 x GFL",
+					"episodes":[
+						{
+							"name":thisData.getChapterName(),
+							"parts":fileName
+						}
+					]
+				})
+			else:
+				story['main'][idx]['episodes'].append({
+					"name":thisData.getChapterName(),
+					"parts":fileName
+				})
+		parts={}
 
 unknownExtData = []
 for i in range(0,312):
 	parts = {}
 	for j in range(i*10,i*10+10):
 		if j in unconvertedLines_Ext:
-			parts[j]=convertPart(unconvertedLines_Ext,j)
+			linesToConvert = unconvertedLines_Ext[j]
+			partAlreadyExists=False
+			for line in linesToConvert:
+				#print(line[3])
+				if line[3] != "0" and int(line[3][4:]) in allUsedLinesSoFar:
+					partAlreadyExists=True
+					break
+			if partAlreadyExists==False:
+				parts[j]=convertPart(unconvertedLines_Ext,j)
 		else:
 			print("No DialogueID "+str(j))
 	print(parts.keys())
@@ -362,7 +484,8 @@ for i in range(0,312):
 		fName = "StoryExtData-"+str(i)+'.json'
 		unknownExtData.append({
 			"name":"Parts "+str(i*10)+"-"+str(i*10+9),
-			"parts":fName
+			"parts":fName,
+			"part_names":list(parts.keys())
 		})
 		
 		with open("../avgtxt/"+fName,'wb') as f:
@@ -468,114 +591,7 @@ story['crossover'].append({
 })
 
 
-#Prologue
-parts = {
-	"1":convertPart(unconvertedLines_Ext,1152),
-	"2":convertPart(unconvertedLines_Ext,1135),
-}
-with open("../avgtxt/prologue.json",'wb') as f:
-	f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
-
-#Main story?
-unconvertedLines_Playback = getStoryTSV('PlaybackStoryData.tsv')
-#print(convertPart(unconvertedLines_Playback,1,True))
-#sys.exit(0)
-
-# Search for matching chapter name
-def getIndexFromKey(k:str):
-	for i in range(len(story['main'])):
-		ep = story['main'][i]
-		#print(ep)
-		if ep['name']==k:
-			return i
-	return -1
-
-
-#ID	Type	ExType	ExTitle	ExTitleText	SeasonID	SeasonTitle	SeasonText	BannerID	BannerTitle	BannerText	Title	TitleText	DialogueID	IsSub	UnlockLevel
-class PlayBackStoryTitleDataStruct():
-	def __init__(self,info) -> None:
-		d = info.split("\t")
-		#Story types:
-		#1 = Main?
-		#2 = Side stories? Halloween event is here?
-		self.StoryType = int(d[1])
-		self.ExType = int(d[2]) #Unknown purpose, but seems to be related to ExTitle. Note that these are not unique, Genkai Room and Mysterious Deep use the same type.
-		self.StoryTitle = int(d[3]) #Possibly also determines grouping
-		self.StoryTitle=[self.StoryTitle]+textMap[self.StoryTitle]
-		#Column 4 seems to be unused
-		self.EpisodeNumber = int(d[5])
-		self.EpisodePrefix = int(d[6]) #Episode 1, Episode 2, etc
-		#Column 7 is unused
-		#Column 8 is irrelevant (Just the graphic to display in-game)
-		self.EpisodeTitle = int(d[9])
-		#Column 10 is unused
-		self.PartName = int(d[11]) #Segment 1, Segment 2, etc. Sometimes there's names though
-		#Column 12 is unused
-		self.DialogueID = int(d[13]) #part to pull from in PlaybackStoryData
-		self.IsSub = d[14]=="1" #Marks extra chapters
-	
-	def getChapterName(self)->str:
-		if self.EpisodePrefix==self.EpisodeTitle:
-			return textMap[self.EpisodePrefix][0]
-		else:
-			return textMap[self.EpisodePrefix][0]+": "+textMap[self.EpisodeTitle][0]
-
-
-playbackData = []
-with open(os.path.join("GameData",'PlayBackStoryTitleData.tsv'),'r') as storyDatabase:
-	storyDatabase.readline()
-	storyDatabase.readline()
-	storyDatabase.readline()
-	storyDatabase.readline()
-	while True:
-		l = storyDatabase.readline()
-		if not l.strip():
-			break
-		playbackData.append(PlayBackStoryTitleDataStruct(l))
-
-
-parts = {}
-for i in range(len(playbackData)):
-	#lastData = playbackData[i]
-	thisData:PlayBackStoryTitleDataStruct = playbackData[i]
-	
-	newPart = convertPart(unconvertedLines_Playback,thisData.DialogueID,1)
-	if newPart:
-		parts[thisData.DialogueID]=newPart
-		if thisData.DialogueID==91:
-			parts[thisData.DialogueID].insert(0,['bgm','The Sound of the End'])
-
-	if i==len(playbackData)-1 or thisData.EpisodeNumber != playbackData[i+1].EpisodeNumber:
-		if parts:
-			fileName = "type-"+str(thisData.StoryType)+"-"+str(thisData.ExType)+"-chapter-"+str(thisData.EpisodeNumber)+'.json'
-			print(parts.keys())
-			with open("../avgtxt/"+fileName,'wb') as f:
-				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
-				print("Generated "+fileName+" containing "+str(len(parts)))
-
-
-			#if storyType == 6:
-			#	storyType = 5
-			idx = getIndexFromKey(thisData.StoryTitle[1])
-			if idx==-1:
-				story['main'].append({
-					"name":thisData.StoryTitle[1],
-					"nameMultilang":thisData.StoryTitle,
-					#"shortName":"HG2 x GFL",
-					"episodes":[
-						{
-							"name":thisData.getChapterName(),
-							"parts":fileName
-						}
-					]
-				})
-			else:
-				story['main'][idx]['episodes'].append({
-					"name":thisData.getChapterName(),
-					"parts":fileName
-				})
-		parts={}
-
+#This runs at the end!
 routing = {}
 for section in story:
 	numChapters = len(story[section])

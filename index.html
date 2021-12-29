@@ -732,6 +732,7 @@ I have no idea how it works
 
 	//Oh no
 	let customLanguage = undefined;
+	let TRANSLATION_SERVER_URL = "http://ggz.amaryllisworks.pw:8880"
 
 	/*
 	Night backgrounds are generated using html canvas,
@@ -1997,16 +1998,18 @@ I have no idea how it works
 									//trInner+='<label for="textarea'+dialogueID+'">ID:'+dialogueID+'</label>'
 									trInner+='</div></td>'
 									tr.innerHTML=trInner
-									tr.getElementsByTagName("a")[0].addEventListener("click", function(event){
+									
+									let icon = tr.getElementsByClassName("material-icons")[0]
+									let editHandlerFunc = function(event){
 										//print(event);
-										if (event.target.innerText=="add")
-											event.target.innerText="create"
+										if (icon.innerText=="add")
+											icon.innerText="create"
 										//console.log(tr);
 										let textCol = tr.childNodes[1];
 										//console.log(textCol);
 										let span = textCol.getElementsByTagName("span")[0]
 										let textDiv = textCol.getElementsByTagName("div")[0]
-										if (span.style.display == "none")
+										if (span.style.display == "none") //If displaying text
 										{
 											textDiv.setAttribute("style","display:none")
 											span.innerHTML = parseGFLTextModifiers(textCol.getElementsByTagName("textarea")[0].value) //Yes it's innerHTML, </i> is supported
@@ -2016,14 +2019,26 @@ I have no idea how it works
 											localStorage.setItem("customLanguage",JSON.stringify(customLanguage));
 											span.setAttribute("style","")
 										}
-										else
+										else //If editing text
 										{
 											span.setAttribute("style","display:none")
-											textCol.getElementsByTagName("textarea")[0].value = customLanguage[span.getAttribute('text-id')]
+											textCol.getElementsByTagName("textarea")[0].value = (customLanguage[span.getAttribute('text-id')] || "")
 											M.textareaAutoResize(textCol.getElementsByTagName("textarea")[0])
 											textDiv.setAttribute("style","")
+											textCol.getElementsByTagName("textarea")[0].focus();
+											//textCol.getElementsByTagName("textarea")[0].select();
 										}
+									}
+
+									tr.getElementsByTagName("textarea")[0].addEventListener("keypress", function(event){
+										if (event.keyCode == 13 && !event.shiftKey)
+										{
+											editHandlerFunc(event)
+											return false;
+										}
+										return event.keyCode != 13;
 									})
+									tr.getElementsByTagName("a")[0].addEventListener("click", editHandlerFunc)
 									tbody.appendChild(tr)
 								}
 								table.appendChild(tbody);
@@ -2103,36 +2118,36 @@ I have no idea how it works
 		
 		
 		let fileName = episode.parts;
-		let partName = null
-		let isNight = false
-		let missionID = null
-		if (episode['part_names'] != undefined)
-			partName=episode['part_names'][p]
-		if (episode['night'] != undefined)
-			isNight=episode['night'][p]
-		if(episode['mission_id'] != undefined)
-			missionID=episode['mission_id'][p]
 
 		//We have to await so it doesn't load the parts in the wrong order. Which is an actual thing that has happened.
 		console.log("fetching "+fileName);
 		
 		fetch("avgtxt/"+fileName)
 		.then(response => response.json())
-		.then(episode => {
+		.then(part => {
 			console.log("got "+fileName);
-			var keys = Object.keys(episode)
+			var keys = Object.keys(part)
 			for(var j = 0; j < keys.length;j++)
 			{
 				
 				
-				
+				let partName = null
+				if (episode['part_names'] != undefined)
+				{
+					//print(episode['part_names'][j]);
+					partName=episode['part_names'][j]
+				}
+				/*else
+				{
+					//print(episode)
+				}*/
 				
 				
 				//console.log(fetchTextFile("avgtxt/"+fileName));
 				
 				//TODO: Add check if it's JSON (iop format) and then use a JSON parser if it is
 				//let structuredLines = convertGFLTextToOpcodes(out,missionID);
-				let structuredLines = episode[keys[j]]
+				let structuredLines = part[keys[j]]
 				for(i=0;i<structuredLines.length;i++)
 				{
 					structuredLines[i][0]=opcode2string.indexOf(structuredLines[i][0])
@@ -2150,7 +2165,7 @@ I have no idea how it works
 					NewSimpleTextDiv.appendChild(document.createElement('br'));
 					
 				}
-				NewSimpleTextDiv.appendChild(renderStructuredLinesToDiv(structuredLines,j,partName,isNight,keys.length));
+				NewSimpleTextDiv.appendChild(renderStructuredLinesToDiv(structuredLines,j,partName,false,keys.length));
 				//Now replace the old div...
 				/*let textboxDiv = document.getElementById("Textboxes");
 				textboxDiv.parentNode.replaceChild(newTextboxDiv,textboxDiv);*/
@@ -2377,7 +2392,7 @@ I have no idea how it works
 
 		var element = document.createElement('a');
 		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-		element.setAttribute('download', "textMap_custom.tsv");
+		element.setAttribute('download', "TextMap_custom.tsv");
 
 		element.style.display = 'none';
 		document.body.appendChild(element);
@@ -2722,6 +2737,82 @@ I have no idea how it works
 		reader.readAsText(file);
 	}
 
+	/**
+	 * @author 
+	 * @date 2021-12-18
+	 * @returns {bool} Success
+	 */
+	function downloadRetranslation() {
+		let tStatus = document.getElementById('translationServerStatus');
+		fetch(TRANSLATION_SERVER_URL)
+		.then(response => {
+			if (response.status >= 200 && response.status <= 299) {
+				return response.json();
+			} else {
+				throw Error(response.statusText);
+			}
+		})
+		.then(contents => {
+			//print(contents)
+			let keys = Object.keys(contents);
+			if (keys.length > 0)
+			{
+
+				customLanguage=contents;
+				localStorage.setItem("customLanguage",JSON.stringify(customLanguage));
+
+				print("imported "+keys.length+" lines.");
+				tStatus.innerText="Succesfully imported "+keys.length+" lines.";
+			}
+			else
+			{
+				tStatus.innerText="The translation file recieved from the server was malformed. There might be something wrong with the server right now."
+			}
+			
+		}).catch((error) => {
+			tStatus.innerText="Got an error trying to contact the server: "+error;
+		})
+		tStatus.setAttribute("style","");
+	}
+
+	function uploadRetranslation() {
+		let tStatus = document.getElementById('translationServerStatus');
+		var request = new XMLHttpRequest();
+
+		request.onload = function () {
+
+			// Because of javascript's fabulous closure concept, the XMLHttpRequest "request"
+			// object declared above is available in this function even though this function
+			// executes long after the request is sent and long after this function is
+			// instantiated. This fact is CRUCIAL to the workings of XHR in ordinary
+			// applications.
+
+			// You can get all kinds of information about the HTTP response.
+			var status = request.status; // HTTP response status, e.g., 200 for "200 OK"
+			var responseText = request.responseText; // Returned data, e.g., an HTML document.
+			print(status)
+			print(responseText)
+			tStatus.innerText=responseText
+			tStatus.setAttribute("style","");
+		}
+
+		request.open("POST", TRANSLATION_SERVER_URL, true);
+
+		request.setRequestHeader("Accept", "application/json");
+		request.setRequestHeader("Content-Type", "application/json");
+		let APIKey = document.getElementById('translation_api_key').value
+		if (APIKey!='')
+		{
+			var copyDict = {};
+			Object.assign(copyDict,customLanguage)
+			copyDict['API_KEY']=APIKey;
+			//print(copyDict)
+			request.send(JSON.stringify(copyDict));
+		}
+		else
+			request.send(JSON.stringify(customLanguage));
+	}
+
 
 	
 </script>
@@ -2984,11 +3075,26 @@ I have no idea how it works
 					</td>
 				</tr>
 				<tr>
+					<td style="width:100%;" colspan="2">
+						<span class="title">Community retranslation server</span>
+						<p>Help everyone retranslate the game into English! You can download the latest retranslation here and add new lines. Afterwards you can submit it and it will be reviewed.</p>
+						<p>The imported language will automatically be added to multilanguage mode and named "Custom".</p>
+						<a class="waves-effect waves-light btn "  onclick="downloadRetranslation()"><i class="material-icons left">cloud_download</i>Download from community server</a>
+						<a class="waves-effect waves-light btn "  onclick="uploadRetranslation()"><i class="material-icons left">cloud_upload</i>Submit to community server</a>
+						<p style='visibility:hidden;' id='translationServerStatus'>lol</p>
+						<p>If you have an API key for the server, enter it here. API keys are optional.</p>
+						<div class="input-field col s6">
+							<input id="translation_api_key" type="text" class="validate">
+							<label for="translation_api_key">API Key</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
 					<td style="width:100%" colspan="2">
 						<span class="title">Import/Export Language Keys</span>
 						<p>If you have the original game files dumped and would like to add additional languages or quickly modify the TextMap.tsv file, you can do it here.</p>
 						<p>Column 2 will be imported. Only one langauge can be imported into the interpreter at a time!</p>
-						<p>The imported language will automatically be added to multilanguage mode and named "Imported".</p>
+						<p>The imported language will automatically be added to multilanguage mode and named "Custom".</p>
 						<div ondrop='dropHandler(event)' ondragover="dragOverHandler(event);" style="display:inline;">
 							<a class="waves-effect waves-light btn" onclick="document.getElementById('file-input-language').click();"><i class="material-icons left">folder_open</i>Import</a>	
 							<input id="file-input-language" type="file" accept='.tsv,.txt' name="jsonInput" style="display: none;" onchange="processCustomLanguage(event)"/>
@@ -2999,13 +3105,13 @@ I have no idea how it works
 							<label for="first_name">Column to Import/Export</label>
 						</div>-->
 						<p id="importMessage"></p>
-						<br>
+						<!--<br>
 						<label style="margin-right: 20px;">
 							<input type="checkbox" class="filled-in" checked="checked" />
 							<span>Save to localStorage and autosave every 5 minutes</span>
 						</label>
 						<br>
-						<a class="waves-effect waves-light btn"><i class="material-icons left">save</i>Save now</a>
+						<a class="waves-effect waves-light btn"><i class="material-icons left">save</i>Save now</a>-->
 					</td>
 				</tr>
 			</table>

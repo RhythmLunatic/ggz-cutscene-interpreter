@@ -1,6 +1,7 @@
 #objects := $(wildcard *.py)
 
 build: 
+	wget http://ggz.amaryllisworks.pw:8880 -O TextMap_retranslated.json
 	./convertToInterpreter.py
 	./BuildSpeakerPortraitDatabase.py
 	mv database.json ../

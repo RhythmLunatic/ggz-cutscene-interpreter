@@ -6,3 +6,4 @@ build/test/*
 build/GameData/*
 build/dialogue.tab
 build/TextMap_aio.tsv
+translation-server/config.ini
