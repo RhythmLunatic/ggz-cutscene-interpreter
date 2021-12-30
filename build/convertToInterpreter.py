@@ -343,6 +343,7 @@ story = {
 	"crossover":[]
 }
 
+
 #Prologue... Not in the playback archive for some reason.
 #Additionally, 1152 runs before 1135 as seen on YouTube but this might be a glitch.
 parts = {
@@ -541,6 +542,110 @@ story['event'].append({
 	]
 })
 
+
+class KyusyoMissionDataStruct():
+	def __init__(self,info) -> None:
+		d = info.split("\t")
+		self.MissionID = int(d[0])
+		self.ParentID = [int(a) for a in d[1][:-1].split(';')]
+		#d[2] is useless
+		#self.ParentStoryID = int(d[3])
+		#MarkForMemoryID = d[4]
+		#ShowType: Main line = 1, branch line = 2
+		#self.ShowType = int(d[5])
+		
+		# 1 general; 2 limited time; 3 daily; 4 weekly reset;
+		#self.DependType = int(d[6])
+		#LevelRequiredMin = d[7]
+		#LevelRequiredMax is never used (d[8])
+		self.MissionName = textMap[int(d[9])][0]
+		if d[10] != "0":
+			self.MissionDesc = textMap[int(d[10])][0]
+		else:
+			self.MissionDesc=""
+
+		#If ParentID is 999 this isn't a range, but it seems like
+		#the next ID is used in a different part
+		#If StoryIDEnd is 0, I have no idea what happens.
+		#Since the end tag makes no sense, I'm just going to guess by finding the next closest start.
+		self.StoryIDStart = int(d[11])
+		self.StoryIDEnd = int(d[12])
+		# "Story id triggered after being set as a recall item"... Whatever that means.
+		self.StoryIDMemory = int(d[13])
+		self.ChapterNum = int(d[16])
+
+kyusyoMissionDatas = []
+with open("GameData/KyusyoMissionData.tsv",'r') as f:
+	f.readline()
+	f.readline()
+	f.readline()
+	f.readline()
+	while True:
+		l = f.readline()
+		if not l.strip():
+			break
+		kyusyoMissionDatas.append(KyusyoMissionDataStruct(l))
+
+
+KyusyoStoryPartsList = []
+for mission in kyusyoMissionDatas:
+	KyusyoStoryPartsList.append(mission.StoryIDStart)
+KyusyoStoryPartsList.sort()
+print(KyusyoStoryPartsList)
+#sys.exit(0)
+
+def getNextClosestEndPart(start:int)->int:
+	for n in KyusyoStoryPartsList:
+		if start > n or start==n:
+			#print(str(start)+" < "+str(n))
+			continue
+		else:
+			#print("Closest to "+str(start)+" is "+str(n))
+			return n
+	return KyusyoStoryPartsList[-1]
+
+#ConvertedKyusyoData = []
+for i in range(8):
+	story['side'].append({
+		"name":"Chapter "+str(i+1),
+		"episodes":[]
+	})
+story['side'].append({
+	"name":"Unused data?",
+	"episodes":[]
+})
+for i in range(len(kyusyoMissionDatas)):
+	thisMission:KyusyoMissionDataStruct = kyusyoMissionDatas[i]
+	parts = {}
+	#print("START: "+str(thisMission.StoryIDStart)+" | END: "+str(getNextClosestEndPart(thisMission.StoryIDStart)))
+	#Mission has no story?
+	if thisMission.StoryIDStart==0:
+		continue
+	for j in range(thisMission.StoryIDStart,getNextClosestEndPart(thisMission.StoryIDStart)):
+		if j in unconvertedLines_Kyusyo:
+			parts[j] = convertPart(unconvertedLines_Kyusyo,j)
+		#else:
+		#	print("No DialogueID "+str(j))
+	print(parts.keys())
+	if parts:
+		fName = "StoryKyusyoData-chapter-"+str(thisMission.ChapterNum)+"-"+str(thisMission.MissionID)+'.json'
+		
+		toAdd = thisMission.ChapterNum
+		if thisMission.StoryIDEnd > 900 and thisMission.StoryIDEnd < 1000:
+			#Not sure how this works, but these parts exist
+			parts[j] = convertPart(unconvertedLines_Kyusyo,thisMission.StoryIDEnd)
+			toAdd=8
+		story['side'][toAdd]['episodes'].append({
+			"name":thisMission.MissionName,
+			"parts":fName,
+			"part_names":list(parts.keys())
+		})
+		if thisMission.MissionDesc != "":
+			story['side'][thisMission.ChapterNum]['episodes'][-1]["description"]=thisMission.MissionDesc
+		with open("../avgtxt/"+fName,'wb') as f:
+			f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
+			print("Generated "+fName)
+
 unknownKyusyoData = []
 for i in range(0,14):
 	parts = {}
@@ -552,16 +657,17 @@ for i in range(0,14):
 	print(parts.keys())
 	
 	if parts: #Do not add empty data
-		fName = "StoryKyusyoData-"+str(i)+'.json'
+		fName = "StoryKyusyoData-unk-"+str(i)+'.json'
 		unknownKyusyoData.append({
 			"name":"Parts "+str(i*10)+"-"+str(i*10+9),
-			"parts":fName
+			"parts":fName,
+			"part_names":list(parts.keys())
 		})
 		
 		with open("../avgtxt/"+fName,'wb') as f:
 				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
 				print("Generated "+fName)
-story['event'].append({
+story['side'].append({
 	"name":"Unknown Kyusyo Data",
 	"episodes":unknownKyusyoData
 })
@@ -569,7 +675,7 @@ story['event'].append({
 with open("../avgtxt/"+fName,'wb') as f:
 	f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
 	print("Generated "+fName)
-
+#sys.exit(0)
 
 #HG2 x GFL
 """parts = {}
