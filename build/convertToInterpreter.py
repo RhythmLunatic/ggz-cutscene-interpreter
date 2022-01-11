@@ -240,6 +240,11 @@ class StoryDataStruct():
 
 portraitBlacklist = [0,802,803,804,805] #Portraits without an image
 
+
+
+#Hueristic to skip parts that exist in the playback archive
+allUsedLinesSoFar = []
+
 def convertPart(section:dict,partNumber:int,_type=0):
 	"""Given a dict containing all the unconverted lines and the part to convert, return a list of structured opcodes."""
 	commandsList = []
@@ -319,12 +324,28 @@ def convertPart(section:dict,partNumber:int,_type=0):
 			pass
 		
 		if StoryTextV2.text > 0 and StoryTextV2.text in textMap:
+			allUsedLinesSoFar.append(StoryTextV2.text)
 			commandsList.append(['msg']+[StoryTextV2.text]+textMap[StoryTextV2.text][:4])
 		else:
 			print("ID "+str(StoryTextV2.text)+" not present in text db, assuming command with no message")
 			#print(StoryTextV2)
 	return commandsList
-		
+
+def writeAndReturnPart(parts:dict,name:str,fileName:str,partNames:list=None)->dict:
+	"""Writes the parts to disk, then returns a dict with the information for the database.
+	"""
+	with open("../avgtxt/"+fileName,'wb') as f:
+		f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
+		print("Generated "+fileName)
+
+	d = {
+		"name":name,
+		"parts":fileName
+	}
+	if partNames:
+		d["part_names"]=partNames
+	return d
+
 story = {
 	"main":[
 		{
@@ -412,8 +433,6 @@ with open(os.path.join("GameData",'PlayBackStoryTitleData.tsv'),'r') as storyDat
 
 parts = {}
 
-#Hueristic to skip parts that exist in the playback archive
-allUsedLinesSoFar = []
 
 for i in range(len(playbackData)):
 	#lastData = playbackData[i]
@@ -421,11 +440,6 @@ for i in range(len(playbackData)):
 	
 	newPart = convertPart(unconvertedLines_Playback,thisData.DialogueID,1)
 	if newPart:
-
-		#Hueristic checking
-		for line in newPart:
-			if line[0]=="msg":
-				allUsedLinesSoFar.append(line[1])
 
 		#Add to parts dict, contains the data for this part.
 		parts[thisData.DialogueID]=newPart
@@ -463,86 +477,8 @@ for i in range(len(playbackData)):
 				})
 		parts={}
 
-unknownExtData = []
-for i in range(0,312):
-	parts = {}
-	for j in range(i*10,i*10+10):
-		if j in unconvertedLines_Ext:
-			linesToConvert = unconvertedLines_Ext[j]
-			partAlreadyExists=False
-			for line in linesToConvert:
-				#print(line[3])
-				if line[3] != "0" and int(line[3][4:]) in allUsedLinesSoFar:
-					partAlreadyExists=True
-					break
-			if partAlreadyExists==False:
-				parts[j]=convertPart(unconvertedLines_Ext,j)
-		else:
-			print("No DialogueID "+str(j))
-	print(parts.keys())
-	
-	if parts: #Do not add empty data
-		fName = "StoryExtData-"+str(i)+'.json'
-		unknownExtData.append({
-			"name":"Parts "+str(i*10)+"-"+str(i*10+9),
-			"parts":fName,
-			"part_names":list(parts.keys())
-		})
-		
-		with open("../avgtxt/"+fName,'wb') as f:
-				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
-				print("Generated "+fName)
-story['event'].append({
-	"name":"Unknown ExtData",
-	"episodes":unknownExtData
-})
 
-unknownSubData = []
-for i in range(0,14):
-	parts = {}
-	for j in range(i*10,i*10+10):
-		if j in unconvertedLines_Sub:
-			parts[j]=convertPart(unconvertedLines_Sub,j)
-		else:
-			print("No DialogueID "+str(j))
-	print(parts.keys())
-	
-	if parts: #Do not add empty data
-		fName = "StorySubData-"+str(i)+'.json'
-		unknownSubData.append({
-			"name":"Parts "+str(i*10)+"-"+str(i*10+9),
-			"parts":fName
-		})
-		
-		with open("../avgtxt/"+fName,'wb') as f:
-				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
-				print("Generated "+fName)
-story['event'].append({
-	"name":"Unknown SubData",
-	"episodes":unknownSubData
-})
-				
-
-#Convert StoryInsideData
-parts = {}
-for j in range(0,11):
-	if j in unconvertedLines_Inside:
-		parts[j]=convertPart(unconvertedLines_Inside,j)
-	else:
-		print("No DialogueID "+str(j))
-
-fName = "StoryInsideData.json"
-story['event'].append({
-	"name":"Unknown InsideData",
-	"episodes":[
-		{
-			"name":"Parts 0-10",
-			"parts":fName
-		}
-	]
-})
-
-
+#Now we do the Fire Moth DLC!
 class KyusyoMissionDataStruct():
 	def __init__(self,info) -> None:
 		d = info.split("\t")
@@ -675,6 +611,119 @@ story['side'].append({
 with open("../avgtxt/"+fName,'wb') as f:
 	f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
 	print("Generated "+fName)
+
+#Grouped extdata goes here
+groupedExtData = []
+groupedExtData.append(writeAndReturnPart(
+	{j:convertPart(unconvertedLines_Ext,j) for j in range(3055,3062)},
+	"Seele's Dream",
+	"ExtData-3055-3061.json"
+))
+groupedExtData.append(writeAndReturnPart(
+	{j:convertPart(unconvertedLines_Ext,j) for j in range(2060,2077)},
+	"Hyperdimension Neptunia Crossover",
+	"ExtData-2060-2076.json"
+))
+groupedExtData.append(writeAndReturnPart(
+	{j:convertPart(unconvertedLines_Ext,j) for j in range(2497,2524)},
+	"Hyperdimension Neptunia Crossover 2",
+	"ExtData-2497-2523.json"
+))
+groupedExtData.append(writeAndReturnPart(
+	{j:convertPart(unconvertedLines_Ext,j) for j in range(390,408)},
+	"JP Only event?",
+	"ExtData-390-408.json"
+))
+
+story['event'].append({
+	"name":"Stuff...",
+	"episodes":groupedExtData
+})
+
+#And now for whatever's left... I guess...
+unknownExtData = []
+for i in range(0,312):
+	parts = {}
+	for j in range(i*10,i*10+10):
+		if j in unconvertedLines_Ext:
+			linesToConvert = unconvertedLines_Ext[j]
+			partAlreadyExists=False
+			for line in linesToConvert:
+				#print(line[3])
+				if line[3] != "0" and int(line[3][4:]) in allUsedLinesSoFar:
+					partAlreadyExists=True
+					print("skipped "+str(j))
+					break
+			if partAlreadyExists==False:
+				parts[j]=convertPart(unconvertedLines_Ext,j)
+		else:
+			print("No DialogueID "+str(j))
+	print(parts.keys())
+	
+	if parts: #Do not add empty data
+		fName = "StoryExtData-"+str(i)+'.json'
+		unknownExtData.append(writeAndReturnPart(
+			parts,
+			"Parts "+str(i*10)+"-"+str(i*10+9),
+			fName,
+			list(parts.keys())
+		))
+
+story['event'].append({
+	"name":"Unknown ExtData",
+	"episodes":unknownExtData
+})
+
+unknownSubData = []
+for i in range(0,14):
+	parts = {}
+	for j in range(i*10,i*10+10):
+		if j in unconvertedLines_Sub:
+			parts[j]=convertPart(unconvertedLines_Sub,j)
+		else:
+			print("No DialogueID "+str(j))
+	print(parts.keys())
+	
+	if parts: #Do not add empty data
+		fName = "StorySubData-"+str(i)+'.json'
+		unknownSubData.append({
+			"name":"Parts "+str(i*10)+"-"+str(i*10+9),
+			"parts":fName
+		})
+		
+		with open("../avgtxt/"+fName,'wb') as f:
+				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
+				print("Generated "+fName)
+story['event'].append({
+	"name":"Unknown SubData",
+	"episodes":unknownSubData
+})
+
+
+
+				
+
+#Convert StoryInsideData
+parts = {}
+for j in range(0,11):
+	if j in unconvertedLines_Inside:
+		parts[j]=convertPart(unconvertedLines_Inside,j)
+	else:
+		print("No DialogueID "+str(j))
+
+fName = "StoryInsideData.json"
+story['event'].append({
+	"name":"Unknown InsideData",
+	"episodes":[
+		{
+			"name":"Parts 0-10",
+			"parts":fName
+		}
+	]
+})
+
+
+
 #sys.exit(0)
 
 #HG2 x GFL
