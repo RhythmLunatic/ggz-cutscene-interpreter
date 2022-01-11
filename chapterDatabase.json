@@ -2268,28 +2268,32 @@
 						"name": "Previously on Houkai Impact 3:",
 						"parts": "StoryKyusyoData-chapter-2-32.json",
 						"part_names": [
-							112
+							112,
+							995
 						]
 					},
 					{
 						"name": "To be continued",
 						"parts": "StoryKyusyoData-chapter-3-38.json",
 						"part_names": [
-							159
+							159,
+							994
 						]
 					},
 					{
 						"name": "To be continued",
 						"parts": "StoryKyusyoData-chapter-4-58.json",
 						"part_names": [
-							209
+							209,
+							993
 						]
 					},
 					{
 						"name": "To be continued",
 						"parts": "StoryKyusyoData-chapter-5-77.json",
 						"part_names": [
-							209
+							209,
+							992
 						]
 					}
 				]

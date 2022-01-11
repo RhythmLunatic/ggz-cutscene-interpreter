@@ -12,4 +12,4 @@ Refer to https://github.com/RhythmLunatic/random-scripts/blob/master/Guns%20Girl
 Additionally to get images you must download the apk, add .zip at the end, and extract the embedded assetbundles.
 
 # Build
-WIP, there is no makefile yet.
+Create a folder named GameData inside 'build', then add the .tsv extension to the files you dumped. Then run make.

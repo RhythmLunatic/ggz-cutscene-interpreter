@@ -5,7 +5,7 @@ build:
 	./convertToInterpreter.py
 	./BuildSpeakerPortraitDatabase.py
 	mv database.json ../
-	mv biographies.json ../
+	#mv biographies.json ../
 	rsync -arv txtFixes/ ../avgtxt/
 	
 clean:

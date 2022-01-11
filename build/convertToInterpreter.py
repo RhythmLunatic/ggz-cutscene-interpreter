@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.8
 import json as JSON
 import sys
 import os
@@ -325,7 +325,7 @@ def convertPart(section:dict,partNumber:int,_type=0):
 		
 		if StoryTextV2.text > 0 and StoryTextV2.text in textMap:
 			allUsedLinesSoFar.append(StoryTextV2.text)
-			commandsList.append(['msg']+[StoryTextV2.text]+textMap[StoryTextV2.text][:4])
+			commandsList.append(['msg']+[StoryTextV2.text]+textMap[StoryTextV2.text][:4]) # type: ignore
 		else:
 			print("ID "+str(StoryTextV2.text)+" not present in text db, assuming command with no message")
 			#print(StoryTextV2)
@@ -343,7 +343,7 @@ def writeAndReturnPart(parts:dict,name:str,fileName:str,partNames:list=None)->di
 		"parts":fileName
 	}
 	if partNames:
-		d["part_names"]=partNames
+		d["part_names"]=partNames # type: ignore
 	return d
 
 story = {
@@ -397,8 +397,8 @@ class PlayBackStoryTitleDataStruct():
 		#2 = Side stories? Halloween event is here?
 		self.StoryType = int(d[1])
 		self.ExType = int(d[2]) #Seems to control grouping. Genkai Room and Mysterious Deep are supposed to be in the same group and are both Group 6.
-		self.StoryTitle = int(d[3]) #The chapter title, but I'm not sure how it's determined when there are two different titles in the same group.
-		self.StoryTitle=[self.StoryTitle]+textMap[self.StoryTitle]
+		tmp = int(d[3]) #The chapter title, but I'm not sure how it's determined when there are two different titles in the same group.
+		self.StoryTitle:list =[tmp]+textMap[tmp]
 		#Column 4 seems to be unused
 		self.EpisodeNumber = int(d[5])
 		self.EpisodePrefix = int(d[6]) #Episode 1, Episode 2, etc
@@ -569,7 +569,7 @@ for i in range(len(kyusyoMissionDatas)):
 		toAdd = thisMission.ChapterNum
 		if thisMission.StoryIDEnd > 900 and thisMission.StoryIDEnd < 1000:
 			#Not sure how this works, but these parts exist
-			parts[j] = convertPart(unconvertedLines_Kyusyo,thisMission.StoryIDEnd)
+			parts[thisMission.StoryIDEnd] = convertPart(unconvertedLines_Kyusyo,thisMission.StoryIDEnd)
 			toAdd=8
 		story['side'][toAdd]['episodes'].append({
 			"name":thisMission.MissionName,
@@ -593,24 +593,21 @@ for i in range(0,14):
 	print(parts.keys())
 	
 	if parts: #Do not add empty data
-		fName = "StoryKyusyoData-unk-"+str(i)+'.json'
-		unknownKyusyoData.append({
-			"name":"Parts "+str(i*10)+"-"+str(i*10+9),
-			"parts":fName,
-			"part_names":list(parts.keys())
-		})
+		unknownKyusyoData.append(writeAndReturnPart(
+			parts,
+			"Parts "+str(i*10)+"-"+str(i*10+9),
+			"StoryKyusyoData-unk-"+str(i)+'.json',
+			list(parts.keys())
+		))
 		
-		with open("../avgtxt/"+fName,'wb') as f:
-				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
-				print("Generated "+fName)
 story['side'].append({
 	"name":"Unknown Kyusyo Data",
 	"episodes":unknownKyusyoData
 })
 
-with open("../avgtxt/"+fName,'wb') as f:
+"""with open("../avgtxt/"+fName,'wb') as f:
 	f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
-	print("Generated "+fName)
+	print("Generated "+fName)"""
 
 #Grouped extdata goes here
 groupedExtData = []
