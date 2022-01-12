@@ -178,15 +178,12 @@ def getStoryTSV(fileName):
 			curPart = int(StoryTextV2[0])
 			if curPart not in unconvertedData:
 				unconvertedData[curPart] = [StoryTextV2]
-				#print("added part "+str(lastPart))
-				#print(unconvertedLines_Main)
-				#sys.exit(0)
 			else:
 				unconvertedData[curPart].append(StoryTextV2)
 			lastPart=curPart
 	return unconvertedData
 
-unconvertedLines_Main = getStoryTSV('StoryMainData.tsv')
+#unconvertedLines_Main = getStoryTSV('StoryMainData.tsv')
 unconvertedLines_Sub = getStoryTSV('StorySubData.tsv')
 unconvertedLines_Ext = getStoryTSV('StoryExtData.tsv')
 unconvertedLines_Inside = getStoryTSV('StoryInsideData.tsv')
@@ -377,6 +374,57 @@ with open("../avgtxt/prologue.json",'wb') as f:
 	f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
 
 
+
+#LevelMetaV2 is not understood, but it contains information about levels...
+#To get descriptions we'll just reverse search the title
+class LevelMetaV2Struct():
+	def __init__(self,info) -> None:
+		d=info.split("\t")
+		if "TEXT" in d[8]:
+			tmp=int(d[8][4:])
+			if tmp in textMap:
+				self.ChapterTitle=[tmp]+textMap[tmp]
+			else:
+				self.ChapterTitle=[str(tmp)]
+		else:
+			self.ChapterTitle=[0,d[8]]
+		if "TEXT" in d[9]:
+			tmp=int(d[9][4:])
+			self.ChapterDescription=[tmp]+textMap[tmp]
+		else:
+			self.ChapterDescription=[0,d[9]]
+
+		tmp=d[11]
+		if "TEXT" in tmp:
+			tmp=int(tmp[4:])
+			if tmp in textMap:
+				self.StageName:str=textMap[tmp][0]
+			else:
+				self.StageName:str=""
+		else:
+			self.StageName:str=tmp
+		pass
+LevelMetaV2s:List[LevelMetaV2Struct]=[]
+with open("GameData/LevelMetaV2.tsv",'r') as f:
+	f.readline()
+	while True:
+		l=f.readline()
+		if not l:
+			break
+		#I don't think there's any repeated IDs, but regardless we don't care about IDs right now
+		LevelMetaV2s.append(LevelMetaV2Struct(l))
+#print(LevelMetaV2s[0])
+
+def getLevelMetaFromChapterTitleID(chID:int):
+	#print("Searching for "+str(chID))
+	for lm in LevelMetaV2s:
+		if chID==lm.ChapterTitle[0]:
+			#print("Return "+str(lm.ChapterDescription[0]))
+			return lm
+	#raise KeyError("Chapter ID "+str(chID)+" not present in LevelMetaV2.")
+	return None
+
+
 #All stories in the playback archive.
 unconvertedLines_Playback = getStoryTSV('PlaybackStoryData.tsv')
 
@@ -403,7 +451,7 @@ class PlayBackStoryTitleDataStruct():
 		self.StoryTitle:list =[tmp]+textMap[tmp]
 		#Column 4 seems to be unused
 		self.EpisodeNumber = int(d[5])
-		self.EpisodePrefix = int(d[6]) #Episode 1, Episode 2, etc
+		self.EpisodePrefix = int(d[6]) #Episode 1, Episode 2, etc. Or Chapter 1, Chapter 2, etc
 		#Column 7 is unused
 		#Column 8 is irrelevant (Just the graphic to display in-game)
 		self.EpisodeTitle = int(d[9])
@@ -434,7 +482,6 @@ with open(os.path.join("GameData",'PlayBackStoryTitleData.tsv'),'r') as storyDat
 def writePlaybackData():
 	parts = {}
 
-
 	for i in range(len(playbackData)):
 		#lastData = playbackData[i]
 		thisData:PlayBackStoryTitleDataStruct = playbackData[i]
@@ -446,6 +493,9 @@ def writePlaybackData():
 			parts[thisData.DialogueID]=newPart
 			if thisData.DialogueID==91:
 				parts[thisData.DialogueID].insert(0,['bgm','The Sound of the End'])
+			elif thisData.DialogueID==54 or thisData.DialogueID==57:
+				parts[thisData.DialogueID].insert(0,['bgm','Amusement Park'])
+
 
 		if i==len(playbackData)-1 or thisData.EpisodeNumber != playbackData[i+1].EpisodeNumber:
 			if parts:
@@ -458,6 +508,7 @@ def writePlaybackData():
 
 				#if storyType == 6:
 				#	storyType = 5
+				#This is so insanely stupid...
 				idx = getIndexFromKey(thisData.StoryTitle[1])
 				if idx==-1:
 					story['main'].append({
@@ -471,11 +522,17 @@ def writePlaybackData():
 							}
 						]
 					})
+					lm = getLevelMetaFromChapterTitleID(thisData.EpisodeTitle)
+					if lm:
+						story['main'][-1]['episodes'][-1]['description']=lm.ChapterDescription[1]
 				else:
 					story['main'][idx]['episodes'].append({
 						"name":thisData.getChapterName(),
 						"parts":fileName
 					})
+					lm = getLevelMetaFromChapterTitleID(thisData.EpisodeTitle)
+					if lm:
+						story['main'][idx]['episodes'][-1]['description']=lm.ChapterDescription[1]
 			parts={}
 
 writePlaybackData()
@@ -585,7 +642,8 @@ def writeFireMothData():
 				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
 				print("Generated "+fName)
 
-	unknownKyusyoData = []
+	#I think we have every single part, so this isn't necessary
+	"""unknownKyusyoData = []
 	for i in range(0,14):
 		parts = {}
 		for j in range(i*10,i*10+10):
@@ -606,10 +664,12 @@ def writeFireMothData():
 	story['side'].append({
 		"name":"Unknown Kyusyo Data",
 		"episodes":unknownKyusyoData
-	})
+	})"""
 writeFireMothData()
 
 
+
+#Era ZERO... Which was cancelled, by the way. There's nothing after the first two chapters.
 class DLC2MissionData():
 	def __init__(self,info) -> None:
 		d = info.split("\t")
@@ -680,10 +740,11 @@ def writeDLC2Data():
 				thisInfo.MissionName,
 				"DLC2-"+str(startAt)+"-"+str(thisInfo.StoryIDEnd)
 			))
+			dlc2Datas[-1]['description']=thisInfo.MissionDesc
 			
 
 		story['event'].append({
-			"name":"DLC2 Chapter "+str(i+1),
+			"name":"Era ZERO Chapter "+str(i+1),
 			"episodes":dlc2Datas
 		})
 writeDLC2Data()
@@ -727,7 +788,7 @@ groupedExtData = [
 	writeAndReturnPart3(1722,1725,"Theresa's birthday?"),
 	writeAndReturnPart3(1749,1754,"Kaguya"),
 	writeAndReturnPart3(1755,1763,"CN only event"),
-	writeAndReturnPart3(1674,1769,"Nina afterstory"),
+	writeAndReturnPart3(1764,1769,"Nina afterstory"),
 	writeAndReturnPart3(1770,1775,"Kira"),
 	writeAndReturnPart3(1776,1781,"Chloe"),
 	writeAndReturnPart3(1804,1812,"Seele's stigmata space and Seele 2"),
@@ -739,7 +800,11 @@ groupedExtData = [
 	writeAndReturnPart3(1885,1893,"Mei becomes a child"),
 	writeAndReturnPart3(1909,1920,"Date A Live crossover"),
 	writeAndReturnPart3(1930,1939,"Unused Fire Moth garbage"),
-	writeAndReturnPart3(2077,2081,"Bronya's Magic show, also sexy Sin Mal"),
+	writeAndReturnPart3(2424,2431,"school au"),
+	writeAndReturnPart3(2464,2469,"Unused junk"),
+	writeAndReturnPart3(2470,2478,"Wonderland"),
+	writeAndReturnPart3(2524,2534,"Wonderland again"),
+	writeAndReturnPart3(2077,2081,"Seele's Magic show, also sexy Sin Mal"),
 	writeAndReturnPart3(3805,3096,"Schoolgirl AU stuff"),
 	writeAndReturnPart3(3100,3108,"Sirin goes to school"),
 	
