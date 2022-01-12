@@ -2529,6 +2529,104 @@
 		],
 		"event": [
 			{
+				"name": "DLC2 Chapter 1",
+				"episodes": [
+					{
+						"name": "Core Test",
+						"parts": "DLC2-0-2"
+					},
+					{
+						"name": "A Fresh Start",
+						"parts": "DLC2-3-6"
+					},
+					{
+						"name": "Execution of Task",
+						"parts": "DLC2-7-9"
+					},
+					{
+						"name": "Marker Placed",
+						"parts": "DLC2-10-10"
+					},
+					{
+						"name": "Break the Surrounding",
+						"parts": "DLC2-11-11"
+					},
+					{
+						"name": "Twists and Turns Continue",
+						"parts": "DLC2-12-13"
+					},
+					{
+						"name": "Chase the Enemy",
+						"parts": "DLC2-14-14"
+					},
+					{
+						"name": "Search for Traces",
+						"parts": "DLC2-15-15"
+					},
+					{
+						"name": "Setting Goals",
+						"parts": "DLC2-16-16"
+					}
+				]
+			},
+			{
+				"name": "DLC2 Chapter 2",
+				"episodes": [
+					{
+						"name": "Check Daily Routine",
+						"parts": "DLC2-16-17"
+					},
+					{
+						"name": "Confrontation Training",
+						"parts": "DLC2-18-18"
+					},
+					{
+						"name": "Hostile Visitor",
+						"parts": "DLC2-19-19"
+					},
+					{
+						"name": "Dismembered Limbs",
+						"parts": "DLC2-20-22"
+					},
+					{
+						"name": "Illegal Black Market",
+						"parts": "DLC2-23-23"
+					},
+					{
+						"name": "Will to Chase",
+						"parts": "DLC2-24-24"
+					},
+					{
+						"name": "Deep Dive",
+						"parts": "DLC2-25-27"
+					},
+					{
+						"name": "Siege Breakout",
+						"parts": "DLC2-28-28"
+					},
+					{
+						"name": "Covered Evacuation",
+						"parts": "DLC2-29-29"
+					},
+					{
+						"name": "Armed Attack",
+						"parts": "DLC2-30-30"
+					},
+					{
+						"name": "Cold Fog",
+						"parts": "DLC2-31-33"
+					},
+					{
+						"name": "Child of Frost",
+						"parts": "DLC2-34-34"
+					},
+					{
+						"name": "Subsided Tumult",
+						"parts": "DLC2-35-35"
+					}
+				]
+			},
+			{
 				"name": "Stuff...",
 				"episodes": [
 					{
@@ -2537,11 +2635,363 @@
 					},
 					{
 						"name": "Hyperdimension Neptunia Crossover",
-						"parts": "ExtData-2060-2076.json"
+						"parts": "ExtData-2057-2069.json"
 					},
 					{
 						"name": "Hyperdimension Neptunia Crossover 2",
 						"parts": "ExtData-2497-2523.json"
+					},
+					{
+						"name": "Honkai RPG",
+						"parts": "ExtData-1657-1666.json",
+						"part_names": [
+							1657,
+							1658,
+							1659,
+							1660,
+							1661,
+							1662,
+							1663,
+							1664,
+							1665
+						]
+					},
+					{
+						"name": "Theresa's birthday?",
+						"parts": "ExtData-1722-1726.json",
+						"part_names": [
+							1722,
+							1723,
+							1724,
+							1725
+						]
+					},
+					{
+						"name": "Kaguya",
+						"parts": "ExtData-1749-1755.json",
+						"part_names": [
+							1749,
+							1750,
+							1751,
+							1752,
+							1753,
+							1754
+						]
+					},
+					{
+						"name": "CN only event",
+						"parts": "ExtData-1755-1764.json",
+						"part_names": [
+							1755,
+							1756,
+							1757,
+							1758,
+							1759,
+							1760,
+							1761,
+							1762,
+							1763
+						]
+					},
+					{
+						"name": "Nina afterstory",
+						"parts": "ExtData-1674-1770.json",
+						"part_names": [
+							1674,
+							1675,
+							1676,
+							1677,
+							1678,
+							1679,
+							1680,
+							1681,
+							1682,
+							1683,
+							1684,
+							1685,
+							1686,
+							1687,
+							1688,
+							1689,
+							1690,
+							1691,
+							1692,
+							1693,
+							1694,
+							1695,
+							1696,
+							1697,
+							1698,
+							1699,
+							1700,
+							1701,
+							1702,
+							1703,
+							1704,
+							1705,
+							1706,
+							1707,
+							1708,
+							1709,
+							1710,
+							1711,
+							1712,
+							1713,
+							1714,
+							1715,
+							1716,
+							1717,
+							1718,
+							1719,
+							1720,
+							1721,
+							1722,
+							1723,
+							1724,
+							1725,
+							1726,
+							1727,
+							1728,
+							1729,
+							1730,
+							1731,
+							1732,
+							1733,
+							1734,
+							1735,
+							1736,
+							1737,
+							1738,
+							1739,
+							1740,
+							1741,
+							1742,
+							1743,
+							1744,
+							1745,
+							1746,
+							1747,
+							1748,
+							1749,
+							1750,
+							1751,
+							1752,
+							1753,
+							1754,
+							1755,
+							1756,
+							1757,
+							1758,
+							1759,
+							1760,
+							1761,
+							1762,
+							1763,
+							1764,
+							1765,
+							1766,
+							1767,
+							1768,
+							1769
+						]
+					},
+					{
+						"name": "Kira",
+						"parts": "ExtData-1770-1776.json",
+						"part_names": [
+							1770,
+							1771,
+							1772,
+							1773,
+							1774,
+							1775
+						]
+					},
+					{
+						"name": "Chloe",
+						"parts": "ExtData-1776-1782.json",
+						"part_names": [
+							1776,
+							1777,
+							1778,
+							1779,
+							1780,
+							1781
+						]
+					},
+					{
+						"name": "Seele's stigmata space and Seele 2",
+						"parts": "ExtData-1804-1813.json",
+						"part_names": [
+							1804,
+							1805,
+							1806,
+							1807,
+							1808,
+							1809,
+							1810,
+							1811,
+							1812
+						]
+					},
+					{
+						"name": "asdasdadadasd",
+						"parts": "ExtData-1813-1822.json",
+						"part_names": [
+							1813,
+							1814,
+							1815,
+							1816,
+							1817,
+							1818,
+							1819,
+							1820,
+							1821
+						]
+					},
+					{
+						"name": "asasddadsdadsd 2",
+						"parts": "ExtData-1830-1858.json",
+						"part_names": [
+							1830,
+							1831,
+							1832,
+							1833,
+							1834,
+							1835,
+							1836,
+							1837,
+							1838,
+							1839,
+							1840,
+							1841,
+							1842,
+							1843,
+							1844,
+							1845,
+							1846,
+							1847,
+							1848,
+							1849,
+							1850,
+							1851,
+							1852,
+							1853,
+							1854,
+							1855,
+							1856,
+							1857
+						]
+					},
+					{
+						"name": "Another CN exclusive",
+						"parts": "ExtData-1858-1862.json",
+						"part_names": [
+							1858,
+							1859,
+							1860,
+							1861
+						]
+					},
+					{
+						"name": "asdjiaodijojwo 3",
+						"parts": "ExtData-1862-1865.json",
+						"part_names": [
+							1862,
+							1863,
+							1864
+						]
+					},
+					{
+						"name": "Delta, no not the pink one",
+						"parts": "ExtData-1865-1871.json",
+						"part_names": [
+							1865,
+							1866,
+							1867,
+							1868,
+							1869,
+							1870
+						]
+					},
+					{
+						"name": "Mei becomes a child",
+						"parts": "ExtData-1885-1894.json",
+						"part_names": [
+							1885,
+							1886,
+							1887,
+							1888,
+							1889,
+							1890,
+							1891,
+							1892,
+							1893
+						]
+					},
+					{
+						"name": "Date A Live crossover",
+						"parts": "ExtData-1909-1921.json",
+						"part_names": [
+							1909,
+							1910,
+							1911,
+							1912,
+							1913,
+							1914,
+							1915,
+							1916,
+							1917,
+							1918,
+							1919,
+							1920
+						]
+					},
+					{
+						"name": "Unused Fire Moth garbage",
+						"parts": "ExtData-1930-1940.json",
+						"part_names": [
+							1930,
+							1931,
+							1932,
+							1933,
+							1934,
+							1935,
+							1936,
+							1937,
+							1938,
+							1939
+						]
+					},
+					{
+						"name": "Bronya's Magic show, also sexy Sin Mal",
+						"parts": "ExtData-2077-2082.json",
+						"part_names": [
+							2077,
+							2078,
+							2079,
+							2080,
+							2081
+						]
+					},
+					{
+						"name": "Schoolgirl AU stuff",
+						"parts": "ExtData-3805-3097.json"
+					},
+					{
+						"name": "Sirin goes to school",
+						"parts": "ExtData-3100-3109.json",
+						"part_names": [
+							3100,
+							3101,
+							3102,
+							3103,
+							3104,
+							3105,
+							3106,
+							3107,
+							3108
+						]
 					},
 					{
 						"name": "JP Only event?",
@@ -3010,9 +3460,7 @@
 						"parts": "StoryExtData-57.json",
 						"part_names": [
 							573,
-							574,
-							575,
-							576
+							574
 						]
 					},
 					{
@@ -4325,7 +4773,6 @@
 						"name": "Parts 1620-1629",
 						"parts": "StoryExtData-162.json",
 						"part_names": [
-							1620,
 							1628,
 							1629
 						]
@@ -4363,142 +4810,13 @@
 						"part_names": [
 							1654,
 							1655,
-							1656,
-							1657,
-							1658,
-							1659
-						]
-					},
-					{
-						"name": "Parts 1660-1669",
-						"parts": "StoryExtData-166.json",
-						"part_names": [
-							1660,
-							1661,
-							1662,
-							1663,
-							1664,
-							1665
-						]
-					},
-					{
-						"name": "Parts 1670-1679",
-						"parts": "StoryExtData-167.json",
-						"part_names": [
-							1674,
-							1675,
-							1676,
-							1677,
-							1678,
-							1679
-						]
-					},
-					{
-						"name": "Parts 1700-1709",
-						"parts": "StoryExtData-170.json",
-						"part_names": [
-							1709
-						]
-					},
-					{
-						"name": "Parts 1710-1719",
-						"parts": "StoryExtData-171.json",
-						"part_names": [
-							1710,
-							1711,
-							1712
-						]
-					},
-					{
-						"name": "Parts 1720-1729",
-						"parts": "StoryExtData-172.json",
-						"part_names": [
-							1722,
-							1723,
-							1724,
-							1725,
-							1726,
-							1727,
-							1728,
-							1729
-						]
-					},
-					{
-						"name": "Parts 1730-1739",
-						"parts": "StoryExtData-173.json",
-						"part_names": [
-							1730,
-							1731,
-							1732,
-							1733,
-							1734,
-							1735,
-							1736,
-							1737,
-							1738
-						]
-					},
-					{
-						"name": "Parts 1740-1749",
-						"parts": "StoryExtData-174.json",
-						"part_names": [
-							1749
-						]
-					},
-					{
-						"name": "Parts 1750-1759",
-						"parts": "StoryExtData-175.json",
-						"part_names": [
-							1750,
-							1751,
-							1752,
-							1753,
-							1754,
-							1755,
-							1756,
-							1757,
-							1758,
-							1759
-						]
-					},
-					{
-						"name": "Parts 1760-1769",
-						"parts": "StoryExtData-176.json",
-						"part_names": [
-							1760,
-							1761,
-							1762,
-							1763,
-							1764,
-							1765,
-							1766,
-							1767,
-							1768,
-							1769
-						]
-					},
-					{
-						"name": "Parts 1770-1779",
-						"parts": "StoryExtData-177.json",
-						"part_names": [
-							1770,
-							1771,
-							1772,
-							1773,
-							1774,
-							1775,
-							1776,
-							1777,
-							1778,
-							1779
+							1656
 						]
 					},
 					{
 						"name": "Parts 1780-1789",
 						"parts": "StoryExtData-178.json",
 						"part_names": [
-							1780,
-							1781,
 							1782,
 							1783,
 							1784,
@@ -4523,129 +4841,13 @@
 							1800,
 							1801,
 							1802,
-							1803,
-							1804,
-							1805,
-							1806,
-							1807,
-							1808,
-							1809
-						]
-					},
-					{
-						"name": "Parts 1810-1819",
-						"parts": "StoryExtData-181.json",
-						"part_names": [
-							1810,
-							1811,
-							1812,
-							1813,
-							1814,
-							1815,
-							1816,
-							1817,
-							1818,
-							1819
-						]
-					},
-					{
-						"name": "Parts 1820-1829",
-						"parts": "StoryExtData-182.json",
-						"part_names": [
-							1820,
-							1821
-						]
-					},
-					{
-						"name": "Parts 1830-1839",
-						"parts": "StoryExtData-183.json",
-						"part_names": [
-							1830,
-							1831,
-							1832,
-							1833,
-							1834,
-							1835,
-							1836,
-							1837,
-							1838,
-							1839
-						]
-					},
-					{
-						"name": "Parts 1840-1849",
-						"parts": "StoryExtData-184.json",
-						"part_names": [
-							1840,
-							1841,
-							1842,
-							1843,
-							1844,
-							1845,
-							1846,
-							1847,
-							1848,
-							1849
-						]
-					},
-					{
-						"name": "Parts 1850-1859",
-						"parts": "StoryExtData-185.json",
-						"part_names": [
-							1850,
-							1851,
-							1852,
-							1853,
-							1854,
-							1855,
-							1856,
-							1857,
-							1858,
-							1859
-						]
-					},
-					{
-						"name": "Parts 1860-1869",
-						"parts": "StoryExtData-186.json",
-						"part_names": [
-							1860,
-							1861,
-							1862,
-							1863,
-							1864,
-							1865,
-							1866,
-							1867,
-							1868,
-							1869
-						]
-					},
-					{
-						"name": "Parts 1870-1879",
-						"parts": "StoryExtData-187.json",
-						"part_names": [
-							1870
-						]
-					},
-					{
-						"name": "Parts 1880-1889",
-						"parts": "StoryExtData-188.json",
-						"part_names": [
-							1885,
-							1886,
-							1887,
-							1888,
-							1889
+							1803
 						]
 					},
 					{
 						"name": "Parts 1890-1899",
 						"parts": "StoryExtData-189.json",
 						"part_names": [
-							1890,
-							1891,
-							1892,
-							1893,
 							1894,
 							1895,
 							1896,
@@ -4665,31 +4867,13 @@
 							1905,
 							1906,
 							1907,
-							1908,
-							1909
-						]
-					},
-					{
-						"name": "Parts 1910-1919",
-						"parts": "StoryExtData-191.json",
-						"part_names": [
-							1910,
-							1911,
-							1912,
-							1913,
-							1914,
-							1915,
-							1916,
-							1917,
-							1918,
-							1919
+							1908
 						]
 					},
 					{
 						"name": "Parts 1920-1929",
 						"parts": "StoryExtData-192.json",
 						"part_names": [
-							1920,
 							1921
 						]
 					},
@@ -4864,27 +5048,26 @@
 							2053,
 							2054,
 							2055,
-							2056,
-							2057,
-							2058,
-							2059
+							2056
 						]
 					},
 					{
 						"name": "Parts 2070-2079",
 						"parts": "StoryExtData-207.json",
 						"part_names": [
-							2077,
-							2078,
-							2079
+							2070,
+							2071,
+							2072,
+							2073,
+							2074,
+							2075,
+							2076
 						]
 					},
 					{
 						"name": "Parts 2080-2089",
 						"parts": "StoryExtData-208.json",
 						"part_names": [
-							2080,
-							2081,
 							2082,
 							2083,
 							2084,
@@ -6165,21 +6348,6 @@
 							3098,
 							3099
 						]
-					},
-					{
-						"name": "Parts 3100-3109",
-						"parts": "StoryExtData-310.json",
-						"part_names": [
-							3100,
-							3101,
-							3102,
-							3103,
-							3104,
-							3105,
-							3106,
-							3107,
-							3108
-						]
 					}
 				]
 			},
@@ -6188,59 +6356,226 @@
 				"episodes": [
 					{
 						"name": "Parts 0-9",
-						"parts": "StorySubData-0.json"
+						"parts": "StorySubData-0.json",
+						"part_names": [
+							1,
+							2,
+							3,
+							4,
+							5,
+							6,
+							7,
+							8,
+							9
+						]
 					},
 					{
 						"name": "Parts 10-19",
-						"parts": "StorySubData-1.json"
+						"parts": "StorySubData-1.json",
+						"part_names": [
+							10,
+							11,
+							12,
+							13,
+							14,
+							15,
+							16,
+							17,
+							18,
+							19
+						]
 					},
 					{
 						"name": "Parts 20-29",
-						"parts": "StorySubData-2.json"
+						"parts": "StorySubData-2.json",
+						"part_names": [
+							20,
+							21,
+							22,
+							23,
+							24,
+							25,
+							26,
+							27,
+							28,
+							29
+						]
 					},
 					{
 						"name": "Parts 30-39",
-						"parts": "StorySubData-3.json"
+						"parts": "StorySubData-3.json",
+						"part_names": [
+							30,
+							31,
+							32,
+							33,
+							34,
+							35,
+							36,
+							37,
+							38,
+							39
+						]
 					},
 					{
 						"name": "Parts 40-49",
-						"parts": "StorySubData-4.json"
+						"parts": "StorySubData-4.json",
+						"part_names": [
+							40,
+							41,
+							42,
+							43,
+							44,
+							45,
+							46,
+							47,
+							48,
+							49
+						]
 					},
 					{
 						"name": "Parts 50-59",
-						"parts": "StorySubData-5.json"
+						"parts": "StorySubData-5.json",
+						"part_names": [
+							50,
+							51,
+							52,
+							53,
+							54,
+							55,
+							56,
+							57,
+							58,
+							59
+						]
 					},
 					{
 						"name": "Parts 60-69",
-						"parts": "StorySubData-6.json"
+						"parts": "StorySubData-6.json",
+						"part_names": [
+							60,
+							61,
+							62,
+							63,
+							64,
+							65,
+							66,
+							67,
+							68,
+							69
+						]
 					},
 					{
 						"name": "Parts 70-79",
-						"parts": "StorySubData-7.json"
+						"parts": "StorySubData-7.json",
+						"part_names": [
+							70,
+							71,
+							72,
+							73,
+							74,
+							75,
+							76,
+							77,
+							78,
+							79
+						]
 					},
 					{
 						"name": "Parts 80-89",
-						"parts": "StorySubData-8.json"
+						"parts": "StorySubData-8.json",
+						"part_names": [
+							80,
+							81,
+							82,
+							83,
+							84,
+							85,
+							86,
+							87,
+							88,
+							89
+						]
 					},
 					{
 						"name": "Parts 90-99",
-						"parts": "StorySubData-9.json"
+						"parts": "StorySubData-9.json",
+						"part_names": [
+							90,
+							91,
+							92,
+							93,
+							94,
+							95,
+							96,
+							97,
+							98,
+							99
+						]
 					},
 					{
 						"name": "Parts 100-109",
-						"parts": "StorySubData-10.json"
+						"parts": "StorySubData-10.json",
+						"part_names": [
+							100,
+							101,
+							102,
+							103,
+							104,
+							105,
+							106,
+							107,
+							108,
+							109
+						]
 					},
 					{
 						"name": "Parts 110-119",
-						"parts": "StorySubData-11.json"
+						"parts": "StorySubData-11.json",
+						"part_names": [
+							110,
+							111,
+							112,
+							113,
+							114,
+							115,
+							116,
+							117,
+							118,
+							119
+						]
 					},
 					{
 						"name": "Parts 120-129",
-						"parts": "StorySubData-12.json"
+						"parts": "StorySubData-12.json",
+						"part_names": [
+							120,
+							121,
+							122,
+							123,
+							124,
+							125,
+							126,
+							127,
+							128,
+							129
+						]
 					},
 					{
 						"name": "Parts 130-139",
-						"parts": "StorySubData-13.json"
+						"parts": "StorySubData-13.json",
+						"part_names": [
+							130,
+							131,
+							132,
+							133,
+							134,
+							135,
+							136,
+							137,
+							138,
+							139
+						]
 					}
 				]
 			},
@@ -6249,7 +6584,7 @@
 				"episodes": [
 					{
 						"name": "Parts 0-10",
-						"parts": "StoryInsideData.json"
+						"parts": "storyinsidedata.json"
 					}
 				]
 			}
@@ -6510,294 +6845,315 @@
 		"StoryKyusyoData-unk-11.json": "side-9-11",
 		"StoryKyusyoData-unk-12.json": "side-9-12",
 		"StoryKyusyoData-unk-13.json": "side-9-13",
-		"ExtData-3055-3061.json": "event-0-0",
-		"ExtData-2060-2076.json": "event-0-1",
-		"ExtData-2497-2523.json": "event-0-2",
-		"ExtData-390-408.json": "event-0-3",
-		"StoryExtData-0.json": "event-1-0",
-		"StoryExtData-1.json": "event-1-1",
-		"StoryExtData-2.json": "event-1-2",
-		"StoryExtData-3.json": "event-1-3",
-		"StoryExtData-4.json": "event-1-4",
-		"StoryExtData-5.json": "event-1-5",
-		"StoryExtData-6.json": "event-1-6",
-		"StoryExtData-7.json": "event-1-7",
-		"StoryExtData-8.json": "event-1-8",
-		"StoryExtData-9.json": "event-1-9",
-		"StoryExtData-14.json": "event-1-10",
-		"StoryExtData-15.json": "event-1-11",
-		"StoryExtData-16.json": "event-1-12",
-		"StoryExtData-17.json": "event-1-13",
-		"StoryExtData-18.json": "event-1-14",
-		"StoryExtData-19.json": "event-1-15",
-		"StoryExtData-20.json": "event-1-16",
-		"StoryExtData-21.json": "event-1-17",
-		"StoryExtData-22.json": "event-1-18",
-		"StoryExtData-23.json": "event-1-19",
-		"StoryExtData-24.json": "event-1-20",
-		"StoryExtData-25.json": "event-1-21",
-		"StoryExtData-26.json": "event-1-22",
-		"StoryExtData-28.json": "event-1-23",
-		"StoryExtData-29.json": "event-1-24",
-		"StoryExtData-30.json": "event-1-25",
-		"StoryExtData-33.json": "event-1-26",
-		"StoryExtData-34.json": "event-1-27",
-		"StoryExtData-35.json": "event-1-28",
-		"StoryExtData-36.json": "event-1-29",
-		"StoryExtData-42.json": "event-1-30",
-		"StoryExtData-43.json": "event-1-31",
-		"StoryExtData-46.json": "event-1-32",
-		"StoryExtData-47.json": "event-1-33",
-		"StoryExtData-48.json": "event-1-34",
-		"StoryExtData-49.json": "event-1-35",
-		"StoryExtData-50.json": "event-1-36",
-		"StoryExtData-51.json": "event-1-37",
-		"StoryExtData-52.json": "event-1-38",
-		"StoryExtData-56.json": "event-1-39",
-		"StoryExtData-57.json": "event-1-40",
-		"StoryExtData-58.json": "event-1-41",
-		"StoryExtData-59.json": "event-1-42",
-		"StoryExtData-60.json": "event-1-43",
-		"StoryExtData-61.json": "event-1-44",
-		"StoryExtData-62.json": "event-1-45",
-		"StoryExtData-63.json": "event-1-46",
-		"StoryExtData-64.json": "event-1-47",
-		"StoryExtData-65.json": "event-1-48",
-		"StoryExtData-66.json": "event-1-49",
-		"StoryExtData-68.json": "event-1-50",
-		"StoryExtData-70.json": "event-1-51",
-		"StoryExtData-71.json": "event-1-52",
-		"StoryExtData-72.json": "event-1-53",
-		"StoryExtData-73.json": "event-1-54",
-		"StoryExtData-74.json": "event-1-55",
-		"StoryExtData-75.json": "event-1-56",
-		"StoryExtData-76.json": "event-1-57",
-		"StoryExtData-77.json": "event-1-58",
-		"StoryExtData-78.json": "event-1-59",
-		"StoryExtData-79.json": "event-1-60",
-		"StoryExtData-80.json": "event-1-61",
-		"StoryExtData-81.json": "event-1-62",
-		"StoryExtData-82.json": "event-1-63",
-		"StoryExtData-83.json": "event-1-64",
-		"StoryExtData-84.json": "event-1-65",
-		"StoryExtData-85.json": "event-1-66",
-		"StoryExtData-86.json": "event-1-67",
-		"StoryExtData-87.json": "event-1-68",
-		"StoryExtData-88.json": "event-1-69",
-		"StoryExtData-89.json": "event-1-70",
-		"StoryExtData-90.json": "event-1-71",
-		"StoryExtData-91.json": "event-1-72",
-		"StoryExtData-92.json": "event-1-73",
-		"StoryExtData-93.json": "event-1-74",
-		"StoryExtData-94.json": "event-1-75",
-		"StoryExtData-95.json": "event-1-76",
-		"StoryExtData-96.json": "event-1-77",
-		"StoryExtData-97.json": "event-1-78",
-		"StoryExtData-98.json": "event-1-79",
-		"StoryExtData-99.json": "event-1-80",
-		"StoryExtData-100.json": "event-1-81",
-		"StoryExtData-101.json": "event-1-82",
-		"StoryExtData-102.json": "event-1-83",
-		"StoryExtData-103.json": "event-1-84",
-		"StoryExtData-104.json": "event-1-85",
-		"StoryExtData-105.json": "event-1-86",
-		"StoryExtData-106.json": "event-1-87",
-		"StoryExtData-107.json": "event-1-88",
-		"StoryExtData-108.json": "event-1-89",
-		"StoryExtData-109.json": "event-1-90",
-		"StoryExtData-110.json": "event-1-91",
-		"StoryExtData-111.json": "event-1-92",
-		"StoryExtData-112.json": "event-1-93",
-		"StoryExtData-113.json": "event-1-94",
-		"StoryExtData-114.json": "event-1-95",
-		"StoryExtData-115.json": "event-1-96",
-		"StoryExtData-116.json": "event-1-97",
-		"StoryExtData-117.json": "event-1-98",
-		"StoryExtData-118.json": "event-1-99",
-		"StoryExtData-119.json": "event-1-100",
-		"StoryExtData-122.json": "event-1-101",
-		"StoryExtData-123.json": "event-1-102",
-		"StoryExtData-124.json": "event-1-103",
-		"StoryExtData-125.json": "event-1-104",
-		"StoryExtData-126.json": "event-1-105",
-		"StoryExtData-127.json": "event-1-106",
-		"StoryExtData-128.json": "event-1-107",
-		"StoryExtData-130.json": "event-1-108",
-		"StoryExtData-131.json": "event-1-109",
-		"StoryExtData-132.json": "event-1-110",
-		"StoryExtData-134.json": "event-1-111",
-		"StoryExtData-135.json": "event-1-112",
-		"StoryExtData-136.json": "event-1-113",
-		"StoryExtData-138.json": "event-1-114",
-		"StoryExtData-139.json": "event-1-115",
-		"StoryExtData-140.json": "event-1-116",
-		"StoryExtData-141.json": "event-1-117",
-		"StoryExtData-142.json": "event-1-118",
-		"StoryExtData-143.json": "event-1-119",
-		"StoryExtData-144.json": "event-1-120",
-		"StoryExtData-145.json": "event-1-121",
-		"StoryExtData-146.json": "event-1-122",
-		"StoryExtData-147.json": "event-1-123",
-		"StoryExtData-148.json": "event-1-124",
-		"StoryExtData-149.json": "event-1-125",
-		"StoryExtData-150.json": "event-1-126",
-		"StoryExtData-151.json": "event-1-127",
-		"StoryExtData-152.json": "event-1-128",
-		"StoryExtData-153.json": "event-1-129",
-		"StoryExtData-154.json": "event-1-130",
-		"StoryExtData-155.json": "event-1-131",
-		"StoryExtData-156.json": "event-1-132",
-		"StoryExtData-157.json": "event-1-133",
-		"StoryExtData-158.json": "event-1-134",
-		"StoryExtData-159.json": "event-1-135",
-		"StoryExtData-160.json": "event-1-136",
-		"StoryExtData-161.json": "event-1-137",
-		"StoryExtData-162.json": "event-1-138",
-		"StoryExtData-163.json": "event-1-139",
-		"StoryExtData-164.json": "event-1-140",
-		"StoryExtData-165.json": "event-1-141",
-		"StoryExtData-166.json": "event-1-142",
-		"StoryExtData-167.json": "event-1-143",
-		"StoryExtData-170.json": "event-1-144",
-		"StoryExtData-171.json": "event-1-145",
-		"StoryExtData-172.json": "event-1-146",
-		"StoryExtData-173.json": "event-1-147",
-		"StoryExtData-174.json": "event-1-148",
-		"StoryExtData-175.json": "event-1-149",
-		"StoryExtData-176.json": "event-1-150",
-		"StoryExtData-177.json": "event-1-151",
-		"StoryExtData-178.json": "event-1-152",
-		"StoryExtData-179.json": "event-1-153",
-		"StoryExtData-180.json": "event-1-154",
-		"StoryExtData-181.json": "event-1-155",
-		"StoryExtData-182.json": "event-1-156",
-		"StoryExtData-183.json": "event-1-157",
-		"StoryExtData-184.json": "event-1-158",
-		"StoryExtData-185.json": "event-1-159",
-		"StoryExtData-186.json": "event-1-160",
-		"StoryExtData-187.json": "event-1-161",
-		"StoryExtData-188.json": "event-1-162",
-		"StoryExtData-189.json": "event-1-163",
-		"StoryExtData-190.json": "event-1-164",
-		"StoryExtData-191.json": "event-1-165",
-		"StoryExtData-192.json": "event-1-166",
-		"StoryExtData-194.json": "event-1-167",
-		"StoryExtData-195.json": "event-1-168",
-		"StoryExtData-196.json": "event-1-169",
-		"StoryExtData-197.json": "event-1-170",
-		"StoryExtData-198.json": "event-1-171",
-		"StoryExtData-199.json": "event-1-172",
-		"StoryExtData-200.json": "event-1-173",
-		"StoryExtData-201.json": "event-1-174",
-		"StoryExtData-202.json": "event-1-175",
-		"StoryExtData-203.json": "event-1-176",
-		"StoryExtData-204.json": "event-1-177",
-		"StoryExtData-205.json": "event-1-178",
-		"StoryExtData-207.json": "event-1-179",
-		"StoryExtData-208.json": "event-1-180",
-		"StoryExtData-209.json": "event-1-181",
-		"StoryExtData-210.json": "event-1-182",
-		"StoryExtData-211.json": "event-1-183",
-		"StoryExtData-212.json": "event-1-184",
-		"StoryExtData-214.json": "event-1-185",
-		"StoryExtData-215.json": "event-1-186",
-		"StoryExtData-216.json": "event-1-187",
-		"StoryExtData-217.json": "event-1-188",
-		"StoryExtData-218.json": "event-1-189",
-		"StoryExtData-219.json": "event-1-190",
-		"StoryExtData-220.json": "event-1-191",
-		"StoryExtData-221.json": "event-1-192",
-		"StoryExtData-222.json": "event-1-193",
-		"StoryExtData-223.json": "event-1-194",
-		"StoryExtData-224.json": "event-1-195",
-		"StoryExtData-225.json": "event-1-196",
-		"StoryExtData-226.json": "event-1-197",
-		"StoryExtData-227.json": "event-1-198",
-		"StoryExtData-228.json": "event-1-199",
-		"StoryExtData-229.json": "event-1-200",
-		"StoryExtData-230.json": "event-1-201",
-		"StoryExtData-231.json": "event-1-202",
-		"StoryExtData-232.json": "event-1-203",
-		"StoryExtData-233.json": "event-1-204",
-		"StoryExtData-234.json": "event-1-205",
-		"StoryExtData-235.json": "event-1-206",
-		"StoryExtData-236.json": "event-1-207",
-		"StoryExtData-237.json": "event-1-208",
-		"StoryExtData-238.json": "event-1-209",
-		"StoryExtData-239.json": "event-1-210",
-		"StoryExtData-240.json": "event-1-211",
-		"StoryExtData-241.json": "event-1-212",
-		"StoryExtData-242.json": "event-1-213",
-		"StoryExtData-243.json": "event-1-214",
-		"StoryExtData-244.json": "event-1-215",
-		"StoryExtData-245.json": "event-1-216",
-		"StoryExtData-246.json": "event-1-217",
-		"StoryExtData-247.json": "event-1-218",
-		"StoryExtData-252.json": "event-1-219",
-		"StoryExtData-253.json": "event-1-220",
-		"StoryExtData-254.json": "event-1-221",
-		"StoryExtData-255.json": "event-1-222",
-		"StoryExtData-256.json": "event-1-223",
-		"StoryExtData-257.json": "event-1-224",
-		"StoryExtData-258.json": "event-1-225",
-		"StoryExtData-259.json": "event-1-226",
-		"StoryExtData-260.json": "event-1-227",
-		"StoryExtData-261.json": "event-1-228",
-		"StoryExtData-262.json": "event-1-229",
-		"StoryExtData-264.json": "event-1-230",
-		"StoryExtData-265.json": "event-1-231",
-		"StoryExtData-266.json": "event-1-232",
-		"StoryExtData-267.json": "event-1-233",
-		"StoryExtData-268.json": "event-1-234",
-		"StoryExtData-269.json": "event-1-235",
-		"StoryExtData-270.json": "event-1-236",
-		"StoryExtData-271.json": "event-1-237",
-		"StoryExtData-272.json": "event-1-238",
-		"StoryExtData-273.json": "event-1-239",
-		"StoryExtData-274.json": "event-1-240",
-		"StoryExtData-275.json": "event-1-241",
-		"StoryExtData-276.json": "event-1-242",
-		"StoryExtData-277.json": "event-1-243",
-		"StoryExtData-278.json": "event-1-244",
-		"StoryExtData-279.json": "event-1-245",
-		"StoryExtData-280.json": "event-1-246",
-		"StoryExtData-281.json": "event-1-247",
-		"StoryExtData-290.json": "event-1-248",
-		"StoryExtData-291.json": "event-1-249",
-		"StoryExtData-292.json": "event-1-250",
-		"StoryExtData-293.json": "event-1-251",
-		"StoryExtData-294.json": "event-1-252",
-		"StoryExtData-295.json": "event-1-253",
-		"StoryExtData-296.json": "event-1-254",
-		"StoryExtData-297.json": "event-1-255",
-		"StoryExtData-298.json": "event-1-256",
-		"StoryExtData-299.json": "event-1-257",
-		"StoryExtData-300.json": "event-1-258",
-		"StoryExtData-301.json": "event-1-259",
-		"StoryExtData-302.json": "event-1-260",
-		"StoryExtData-303.json": "event-1-261",
-		"StoryExtData-304.json": "event-1-262",
-		"StoryExtData-305.json": "event-1-263",
-		"StoryExtData-306.json": "event-1-264",
-		"StoryExtData-307.json": "event-1-265",
-		"StoryExtData-308.json": "event-1-266",
-		"StoryExtData-309.json": "event-1-267",
-		"StoryExtData-310.json": "event-1-268",
-		"StorySubData-0.json": "event-2-0",
-		"StorySubData-1.json": "event-2-1",
-		"StorySubData-2.json": "event-2-2",
-		"StorySubData-3.json": "event-2-3",
-		"StorySubData-4.json": "event-2-4",
-		"StorySubData-5.json": "event-2-5",
-		"StorySubData-6.json": "event-2-6",
-		"StorySubData-7.json": "event-2-7",
-		"StorySubData-8.json": "event-2-8",
-		"StorySubData-9.json": "event-2-9",
-		"StorySubData-10.json": "event-2-10",
-		"StorySubData-11.json": "event-2-11",
-		"StorySubData-12.json": "event-2-12",
-		"StorySubData-13.json": "event-2-13",
-		"StoryInsideData.json": "event-3-0",
+		"DLC2-0-2": "event-0-0",
+		"DLC2-3-6": "event-0-1",
+		"DLC2-7-9": "event-0-2",
+		"DLC2-10-10": "event-0-3",
+		"DLC2-11-11": "event-0-4",
+		"DLC2-12-13": "event-0-5",
+		"DLC2-14-14": "event-0-6",
+		"DLC2-15-15": "event-0-7",
+		"DLC2-16-16": "event-0-8",
+		"DLC2-16-17": "event-1-0",
+		"DLC2-18-18": "event-1-1",
+		"DLC2-19-19": "event-1-2",
+		"DLC2-20-22": "event-1-3",
+		"DLC2-23-23": "event-1-4",
+		"DLC2-24-24": "event-1-5",
+		"DLC2-25-27": "event-1-6",
+		"DLC2-28-28": "event-1-7",
+		"DLC2-29-29": "event-1-8",
+		"DLC2-30-30": "event-1-9",
+		"DLC2-31-33": "event-1-10",
+		"DLC2-34-34": "event-1-11",
+		"DLC2-35-35": "event-1-12",
+		"ExtData-3055-3061.json": "event-2-0",
+		"ExtData-2057-2069.json": "event-2-1",
+		"ExtData-2497-2523.json": "event-2-2",
+		"ExtData-1657-1666.json": "event-2-3",
+		"ExtData-1722-1726.json": "event-2-4",
+		"ExtData-1749-1755.json": "event-2-5",
+		"ExtData-1755-1764.json": "event-2-6",
+		"ExtData-1674-1770.json": "event-2-7",
+		"ExtData-1770-1776.json": "event-2-8",
+		"ExtData-1776-1782.json": "event-2-9",
+		"ExtData-1804-1813.json": "event-2-10",
+		"ExtData-1813-1822.json": "event-2-11",
+		"ExtData-1830-1858.json": "event-2-12",
+		"ExtData-1858-1862.json": "event-2-13",
+		"ExtData-1862-1865.json": "event-2-14",
+		"ExtData-1865-1871.json": "event-2-15",
+		"ExtData-1885-1894.json": "event-2-16",
+		"ExtData-1909-1921.json": "event-2-17",
+		"ExtData-1930-1940.json": "event-2-18",
+		"ExtData-2077-2082.json": "event-2-19",
+		"ExtData-3805-3097.json": "event-2-20",
+		"ExtData-3100-3109.json": "event-2-21",
+		"ExtData-390-408.json": "event-2-22",
+		"StoryExtData-0.json": "event-3-0",
+		"StoryExtData-1.json": "event-3-1",
+		"StoryExtData-2.json": "event-3-2",
+		"StoryExtData-3.json": "event-3-3",
+		"StoryExtData-4.json": "event-3-4",
+		"StoryExtData-5.json": "event-3-5",
+		"StoryExtData-6.json": "event-3-6",
+		"StoryExtData-7.json": "event-3-7",
+		"StoryExtData-8.json": "event-3-8",
+		"StoryExtData-9.json": "event-3-9",
+		"StoryExtData-14.json": "event-3-10",
+		"StoryExtData-15.json": "event-3-11",
+		"StoryExtData-16.json": "event-3-12",
+		"StoryExtData-17.json": "event-3-13",
+		"StoryExtData-18.json": "event-3-14",
+		"StoryExtData-19.json": "event-3-15",
+		"StoryExtData-20.json": "event-3-16",
+		"StoryExtData-21.json": "event-3-17",
+		"StoryExtData-22.json": "event-3-18",
+		"StoryExtData-23.json": "event-3-19",
+		"StoryExtData-24.json": "event-3-20",
+		"StoryExtData-25.json": "event-3-21",
+		"StoryExtData-26.json": "event-3-22",
+		"StoryExtData-28.json": "event-3-23",
+		"StoryExtData-29.json": "event-3-24",
+		"StoryExtData-30.json": "event-3-25",
+		"StoryExtData-33.json": "event-3-26",
+		"StoryExtData-34.json": "event-3-27",
+		"StoryExtData-35.json": "event-3-28",
+		"StoryExtData-36.json": "event-3-29",
+		"StoryExtData-42.json": "event-3-30",
+		"StoryExtData-43.json": "event-3-31",
+		"StoryExtData-46.json": "event-3-32",
+		"StoryExtData-47.json": "event-3-33",
+		"StoryExtData-48.json": "event-3-34",
+		"StoryExtData-49.json": "event-3-35",
+		"StoryExtData-50.json": "event-3-36",
+		"StoryExtData-51.json": "event-3-37",
+		"StoryExtData-52.json": "event-3-38",
+		"StoryExtData-56.json": "event-3-39",
+		"StoryExtData-57.json": "event-3-40",
+		"StoryExtData-58.json": "event-3-41",
+		"StoryExtData-59.json": "event-3-42",
+		"StoryExtData-60.json": "event-3-43",
+		"StoryExtData-61.json": "event-3-44",
+		"StoryExtData-62.json": "event-3-45",
+		"StoryExtData-63.json": "event-3-46",
+		"StoryExtData-64.json": "event-3-47",
+		"StoryExtData-65.json": "event-3-48",
+		"StoryExtData-66.json": "event-3-49",
+		"StoryExtData-68.json": "event-3-50",
+		"StoryExtData-70.json": "event-3-51",
+		"StoryExtData-71.json": "event-3-52",
+		"StoryExtData-72.json": "event-3-53",
+		"StoryExtData-73.json": "event-3-54",
+		"StoryExtData-74.json": "event-3-55",
+		"StoryExtData-75.json": "event-3-56",
+		"StoryExtData-76.json": "event-3-57",
+		"StoryExtData-77.json": "event-3-58",
+		"StoryExtData-78.json": "event-3-59",
+		"StoryExtData-79.json": "event-3-60",
+		"StoryExtData-80.json": "event-3-61",
+		"StoryExtData-81.json": "event-3-62",
+		"StoryExtData-82.json": "event-3-63",
+		"StoryExtData-83.json": "event-3-64",
+		"StoryExtData-84.json": "event-3-65",
+		"StoryExtData-85.json": "event-3-66",
+		"StoryExtData-86.json": "event-3-67",
+		"StoryExtData-87.json": "event-3-68",
+		"StoryExtData-88.json": "event-3-69",
+		"StoryExtData-89.json": "event-3-70",
+		"StoryExtData-90.json": "event-3-71",
+		"StoryExtData-91.json": "event-3-72",
+		"StoryExtData-92.json": "event-3-73",
+		"StoryExtData-93.json": "event-3-74",
+		"StoryExtData-94.json": "event-3-75",
+		"StoryExtData-95.json": "event-3-76",
+		"StoryExtData-96.json": "event-3-77",
+		"StoryExtData-97.json": "event-3-78",
+		"StoryExtData-98.json": "event-3-79",
+		"StoryExtData-99.json": "event-3-80",
+		"StoryExtData-100.json": "event-3-81",
+		"StoryExtData-101.json": "event-3-82",
+		"StoryExtData-102.json": "event-3-83",
+		"StoryExtData-103.json": "event-3-84",
+		"StoryExtData-104.json": "event-3-85",
+		"StoryExtData-105.json": "event-3-86",
+		"StoryExtData-106.json": "event-3-87",
+		"StoryExtData-107.json": "event-3-88",
+		"StoryExtData-108.json": "event-3-89",
+		"StoryExtData-109.json": "event-3-90",
+		"StoryExtData-110.json": "event-3-91",
+		"StoryExtData-111.json": "event-3-92",
+		"StoryExtData-112.json": "event-3-93",
+		"StoryExtData-113.json": "event-3-94",
+		"StoryExtData-114.json": "event-3-95",
+		"StoryExtData-115.json": "event-3-96",
+		"StoryExtData-116.json": "event-3-97",
+		"StoryExtData-117.json": "event-3-98",
+		"StoryExtData-118.json": "event-3-99",
+		"StoryExtData-119.json": "event-3-100",
+		"StoryExtData-122.json": "event-3-101",
+		"StoryExtData-123.json": "event-3-102",
+		"StoryExtData-124.json": "event-3-103",
+		"StoryExtData-125.json": "event-3-104",
+		"StoryExtData-126.json": "event-3-105",
+		"StoryExtData-127.json": "event-3-106",
+		"StoryExtData-128.json": "event-3-107",
+		"StoryExtData-130.json": "event-3-108",
+		"StoryExtData-131.json": "event-3-109",
+		"StoryExtData-132.json": "event-3-110",
+		"StoryExtData-134.json": "event-3-111",
+		"StoryExtData-135.json": "event-3-112",
+		"StoryExtData-136.json": "event-3-113",
+		"StoryExtData-138.json": "event-3-114",
+		"StoryExtData-139.json": "event-3-115",
+		"StoryExtData-140.json": "event-3-116",
+		"StoryExtData-141.json": "event-3-117",
+		"StoryExtData-142.json": "event-3-118",
+		"StoryExtData-143.json": "event-3-119",
+		"StoryExtData-144.json": "event-3-120",
+		"StoryExtData-145.json": "event-3-121",
+		"StoryExtData-146.json": "event-3-122",
+		"StoryExtData-147.json": "event-3-123",
+		"StoryExtData-148.json": "event-3-124",
+		"StoryExtData-149.json": "event-3-125",
+		"StoryExtData-150.json": "event-3-126",
+		"StoryExtData-151.json": "event-3-127",
+		"StoryExtData-152.json": "event-3-128",
+		"StoryExtData-153.json": "event-3-129",
+		"StoryExtData-154.json": "event-3-130",
+		"StoryExtData-155.json": "event-3-131",
+		"StoryExtData-156.json": "event-3-132",
+		"StoryExtData-157.json": "event-3-133",
+		"StoryExtData-158.json": "event-3-134",
+		"StoryExtData-159.json": "event-3-135",
+		"StoryExtData-160.json": "event-3-136",
+		"StoryExtData-161.json": "event-3-137",
+		"StoryExtData-162.json": "event-3-138",
+		"StoryExtData-163.json": "event-3-139",
+		"StoryExtData-164.json": "event-3-140",
+		"StoryExtData-165.json": "event-3-141",
+		"StoryExtData-178.json": "event-3-142",
+		"StoryExtData-179.json": "event-3-143",
+		"StoryExtData-180.json": "event-3-144",
+		"StoryExtData-189.json": "event-3-145",
+		"StoryExtData-190.json": "event-3-146",
+		"StoryExtData-192.json": "event-3-147",
+		"StoryExtData-194.json": "event-3-148",
+		"StoryExtData-195.json": "event-3-149",
+		"StoryExtData-196.json": "event-3-150",
+		"StoryExtData-197.json": "event-3-151",
+		"StoryExtData-198.json": "event-3-152",
+		"StoryExtData-199.json": "event-3-153",
+		"StoryExtData-200.json": "event-3-154",
+		"StoryExtData-201.json": "event-3-155",
+		"StoryExtData-202.json": "event-3-156",
+		"StoryExtData-203.json": "event-3-157",
+		"StoryExtData-204.json": "event-3-158",
+		"StoryExtData-205.json": "event-3-159",
+		"StoryExtData-207.json": "event-3-160",
+		"StoryExtData-208.json": "event-3-161",
+		"StoryExtData-209.json": "event-3-162",
+		"StoryExtData-210.json": "event-3-163",
+		"StoryExtData-211.json": "event-3-164",
+		"StoryExtData-212.json": "event-3-165",
+		"StoryExtData-214.json": "event-3-166",
+		"StoryExtData-215.json": "event-3-167",
+		"StoryExtData-216.json": "event-3-168",
+		"StoryExtData-217.json": "event-3-169",
+		"StoryExtData-218.json": "event-3-170",
+		"StoryExtData-219.json": "event-3-171",
+		"StoryExtData-220.json": "event-3-172",
+		"StoryExtData-221.json": "event-3-173",
+		"StoryExtData-222.json": "event-3-174",
+		"StoryExtData-223.json": "event-3-175",
+		"StoryExtData-224.json": "event-3-176",
+		"StoryExtData-225.json": "event-3-177",
+		"StoryExtData-226.json": "event-3-178",
+		"StoryExtData-227.json": "event-3-179",
+		"StoryExtData-228.json": "event-3-180",
+		"StoryExtData-229.json": "event-3-181",
+		"StoryExtData-230.json": "event-3-182",
+		"StoryExtData-231.json": "event-3-183",
+		"StoryExtData-232.json": "event-3-184",
+		"StoryExtData-233.json": "event-3-185",
+		"StoryExtData-234.json": "event-3-186",
+		"StoryExtData-235.json": "event-3-187",
+		"StoryExtData-236.json": "event-3-188",
+		"StoryExtData-237.json": "event-3-189",
+		"StoryExtData-238.json": "event-3-190",
+		"StoryExtData-239.json": "event-3-191",
+		"StoryExtData-240.json": "event-3-192",
+		"StoryExtData-241.json": "event-3-193",
+		"StoryExtData-242.json": "event-3-194",
+		"StoryExtData-243.json": "event-3-195",
+		"StoryExtData-244.json": "event-3-196",
+		"StoryExtData-245.json": "event-3-197",
+		"StoryExtData-246.json": "event-3-198",
+		"StoryExtData-247.json": "event-3-199",
+		"StoryExtData-252.json": "event-3-200",
+		"StoryExtData-253.json": "event-3-201",
+		"StoryExtData-254.json": "event-3-202",
+		"StoryExtData-255.json": "event-3-203",
+		"StoryExtData-256.json": "event-3-204",
+		"StoryExtData-257.json": "event-3-205",
+		"StoryExtData-258.json": "event-3-206",
+		"StoryExtData-259.json": "event-3-207",
+		"StoryExtData-260.json": "event-3-208",
+		"StoryExtData-261.json": "event-3-209",
+		"StoryExtData-262.json": "event-3-210",
+		"StoryExtData-264.json": "event-3-211",
+		"StoryExtData-265.json": "event-3-212",
+		"StoryExtData-266.json": "event-3-213",
+		"StoryExtData-267.json": "event-3-214",
+		"StoryExtData-268.json": "event-3-215",
+		"StoryExtData-269.json": "event-3-216",
+		"StoryExtData-270.json": "event-3-217",
+		"StoryExtData-271.json": "event-3-218",
+		"StoryExtData-272.json": "event-3-219",
+		"StoryExtData-273.json": "event-3-220",
+		"StoryExtData-274.json": "event-3-221",
+		"StoryExtData-275.json": "event-3-222",
+		"StoryExtData-276.json": "event-3-223",
+		"StoryExtData-277.json": "event-3-224",
+		"StoryExtData-278.json": "event-3-225",
+		"StoryExtData-279.json": "event-3-226",
+		"StoryExtData-280.json": "event-3-227",
+		"StoryExtData-281.json": "event-3-228",
+		"StoryExtData-290.json": "event-3-229",
+		"StoryExtData-291.json": "event-3-230",
+		"StoryExtData-292.json": "event-3-231",
+		"StoryExtData-293.json": "event-3-232",
+		"StoryExtData-294.json": "event-3-233",
+		"StoryExtData-295.json": "event-3-234",
+		"StoryExtData-296.json": "event-3-235",
+		"StoryExtData-297.json": "event-3-236",
+		"StoryExtData-298.json": "event-3-237",
+		"StoryExtData-299.json": "event-3-238",
+		"StoryExtData-300.json": "event-3-239",
+		"StoryExtData-301.json": "event-3-240",
+		"StoryExtData-302.json": "event-3-241",
+		"StoryExtData-303.json": "event-3-242",
+		"StoryExtData-304.json": "event-3-243",
+		"StoryExtData-305.json": "event-3-244",
+		"StoryExtData-306.json": "event-3-245",
+		"StoryExtData-307.json": "event-3-246",
+		"StoryExtData-308.json": "event-3-247",
+		"StoryExtData-309.json": "event-3-248",
+		"StorySubData-0.json": "event-4-0",
+		"StorySubData-1.json": "event-4-1",
+		"StorySubData-2.json": "event-4-2",
+		"StorySubData-3.json": "event-4-3",
+		"StorySubData-4.json": "event-4-4",
+		"StorySubData-5.json": "event-4-5",
+		"StorySubData-6.json": "event-4-6",
+		"StorySubData-7.json": "event-4-7",
+		"StorySubData-8.json": "event-4-8",
+		"StorySubData-9.json": "event-4-9",
+		"StorySubData-10.json": "event-4-10",
+		"StorySubData-11.json": "event-4-11",
+		"StorySubData-12.json": "event-4-12",
+		"StorySubData-13.json": "event-4-13",
+		"storyinsidedata.json": "event-5-0",
 		"hg2-gfl.json": "crossover-0-0"
 	}
 }

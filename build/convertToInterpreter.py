@@ -2,6 +2,7 @@
 import json as JSON
 import sys
 import os
+from typing import Dict,List,Any
 """
 DialogueID	Type	UnLockLevelID	DialogueText	Repeatable	ChoiceID	RoleID	RoleStorySide	faceid	RoleMotion	isMotionFirst	RoleDelay	ItemShowCaseID	CGID	BGID	EffectID	isEffectFirst	EffectDelay	EffectDuration	SoundID	SoundDelay	SoundDuration	BGMID
 1	0	0	TEXT30001	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
@@ -29,7 +30,7 @@ def RepresentsInt(s):
 		return False
 
 print("Plz wait, loading all text!")
-textMap = {}
+textMap:Dict[int,List[Any]] = {}
 
 
 if os.path.exists("TextMap_aio.tsv"):
@@ -147,7 +148,7 @@ emptyPortrait = ['',0,False]
 #def shouldDimThis(thisPosition,
 
 def getStoryTSV(fileName):
-	"""Converts a story TSV into a dict of lists, with the dict being indexed by the part ID.
+	"""Converts a story TSV into a dict of lists, with the dict being indexed by the part ID. Lines not starting with a number will be ignored.
 	
 	After conversion it looks something like this:
 	{
@@ -190,6 +191,7 @@ unconvertedLines_Sub = getStoryTSV('StorySubData.tsv')
 unconvertedLines_Ext = getStoryTSV('StoryExtData.tsv')
 unconvertedLines_Inside = getStoryTSV('StoryInsideData.tsv')
 unconvertedLines_Kyusyo = getStoryTSV('KyusyoStoryData.tsv')
+unconvertedLines_DLC2 = getStoryTSV('DLCStoryData.tsv')
 
 #sys.exit(0)
 class StoryDataStruct():
@@ -417,7 +419,6 @@ class PlayBackStoryTitleDataStruct():
 		else:
 			return textMap[self.EpisodePrefix][0]+": "+textMap[self.EpisodeTitle][0]
 
-
 playbackData = []
 with open(os.path.join("GameData",'PlayBackStoryTitleData.tsv'),'r') as storyDatabase:
 	storyDatabase.readline()
@@ -430,53 +431,54 @@ with open(os.path.join("GameData",'PlayBackStoryTitleData.tsv'),'r') as storyDat
 			break
 		playbackData.append(PlayBackStoryTitleDataStruct(l))
 
-
-parts = {}
-
-
-for i in range(len(playbackData)):
-	#lastData = playbackData[i]
-	thisData:PlayBackStoryTitleDataStruct = playbackData[i]
-	
-	newPart = convertPart(unconvertedLines_Playback,thisData.DialogueID,1)
-	if newPart:
-
-		#Add to parts dict, contains the data for this part.
-		parts[thisData.DialogueID]=newPart
-		if thisData.DialogueID==91:
-			parts[thisData.DialogueID].insert(0,['bgm','The Sound of the End'])
-
-	if i==len(playbackData)-1 or thisData.EpisodeNumber != playbackData[i+1].EpisodeNumber:
-		if parts:
-			fileName = "type-"+str(thisData.StoryType)+"-"+str(thisData.ExType)+"-chapter-"+str(thisData.EpisodeNumber)+'-'+str(thisData.DialogueID)+'.json'
-			print(parts.keys())
-			with open("../avgtxt/"+fileName,'wb') as f:
-				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
-				print("Generated "+fileName+" containing "+str(len(parts)))
+def writePlaybackData():
+	parts = {}
 
 
-			#if storyType == 6:
-			#	storyType = 5
-			idx = getIndexFromKey(thisData.StoryTitle[1])
-			if idx==-1:
-				story['main'].append({
-					"name":thisData.StoryTitle[1],
-					"nameMultilang":thisData.StoryTitle,
-					#"shortName":"HG2 x GFL",
-					"episodes":[
-						{
-							"name":thisData.getChapterName(),
-							"parts":fileName
-						}
-					]
-				})
-			else:
-				story['main'][idx]['episodes'].append({
-					"name":thisData.getChapterName(),
-					"parts":fileName
-				})
-		parts={}
+	for i in range(len(playbackData)):
+		#lastData = playbackData[i]
+		thisData:PlayBackStoryTitleDataStruct = playbackData[i]
+		
+		newPart = convertPart(unconvertedLines_Playback,thisData.DialogueID,1)
+		if newPart:
 
+			#Add to parts dict, contains the data for this part.
+			parts[thisData.DialogueID]=newPart
+			if thisData.DialogueID==91:
+				parts[thisData.DialogueID].insert(0,['bgm','The Sound of the End'])
+
+		if i==len(playbackData)-1 or thisData.EpisodeNumber != playbackData[i+1].EpisodeNumber:
+			if parts:
+				fileName = "type-"+str(thisData.StoryType)+"-"+str(thisData.ExType)+"-chapter-"+str(thisData.EpisodeNumber)+'-'+str(thisData.DialogueID)+'.json'
+				print(parts.keys())
+				with open("../avgtxt/"+fileName,'wb') as f:
+					f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
+					print("Generated "+fileName+" containing "+str(len(parts)))
+
+
+				#if storyType == 6:
+				#	storyType = 5
+				idx = getIndexFromKey(thisData.StoryTitle[1])
+				if idx==-1:
+					story['main'].append({
+						"name":thisData.StoryTitle[1],
+						"nameMultilang":thisData.StoryTitle,
+						#"shortName":"HG2 x GFL",
+						"episodes":[
+							{
+								"name":thisData.getChapterName(),
+								"parts":fileName
+							}
+						]
+					})
+				else:
+					story['main'][idx]['episodes'].append({
+						"name":thisData.getChapterName(),
+						"parts":fileName
+					})
+			parts={}
+
+writePlaybackData()
 
 #Now we do the Fire Moth DLC!
 class KyusyoMissionDataStruct():
@@ -527,7 +529,7 @@ KyusyoStoryPartsList = []
 for mission in kyusyoMissionDatas:
 	KyusyoStoryPartsList.append(mission.StoryIDStart)
 KyusyoStoryPartsList.sort()
-print(KyusyoStoryPartsList)
+#print(KyusyoStoryPartsList)
 #sys.exit(0)
 
 def getNextClosestEndPart(start:int)->int:
@@ -540,97 +542,213 @@ def getNextClosestEndPart(start:int)->int:
 			return n
 	return KyusyoStoryPartsList[-1]
 
-#ConvertedKyusyoData = []
-for i in range(8):
+def writeFireMothData():
+	#ConvertedKyusyoData = []
+	for i in range(8):
+		story['side'].append({
+			"name":"Chapter "+str(i+1),
+			"episodes":[]
+		})
 	story['side'].append({
-		"name":"Chapter "+str(i+1),
+		"name":"Unused data?",
 		"episodes":[]
 	})
-story['side'].append({
-	"name":"Unused data?",
-	"episodes":[]
-})
-for i in range(len(kyusyoMissionDatas)):
-	thisMission:KyusyoMissionDataStruct = kyusyoMissionDatas[i]
-	parts = {}
-	#print("START: "+str(thisMission.StoryIDStart)+" | END: "+str(getNextClosestEndPart(thisMission.StoryIDStart)))
-	#Mission has no story?
-	if thisMission.StoryIDStart==0:
-		continue
-	for j in range(thisMission.StoryIDStart,getNextClosestEndPart(thisMission.StoryIDStart)):
-		if j in unconvertedLines_Kyusyo:
-			parts[j] = convertPart(unconvertedLines_Kyusyo,j)
-		#else:
-		#	print("No DialogueID "+str(j))
-	print(parts.keys())
-	if parts:
-		fName = "StoryKyusyoData-chapter-"+str(thisMission.ChapterNum)+"-"+str(thisMission.MissionID)+'.json'
-		
-		toAdd = thisMission.ChapterNum
-		if thisMission.StoryIDEnd > 900 and thisMission.StoryIDEnd < 1000:
-			#Not sure how this works, but these parts exist
-			parts[thisMission.StoryIDEnd] = convertPart(unconvertedLines_Kyusyo,thisMission.StoryIDEnd)
-			toAdd=8
-		story['side'][toAdd]['episodes'].append({
-			"name":thisMission.MissionName,
-			"parts":fName,
-			"part_names":list(parts.keys())
-		})
-		if thisMission.MissionDesc != "":
-			story['side'][thisMission.ChapterNum]['episodes'][-1]["description"]=thisMission.MissionDesc
-		with open("../avgtxt/"+fName,'wb') as f:
-			f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
-			print("Generated "+fName)
+	for i in range(len(kyusyoMissionDatas)):
+		thisMission:KyusyoMissionDataStruct = kyusyoMissionDatas[i]
+		parts = {}
+		#print("START: "+str(thisMission.StoryIDStart)+" | END: "+str(getNextClosestEndPart(thisMission.StoryIDStart)))
+		#Mission has no story?
+		if thisMission.StoryIDStart==0:
+			continue
+		for j in range(thisMission.StoryIDStart,getNextClosestEndPart(thisMission.StoryIDStart)):
+			if j in unconvertedLines_Kyusyo:
+				parts[j] = convertPart(unconvertedLines_Kyusyo,j)
+			#else:
+			#	print("No DialogueID "+str(j))
+		print(parts.keys())
+		if parts:
+			fName = "StoryKyusyoData-chapter-"+str(thisMission.ChapterNum)+"-"+str(thisMission.MissionID)+'.json'
+			
+			toAdd = thisMission.ChapterNum
+			if thisMission.StoryIDEnd > 900 and thisMission.StoryIDEnd < 1000:
+				#Not sure how this works, but these parts exist
+				parts[thisMission.StoryIDEnd] = convertPart(unconvertedLines_Kyusyo,thisMission.StoryIDEnd)
+				toAdd=8
+			story['side'][toAdd]['episodes'].append({
+				"name":thisMission.MissionName,
+				"parts":fName,
+				"part_names":list(parts.keys())
+			})
+			if thisMission.MissionDesc != "":
+				story['side'][thisMission.ChapterNum]['episodes'][-1]["description"]=thisMission.MissionDesc
+			with open("../avgtxt/"+fName,'wb') as f:
+				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
+				print("Generated "+fName)
 
-unknownKyusyoData = []
-for i in range(0,14):
-	parts = {}
-	for j in range(i*10,i*10+10):
-		if j in unconvertedLines_Kyusyo:
-			parts[j]=convertPart(unconvertedLines_Kyusyo,j)
-		else:
-			print("No DialogueID "+str(j))
-	print(parts.keys())
-	
-	if parts: #Do not add empty data
-		unknownKyusyoData.append(writeAndReturnPart(
-			parts,
-			"Parts "+str(i*10)+"-"+str(i*10+9),
-			"StoryKyusyoData-unk-"+str(i)+'.json',
-			list(parts.keys())
-		))
+	unknownKyusyoData = []
+	for i in range(0,14):
+		parts = {}
+		for j in range(i*10,i*10+10):
+			if j in unconvertedLines_Kyusyo:
+				parts[j]=convertPart(unconvertedLines_Kyusyo,j)
+			else:
+				print("No DialogueID "+str(j))
+		print(parts.keys())
 		
-story['side'].append({
-	"name":"Unknown Kyusyo Data",
-	"episodes":unknownKyusyoData
-})
+		if parts: #Do not add empty data
+			unknownKyusyoData.append(writeAndReturnPart(
+				parts,
+				"Parts "+str(i*10)+"-"+str(i*10+9),
+				"StoryKyusyoData-unk-"+str(i)+'.json',
+				list(parts.keys())
+			))
+			
+	story['side'].append({
+		"name":"Unknown Kyusyo Data",
+		"episodes":unknownKyusyoData
+	})
+writeFireMothData()
+
+
+class DLC2MissionData():
+	def __init__(self,info) -> None:
+		d = info.split("\t")
+		self.MissionName=textMap[int(d[0])][0]
+		self.MissionDesc=textMap[int(d[1])][0]
+		self.StoryIDEnd=int(d[2])
+
+def writeDLC2Data():
+	#The real database is stupid so here's a modified one with the correct information.
+	#The third column is the end, and it goes until the end of the previous column.
+	#I might have gotten it wrong since there's no guarentee these missions even have cutscenes but whatever I don't care
+	"""
+	NameText	DespText	StoryIDStart	StoryIDEnd
+	描述	描述	开启时剧情	交付时剧情
+	Client	Client	Client	Client
+	int	int	int	int
+	"""
+
+	dlc2Information_tsv = ["""356002	356101	2
+356003	356102	6
+356004	356103	9
+356005	356104	10
+356006	356105	11
+356007	356106	13
+356008	356107	14
+356009	356108	15
+356010	356109	16""","""356011	356110	17
+356012	356111	18
+356013	356112	19
+356014	356113	22
+356015	356114	23
+356016	356115	24
+356017	356116	27
+356018	356117	28
+356019	356118	29
+356020	356119	30
+356021	356120	33
+356022	356121	34
+356023	356122	35"""]
+
+	for i in range(len(dlc2Information_tsv)):
+
+		dlc2Information=[DLC2MissionData(info) for info in dlc2Information_tsv[i].splitlines()]
+		dlc2Datas=[]
+		for j in range(0,len(dlc2Information)):
+			thisInfo:DLC2MissionData=dlc2Information[j]
+			startAt=0
+			if i==1:
+				startAt=16
+			if j>0:
+				startAt=dlc2Information[j-1].StoryIDEnd+1
+
+			
+			
+			if j==0:
+				#MIHOYO IS IS SO HARD TO PUT YOUR PARTS IN A NORMAL ORDER INSTEAD OF PUTTING 998 AND 999 BEFORE 1
+				parts = {
+					"-1":convertPart(unconvertedLines_DLC2,998),
+					"0":convertPart(unconvertedLines_DLC2,999),
+					"1":convertPart(unconvertedLines_DLC2,1),
+					"2":convertPart(unconvertedLines_DLC2,2),
+				}
+			else:
+				parts={k:convertPart(unconvertedLines_DLC2,k) for k in range(startAt,thisInfo.StoryIDEnd+1)}
+
+			dlc2Datas.append(writeAndReturnPart(
+				parts,
+				thisInfo.MissionName,
+				"DLC2-"+str(startAt)+"-"+str(thisInfo.StoryIDEnd)
+			))
+			
+
+		story['event'].append({
+			"name":"DLC2 Chapter "+str(i+1),
+			"episodes":dlc2Datas
+		})
+writeDLC2Data()
+
+
 
 """with open("../avgtxt/"+fName,'wb') as f:
 	f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
 	print("Generated "+fName)"""
 
 #Grouped extdata goes here
-groupedExtData = []
-groupedExtData.append(writeAndReturnPart(
-	{j:convertPart(unconvertedLines_Ext,j) for j in range(3055,3062)},
-	"Seele's Dream",
-	"ExtData-3055-3061.json"
-))
-groupedExtData.append(writeAndReturnPart(
-	{j:convertPart(unconvertedLines_Ext,j) for j in range(2060,2077)},
-	"Hyperdimension Neptunia Crossover",
-	"ExtData-2060-2076.json"
-))
-groupedExtData.append(writeAndReturnPart(
-	{j:convertPart(unconvertedLines_Ext,j) for j in range(2497,2524)},
-	"Hyperdimension Neptunia Crossover 2",
-	"ExtData-2497-2523.json"
-))
-groupedExtData.append(writeAndReturnPart(
-	{j:convertPart(unconvertedLines_Ext,j) for j in range(390,408)},
-	"JP Only event?",
-	"ExtData-390-408.json"
-))
+
+def writeAndReturnPart3(begin:int,end:int,name:str)->dict:
+	return writeAndReturnPart(
+		{j:convertPart(unconvertedLines_Ext,j) for j in range(begin,end+1)},
+		name,
+		"ExtData-"+str(begin)+"-"+str(end+1)+".json",
+		[j for j in range(begin,end+1)]
+	)
+
+#writeAndReturnPart3(2070,2081,"Bronya's Magic show, also sexy Sin Mal")
+#sys.exit(0)
+
+groupedExtData = [
+	writeAndReturnPart(
+		{j:convertPart(unconvertedLines_Ext,j) for j in range(3055,3062)},
+		"Seele's Dream",
+		"ExtData-3055-3061.json"
+	),
+	writeAndReturnPart(
+		{j:convertPart(unconvertedLines_Ext,j) for j in range(2057,2070)},
+		"Hyperdimension Neptunia Crossover",
+		"ExtData-2057-2069.json"
+	),
+	writeAndReturnPart(
+		{j:convertPart(unconvertedLines_Ext,j) for j in range(2497,2524)},
+		"Hyperdimension Neptunia Crossover 2",
+		"ExtData-2497-2523.json"
+	),
+	writeAndReturnPart3(1657,1665,"Honkai RPG"),
+	writeAndReturnPart3(1722,1725,"Theresa's birthday?"),
+	writeAndReturnPart3(1749,1754,"Kaguya"),
+	writeAndReturnPart3(1755,1763,"CN only event"),
+	writeAndReturnPart3(1674,1769,"Nina afterstory"),
+	writeAndReturnPart3(1770,1775,"Kira"),
+	writeAndReturnPart3(1776,1781,"Chloe"),
+	writeAndReturnPart3(1804,1812,"Seele's stigmata space and Seele 2"),
+	writeAndReturnPart3(1813,1821,"asdasdadadasd"),
+	writeAndReturnPart3(1830,1857,"asasddadsdadsd 2"),
+	writeAndReturnPart3(1858,1861,"Another CN exclusive"),
+	writeAndReturnPart3(1862,1864,"asdjiaodijojwo 3"),
+	writeAndReturnPart3(1865,1870,"Delta, no not the pink one"),
+	writeAndReturnPart3(1885,1893,"Mei becomes a child"),
+	writeAndReturnPart3(1909,1920,"Date A Live crossover"),
+	writeAndReturnPart3(1930,1939,"Unused Fire Moth garbage"),
+	writeAndReturnPart3(2077,2081,"Bronya's Magic show, also sexy Sin Mal"),
+	writeAndReturnPart3(3805,3096,"Schoolgirl AU stuff"),
+	writeAndReturnPart3(3100,3108,"Sirin goes to school"),
+	
+	writeAndReturnPart(
+		{j:convertPart(unconvertedLines_Ext,j) for j in range(390,408)},
+		"JP Only event?",
+		"ExtData-390-408.json"
+	)
+]
 
 story['event'].append({
 	"name":"Stuff...",
@@ -683,14 +801,12 @@ for i in range(0,14):
 	
 	if parts: #Do not add empty data
 		fName = "StorySubData-"+str(i)+'.json'
-		unknownSubData.append({
-			"name":"Parts "+str(i*10)+"-"+str(i*10+9),
-			"parts":fName
-		})
-		
-		with open("../avgtxt/"+fName,'wb') as f:
-				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
-				print("Generated "+fName)
+		unknownSubData.append(writeAndReturnPart(
+			parts,
+			"Parts "+str(i*10)+"-"+str(i*10+9),
+			fName,
+			list(parts.keys())
+		))
 story['event'].append({
 	"name":"Unknown SubData",
 	"episodes":unknownSubData
@@ -712,10 +828,11 @@ fName = "StoryInsideData.json"
 story['event'].append({
 	"name":"Unknown InsideData",
 	"episodes":[
-		{
-			"name":"Parts 0-10",
-			"parts":fName
-		}
+		writeAndReturnPart(
+			parts,
+			"Parts 0-10",
+			"storyinsidedata.json"
+		)
 	]
 })
 
