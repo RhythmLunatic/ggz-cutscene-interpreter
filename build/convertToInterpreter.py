@@ -1,4 +1,5 @@
 #!/usr/bin/env python3.8
+from cgitb import text
 import json as JSON
 import sys
 import os
@@ -81,14 +82,18 @@ else:
 				f.write(str(textID)+"\t"+"\t".join(textMap[textID])+"\n")
 
 
-if os.path.exists("TextMap_retranslated.json"):
-	with open("TextMap_retranslated.json",'r',encoding='utf8') as f:
-		textMap_retranslated = JSON.loads(f.read())
-		for fakeID in textMap_retranslated:
-			tID = int(fakeID)
-			if tID in textMap:
-				textMap[tID][3] = textMap_retranslated[fakeID].replace("{","<").replace("}",">")
-
+for fn,n in {"TextMap_retranslated_en_re.json":3, "TextMap_retranslated_pt.json":4}.items():
+	if os.path.exists(fn):
+		with open(fn,'r',encoding='utf8') as f:
+			textMap_retranslated = JSON.loads(f.read())
+			for fakeID in textMap_retranslated:
+				if fakeID=="LANGUAGE":
+					continue
+				tID = int(fakeID)
+				if tID in textMap:
+					textMap[tID][n] = textMap_retranslated[fakeID].replace("{","<").replace("}",">")
+			print("Added "+fn+" to column "+str(n))
+#sys.exit(-1)
 #Remove "XXX"
 for _id in textMap:
 	for i in range(len(textMap[_id])):
@@ -198,7 +203,7 @@ class StoryDataStruct():
 	"""
 	def __init__(self, StoryTextV2:list, _type=0):
 		#self.DialogueID = int(l[0])
-		if _type == 1:
+		if _type == 1: #PlaybackStoryData
 			if RepresentsInt(StoryTextV2[1]):
 				self.text = int(StoryTextV2[1])
 			else:
@@ -212,9 +217,11 @@ class StoryDataStruct():
 			#self.isMotionFirst = StoryTextV2[6] == "1"
 			self.CGID = StoryTextV2[9]
 			self.BGID = StoryTextV2[10]
+
+			self.ChoiceID=0
 		elif _type == 2:
 			pass
-		else:
+		else: #Type 0, kyusyo, era zero, extdata, etc uses this one
 			#DialogueID	Type	UnLockLevelID	DialogueText	Repeatable	ChoiceID	RoleID	RoleStorySide	face	RoleMotion	isMotionFirst	RoleDelay	ItemShowCaseID	CGID	BGID	EffectID	isEffectFirst	EffectDelay	EffectDuration	SoundID	SoundDelay	SoundDuration	BGMID
 
 			if len(StoryTextV2[3]) > 4:
@@ -226,6 +233,7 @@ class StoryDataStruct():
 				print("Unimplemented opcode! Text length is missing TEXT "+StoryTextV2[3])
 				print(StoryTextV2)
 				self.text=-1
+			self.ChoiceID:int = int(StoryTextV2[5])
 			self.RoleID = int(StoryTextV2[6])
 			self.PortraitPosition=2 if (StoryTextV2[7]=="1") else 1
 			self.RoleFace=int(StoryTextV2[8])
@@ -239,12 +247,21 @@ class StoryDataStruct():
 
 portraitBlacklist = [0,802,803,804,805] #Portraits without an image
 
-
+class StoryChoiceData():
+	def __init__(self,info) -> None:
+		#Only used once, so it doesn't really matter
+		#self.ChoiceTitle = textMap[int(info[1])]
+		self.Choice1Text = [int(info[2])]+textMap[int(info[2])]
+		self.Choice2Text = [int(info[3])]+textMap[int(info[3])]
+		self.Choice1Story:int = int(info[4])
+		self.Choice2Story:int = int(info[5])
+		#This is mostly irrelevant
+		self.MergedStory:int = int(info[6])
 
 #Hueristic to skip parts that exist in the playback archive
 allUsedLinesSoFar = []
 
-def convertPart(section:dict,partNumber:int,_type=0):
+def convertPart(section:dict,partNumber:int,_type=0,choiceDatas:Dict[int,StoryChoiceData]=None):
 	"""Given a dict containing all the unconverted lines and the part to convert, return a list of structured opcodes."""
 	commandsList = []
 	if partNumber not in section:
@@ -324,9 +341,13 @@ def convertPart(section:dict,partNumber:int,_type=0):
 		
 		if StoryTextV2.text > 0 and StoryTextV2.text in textMap:
 			allUsedLinesSoFar.append(StoryTextV2.text)
-			commandsList.append(['msg']+[StoryTextV2.text]+textMap[StoryTextV2.text][:4]) # type: ignore
+			commandsList.append(['msg']+[StoryTextV2.text]+textMap[StoryTextV2.text]) # type: ignore
 		else:
 			print("ID "+str(StoryTextV2.text)+" not present in text db, assuming command with no message")
+		if StoryTextV2.ChoiceID != 0 and choiceDatas!= None:
+			#print(StoryTextV2.ChoiceID)
+			c = choiceDatas[StoryTextV2.ChoiceID]
+			commandsList.append(['choice',c.Choice1Text,c.Choice2Text])
 			#print(StoryTextV2)
 	return commandsList
 
@@ -495,6 +516,8 @@ def writePlaybackData():
 				parts[thisData.DialogueID].insert(0,['bgm','The Sound of the End'])
 			elif thisData.DialogueID==54 or thisData.DialogueID==57:
 				parts[thisData.DialogueID].insert(0,['bgm','Amusement Park'])
+			elif thisData.DialogueID==89:
+				parts[thisData.DialogueID].insert(0,['bgm','The Sound of the End Quiet'])
 
 
 		if i==len(playbackData)-1 or thisData.EpisodeNumber != playbackData[i+1].EpisodeNumber:
@@ -505,37 +528,32 @@ def writePlaybackData():
 					f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
 					print("Generated "+fileName+" containing "+str(len(parts)))
 
-
-				#if storyType == 6:
-				#	storyType = 5
-				#This is so insanely stupid...
 				idx = getIndexFromKey(thisData.StoryTitle[1])
 				if idx==-1:
 					story['main'].append({
 						"name":thisData.StoryTitle[1],
 						"nameMultilang":thisData.StoryTitle,
 						#"shortName":"HG2 x GFL",
-						"episodes":[
-							{
-								"name":thisData.getChapterName(),
-								"parts":fileName
-							}
-						]
+						"episodes":[]
 					})
-					lm = getLevelMetaFromChapterTitleID(thisData.EpisodeTitle)
-					if lm:
-						story['main'][-1]['episodes'][-1]['description']=lm.ChapterDescription[1]
-				else:
-					story['main'][idx]['episodes'].append({
-						"name":thisData.getChapterName(),
-						"parts":fileName
-					})
-					lm = getLevelMetaFromChapterTitleID(thisData.EpisodeTitle)
-					if lm:
+					idx=len(story['main'])-1
+				story['main'][idx]['episodes'].append({
+					"name":thisData.getChapterName(),
+					"parts":fileName
+				})
+				lm = getLevelMetaFromChapterTitleID(thisData.EpisodeTitle)
+				if lm:
+					#TODO: Description doesn't support multilanguage yet
+					if lm.ChapterDescription[4]:
+						story['main'][idx]['episodes'][-1]['description']=lm.ChapterDescription[4]
+					else:
 						story['main'][idx]['episodes'][-1]['description']=lm.ChapterDescription[1]
+				elif thisData.DialogueID == 284:
+					story['main'][idx]['episodes'][-1]['description']="It is highly recommended for you to read Sin's manga chapters first for context in part 6: https://mangadex.org/chapter/b75c6a9f-324e-4356-99db-8c19ae54c2fa/1"
 			parts={}
 
 writePlaybackData()
+#sys.exit(0)
 
 #Now we do the Fire Moth DLC!
 class KyusyoMissionDataStruct():
@@ -581,6 +599,18 @@ with open("GameData/KyusyoMissionData.tsv",'r') as f:
 			break
 		kyusyoMissionDatas.append(KyusyoMissionDataStruct(l))
 
+KyusyoChoicePartsList:Dict[int,StoryChoiceData] = {}
+with open("GameData/KyusyoStoryChoiceData.tsv",'r') as f:
+	f.readline()
+	f.readline()
+	f.readline()
+	f.readline()
+	while True:
+		l = f.readline()
+		if not l.strip():
+			break
+		t=l.split("\t")
+		KyusyoChoicePartsList[int(t[0])]=StoryChoiceData(t)
 
 KyusyoStoryPartsList = []
 for mission in kyusyoMissionDatas:
@@ -617,9 +647,21 @@ def writeFireMothData():
 		#Mission has no story?
 		if thisMission.StoryIDStart==0:
 			continue
+		elif thisMission.MissionID==2: #First mission
+			thisMission.StoryIDStart=0
 		for j in range(thisMission.StoryIDStart,getNextClosestEndPart(thisMission.StoryIDStart)):
 			if j in unconvertedLines_Kyusyo:
-				parts[j] = convertPart(unconvertedLines_Kyusyo,j)
+				parts[j] = convertPart(unconvertedLines_Kyusyo,j,0,KyusyoChoicePartsList)
+				if j==223:
+					parts[j].insert(0,['bgm',"Significance"]) #Faltering Prayer - Dawn Breeze might also work?
+				elif j==226:
+					parts[j].insert(0,['bgm','Blissful Death'])
+				elif j==227:
+					parts[j].insert(0,['bgm',"Faltering Prayer - Starry Sky"])
+				elif j==228:
+					parts[j].insert(0,['bgm',"Faltering Prayer - No Vocals"])
+				elif j==242:
+					parts[j].insert(0,['bgm',"Weight of the World - No Vocals"])
 			#else:
 			#	print("No DialogueID "+str(j))
 		print(parts.keys())
@@ -631,10 +673,23 @@ def writeFireMothData():
 				#Not sure how this works, but these parts exist
 				parts[thisMission.StoryIDEnd] = convertPart(unconvertedLines_Kyusyo,thisMission.StoryIDEnd)
 				toAdd=8
+
+			part_names = list(parts.keys())
+			#print(part_names)
+			for pn in range(len(part_names)):
+				for c in KyusyoChoicePartsList.values():
+					#print(c.Choice1Story)
+					if c.Choice1Story==part_names[pn]:
+						#print(str(part_names[pn])+" == "+str(c.Choice1Story))
+						part_names[pn]="If choice 1 was picked:"
+						#sys.exit(0)
+					elif c.Choice2Story==part_names[pn]:
+						part_names[pn]="If choice 2 was picked:"
+
 			story['side'][toAdd]['episodes'].append({
 				"name":thisMission.MissionName,
 				"parts":fName,
-				"part_names":list(parts.keys())
+				"part_names":part_names
 			})
 			if thisMission.MissionDesc != "":
 				story['side'][thisMission.ChapterNum]['episodes'][-1]["description"]=thisMission.MissionDesc
@@ -666,7 +721,7 @@ def writeFireMothData():
 		"episodes":unknownKyusyoData
 	})"""
 writeFireMothData()
-
+#sys.exit(0)
 
 
 #Era ZERO... Which was cancelled, by the way. There's nothing after the first two chapters.
@@ -906,12 +961,10 @@ story['event'].append({
 #sys.exit(0)
 
 #HG2 x GFL
-"""parts = {}
-for p in range(772,782):
-	parts[p]=convertPart(unconvertedLines_Ext,p)
+parts = {j:convertPart(unconvertedLines_Ext,j) for j in range(772,782+1)}
 
-with open("../avgtxt/hg2-gfl.json",'wb') as f:
-	f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))"""
+with open("../avgtxt/hg2-gfl-old.json",'wb') as f:
+	f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
 
 story['crossover'].append({
 	"name":"Houkai Gakuen 2nd x Girls' Frontline",

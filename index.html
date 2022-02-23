@@ -717,6 +717,7 @@ I have no idea how it works
 		"cn":2,
 		"jp":3,
 		"en_re":4,
+		"pt":5
 		//"tcn":5,
 		//"en_re":6
 	}
@@ -725,14 +726,15 @@ I have no idea how it works
 		"English",
 		"Chinese",
 		"Japanese",
-		"English (Retranslated)"
+		"English (Retranslated)",
+		"Portuguese (Fan translation)"
 		//"Korean",
 		//"Traditional Chinese(?)",
 	]
 
 	//Oh no
 	let customLanguage = undefined;
-	let TRANSLATION_SERVER_URL = "http://ggz.amaryllisworks.pw:8880"
+	let TRANSLATION_SERVER_URL = "https://ggz.amaryllisworks.pw:8880"
 
 	/*
 	Night backgrounds are generated using html canvas,
@@ -1566,13 +1568,16 @@ I have no idea how it works
 					thisPartDiv.appendChild(stopBGMButton);*/
 					break;
 				case OPCODES.CHOICE:
-					structuredLines[i][1].forEach(c => {
+					for (var c = 1; c < structuredLines[i].length;c++)
+					{
 						let choiceButton = document.createElement('a');
 						choiceButton.setAttribute("class","waves-effect waves-light btn choiceButton");
 						choiceButton.setAttribute("style","margin-right: 5px; margin-bottom: 5px; text-transform:unset;")
-						choiceButton.innerText=c;
+						let languageColumn = LANGUAGE_COLUMN[currentLanguage[0]]+1;
+						let text = structuredLines[i][c][LANGUAGE_COLUMN];
+						choiceButton.innerText= text || (structuredLines[i][c][0]+" (Not translated)");
 						thisPartDiv.appendChild(choiceButton);
-					})
+					}
 					break;
 				case OPCODES.DESTINATION:
 					//curDestination = structuredLines[i][1]
@@ -1982,6 +1987,11 @@ I have no idea how it works
 									}
 									
 								}
+								if (document.getElementById('showDebugOpcodeButton').checked)
+								{
+									tbody.getElementsByTagName("td")[0].innerText+=" "+dialogue[1]
+								}
+
 								if (customLanguage != undefined)
 								{
 									let dialogueID = dialogue[1]
@@ -2012,8 +2022,9 @@ I have no idea how it works
 										if (span.style.display == "none") //If displaying text
 										{
 											textDiv.setAttribute("style","display:none")
-											span.innerHTML = parseGFLTextModifiers(textCol.getElementsByTagName("textarea")[0].value) //Yes it's innerHTML, </i> is supported
-											customLanguage[span.getAttribute('text-id')]=textCol.getElementsByTagName("textarea")[0].value
+											let text = textCol.getElementsByTagName("textarea")[0].value.replaceAll("\n","//n")
+											span.innerHTML = parseGFLTextModifiers(text) //Yes it's innerHTML, </i> is supported
+											customLanguage[span.getAttribute('text-id')]=text
 											console.log("Updated customLanguage ["+span.getAttribute('text-id')+"]: "+customLanguage[span.getAttribute('text-id')])
 											//Let's see how long this works before it starts crashing browsers.
 											localStorage.setItem("customLanguage",JSON.stringify(customLanguage));
@@ -2022,7 +2033,7 @@ I have no idea how it works
 										else //If editing text
 										{
 											span.setAttribute("style","display:none")
-											textCol.getElementsByTagName("textarea")[0].value = (customLanguage[span.getAttribute('text-id')] || "")
+											textCol.getElementsByTagName("textarea")[0].value = (customLanguage[span.getAttribute('text-id')] || "").replaceAll("//n","\n")
 											M.textareaAutoResize(textCol.getElementsByTagName("textarea")[0])
 											textDiv.setAttribute("style","")
 											textCol.getElementsByTagName("textarea")[0].focus();
@@ -2744,12 +2755,24 @@ I have no idea how it works
 	 */
 	function downloadRetranslation() {
 		let tStatus = document.getElementById('translationServerStatus');
-		fetch(TRANSLATION_SERVER_URL)
+		let selectedLanguage;
+		for (const radioButton of document.querySelectorAll('input[name="group1"]')) {
+			if (radioButton.checked) {
+				selectedLanguage = radioButton.value;
+				break;
+			}
+		}
+		//print(selectedSize);
+		//return
+		fetch(TRANSLATION_SERVER_URL+"/"+selectedLanguage)
 		.then(response => {
 			if (response.status >= 200 && response.status <= 299) {
 				return response.json();
 			} else {
-				throw Error(response.statusText);
+				//Has anyone else realized how fucking stupid this is?
+				return response.text().then(r=> {
+					throw new Error(r);
+				})
 			}
 		})
 		.then(contents => {
@@ -2759,6 +2782,7 @@ I have no idea how it works
 			{
 
 				customLanguage=contents;
+				customLanguage["LANGUAGE"]=selectedLanguage
 				localStorage.setItem("customLanguage",JSON.stringify(customLanguage));
 
 				print("imported "+keys.length+" lines.");
@@ -2770,6 +2794,7 @@ I have no idea how it works
 			}
 			
 		}).catch((error) => {
+			console.log(error);
 			tStatus.innerText="Got an error trying to contact the server: "+error;
 		})
 		tStatus.setAttribute("style","");
@@ -2803,6 +2828,7 @@ I have no idea how it works
 		let APIKey = document.getElementById('translation_api_key').value
 		if (APIKey!='')
 		{
+			setCookie("API_KEY",APIKey,180);
 			var copyDict = {};
 			Object.assign(copyDict,customLanguage)
 			copyDict['API_KEY']=APIKey;
@@ -3077,11 +3103,21 @@ I have no idea how it works
 				<tr>
 					<td style="width:100%;" colspan="2">
 						<span class="title">Community retranslation server</span>
-						<p>Help everyone retranslate the game into English! You can download the latest retranslation here and add new lines. Afterwards you can submit it and it will be reviewed.</p>
+						<p>Help everyone retranslate the game into your preferred language! You can download the latest retranslation here and add new lines. Afterwards you can submit it and it will be reviewed.</p>
 						<p>The imported language will automatically be added to multilanguage mode and named "Custom".</p>
+						<form action="#">
+							<label>
+							  <input name="group1" type="radio" value="en_re" checked />
+							  <span>English (Retranslation)</span>
+							</label>
+							  <label>
+								<input name="group1" type="radio" value="pt" />
+								<span>Portuguese</span>
+							  </label>
+						</form>
 						<a class="waves-effect waves-light btn "  onclick="downloadRetranslation()"><i class="material-icons left">cloud_download</i>Download from community server</a>
 						<a class="waves-effect waves-light btn "  onclick="uploadRetranslation()"><i class="material-icons left">cloud_upload</i>Submit to community server</a>
-						<p style='visibility:hidden;' id='translationServerStatus'>lol</p>
+						<p style='visibility:hidden;' id='translationServerStatus'>Loading...</p>
 						<p>If you have an API key for the server, enter it here. API keys are optional.</p>
 						<div class="input-field col s6">
 							<input id="translation_api_key" type="text" class="validate">
@@ -3197,7 +3233,7 @@ I have no idea how it works
 	
 	<!--I've completely forgotten why display:inline is required for this-->
 	<h2 id="chapterName" style="display:inline">Chapter Name Here</h2>
-	<h4 id="chapterDesc" style="font-size:1.5rem;line-height:100%;margin:1rem 0 .912rem 0;">Chapter Description Here</h4>
+	<h4 id="chapterDesc" style="font-size:1.5rem;line-height:100%;margin:1rem 0 .912rem 0;overflow-wrap: break-word;">Chapter Description Here</h4>
 	<br>
 	<a id="exportButton" href='#savePageModal' class="waves-effect waves-light btn modal-trigger" style='display:none'><i class="material-icons left">file_download</i>Export current chapter</a>
 
@@ -3215,8 +3251,8 @@ I have no idea how it works
 	<audio id='sfxPlayer'>
 		<source class='sfx_ogg' src="" type="audio/ogg">
 	</audio>
-	<p>Brought to you by the man who wrote the Girls' Frontline Cutscene Interpreter. You thought I'd stop at GFL?</p>
-	<p>Special thanks to the archivers at <a href="https://hoyostans.be/">Hoyostans</a> and special thanks to Mister Spaceman for retranslating the dialogue!</p>
+	<p>Greets to /hig/. Brought to you by the man who wrote the <a href="https://gfl.amaryllisworks.pw">Girls' Frontline Cutscene Interpreter</a>. You thought I'd stop at GFL?</p>
+	<p>Special thanks to the guys at <a href="https://hoyostans.be/">Hoyostans</a> and special thanks to Mister Spaceman, Darkmiz, and everyone else for retranslating the dialogue!</p>
 	<p>If you want a feature or something is broken, <a onmousemove="(function(self){self.href='mailto:PatchouliSama765'+String.fromCharCode(64)+'gmail.com'})(this)" href="mailto:'hover mouse over the link twice to pass the bot check'"><b>email me</b></a>.</p>
 	<p><a href='/LICENSE.html'>The interpreter is free and open source software and licensed under AGPLv3.</a> Source code is available <a href="https://github.com/RhythmLunatic/ggz-cutscene-interpreter">here.</a></p>
 	<p>Designed using <a href='https://materializecss.com'>Materialize</a>. <a href='https://github.com/Dogfalo/materialize/blob/master/LICENSE'>MIT license</a></p>
