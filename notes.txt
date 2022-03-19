@@ -1,0 +1,34 @@
+300159: Supposed to be dimmed, character is missing in the interpreter
+300161: Screen shake animation
+300167: Tween left animation without fade
+300168: Screen shake animation
+300169: Sound effect and fade to black
+300170: Full screen without textbox (Maybe 300171?)
+300179: white noise SE and fade to black
+300180: Still black... (Appears to be a conversion issue)
+300183: Incorrect on the interpreter, there shouldn't be a name here
+300190: Fade to black
+300191: Full screen no textbox
+300199: Screen shake
+300201: Fade to black
+300223: Fade to black
+300300: Black screen during this part... Probably a conversion mistake
+300305, 300307: Name is "???"
+300323: fade to black
+
+
+EffectID:
+1: Shake the screen
+6: Fade to black
+
+SoundID:
+15: White noise
+
+RoleMotion:
+1: Slide in from left
+3: Slide in from right
+7: Move left offscreen
+8: Move right offscreen
+
+Kyusyo ID31: Ruins
+

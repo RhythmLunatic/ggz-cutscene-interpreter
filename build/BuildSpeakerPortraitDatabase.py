@@ -20,12 +20,12 @@ class StoryFigureSettingDataStruct():
 	def __init__(self, info):
 		self.pic=info[1]
 		self.DevY=info[2]
-		self.StorySide=int(info[3])    #What the fuck is this even for???
-		self.SpeakerName=int(info[4])  #This is a TextID, pulled from textMap_en
+		self.StorySide=float(info[4])    #What the fuck is this even for???
+		self.SpeakerName=int(info[5])  #This is a TextID, pulled from textMap_en
 		                               #x,y coords of replacement face
-		self.FacePosition=[round(float(h)) for h in info[5].split(";")]
-		self.FlipOnOtherSide=(info[6]=="1")
-		self.Scale=float(info[7])
+		self.FacePosition=[round(float(h)) for h in info[6].split(";")]
+		self.FlipOnOtherSide=(info[7]=="1")
+		self.Scale=float(info[8])
 		
 	def getNormalizedFacePosition(self):
 		return (self.FacePosition[0]-128,1024-self.FacePosition[1]-128)

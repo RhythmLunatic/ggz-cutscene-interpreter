@@ -3,7 +3,7 @@ from cgitb import text
 import json as JSON
 import sys
 import os
-from typing import Dict,List,Any
+from typing import Dict,List,Any, Union
 """
 DialogueID	Type	UnLockLevelID	DialogueText	Repeatable	ChoiceID	RoleID	RoleStorySide	faceid	RoleMotion	isMotionFirst	RoleDelay	ItemShowCaseID	CGID	BGID	EffectID	isEffectFirst	EffectDelay	EffectDuration	SoundID	SoundDelay	SoundDuration	BGMID
 1	0	0	TEXT30001	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
@@ -112,12 +112,13 @@ int	string	float	int	int	List<float>	bool	float
 class StoryFigureSettingDataStruct():
 	def __init__(self, info):
 		self.pic=info[1]
-		self.DevY=info[2]
-		self.StorySide=int(info[3])    #What the fuck is this even for???
-		self.SpeakerName=int(info[4])  #This is a TextID, pulled from textMap_en
-		self.FacePosition=info[5]      #x,y coords of replacement face
-		self.FlipOnOtherSide=(info[6]=="1")
-		self.Scale=float(info[7])
+		self.DevX=info[2]
+		self.DevY=info[3]
+		self.StorySide=int(info[4])    #What the fuck is this even for???
+		self.SpeakerName=int(info[5])  #This is a TextID, pulled from textMap_en
+		self.FacePosition=info[6]      #x,y coords of replacement face
+		self.FlipOnOtherSide=(info[7]=="1")
+		self.Scale=float(info[8])
 		
 
 storyFigueSettingData = {}
@@ -152,7 +153,7 @@ def getOpp(i):
 emptyPortrait = ['',0,False]
 #def shouldDimThis(thisPosition,
 
-def getStoryTSV(fileName):
+def getStoryTSV(fileName)->Dict[int,List[str]]:
 	"""Converts a story TSV into a dict of lists, with the dict being indexed by the part ID. Lines not starting with a number will be ignored.
 	
 	After conversion it looks something like this:
@@ -261,7 +262,7 @@ class StoryChoiceData():
 #Hueristic to skip parts that exist in the playback archive
 allUsedLinesSoFar = []
 
-def convertPart(section:dict,partNumber:int,_type=0,choiceDatas:Dict[int,StoryChoiceData]=None):
+def convertPart(section:dict,partNumber:int,_type=0,choiceDatas:Union[Dict[int,StoryChoiceData],None]=None):
 	"""Given a dict containing all the unconverted lines and the part to convert, return a list of structured opcodes."""
 	commandsList = []
 	if partNumber not in section:
@@ -302,6 +303,7 @@ def convertPart(section:dict,partNumber:int,_type=0,choiceDatas:Dict[int,StoryCh
 					commandsList.append(['speaker', pInfo.SpeakerName ])
 			else:
 				print("ID "+str(StoryTextV2.RoleID)+" does not exist in portrait/name DB")
+				commandsList.append(['speaker', str(StoryTextV2.RoleID)+" (Update portrait DB!!)" ])
 			
 		if StoryTextV2.CGID != "0":
 			newCmd=['portraits',emptyPortrait,emptyPortrait]
@@ -351,7 +353,7 @@ def convertPart(section:dict,partNumber:int,_type=0,choiceDatas:Dict[int,StoryCh
 			#print(StoryTextV2)
 	return commandsList
 
-def writeAndReturnPart(parts:dict,name:str,fileName:str,partNames:list=None)->dict:
+def writeAndReturnPart(parts:dict,name:str,fileName:str,partNames:Union[list,None]=None)->dict:
 	"""Writes the parts to disk, then returns a dict with the information for the database.
 	"""
 	with open("../avgtxt/"+fileName,'wb') as f:
@@ -447,14 +449,12 @@ def getLevelMetaFromChapterTitleID(chID:int):
 
 
 #All stories in the playback archive.
-unconvertedLines_Playback = getStoryTSV('PlaybackStoryData.tsv')
+unconvertedLines_Playback = getStoryTSV('PlayBackStoryData.tsv')
 
 # Search for matching chapter name
 def getIndexFromKey(k:str):
 	for i in range(len(story['main'])):
-		ep = story['main'][i]
-		#print(ep)
-		if ep['name']==k:
+		if story['main'][i]['episodes'][0]['parts'].startswith("type-"+k):
 			return i
 	return -1
 
@@ -528,7 +528,7 @@ def writePlaybackData():
 					f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
 					print("Generated "+fileName+" containing "+str(len(parts)))
 
-				idx = getIndexFromKey(thisData.StoryTitle[1])
+				idx = getIndexFromKey(str(thisData.StoryType)+"-"+str(thisData.ExType))
 				if idx==-1:
 					story['main'].append({
 						"name":thisData.StoryTitle[1],
@@ -823,6 +823,9 @@ def writeAndReturnPart3(begin:int,end:int,name:str)->dict:
 #writeAndReturnPart3(2070,2081,"Bronya's Magic show, also sexy Sin Mal")
 #sys.exit(0)
 
+#writeAndReturnPart3(3930,3939,"Test")
+#sys.exit(-1)
+
 groupedExtData = [
 	writeAndReturnPart(
 		{j:convertPart(unconvertedLines_Ext,j) for j in range(3055,3062)},
@@ -862,6 +865,7 @@ groupedExtData = [
 	writeAndReturnPart3(2077,2081,"Seele's Magic show, also sexy Sin Mal"),
 	writeAndReturnPart3(3805,3096,"Schoolgirl AU stuff"),
 	writeAndReturnPart3(3100,3108,"Sirin goes to school"),
+	writeAndReturnPart3(1260,1267,"Lost Child S3, I guess"),
 	
 	writeAndReturnPart(
 		{j:convertPart(unconvertedLines_Ext,j) for j in range(390,408)},
@@ -877,18 +881,21 @@ story['event'].append({
 
 #And now for whatever's left... I guess...
 unknownExtData = []
-for i in range(0,312):
+lastPart = 0
+for i in unconvertedLines_Ext.keys():
+	lastPart=max(lastPart,i)
+for i in range(0,int(lastPart/10)):
 	parts = {}
 	for j in range(i*10,i*10+10):
 		if j in unconvertedLines_Ext:
 			linesToConvert = unconvertedLines_Ext[j]
 			partAlreadyExists=False
-			for line in linesToConvert:
+			"""for line in linesToConvert:
 				#print(line[3])
 				if line[3] != "0" and int(line[3][4:]) in allUsedLinesSoFar:
 					partAlreadyExists=True
 					print("skipped "+str(j))
-					break
+					break"""
 			if partAlreadyExists==False:
 				parts[j]=convertPart(unconvertedLines_Ext,j)
 		else:

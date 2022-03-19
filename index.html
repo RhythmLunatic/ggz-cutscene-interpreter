@@ -1573,8 +1573,16 @@ I have no idea how it works
 						let choiceButton = document.createElement('a');
 						choiceButton.setAttribute("class","waves-effect waves-light btn choiceButton");
 						choiceButton.setAttribute("style","margin-right: 5px; margin-bottom: 5px; text-transform:unset;")
-						let languageColumn = LANGUAGE_COLUMN[currentLanguage[0]]+1;
-						let text = structuredLines[i][c][LANGUAGE_COLUMN];
+						let text;
+						for (var zzzz=0;zzzz<currentLanguage.length;zzzz++)
+						{
+							let languageColumn = LANGUAGE_COLUMN[currentLanguage[zzzz]];
+							console.log(languageColumn);
+							text = structuredLines[i][c][languageColumn];
+							if (text)
+								break;
+						}
+						text=structuredLines[i][c][LANGUAGE_COLUMN[currentLanguage[1]]];
 						choiceButton.innerText= text || (structuredLines[i][c][0]+" (Not translated)");
 						thisPartDiv.appendChild(choiceButton);
 					}
@@ -1973,11 +1981,15 @@ I have no idea how it works
 									if (enabledLanguages.includes(langKey))
 									{
 										let text = dialogue[ii];
+
 										if (text == undefined)
 											text="(No text for this language)"
 										else
 											text=parseGFLTextModifiers(text)
 										let tr = _tr.cloneNode(true);
+										tr.setAttribute("lang",langKey);
+										if (dialogue[ii])
+											tr.setAttribute("raw-dialogue",dialogue[ii]);
 										let trInner = "<td>"
 											trInner += langName;
 										trInner+="</td><td>"
@@ -1996,10 +2008,16 @@ I have no idea how it works
 								{
 									let dialogueID = dialogue[1]
 									let text = parseGFLTextModifiers(customLanguage[dialogue[1]] || "");
-									let icon_name = customLanguage[dialogue[1]]!=undefined ? "create" : "add";
+									let cust_icon = customLanguage[dialogue[1]]!=undefined ? "<i class='material-icons' title='Edit existing translation'>create</i>" : "<i class='material-icons' title='Add new translation'>add</i>"
+									//let icon_name = customLanguage[dialogue[1]]!=undefined ? "create" : "add";
 
 									let tr = _tr.cloneNode(true);
-									let trInner = "<td>Custom <a style='cursor:pointer;'><i class='material-icons'>"+icon_name+"</i></a></td>"
+									let trInner = "<td>Custom <a style='cursor:pointer;'>"+cust_icon+"</a>"
+									if (customLanguage[dialogue[1]]==undefined)
+									{
+										trInner+="<a style='cursor:pointer;'><i class='material-icons' title='copy from CN'>content_copy</i></a>"
+									}
+									trInner+="</td>"
 									
 									trInner+="<td><span text-id='"+dialogueID+"''>"+text+"</span>"
 									trInner+='<div class="input-field col s12" style="display:none">'
@@ -2050,6 +2068,27 @@ I have no idea how it works
 										return event.keyCode != 13;
 									})
 									tr.getElementsByTagName("a")[0].addEventListener("click", editHandlerFunc)
+
+									//let copyFunc = 
+
+									if (customLanguage[dialogue[1]]==undefined)
+									{
+
+										tr.getElementsByTagName("a")[1].addEventListener("click",function(ev){
+											//console.log(ev);
+											ev.srcElement.setAttribute("style","display:none");
+											//console.log(tbody);
+											//console.log(tbody.getElementsByTagName("tr")[1].childNodes[1].innerText);
+											let ttttt = tbody.getElementsByTagName("tr")[1].getAttribute('raw-dialogue');
+
+											let textCol = tr.childNodes[1];
+											let span = textCol.getElementsByTagName("span")[0]
+											customLanguage[span.getAttribute('text-id')]=ttttt;
+											//span.innerHTML=ttttt;
+											//icon.innerText="create"
+											editHandlerFunc();
+										})
+									}
 									tbody.appendChild(tr)
 								}
 								table.appendChild(tbody);
@@ -2237,6 +2276,34 @@ I have no idea how it works
 		console.log(value);
 		//let [type,chapter,episode] = getKeysFromRoutableString(value)
 		runFromRoutableKeyString(value)
+	}
+	function goToPrevEpisode()
+	{
+		//To make it jump to the top
+		document.getElementById('chapterName').scrollIntoView()
+		
+		let value = curEpKey;
+		console.log(value);
+		let [type,chapter,episode] = getKeysFromRoutableString(value)
+		episode--;
+		if (CHAPTER_DB[type][chapter]['episodes'][episode])
+		{
+			runFromRoutableKeyString(getRoutableKeyString(type,chapter,episode))
+			return true;
+		}
+		else
+		{
+			chapter--;
+			episode = CHAPTER_DB[type][chapter]['episodes'].length-1;
+		}
+		
+		if (CHAPTER_DB[type][chapter]['episodes'][episode])
+		{
+			runFromRoutableKeyString(getRoutableKeyString(type,chapter,episode))
+			return true;
+		}
+		
+		return false;
 	}
 	function goToNextEpisode()
 	{
@@ -3241,7 +3308,9 @@ I have no idea how it works
 	<hr>
 
 	<div id="verySimpleText"></div>
-	<a class="waves-effect waves-light btn" onclick="document.getElementById('theTop').scrollIntoView()"><i class="material-icons left">vertical_align_top</i>Back to top</a> <a class="waves-effect waves-light btn" onclick="goToNextEpisode();"><i class="material-icons left">chevron_right</i>Go to the next cutscene</a>
+	<a class="waves-effect waves-light btn" onclick="goToPrevEpisode();"><i class="material-icons left">chevron_left</i>Go to the previous cutscene</a>
+	<a class="waves-effect waves-light btn" onclick="document.getElementById('theTop').scrollIntoView()"><i class="material-icons left">vertical_align_top</i>Back to top</a>
+	<a class="waves-effect waves-light btn" onclick="goToNextEpisode();"><i class="material-icons left">chevron_right</i>Go to the next cutscene</a>
 	<hr>
 	<audio controls loop id="audioPlayer">
 		<source class='a_ogg' src="" type="audio/ogg"> <!-- Turns out putting something in makes firefox load it when you load the page, wasting bandwidth. But leaving it blank is fine. -->

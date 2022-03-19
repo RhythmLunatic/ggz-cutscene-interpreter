@@ -15,7 +15,7 @@ with open("TextMap_aio.tsv",'r') as f:
 			break
 		line=line.split('\t')
 		line[-1]=line[-1].rstrip() #Strip newline char
-		textMap[int(line[0])]=line[1:]
+		textMap[int(line[0])]=line[1:4] #No KR or TCH
 
 class LDType(Enum):
 	CHARACTER = 1
@@ -40,6 +40,7 @@ class LibraryData():
 		#Everything else is useless
 
 
+
 libraryDatas:List[LibraryData] = []
 with open(os.path.join("GameData","LibraryData.tsv")) as f:
 	f.readline() # skip first four lines, I don't know why they're here
@@ -57,18 +58,53 @@ with open(os.path.join("GameData","LibraryData.tsv")) as f:
 
 #Fuck it
 ENGLISH = 0
-CHINESE = 2
-JAPANESE = 3
-KOREAN = 4
-TCHINESE = 5
+CHINESE = 1
+JAPANESE = 2
+KOREAN = 3
+TCHINESE = 4
+
+toStr = ["EN","CN","JA","KR","TCH"]
 
 txt = ""
 for d in libraryDatas:
 	txt+="<h3>"+d.name[ENGLISH]+"</h3>"
-	txt+="<p><b>Age:</b> "+d.age[ENGLISH]
-	txt+="</p><p><b>Birthday:</b> "+d.birthday[ENGLISH]
-	txt+="</p><p><b>Skill:</b> "+d.skill[ENGLISH].replace("#n","<br>")
-	txt+="</p><p><b>Description:</b> "+d.description[ENGLISH]+'</p><br><br>'
+	txt+="<h4>"+" / ".join(d.name)+"</h4>"
+	txt+="<p><b>Age:</b> "+" / ".join(d.age)
+	txt+="</p><p><b>Birthday:</b> "+" <b>/</b> ".join(d.birthday)
+	txt+="</p><p><b>Skill:</b></p>"
+	for i in range(len(d.skill)):
+		l=d.skill[i]
+		txt+="<p><b>"+toStr[i]+" </b>"+l.replace("#n","<br>")+"</p>"
+	txt+="</p><p><b>Description:</b></p> "
+	for i in range(len(d.description)):
+		l=d.description[i]
+		txt+="<p><b>"+toStr[i]+" </b>"+l.replace("#n","<br>")+"</p>"
+	txt+="<br><br>"
 
 with open("LibraryData.html", 'w') as f:
+	f.write(txt)
+
+dictionary:List[dict] = []
+with open(os.path.join("GameData","LibraryKeyWordData.tsv")) as f:
+	f.readline() # skip first four lines, I don't know why they're here
+	f.readline()
+	f.readline()
+	f.readline()
+	while True:
+		line = f.readline()
+		if not line:
+			break
+		info=line.split('\t')
+		dictionary.append({
+			"name":textMap[int(info[1])],
+			"desc":textMap[int(info[2])]
+		})
+
+txt = ""
+for definition in dictionary:
+	txt+="<h3>"+definition['name'][ENGLISH]+"</h3>"
+	txt+="<h4>"+" / ".join(definition['name'])+"</h4>"
+	for l in definition['desc']:
+		txt+="<p>"+l+"</p>"
+with open("LibraryDictionary.html",'w') as f:
 	f.write(txt)

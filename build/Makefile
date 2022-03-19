@@ -13,6 +13,14 @@ clean:
 	git fetch origin
 	git reset --hard origin/master
 
+dist:
+	cd ../
+	echo "$PWD"
+	rclone sync --progress --size-only avgtxt sigma:/var/www/ggz/avgtxt
+	rclone sync chapterDatabase.json sigma:/var/www/ggz/
+	rclone sync --size-only index.html sigma:/var/www/ggz/
+	cd -
+
 all:
 	build
 

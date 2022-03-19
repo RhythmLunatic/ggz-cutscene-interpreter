@@ -1,3 +1,4 @@
 #!/bin/bash
 cd avgtexture
-find *.png -exec convert {} -gravity center -rezise 1024x576! {} \;
+find . -name "*.png" -exec convert {} -gravity center -resize 1024x576! {} \;
+#find . -name "*.png" -exec optipng {} \;
