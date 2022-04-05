@@ -3,7 +3,8 @@ from cgitb import text
 import json as JSON
 import sys
 import os
-from typing import Dict,List,Any, Union
+from typing import Dict,List,Any, Union, Literal
+from xml.etree.ElementTree import PI
 """
 DialogueID	Type	UnLockLevelID	DialogueText	Repeatable	ChoiceID	RoleID	RoleStorySide	faceid	RoleMotion	isMotionFirst	RoleDelay	ItemShowCaseID	CGID	BGID	EffectID	isEffectFirst	EffectDelay	EffectDuration	SoundID	SoundDelay	SoundDuration	BGMID
 1	0	0	TEXT30001	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
@@ -116,12 +117,16 @@ class StoryFigureSettingDataStruct():
 		self.DevY=info[3]
 		self.StorySide=int(info[4])    #What the fuck is this even for???
 		self.SpeakerName=int(info[5])  #This is a TextID, pulled from textMap_en
-		self.FacePosition=info[6]      #x,y coords of replacement face
+		                               #x,y coords of replacement face
+		self.FacePosition=[round(float(h)) for h in info[6].split(";")]
 		self.FlipOnOtherSide=(info[7]=="1")
 		self.Scale=float(info[8])
+
+	def getNormalizedFacePosition(self):
+		return (self.FacePosition[0]-128,1024-self.FacePosition[1]-128)
 		
 
-storyFigueSettingData = {}
+storyFigueSettingData:Dict[int,StoryFigureSettingDataStruct] = {}
 with open(os.path.join("GameData","StoryFigueSettingData.tsv"),'r') as f:
 	f.readline() # skip first four lines, I don't know why they're here
 	f.readline()
@@ -138,7 +143,7 @@ print("done.")
 
 #commandsList = []
 
-def getLastCommandOf(commandsList:list,opcode:str):
+def getLastCommandOf(commandsList:list,opcode:str)->Union[None,List[Any]]:
 	"""Given a list of opcodes and the type to search, return the last opcode of the type specified."""
 	for i in range(len(commandsList)-1,-1,-1):
 		if commandsList[i][0]==opcode:
@@ -147,13 +152,14 @@ def getLastCommandOf(commandsList:list,opcode:str):
 		#	print(commandsList[i][0]+" != "+t)
 	return None
 	
-def getOpp(i):
+#lol
+def getOpp(i:Literal[1,2]):
 	return 2 if i==1 else 1
 
 emptyPortrait = ['',0,False]
 #def shouldDimThis(thisPosition,
 
-def getStoryTSV(fileName)->Dict[int,List[str]]:
+def getStoryTSV(fileName:str)->Dict[int,List[str]]:
 	"""Converts a story TSV into a dict of lists, with the dict being indexed by the part ID. Lines not starting with a number will be ignored.
 	
 	After conversion it looks something like this:
@@ -202,7 +208,7 @@ class StoryDataStruct():
 		_type: If 0 (default), column 3 is the text.
 		If 1, column 1 is the text.
 	"""
-	def __init__(self, StoryTextV2:list, _type=0):
+	def __init__(self, StoryTextV2:List[str], _type=0):
 		#self.DialogueID = int(l[0])
 		if _type == 1: #PlaybackStoryData
 			if RepresentsInt(StoryTextV2[1]):
@@ -212,7 +218,7 @@ class StoryDataStruct():
 				print(StoryTextV2)
 				self.text = -1
 			self.RoleID = int(StoryTextV2[2])
-			self.PortraitPosition = 2 if (StoryTextV2[3]=="1") else 1
+			self.PortraitPosition:Literal[1,2] = 2 if (StoryTextV2[3]=="1") else 1
 			self.RoleFace = int(StoryTextV2[4])
 			#self.RoleMotion = int(StoryTextV2[5])
 			#self.isMotionFirst = StoryTextV2[6] == "1"
@@ -220,7 +226,16 @@ class StoryDataStruct():
 			self.BGID = StoryTextV2[10]
 
 			self.ChoiceID=0
-		elif _type == 2:
+		elif _type == 2: #PartnerStoryData
+
+			# self.text=int(StoryTextV2[2][4:])
+			# self.RoleID=int(StoryTextV2[1])
+			# self.RoleFace=int(StoryTextV2[3])
+
+			# self.CGID=''
+			# self.BGID=''
+			# #This does nothing, type 2 only ever has two portraits and they're always defined
+			# self.PortraitPosition=1
 			pass
 		else: #Type 0, kyusyo, era zero, extdata, etc uses this one
 			#DialogueID	Type	UnLockLevelID	DialogueText	Repeatable	ChoiceID	RoleID	RoleStorySide	face	RoleMotion	isMotionFirst	RoleDelay	ItemShowCaseID	CGID	BGID	EffectID	isEffectFirst	EffectDelay	EffectDuration	SoundID	SoundDelay	SoundDuration	BGMID
@@ -236,10 +251,12 @@ class StoryDataStruct():
 				self.text=-1
 			self.ChoiceID:int = int(StoryTextV2[5])
 			self.RoleID = int(StoryTextV2[6])
-			self.PortraitPosition=2 if (StoryTextV2[7]=="1") else 1
+			self.PortraitPosition:Literal[1,2]=2 if (StoryTextV2[7]=="1") else 1 #Determines which portrait to highlight in this text
 			self.RoleFace=int(StoryTextV2[8])
 			self.CGID=StoryTextV2[13]
 			self.BGID = StoryTextV2[14]
+			if _type==3: #Kyusyo only
+				self.EffectID = int(StoryTextV2[15])
 
 	
 		if self.BGID=="0":
@@ -262,7 +279,7 @@ class StoryChoiceData():
 #Hueristic to skip parts that exist in the playback archive
 allUsedLinesSoFar = []
 
-def convertPart(section:dict,partNumber:int,_type=0,choiceDatas:Union[Dict[int,StoryChoiceData],None]=None):
+def convertPart(section:dict,partNumber:int,_type=0,choiceDatas:Union[Dict[int,StoryChoiceData],None]=None)->List[List[Any]]:
 	"""Given a dict containing all the unconverted lines and the part to convert, return a list of structured opcodes."""
 	commandsList = []
 	if partNumber not in section:
@@ -287,8 +304,14 @@ def convertPart(section:dict,partNumber:int,_type=0,choiceDatas:Union[Dict[int,S
 		if newCmd[getOpp(StoryTextV2.PortraitPosition)][0]!='':
 			newCmd[getOpp(StoryTextV2.PortraitPosition)][2]=True
 		#
-		if StoryTextV2.RoleID in portraitBlacklist:
+		if StoryTextV2.RoleID in portraitBlacklist: 
 			newCmd[StoryTextV2.PortraitPosition]=emptyPortrait
+			# Ok but we still have to set the speaker!!
+			pInfo = storyFigueSettingData[StoryTextV2.RoleID] 
+			lastSpeakerName = getLastCommandOf(commandsList,'speaker')
+			if not lastSpeakerName or lastSpeakerName[1] != pInfo.SpeakerName:
+				commandsList.append(['speaker', pInfo.SpeakerName ])
+
 		elif StoryTextV2.RoleID < 0:
 			#print("Ignoring unknown RoleID: "+str(RoleID))
 			pass
@@ -297,7 +320,6 @@ def convertPart(section:dict,partNumber:int,_type=0,choiceDatas:Union[Dict[int,S
 				pInfo = storyFigueSettingData[StoryTextV2.RoleID]
 				#RoleFace 1 is identical to 0, but the story portrait database generator handles this anyways
 				newCmd[StoryTextV2.PortraitPosition]=[StoryTextV2.RoleID,StoryTextV2.RoleFace,False]
-				
 				lastSpeakerName = getLastCommandOf(commandsList,'speaker')
 				if not lastSpeakerName or lastSpeakerName[1] != pInfo.SpeakerName:
 					commandsList.append(['speaker', pInfo.SpeakerName ])
@@ -341,6 +363,8 @@ def convertPart(section:dict,partNumber:int,_type=0,choiceDatas:Union[Dict[int,S
 			#commandsList.append(newCmd)
 			pass
 		
+		#if StoryTextV2.
+
 		if StoryTextV2.text > 0 and StoryTextV2.text in textMap:
 			allUsedLinesSoFar.append(StoryTextV2.text)
 			commandsList.append(['msg']+[StoryTextV2.text]+textMap[StoryTextV2.text]) # type: ignore
@@ -350,6 +374,8 @@ def convertPart(section:dict,partNumber:int,_type=0,choiceDatas:Union[Dict[int,S
 			#print(StoryTextV2.ChoiceID)
 			c = choiceDatas[StoryTextV2.ChoiceID]
 			commandsList.append(['choice',c.Choice1Text,c.Choice2Text])
+			if c.Choice1Story and c.Choice2Story:
+				commandsList.append(['nop','CHOICE_DESTS',c.Choice1Story,c.Choice2Story])
 			#print(StoryTextV2)
 	return commandsList
 
@@ -573,7 +599,9 @@ class KyusyoMissionDataStruct():
 		#LevelRequiredMax is never used (d[8])
 		self.MissionName = textMap[int(d[9])][0]
 		if d[10] != "0":
-			self.MissionDesc = textMap[int(d[10])][0]
+			txtArr = textMap[int(d[10])]
+			#if textArr[5]:
+			self.MissionDesc = txtArr[3] if txtArr[3] else txtArr[0]
 		else:
 			self.MissionDesc=""
 
@@ -620,6 +648,8 @@ KyusyoStoryPartsList.sort()
 #sys.exit(0)
 
 def getNextClosestEndPart(start:int)->int:
+	if start==0:
+		return 17 #Because it will skip the first index... Yeah it's dumb
 	for n in KyusyoStoryPartsList:
 		if start > n or start==n:
 			#print(str(start)+" < "+str(n))
@@ -633,7 +663,7 @@ def writeFireMothData():
 	#ConvertedKyusyoData = []
 	for i in range(8):
 		story['side'].append({
-			"name":"Chapter "+str(i+1),
+			"name":"Chapter "+str(i), #Yes it starts on chapter 0 lol
 			"episodes":[]
 		})
 	story['side'].append({
@@ -720,7 +750,7 @@ def writeFireMothData():
 		"name":"Unknown Kyusyo Data",
 		"episodes":unknownKyusyoData
 	})"""
-writeFireMothData()
+#writeFireMothData()
 #sys.exit(0)
 
 
@@ -802,7 +832,208 @@ def writeDLC2Data():
 			"name":"Era ZERO Chapter "+str(i+1),
 			"episodes":dlc2Datas
 		})
-writeDLC2Data()
+#writeDLC2Data()
+
+
+#ABANDON ALL HOPE, YE WHO ENTER HERE
+#"Who needs file structures anyways" - The complete lunatics at mihoyo that think this is even remotely okay
+from biographiesToJSON import PartnerPosterData
+
+class PartnerStoryHeadData():
+	def __init__(self,tsv:List[str],textMap:Dict[int,List[str]]) -> None:
+		self.StoryID=int(tsv[0])
+		#BackgroundID is never used
+		self.Title=textMap[int(tsv[2])]
+		self.Description=textMap[int(tsv[3])] #Unknown, appears to be for grouping
+		self.Poster=int(tsv[4]) #Unknown
+		self.StoryOrder=int(tsv[5]) #IntimacyRequire, but stories are sorted by intimacy
+		pass
+
+	def __str__(self)->str:
+		return str(vars(self))
+
+class PartnerStoryStruct():
+	def __init__(self,tsv:List[str]) -> None:
+		self.text=int(tsv[2][4:])
+		if tsv[1][0]=="2": #WTF WHY WOULD YOU DO THIS
+			tsv[1]='1'+tsv[1][1:]
+			self.PortraitPosition:Literal[1,2]=2 #This isn't really needed since there's usually always just two
+		else:
+			self.PortraitPosition:Literal[1,2]=1
+		self.FigureID=int(tsv[1])
+		#if self.FigureID
+		self.RoleFace=int(tsv[3])
+
+#import BuildLibrary
+#libraryDatas:List[BuildLibrary.LibraryData]=BuildLibrary.getLibraryDatas(textMap)
+
+def convertPartnerStory(linesToConvert:List[Any])->List[List[Any]]:
+	commandsList:List[List[Any]]=[]
+
+	structs:List[PartnerStoryStruct]=[]
+	for unConvStoryText in linesToConvert:
+		structs.append(PartnerStoryStruct(unConvStoryText))
+	if len(structs)<2:
+		print("There are not enough structs!!")
+		return commandsList
+	
+	#commandsList.append([ #It's not really accurate, I think it uses RoleSide in the figure db
+	#	'portraits',
+	#	[structs[0].FigureID,structs[0].RoleFace,False],
+	#	[structs[1].FigureID,structs[1].RoleFace,True]
+	#])
+	for i in range(len(structs)):
+		partnerStoryLine = structs[i]
+
+		lastCmd = getLastCommandOf(commandsList,'portraits')
+		if not lastCmd:
+			#print("No last cmd")
+			newCmd=['portraits',emptyPortrait,emptyPortrait]
+		else:
+			#print(lastCmd)
+			newCmd = ['portraits',lastCmd[1].copy(),lastCmd[2].copy()]
+			
+		#If opposite side exists, dim it
+		if newCmd[getOpp(partnerStoryLine.PortraitPosition)][0]!='':
+			newCmd[getOpp(partnerStoryLine.PortraitPosition)][2]=True
+		#
+
+		if partnerStoryLine.FigureID < 0:
+			#print("Ignoring unknown RoleID: "+str(RoleID))
+			pass
+		else:
+			if partnerStoryLine.FigureID in storyFigueSettingData:
+				pInfo = storyFigueSettingData[partnerStoryLine.FigureID]
+				#RoleFace 1 is identical to 0, but the story portrait database generator handles this anyways
+				newCmd[partnerStoryLine.PortraitPosition]=[partnerStoryLine.FigureID,partnerStoryLine.RoleFace,False]
+				lastSpeakerName = getLastCommandOf(commandsList,'speaker')
+				if not lastSpeakerName or lastSpeakerName[1] != pInfo.SpeakerName:
+					commandsList.append(['speaker', pInfo.SpeakerName ])
+			else:
+				#print("ID "+str(StoryTextV2.RoleID)+" does not exist in portrait/name DB")
+				commandsList.append(['speaker',"Missing ID " +str(partnerStoryLine.FigureID)+" (Removed from DB?)"])
+		
+		if lastCmd!=newCmd:
+			commandsList.append(newCmd)
+
+		if partnerStoryLine.text > 0 and partnerStoryLine.text in textMap:
+			commandsList.append(['msg']+[partnerStoryLine.text]+textMap[partnerStoryLine.text]) # type: ignore
+		#else:
+		#	print("ID "+str(partnerStoryLine.text)+" not present in text db, assuming command with no message")
+	return commandsList
+
+def writePartnerStories():
+	partnerStoryData = getStoryTSV("PartnerStoryData.tsv")
+	partnerPosterData:Dict[int,PartnerPosterData] = {}
+	with open("GameData/PartnerPosterData.tsv",'r') as f:
+		f.readline()
+		while True:
+			line = f.readline()
+			if not line:
+				break
+			info=line.split('\t')
+			
+			data = PartnerPosterData(info,textMap,storyFigueSettingData)
+			partnerPosterData[data.PosterID]=data
+	"""
+		Structure example:
+		"6":[
+			cutscene1,
+			cutscene2,
+			etc
+		],
+		"7":[
+			...
+		]
+	"""
+	partnerStoryHeadData:Dict[int,List[PartnerStoryHeadData]]={}
+	with open("GameData/PartnerStoryHeadData.tsv",'r') as f:
+		f.readline()
+		lastPoster=-1
+		while True:
+			line = f.readline()
+			if not line:
+				break
+			d = PartnerStoryHeadData(line.split('\t'),textMap)
+			
+			if d.Poster not in partnerStoryHeadData:
+				partnerStoryHeadData[d.Poster]=[]
+			partnerStoryHeadData[d.Poster].append(d)
+
+			if lastPoster==-1:
+				lastPoster=d.Poster
+			elif lastPoster!=d.Poster:
+				partnerStoryHeadData[lastPoster].sort(key=lambda x: x.StoryOrder)
+			lastPoster=d.Poster
+	#print(partnerStoryHeadData[6])
+	#for p in partnerStoryHeadData[6]:
+	#	print(p)
+	partnerEpisodes=[]
+	for poster in partnerStoryHeadData:
+		partnerStoriesInfo=partnerStoryHeadData[poster]
+
+		#It turns out there are no stories with unknown posters in the first place, so you can just continue
+
+		# if poster in partnerPosterData:
+		# 	fileName = "PartnerStory-"+str(partnerPosterData[poster].PortraitID)+".json"
+		# 	episodeName = partnerPosterData[poster].Name[0]
+		# else:
+		# 	print("This story has no poster associated with it!")
+		# 	fileName = "PartnerStory-unk-"+str(poster)+".json"
+		# 	episodeName = "Unknown Partner ID"+str(poster)
+		# 	#continue
+		if poster not in partnerPosterData:
+			continue
+		fileName = "PartnerStory-"+str(partnerPosterData[poster].PortraitID)+".json"
+		episodeName = partnerPosterData[poster].Name[0]
+
+		parts = {}
+		part_names = []
+		for st in partnerStoriesInfo:
+			if st.StoryID in partnerStoryData:
+				parts[st.StoryID] = convertPartnerStory(partnerStoryData[st.StoryID])
+				part_names.append(st.Title[2])
+			else:
+				print("There is no partner story with ID "+str(st.StoryID))
+		if len(parts) > 0:
+			with open("../avgtxt/"+fileName,'wb') as f:
+				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
+				print("Generated "+fileName+" containing "+str(len(parts)))
+			
+			partnerEpisodes.append({
+				'name':episodeName,
+				'parts':fileName,
+				'part_names':part_names
+			})
+
+
+	story['event'].append({
+		"name":"Partner Stories (Removed)",
+		"episodes":partnerEpisodes
+	})
+
+	def foundStory(storyNum:int)->bool:
+		for k in partnerStoryHeadData:
+			for pshd in partnerStoryHeadData[k]:
+				if pshd.StoryID==p:
+					return True
+		return False
+
+
+	#unusedPartnerEpisodes = []
+	#parts = {}
+	#Actually there aren't any that aren't used...
+	for p in partnerStoryData:
+		if not foundStory(p):
+			print("Partner story "+str(p)+" is not used.")
+			# parts[p] = convertPartnerStory(partnerStoryData[p])
+			# if len(p)>9:
+			# 	with open("../avgtxt/"+fileName,'wb') as f:
+			# 		f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
+			# 		print("Generated "+fileName+" containing "+str(len(parts)))
+
+writePartnerStories()
+#sys.exit(0)
 
 
 
@@ -812,11 +1043,15 @@ writeDLC2Data()
 
 #Grouped extdata goes here
 
-def writeAndReturnPart3(begin:int,end:int,name:str)->dict:
+#Why did I name this writeAndReturnPart3 when there's no 2
+def writeAndReturnPart3(begin:int,end:int,name:str,customFileName:Union[str,None]=None)->dict:
+	fName="ExtData-"+str(begin)+"-"+str(end+1)+".json"
+	if customFileName:
+		fName=customFileName
 	return writeAndReturnPart(
 		{j:convertPart(unconvertedLines_Ext,j) for j in range(begin,end+1)},
 		name,
-		"ExtData-"+str(begin)+"-"+str(end+1)+".json",
+		fName,
 		[j for j in range(begin,end+1)]
 	)
 
@@ -832,23 +1067,10 @@ groupedExtData = [
 		"Seele's Dream",
 		"ExtData-3055-3061.json"
 	),
-	writeAndReturnPart(
-		{j:convertPart(unconvertedLines_Ext,j) for j in range(2057,2070)},
-		"Hyperdimension Neptunia Crossover",
-		"ExtData-2057-2069.json"
-	),
-	writeAndReturnPart(
-		{j:convertPart(unconvertedLines_Ext,j) for j in range(2497,2524)},
-		"Hyperdimension Neptunia Crossover 2",
-		"ExtData-2497-2523.json"
-	),
 	writeAndReturnPart3(1657,1665,"Honkai RPG"),
 	writeAndReturnPart3(1722,1725,"Theresa's birthday?"),
-	writeAndReturnPart3(1749,1754,"Kaguya"),
 	writeAndReturnPart3(1755,1763,"CN only event"),
 	writeAndReturnPart3(1764,1769,"Nina afterstory"),
-	writeAndReturnPart3(1770,1775,"Kira"),
-	writeAndReturnPart3(1776,1781,"Chloe"),
 	writeAndReturnPart3(1804,1812,"Seele's stigmata space and Seele 2"),
 	writeAndReturnPart3(1813,1821,"asdasdadadasd"),
 	writeAndReturnPart3(1830,1857,"asasddadsdadsd 2"),
@@ -856,7 +1078,6 @@ groupedExtData = [
 	writeAndReturnPart3(1862,1864,"asdjiaodijojwo 3"),
 	writeAndReturnPart3(1865,1870,"Delta, no not the pink one"),
 	writeAndReturnPart3(1885,1893,"Mei becomes a child"),
-	writeAndReturnPart3(1909,1920,"Date A Live crossover"),
 	writeAndReturnPart3(1930,1939,"Unused Fire Moth garbage"),
 	writeAndReturnPart3(2424,2431,"school au"),
 	writeAndReturnPart3(2464,2469,"Unused junk"),
@@ -884,7 +1105,7 @@ unknownExtData = []
 lastPart = 0
 for i in unconvertedLines_Ext.keys():
 	lastPart=max(lastPart,i)
-for i in range(0,int(lastPart/10)):
+for i in range(0,int(lastPart/10)+1):
 	parts = {}
 	for j in range(i*10,i*10+10):
 		if j in unconvertedLines_Ext:
@@ -939,6 +1160,31 @@ story['event'].append({
 	"episodes":unknownSubData
 })
 
+story['event'].append({
+	"name":"World Bosses",
+	"episodes":[
+		writeAndReturnPart3(1680,1685,"Sakura World Boss?"),
+		writeAndReturnPart3(1686,1691,"Kaguya World Boss?"),
+		writeAndReturnPart3(1692,1695,"Chloe World Boss?"),
+		writeAndReturnPart3(1696,1700,"Kira World Boss?"),
+		writeAndReturnPart3(1749,1754,"Kaguya (Unknown Data)"),
+		writeAndReturnPart3(1770,1775,"Kira (Unknown Data)"),
+		writeAndReturnPart3(1776,1781,"Chloe (Unknown Data)"),
+	]
+})
+story['event'].append({
+	"name":"Haunted Mansion",
+	"episodes":[
+		writeAndReturnPart3(89,89,"Introduction"),
+		writeAndReturnPart3(90,90,"Ghost Girl"),
+		writeAndReturnPart3(99,101,"Haunted Mansion S1"),
+		writeAndReturnPart3(102,103,"Haunted Mansion S2"),
+		writeAndReturnPart3(144,149,"Haunted Mansion S2 cont."),
+		writeAndReturnPart3(150,153,"Haunted Mansion S3"),
+		#writeAndReturnPart3(1776,1781,"Chloe (Unknown Data)"),
+	]
+})
+
 
 
 				
@@ -979,10 +1225,55 @@ story['crossover'].append({
 	"episodes":[
 		{
 			"name":"Full Episode",
-			"parts":"hg2-gfl.json"
+			"parts":"hg2-gfl-old.json"
 		}
 	]
 })
+story['crossover'].append({
+	"name":"GGZ x HI3: Herrscher of Sentience",
+	"shortName":"GGZ x HI3: HoS",
+	"episodes":[
+		writeAndReturnPart3(3760,3769,"Part 1","ggz-hi3-hos-1.json"),
+		writeAndReturnPart3(3770,3773,"Part 2","ggz-hi3-hos-2.json"),
+	]
+})
+story['crossover'].append({
+	"name":"GGZ x HI3: Herrscher of Reason",
+	"shortName":"GGZ x HI3: HoR",
+	"episodes":[
+		writeAndReturnPart3(2927,2936,"Full Episode","ggz-hi3-hor.json")
+	]
+})
+
+story['crossover'].append({
+	"name":"GGZ x HI3: Ai Chan",
+	#"shortName":"GGZ x HI3: Ai Chan",
+	"episodes":[
+		writeAndReturnPart3(1356,1361,"Full Episode","ggz-hi3-aic-1.json"),
+	]
+})
+story['crossover'].append({
+	"name":"Hyperdimension Neptunia",
+	"episodes":[
+		writeAndReturnPart(
+			{j:convertPart(unconvertedLines_Ext,j) for j in range(2057,2070)},
+			"Hyperdimension Neptunia Crossover",
+			"ExtData-2057-2069.json"
+		),
+		writeAndReturnPart(
+			{j:convertPart(unconvertedLines_Ext,j) for j in range(2497,2524)},
+			"Hyperdimension Neptunia Crossover 2",
+			"ExtData-2497-2523.json"
+		),
+	]
+})
+story['crossover'].append({
+	"name":"Date A Live crossover (Incomplete?)",
+	"episodes":[
+		writeAndReturnPart3(1909,1920,"Date A Live crossover"),
+	]
+})
+
 
 
 #This runs at the end!

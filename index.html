@@ -641,7 +641,7 @@ I have no idea how it works
 		'speaker',
 		'msg',
 		'portraits',
-		'INVALID - DO NOT USE',
+		'nop',
 		'msgboxTransition',
 		'snowEffect',
 		'stopEffect',
@@ -665,7 +665,7 @@ I have no idea how it works
 		SPEAKER : 3,
 		MSG : 4,
 		PORTRAIT : 5,
-		//NOPORTRAIT : 6,
+		NO_OPERATION : 6, //Or you can say it's a comment
 		MSGBOXTRANSITION : 7,
 		SNOWEFFECT : 8,
 		STOPEFFECTS : 9,
@@ -1517,6 +1517,7 @@ I have no idea how it works
 		
 		let shownPortraits = []
 		
+		let debugMode = document.getElementById('showDebugOpcodeButton').checked;
 		let fancyDisplayType = document.getElementById('fancyOrNot').checked;
 		let quickScroll = document.getElementById('quickScroll').checked;
 		let numStoryBoxRendered = part*1000+0; //For quick scroll. We start at a part because if there's multiple parts then it would jump back to the top and we don't want that.
@@ -1584,6 +1585,8 @@ I have no idea how it works
 						}
 						text=structuredLines[i][c][LANGUAGE_COLUMN[currentLanguage[1]]];
 						choiceButton.innerText= text || (structuredLines[i][c][0]+" (Not translated)");
+						if (debugMode)
+							choiceButton.title=structuredLines[i][c][0];
 						thisPartDiv.appendChild(choiceButton);
 					}
 					break;
@@ -1599,7 +1602,13 @@ I have no idea how it works
 					if (isNaN(structuredLines[i][1]))
 						realName = structuredLines[i][1];
 					else
-						realName = NAMES[structuredLines[i][1]][0];
+					{
+						if (NAMES[structuredLines[i][1]])
+							realName = NAMES[structuredLines[i][1]][0];
+						else
+							realName=structuredLines[i][1]+" (Portrait DB out of date! Tell HoP to fix database.json!)";
+
+					}
 					if (lastSpeakerName != realName)
 					{
 						lastSpeakerName=realName
@@ -1701,7 +1710,7 @@ I have no idea how it works
 						}
 						else if (PORTRAITS[name])
 						{
-							if (document.getElementById('showDebugOpcodeButton').checked)
+							if (debugMode)
 							{
 								let p = document.createElement('p');
 								p.innerHTML = "<span class='coloredDialogue' style='color:red'>PORTRAIT TYPE MISSING BELOW "+portraitStructToString(portrait)+"</span>";
@@ -1718,7 +1727,7 @@ I have no idea how it works
 						}
 						else
 						{
-							if (document.getElementById('showDebugOpcodeButton').checked)
+							if (debugMode)
 							{
 								let p = document.createElement('p');
 								p.innerHTML = "<span class='coloredDialogue' style='color:red'>PORTRAIT MISSING BELOW: "+portrait[0]+"</span>";
@@ -1878,10 +1887,13 @@ I have no idea how it works
 
 									let portraitImg = document.createElement('img');
 									//In case you forgot, it's ID and Type
-									portraitImg.src = 'pic/'+PORTRAITS[shownPortraits[j][0]][shownPortraits[j][1]];
+									if (shownPortraits[j][0]=="missing")
+										portraitImg.src="pic/missing.png";
+									else
+										portraitImg.src = 'pic/'+PORTRAITS[shownPortraits[j][0]][shownPortraits[j][1]];
 									
 									//console.log(portraitImg.src);
-									if (document.getElementById('showDebugOpcodeButton').checked)
+									if (debugMode)
 									{
 										if (shownPortraits[j].length > 4)
 												portraitImg.setAttribute('title',"ID: "+shownPortraits[j][0]+" | TYPE: "+shownPortraits[j][1]+ " | OFFSET: "+shownPortraits[j][4]+","+shownPortraits[j][5]);
@@ -1999,7 +2011,7 @@ I have no idea how it works
 									}
 									
 								}
-								if (document.getElementById('showDebugOpcodeButton').checked)
+								if (debugMode)
 								{
 									tbody.getElementsByTagName("td")[0].innerText+=" "+dialogue[1]
 								}
@@ -2148,7 +2160,22 @@ I have no idea how it works
 		chapterDesc.style.display = ('description' in episode ? "inherit" : "none")
 		if ('description' in episode)
 		{
-			chapterDesc.innerText=episode['description']
+			let text = episode['description']
+			//console.log(text)
+			for(var ccc = 0; ccc < 5; ccc++)
+			{
+				let idx = text.indexOf("#(");
+				if (idx != -1)
+				{
+					//print('parsing colors: '+message);
+					let end = text.indexOf('#)',idx)
+					//console.log(color)
+					let spanTagStart = "<span class='coloredDialogue' style='color:deepskyblue;'>"
+					text = text.slice(0,idx)+spanTagStart+text.slice(idx+2,end)+"</span>"+text.slice(end+2)
+					//console.log("new msg: "+message);
+				}
+			}
+			chapterDesc.innerHTML=text
 		}
 		
 		
@@ -2933,6 +2960,7 @@ I have no idea how it works
 				<li class="tab col s3"><a href="#eventEpisodesWrapper">Unknown Data</a></li>
 				<li class="tab col s3"><a href="#sideEpisodesWrapper">Fire Moth DLC</a></li>
 				<li class="tab col s3"><a href="#crossoverEpisodesWrapper">Crossover Stories</a></li>
+				<li class="tab col s3"><a target="_blank" href="GunsGirlzStoryOrder.html">Story order guide (VERY WIP)</a></li>
 				<li class="tab col s3"><a href="#customCutsceneWrapper">Write your own cutscene (WIP)</a></li>
 			</ul>
 		</div>
