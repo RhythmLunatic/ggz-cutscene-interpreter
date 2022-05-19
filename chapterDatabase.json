@@ -837,8 +837,1676 @@
 				]
 			}
 		],
-		"side": [],
+		"side": [
+			{
+				"name": "Chapter 0",
+				"episodes": [
+					{
+						"name": "Settle down",
+						"parts": "StoryKyusyoData-chapter-0-2.json",
+						"part_names": [
+							1,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							4,
+							5,
+							6,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							9,
+							10,
+							11,
+							12,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							15,
+							16
+						],
+						"description": "Check out base"
+					},
+					{
+						"name": "Survive",
+						"parts": "StoryKyusyoData-chapter-0-3.json",
+						"part_names": [
+							17,
+							18,
+							19,
+							20
+						],
+						"description": "Protect the #(Residence#) and #(Boundary#) bases."
+					},
+					{
+						"name": "Revive",
+						"parts": "StoryKyusyoData-chapter-0-4.json",
+						"part_names": [
+							21,
+							22,
+							23
+						],
+						"description": "Talk to Seele and Bronya"
+					}
+				]
+			},
+			{
+				"name": "Chapter 1",
+				"episodes": [
+					{
+						"name": "Loot",
+						"parts": "StoryKyusyoData-chapter-1-5.json",
+						"part_names": [
+							24,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							27,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							30,
+							31,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							34,
+							35,
+							36
+						],
+						"description": "Go to the #(Ruins#) and #(Desert#) to collect components"
+					},
+					{
+						"name": "Sacrifice",
+						"parts": "StoryKyusyoData-chapter-1-6.json",
+						"part_names": [
+							37,
+							38,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							41,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							44,
+							45,
+							46,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							49,
+							50,
+							51,
+							52,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							55
+						],
+						"description": "Search the #(Tunnel#)"
+					},
+					{
+						"name": "Dawn",
+						"parts": "StoryKyusyoData-chapter-1-7.json",
+						"part_names": [
+							56,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							59,
+							60,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							63,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							66,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							69,
+							70,
+							71,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							74
+						],
+						"description": "Head to #(Byway#) and #(Secret#) with Bronya"
+					},
+					{
+						"name": "Back",
+						"parts": "StoryKyusyoData-chapter-1-8.json",
+						"part_names": [
+							75,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							78,
+							79,
+							80,
+							81
+						],
+						"description": "Head to #(Metro#) and #(Gate#) to assist the Fire Moths"
+					},
+					{
+						"name": "Patrol",
+						"parts": "StoryKyusyoData-chapter-1-13.json",
+						"part_names": [
+							1001,
+							1002,
+							1003,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1006,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1009,
+							1010,
+							1011
+						],
+						"description": "Go to #(Discovery#),  beat Houkai creatures"
+					},
+					{
+						"name": "Rescue",
+						"parts": "StoryKyusyoData-chapter-1-14.json",
+						"part_names": [
+							1012,
+							1013,
+							1014,
+							1015,
+							1016,
+							1017
+						],
+						"description": "Go to #(Extended point#), protect Homu and save people"
+					},
+					{
+						"name": "Recycle",
+						"parts": "StoryKyusyoData-chapter-1-15.json",
+						"part_names": [
+							1018,
+							1019,
+							1020,
+							1021,
+							1022,
+							1023,
+							1024
+						],
+						"description": "One Hommie robot is missing, find it in #(Security#) with Emesa"
+					},
+					{
+						"name": "Search",
+						"parts": "StoryKyusyoData-chapter-1-16.json",
+						"part_names": [
+							1025,
+							1026,
+							1027,
+							1028,
+							1029
+						],
+						"description": "Go to the #(Mall#) and search for anything usable to reduce resource consumption in the base."
+					},
+					{
+						"name": "Check out",
+						"parts": "StoryKyusyoData-chapter-1-17.json",
+						"part_names": [
+							1030,
+							1031,
+							1032,
+							1033,
+							1034,
+							1035
+						],
+						"description": "Go to #(Relic#) beat Houkai creatures"
+					},
+					{
+						"name": "New home",
+						"parts": "StoryKyusyoData-chapter-1-18.json",
+						"part_names": [
+							1036,
+							1037
+						],
+						"description": "Go to #(Tunnel#) with Yssring"
+					},
+					{
+						"name": "Recall",
+						"parts": "StoryKyusyoData-chapter-1-19.json",
+						"part_names": [
+							1038,
+							1039,
+							1040,
+							1041
+						],
+						"description": "Go to #(Isolated point#) and #(Assistant point#)"
+					},
+					{
+						"name": "Pave",
+						"parts": "StoryKyusyoData-chapter-1-20.json",
+						"part_names": [
+							1042,
+							1043,
+							1044,
+							1045
+						],
+						"description": "Go to #(Sentinel#)"
+					},
+					{
+						"name": "Repair",
+						"parts": "StoryKyusyoData-chapter-1-21.json",
+						"part_names": [
+							1046,
+							1047,
+							1048,
+							1049
+						],
+						"description": "Go to #(Repair#) to help Yssring"
+					},
+					{
+						"name": "Test",
+						"parts": "StoryKyusyoData-chapter-1-22.json",
+						"part_names": [
+							1050,
+							1051,
+							1052,
+							1053
+						],
+						"description": "Go to #(Flatlands#) and #(Hills#)"
+					}
+				]
+			},
+			{
+				"name": "Chapter 2",
+				"episodes": [
+					{
+						"name": "Moth",
+						"parts": "StoryKyusyoData-chapter-2-9.json",
+						"part_names": [
+							82,
+							83,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							86,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							89,
+							90
+						],
+						"description": "Talk to Himeko"
+					},
+					{
+						"name": "Paradise",
+						"parts": "StoryKyusyoData-chapter-2-10.json",
+						"part_names": [
+							91,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							94,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							97,
+							98
+						],
+						"description": "Search #(Homuland#)"
+					},
+					{
+						"name": "Throne",
+						"parts": "StoryKyusyoData-chapter-2-11.json",
+						"part_names": [
+							99,
+							100,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							103,
+							104,
+							105,
+							106
+						],
+						"description": "Search #(Homu castle#)"
+					},
+					{
+						"name": "Peace",
+						"parts": "StoryKyusyoData-chapter-2-12.json",
+						"part_names": [
+							107,
+							108,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							111
+						],
+						"description": "Go to take a shower"
+					},
+					{
+						"name": "Mop up",
+						"parts": "StoryKyusyoData-chapter-2-23.json",
+						"part_names": [
+							1054,
+							1055,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1058,
+							1059,
+							1060
+						],
+						"description": "Check out #(Carousel#)"
+					},
+					{
+						"name": "Treasure",
+						"parts": "StoryKyusyoData-chapter-2-24.json",
+						"part_names": [
+							1061,
+							1062,
+							1063,
+							1064
+						],
+						"description": "Go to #(Maze#) to help Seele"
+					},
+					{
+						"name": "Secret mission",
+						"parts": "StoryKyusyoData-chapter-2-25.json",
+						"part_names": [
+							1065,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1068,
+							1069,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1072,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1075,
+							1076,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1079
+						],
+						"description": "Emesa asks you go to #(City boundary#) and #(Sea rover#)"
+					},
+					{
+						"name": "Lost children",
+						"parts": "StoryKyusyoData-chapter-2-26.json",
+						"part_names": [
+							1080,
+							1081,
+							1082,
+							1083,
+							1084
+						],
+						"description": "Find lost children in #(Frontierland#) and #(Center lake#)"
+					},
+					{
+						"name": "Picture",
+						"parts": "StoryKyusyoData-chapter-2-27.json",
+						"part_names": [
+							1085,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1088,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1091,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1094
+						],
+						"description": "Give pictures to Emesa"
+					},
+					{
+						"name": "Sampling",
+						"parts": "StoryKyusyoData-chapter-2-28.json",
+						"part_names": [
+							1095,
+							1096,
+							1097,
+							1098
+						],
+						"description": "Go to #(Circus city#) and #(Roller coaster#) beat Houkai creatures"
+					},
+					{
+						"name": "Chaser",
+						"parts": "StoryKyusyoData-chapter-2-29.json",
+						"part_names": [
+							1099,
+							1100,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1103,
+							1104
+						],
+						"description": "Go to #(Carriage#) and #(Hunting area#) beat Houkai creatures"
+					},
+					{
+						"name": "Plan",
+						"parts": "StoryKyusyoData-chapter-2-30.json",
+						"part_names": [
+							1105,
+							1106,
+							1107,
+							1108,
+							1109
+						],
+						"description": "Find enemies in #(Weapon room#) or #(Torture chamber #)"
+					},
+					{
+						"name": "Queen",
+						"parts": "StoryKyusyoData-chapter-2-31.json",
+						"part_names": [
+							1110,
+							1111,
+							1112,
+							1113,
+							1114
+						],
+						"description": "Beat the Queen in #(Living room#)"
+					}
+				]
+			},
+			{
+				"name": "Chapter 3",
+				"episodes": [
+					{
+						"name": "Be dying",
+						"parts": "StoryKyusyoData-chapter-3-33.json",
+						"part_names": [
+							113,
+							114,
+							115,
+							116,
+							117,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							120
+						],
+						"description": "Go to #(ME #)"
+					},
+					{
+						"name": "Protect",
+						"parts": "StoryKyusyoData-chapter-3-34.json",
+						"part_names": [
+							121,
+							122,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							125,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							128,
+							129,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							132,
+							133,
+							134,
+							135,
+							136,
+							137,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							140
+						],
+						"description": "Discover #(ME#)"
+					},
+					{
+						"name": "Resolution",
+						"parts": "StoryKyusyoData-chapter-3-35.json",
+						"part_names": [
+							141,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							144,
+							145,
+							146,
+							147,
+							148,
+							149
+						],
+						"description": "Go to #(Underground factory#)"
+					},
+					{
+						"name": "Transfer",
+						"parts": "StoryKyusyoData-chapter-3-36.json",
+						"part_names": [
+							150,
+							151,
+							152,
+							153,
+							154,
+							155,
+							156
+						],
+						"description": "Go to #(Outskirt#)"
+					},
+					{
+						"name": "Farewell",
+						"parts": "StoryKyusyoData-chapter-3-37.json",
+						"part_names": [
+							157,
+							158
+						],
+						"description": "Go to #(Hyperion#)"
+					},
+					{
+						"name": "Armour",
+						"parts": "StoryKyusyoData-chapter-3-39.json",
+						"part_names": [
+							1115,
+							1116,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1119,
+							1120,
+							1121,
+							1122
+						],
+						"description": "Go to #(Treelawn#)"
+					},
+					{
+						"name": "Weapon",
+						"parts": "StoryKyusyoData-chapter-3-40.json",
+						"part_names": [
+							1136,
+							1137,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1140,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1143
+						],
+						"description": "Go to #(Underground parking #)"
+					},
+					{
+						"name": "Resource",
+						"parts": "StoryKyusyoData-chapter-3-41.json",
+						"part_names": [
+							1123,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1126,
+							1127,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1130,
+							1131,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1134,
+							1135
+						],
+						"description": "Go to #(Outbound track#)"
+					},
+					{
+						"name": "Core",
+						"parts": "StoryKyusyoData-chapter-3-42.json",
+						"part_names": [
+							1144,
+							1145,
+							1146,
+							1147
+						],
+						"description": "Go to #(Resource center#)"
+					},
+					{
+						"name": "Black box",
+						"parts": "StoryKyusyoData-chapter-3-43.json",
+						"part_names": [
+							1148,
+							1149,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1152,
+							1153
+						],
+						"description": "Go to #(Disassembly room#)"
+					},
+					{
+						"name": "Produce line",
+						"parts": "StoryKyusyoData-chapter-3-45.json",
+						"part_names": [
+							1154,
+							1155,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1158,
+							1159,
+							1160,
+							1161
+						],
+						"description": "Go to #(Artery#)"
+					},
+					{
+						"name": "Thinking",
+						"parts": "StoryKyusyoData-chapter-3-46.json",
+						"part_names": [
+							1162,
+							1163,
+							1164,
+							1165,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1168,
+							1169
+						],
+						"description": "Go to #(Thrown lobby#)"
+					},
+					{
+						"name": "Recall flower",
+						"parts": "StoryKyusyoData-chapter-3-47.json",
+						"part_names": [
+							1187,
+							1188,
+							1189,
+							1190
+						],
+						"description": "Go to #(B416 factory#)"
+					},
+					{
+						"name": "Broken pictures",
+						"parts": "StoryKyusyoData-chapter-3-48.json",
+						"part_names": [
+							1170,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1173,
+							1174,
+							1175,
+							1176
+						],
+						"description": "Go to #(Zone border#)"
+					},
+					{
+						"name": "Night",
+						"parts": "StoryKyusyoData-chapter-3-49.json",
+						"part_names": [
+							1177,
+							1178,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1181,
+							1182,
+							1183
+						],
+						"description": "Go to #(Seaside#)"
+					},
+					{
+						"name": "Pre night",
+						"parts": "StoryKyusyoData-chapter-3-50.json",
+						"part_names": [
+							1184,
+							1185,
+							1186
+						],
+						"description": "Go to #(Ruins#)"
+					}
+				]
+			},
+			{
+				"name": "Chapter 4",
+				"episodes": [
+					{
+						"name": "Lingering Warmth",
+						"parts": "StoryKyusyoData-chapter-4-51.json",
+						"part_names": [
+							160,
+							161,
+							162,
+							163,
+							164,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							167,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							170,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							173,
+							174,
+							175,
+							176,
+							177
+						],
+						"description": "Guard #(Hyperion#)"
+					},
+					{
+						"name": "Ashes",
+						"parts": "StoryKyusyoData-chapter-4-52.json",
+						"part_names": [
+							178,
+							179
+						],
+						"description": "Beat the Houkai Beast in the #(the tank #)."
+					},
+					{
+						"name": "Leader",
+						"parts": "StoryKyusyoData-chapter-4-53.json",
+						"part_names": [
+							180,
+							181,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							184
+						],
+						"description": "Talk to Himeko."
+					},
+					{
+						"name": "Remaining",
+						"parts": "StoryKyusyoData-chapter-4-54.json",
+						"part_names": [
+							185,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							188,
+							189,
+							190
+						],
+						"description": "Explore the #(Outskirts of the Ruin#)."
+					},
+					{
+						"name": "Ready for Making Trouble",
+						"parts": "StoryKyusyoData-chapter-4-55.json",
+						"part_names": [
+							191,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							194,
+							195
+						],
+						"description": "Explore the #(Depths of the Parking Lot#)."
+					},
+					{
+						"name": "Threat",
+						"parts": "StoryKyusyoData-chapter-4-56.json",
+						"part_names": [
+							196,
+							197,
+							198,
+							199,
+							200,
+							201,
+							202,
+							203
+						],
+						"description": "Return to #(Hyperion#) from the #(Abandoned Parking Lot#)."
+					},
+					{
+						"name": "Engaged",
+						"parts": "StoryKyusyoData-chapter-4-57.json",
+						"part_names": [
+							204,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							207,
+							208
+						],
+						"description": "To be continued"
+					},
+					{
+						"name": "Emergency Repair",
+						"parts": "StoryKyusyoData-chapter-4-59.json",
+						"part_names": [
+							1191,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1194,
+							1195,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1198,
+							1199,
+							1200
+						],
+						"description": "Protect Yssring till she finishes repairing the powering furnace and lure the Houkai Beasts to the #(Engine Room#)."
+					},
+					{
+						"name": "Armored Ally",
+						"parts": "StoryKyusyoData-chapter-4-60.json",
+						"part_names": [
+							1201,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1204,
+							1205,
+							1206,
+							1207
+						],
+						"description": "Start the mecha in the #(Hangar#) to fight the Houkai Beasts."
+					},
+					{
+						"name": "Road Signs",
+						"parts": "StoryKyusyoData-chapter-4-61.json",
+						"part_names": [
+							1208,
+							1209,
+							1210,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1213,
+							1214,
+							1215
+						],
+						"description": "Help Himeko and the Graymoth Squad with the waypoint setting and the exploration in the #(Marked Area#)."
+					},
+					{
+						"name": "Clearance",
+						"parts": "StoryKyusyoData-chapter-4-62.json",
+						"part_names": [
+							1216,
+							1217,
+							1218,
+							1219,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1222,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1225
+						],
+						"description": "Find the items listed by Yssring in the #(Outskirts of the Parking Lot#)."
+					},
+					{
+						"name": "Blocking the Door",
+						"parts": "StoryKyusyoData-chapter-4-63.json",
+						"part_names": [
+							1226,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1229,
+							1230,
+							1231,
+							1232
+						],
+						"description": "Close the door in the #(Isolation Cabin#) to stop the Houkai Beasts from invading Hyperion."
+					},
+					{
+						"name": "Gap Repair",
+						"parts": "StoryKyusyoData-chapter-4-64.json",
+						"part_names": [
+							1233,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1236,
+							1237,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1240,
+							1241,
+							1242
+						],
+						"description": "Protect the engineering robot when it is repairing the #(Outer Wall#)."
+					},
+					{
+						"name": "Line Reconnection",
+						"parts": "StoryKyusyoData-chapter-4-65.json",
+						"part_names": [
+							1243,
+							1244,
+							1245,
+							1246,
+							1247
+						],
+						"description": "Protect Yssring when she is connecting the lines in the Main Armament Room."
+					}
+				]
+			},
+			{
+				"name": "Chapter 5",
+				"episodes": [
+					{
+						"name": "Last Gasp",
+						"parts": "StoryKyusyoData-chapter-5-66.json",
+						"part_names": [
+							1248,
+							1249,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1252
+						],
+						"description": "Deal with problems in #(Power Furnace#) and patrol #(Wild Area#) to remove nearby hazards."
+					},
+					{
+						"name": "March",
+						"parts": "StoryKyusyoData-chapter-5-67.json",
+						"part_names": [
+							1253,
+							1254,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1257
+						],
+						"description": "Go to #(East Side of Bridge#) and use the bomb at #(Bottom of Bridge#) to deflect Houkai creatures."
+					},
+					{
+						"name": "Homecoming ",
+						"parts": "StoryKyusyoData-chapter-5-68.json",
+						"part_names": [
+							1258
+						],
+						"description": "Break through the encirclement line of #(West Side of Bridge#) and head to Avenue."
+					},
+					{
+						"name": "Meet Again",
+						"parts": "StoryKyusyoData-chapter-5-69.json",
+						"part_names": [
+							1259,
+							1260,
+							1261
+						],
+						"description": "Remove Houkai Creatures near #(Street Ruin#) and #(Coastal Street #)."
+					},
+					{
+						"name": "Reunion",
+						"parts": "StoryKyusyoData-chapter-5-70.json",
+						"part_names": [
+							1262
+						],
+						"description": "Meet again, but you are not with a smile."
+					},
+					{
+						"name": "Old Friend",
+						"parts": "StoryKyusyoData-chapter-5-71.json",
+						"part_names": [
+							1263,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1266,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1269
+						],
+						"description": "Patrol around #(Safe Area#)."
+					},
+					{
+						"name": "Tragedies",
+						"parts": "StoryKyusyoData-chapter-5-72.json",
+						"part_names": [
+							1270
+						],
+						"description": "Old friendship, even if ignited by hatred, the flame of mutual incomprehension will be extinguished in wine."
+					},
+					{
+						"name": "Waken up",
+						"parts": "StoryKyusyoData-chapter-5-73.json",
+						"part_names": [
+							1271,
+							1272
+						],
+						"description": "#(Dream Mirror#) gradually clear, the end of the light gradually bright."
+					},
+					{
+						"name": "Eternity",
+						"parts": "StoryKyusyoData-chapter-5-74.json",
+						"part_names": [
+							1273,
+							1274,
+							1275
+						],
+						"description": "Resist the attack of Herrscher, clean up the creatures and escape in #(Business Center#), #(Old Farms#) and #(Small Port#)."
+					},
+					{
+						"name": "Survival",
+						"parts": "StoryKyusyoData-chapter-5-75.json",
+						"part_names": [
+							1276,
+							1277,
+							1278
+						],
+						"description": "Defeat drunk Theresa in #(Cellar#). Resist the attack of Mei in #(Central Plaza#)."
+					},
+					{
+						"name": "Ending",
+						"parts": "StoryKyusyoData-chapter-5-76.json",
+						"part_names": [
+							1279
+						],
+						"description": "To be continued…"
+					},
+					{
+						"name": "Bridge Rush",
+						"parts": "StoryKyusyoData-chapter-5-78.json",
+						"part_names": [
+							1280,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1283,
+							1284,
+							1285,
+							1286
+						],
+						"description": "On #(Bridge Floor#), look for vehicle to pass through the Bridge Floor."
+					},
+					{
+						"name": "Distort City",
+						"parts": "StoryKyusyoData-chapter-5-79.json",
+						"part_names": [
+							1287,
+							1288,
+							1289,
+							1290
+						],
+						"description": "Go to #(Broken Building#) to find the right way."
+					},
+					{
+						"name": "Therapeutic Agent",
+						"parts": "StoryKyusyoData-chapter-5-80.json",
+						"part_names": [
+							1291,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1294,
+							1295,
+							1296,
+							1297,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1300,
+							1301
+						],
+						"description": "Go to #(General Hospital#) and help Emisha find what she needs."
+					},
+					{
+						"name": "Night Watchman",
+						"parts": "StoryKyusyoData-chapter-5-81.json",
+						"part_names": [
+							1309,
+							1310,
+							1311,
+							1312,
+							1313,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1316,
+							1317
+						],
+						"description": "Head to #(Out of Safe Area#) for Theresa's guidance."
+					},
+					{
+						"name": "Emergency Treatment",
+						"parts": "StoryKyusyoData-chapter-5-82.json",
+						"part_names": [
+							1318,
+							1319,
+							1320,
+							1321,
+							1322,
+							1323,
+							1324,
+							1325
+						],
+						"description": "Go to #(Inspection Door#), let the last remaining big sword stand in the broken world."
+					},
+					{
+						"name": "Place of Memories",
+						"parts": "StoryKyusyoData-chapter-5-83.json",
+						"part_names": [
+							1302,
+							1303,
+							1304,
+							1305,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1308
+						],
+						"description": "Go to #(Outside Hospital#) and help Emisha find what she needs."
+					}
+				]
+			},
+			{
+				"name": "Chapter 6",
+				"episodes": [
+					{
+						"name": "Truth",
+						"parts": "StoryKyusyoData-chapter-6-84.json",
+						"part_names": [
+							1326,
+							1327,
+							1328,
+							1329
+						],
+						"description": "It seems that Yssring has something to say to you…"
+					},
+					{
+						"name": "New Friend",
+						"parts": "StoryKyusyoData-chapter-6-85.json",
+						"part_names": [
+							1330,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1333,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1336,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1339
+						],
+						"description": "If you've made up your mind, go to #(Extent#) for Doctor."
+					},
+					{
+						"name": "Scruple",
+						"parts": "StoryKyusyoData-chapter-6-86.json",
+						"part_names": [
+							1340
+						],
+						"description": "Meet Sin. Break through #(Border#) to find the direction of the abnormal change of Houkai energy."
+					},
+					{
+						"name": "Beacon",
+						"parts": "StoryKyusyoData-chapter-6-87.json",
+						"part_names": [
+							1341,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1344,
+							1345
+						],
+						"description": "Straighten up a bit in #(Reside Area#) and don't forget what you learned here."
+					},
+					{
+						"name": "Entrance",
+						"parts": "StoryKyusyoData-chapter-6-88.json",
+						"part_names": [
+							1346
+						],
+						"description": "The orientation indicated by the probe is right here in#(Energy turbulence#)."
+					},
+					{
+						"name": "St. Freya HS",
+						"parts": "StoryKyusyoData-chapter-6-89.json",
+						"part_names": [
+							1347
+						],
+						"description": "The front is the exit, but where exactly is this…"
+					},
+					{
+						"name": "Wreckage",
+						"parts": "StoryKyusyoData-chapter-6-90.json",
+						"part_names": [
+							1348
+						],
+						"description": "What is the secret of the battleship named \"Moonlight Throne\"?"
+					},
+					{
+						"name": "Shock",
+						"parts": "StoryKyusyoData-chapter-6-91.json",
+						"part_names": [
+							1349
+						],
+						"description": "We have reached the position of #(power core#) …"
+					},
+					{
+						"name": "Sirin",
+						"parts": "StoryKyusyoData-chapter-6-92.json",
+						"part_names": [
+							1350
+						],
+						"description": "What is the girl who suddenly appears in front of me?"
+					},
+					{
+						"name": "Recall",
+						"parts": "StoryKyusyoData-chapter-6-93.json",
+						"part_names": [
+							1351
+						],
+						"description": "And his fight partner, suddenly recalled some memories…"
+					},
+					{
+						"name": "Erosion",
+						"parts": "StoryKyusyoData-chapter-6-94.json",
+						"part_names": [
+							1352
+						],
+						"description": "The girl named Sirin tells her reasons and wants to drag us into the abyss..."
+					},
+					{
+						"name": "Brave Heart",
+						"parts": "StoryKyusyoData-chapter-6-95.json",
+						"part_names": [
+							1353,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1356,
+							1357
+						],
+						"description": "In the heat of the moment, the person who made the most decisive decision was her..."
+					},
+					{
+						"name": "Sub: Avenger",
+						"parts": "StoryKyusyoData-chapter-6-97.json",
+						"part_names": [
+							1358,
+							1359,
+							1360,
+							1361,
+							1362,
+							1363
+						],
+						"description": "Help Bronya find the missing members in #(Bridge Peripheral#) before departure."
+					},
+					{
+						"name": "Sub: Homeland",
+						"parts": "StoryKyusyoData-chapter-6-98.json",
+						"part_names": [
+							1364,
+							1365,
+							1366,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1369,
+							1370
+						],
+						"description": "The wreckage of the broken ME society fell down. In order to shelter, help the team clean up the surrounding #(Building wreckage#)."
+					},
+					{
+						"name": "Sub: Little Hope",
+						"parts": "StoryKyusyoData-chapter-6-99.json",
+						"part_names": [
+							1371,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1374,
+							1375,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1378,
+							1379,
+							1380
+						],
+						"description": "Help bronya protect the ME and stop the attacking in #(Temporary security#)."
+					},
+					{
+						"name": "Sub: Search Direction",
+						"parts": "StoryKyusyoData-chapter-6-100.json",
+						"part_names": [
+							1381,
+							1382,
+							1383,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1386,
+							1387
+						],
+						"description": "Protect Yssring from danger in #(Expansion area#)."
+					},
+					{
+						"name": "Sub: Fault",
+						"parts": "StoryKyusyoData-chapter-6-101.json",
+						"part_names": [
+							1388,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1391,
+							1392,
+							1393,
+							1394,
+							1395
+						],
+						"description": "Cross #(space fault #) with Yssring and Sin to St. Freya HS."
+					},
+					{
+						"name": "Sub: End Game",
+						"parts": "StoryKyusyoData-chapter-6-102.json",
+						"part_names": [
+							1396,
+							1397,
+							1398,
+							1399,
+							1400
+						],
+						"description": "Look for signs of the battle at #(Academy Ruin#) St. Freya HS."
+					},
+					{
+						"name": "Sub: Password cracking",
+						"parts": "StoryKyusyoData-chapter-6-103.json",
+						"part_names": [
+							1401,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1404,
+							1405,
+							1406,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							1409,
+							1410
+						],
+						"description": "Help Yssring to break in Power Core from #(Pit Lane#)"
+					},
+					{
+						"name": "Sub: Heart",
+						"parts": "StoryKyusyoData-chapter-6-104.json",
+						"part_names": [
+							1411,
+							1412
+						],
+						"description": "Leave #(Furnace#)"
+					}
+				]
+			},
+			{
+				"name": "Chapter 7",
+				"episodes": [
+					{
+						"name": "Hope",
+						"parts": "StoryKyusyoData-chapter-7-105.json",
+						"part_names": [
+							210
+						],
+						"description": "Go to #(Outside Hospital#) and help Emisha find what she needs."
+					},
+					{
+						"name": "Wings",
+						"parts": "StoryKyusyoData-chapter-7-106.json",
+						"part_names": [
+							212,
+							213
+						],
+						"description": "Go to #(Deck#) to fight."
+					},
+					{
+						"name": "Black Cloud",
+						"parts": "StoryKyusyoData-chapter-7-107.json",
+						"part_names": [
+							214
+						],
+						"description": "Go to #(Internal cabin#) to support."
+					},
+					{
+						"name": "Old Enemy",
+						"parts": "StoryKyusyoData-chapter-7-108.json",
+						"part_names": [
+							215
+						],
+						"description": "Defeat Dragon of  #(Battleship port#)"
+					},
+					{
+						"name": "Dead End",
+						"parts": "StoryKyusyoData-chapter-7-109.json",
+						"part_names": [
+							217,
+							218
+						],
+						"description": "Resist enemies and find the way in #(Upper Air#)"
+					},
+					{
+						"name": "Clear Way",
+						"parts": "StoryKyusyoData-chapter-7-110.json",
+						"part_names": [
+							219
+						],
+						"description": "Break #(Shelltface Sltell#) and head for Tower Top."
+					},
+					{
+						"name": "Wish",
+						"parts": "StoryKyusyoData-chapter-7-111.json",
+						"part_names": [
+							220
+						],
+						"description": "Go through #(Spiral corridor#) and head to Tower Top."
+					},
+					{
+						"name": "Forbidden",
+						"parts": "StoryKyusyoData-chapter-7-112.json",
+						"part_names": [
+							221
+						],
+						"description": "This is a self created path, break through #(Middle Area#) and head to Tower Top."
+					},
+					{
+						"name": "Fantasy",
+						"parts": "StoryKyusyoData-chapter-7-113.json",
+						"part_names": [
+							222
+						],
+						"description": "Embrace the hope of people, break through the #(Whirl ladder#) to Tower Top."
+					},
+					{
+						"name": "Destruction",
+						"parts": "StoryKyusyoData-chapter-7-114.json",
+						"part_names": [
+							223,
+							224,
+							225
+						],
+						"description": "The ultimate enemy awaits you at #(Tower Top#)."
+					},
+					{
+						"name": "False Thing",
+						"parts": "StoryKyusyoData-chapter-7-115.json",
+						"part_names": [
+							226
+						],
+						"description": "This is just a corner of #(Empty city#). What is real."
+					},
+					{
+						"name": "Together",
+						"parts": "StoryKyusyoData-chapter-7-116.json",
+						"part_names": [
+							227,
+							228,
+							229,
+							230
+						],
+						"description": "#(Hypostasis#) is about to explode, use your power to stop it."
+					},
+					{
+						"name": "Savior",
+						"parts": "StoryKyusyoData-chapter-7-117.json",
+						"part_names": [
+							231,
+							232,
+							233,
+							234,
+							235,
+							236,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							239,
+							"If choice 1 was picked:",
+							"If choice 2 was picked:",
+							242
+						],
+						"description": "The symbol of the end, #(Tower of End#) will be the best stage for the final battle."
+					},
+					{
+						"name": "To all of you who strive to live for hope",
+						"parts": "StoryKyusyoData-chapter-7-118.json",
+						"part_names": [
+							243,
+							992,
+							993,
+							994,
+							995,
+							996,
+							997,
+							998,
+							999,
+							1000
+						],
+						"description": "As long as you believe in yourself, you are the dawn of the world."
+					},
+					{
+						"name": "Set out",
+						"parts": "StoryKyusyoData-chapter-7-119.json",
+						"part_names": [
+							1413,
+							1414,
+							1415,
+							1416
+						],
+						"description": "Huberlian is about to blast off. Plz first take the children and the wounded to #(Refude Area#)."
+					},
+					{
+						"name": "Dragon Hunter",
+						"parts": "StoryKyusyoData-chapter-7-120.json",
+						"part_names": [
+							1417,
+							1418,
+							1419,
+							1420
+						],
+						"description": "Lead Dragon to #(Stop Area#)"
+					},
+					{
+						"name": "Alive Tower",
+						"parts": "StoryKyusyoData-chapter-7-121.json",
+						"part_names": [
+							1421,
+							1422,
+							1423,
+							1424,
+							1425
+						],
+						"description": "Danger is everywhere. Find the way to Tower Top in #(Keratinized region#)"
+					}
+				]
+			},
+			{
+				"name": "Unused data?",
+				"episodes": [
+					{
+						"name": "Previously on Houkai Impact 3:",
+						"parts": "StoryKyusyoData-chapter-2-32.json",
+						"part_names": [
+							112,
+							995
+						]
+					},
+					{
+						"name": "To be continued",
+						"parts": "StoryKyusyoData-chapter-3-38.json",
+						"part_names": [
+							159,
+							994
+						]
+					},
+					{
+						"name": "To be continued",
+						"parts": "StoryKyusyoData-chapter-4-58.json",
+						"part_names": [
+							209,
+							993
+						]
+					},
+					{
+						"name": "To be continued",
+						"parts": "StoryKyusyoData-chapter-5-77.json",
+						"part_names": [
+							209,
+							992
+						]
+					}
+				]
+			}
+		],
 		"event": [
+			{
+				"name": "Era ZERO Chapter 1",
+				"episodes": [
+					{
+						"name": "Core Test",
+						"parts": "DLC2-0-2",
+						"description": "Please follow the instruction and complete the test."
+					},
+					{
+						"name": "A Fresh Start",
+						"parts": "DLC2-3-6",
+						"description": "Please go to 【office】 to see Dr. Mei."
+					},
+					{
+						"name": "Execution of Task",
+						"parts": "DLC2-7-9",
+						"description": "Please set up the isolation force field device in the 【Houkai Wilderness】 area."
+					},
+					{
+						"name": "Marker Placed",
+						"parts": "DLC2-10-10",
+						"description": "Please continue to set up the isolation force field device."
+					},
+					{
+						"name": "Break the Surrounding",
+						"parts": "DLC2-11-11",
+						"description": "Please break through the encirclement of man of sacrifice and make an evacuation."
+					},
+					{
+						"name": "Twists and Turns Continue",
+						"parts": "DLC2-12-13",
+						"description": "Please return to【Hyperelectric Society】."
+					},
+					{
+						"name": "Chase the Enemy",
+						"parts": "DLC2-14-14",
+						"description": "Chase war, please defeat the enemy who comes in the way."
+					},
+					{
+						"name": "Search for Traces",
+						"parts": "DLC2-15-15",
+						"description": "Mission, find Dr. Mei."
+					},
+					{
+						"name": "Setting Goals",
+						"parts": "DLC2-16-16",
+						"description": "Please return to【Lounge】."
+					}
+				]
+			},
+			{
+				"name": "Era ZERO Chapter 2",
+				"episodes": [
+					{
+						"name": "Check Daily Routine",
+						"parts": "DLC2-16-17",
+						"description": "Please go to 【Inspection Room】 for a routine inspection."
+					},
+					{
+						"name": "Confrontation Training",
+						"parts": "DLC2-18-18",
+						"description": "Please complete the battle training with Valkyrie."
+					},
+					{
+						"name": "Hostile Visitor",
+						"parts": "DLC2-19-19",
+						"description": "Please defeat the suspicious hostile person."
+					},
+					{
+						"name": "Dismembered Limbs",
+						"parts": "DLC2-20-22",
+						"description": "Investigate Houkai creatures."
+					},
+					{
+						"name": "Illegal Black Market",
+						"parts": "DLC2-23-23",
+						"description": "Please go to 【Black Market】 and make a trade."
+					},
+					{
+						"name": "Will to Chase",
+						"parts": "DLC2-24-24",
+						"description": "Please pursue suspicious person."
+					},
+					{
+						"name": "Deep Dive",
+						"parts": "DLC2-25-27",
+						"description": "Please hide your tracks and sneak into the 【Deserted Factory】."
+					},
+					{
+						"name": "Siege Breakout",
+						"parts": "DLC2-28-28",
+						"description": "Please break through the enemy's encirclement."
+					},
+					{
+						"name": "Covered Evacuation",
+						"parts": "DLC2-29-29",
+						"description": "Please cover for the evacuation."
+					},
+					{
+						"name": "Armed Attack",
+						"parts": "DLC2-30-30",
+						"description": "Please defeat the enemy."
+					},
+					{
+						"name": "Cold Fog",
+						"parts": "DLC2-31-33",
+						"description": "Mission, chase the absconding enemy."
+					},
+					{
+						"name": "Child of Frost",
+						"parts": "DLC2-34-34",
+						"description": "Please defeat the head of the target organization."
+					},
+					{
+						"name": "Subsided Tumult",
+						"parts": "DLC2-35-35",
+						"description": "Please return to【Hyperelectric Society】."
+					}
+				]
+			},
 			{
 				"name": "Partner Stories (Removed)",
 				"episodes": [
@@ -7970,7 +9638,113 @@
 							4005,
 							4006,
 							4007,
-							4008
+							4008,
+							4009
+						]
+					},
+					{
+						"name": "Parts 4010-4019",
+						"parts": "StoryExtData-401.json",
+						"part_names": [
+							4010,
+							4011,
+							4012,
+							4013,
+							4014,
+							4015,
+							4016,
+							4017,
+							4018,
+							4019
+						]
+					},
+					{
+						"name": "Parts 4020-4029",
+						"parts": "StoryExtData-402.json",
+						"part_names": [
+							4020,
+							4021,
+							4022,
+							4023,
+							4024,
+							4025,
+							4026,
+							4027,
+							4028,
+							4029
+						]
+					},
+					{
+						"name": "Parts 4030-4039",
+						"parts": "StoryExtData-403.json",
+						"part_names": [
+							4030,
+							4031,
+							4032,
+							4033,
+							4034,
+							4035,
+							4036,
+							4037,
+							4038,
+							4039
+						]
+					},
+					{
+						"name": "Parts 4040-4049",
+						"parts": "StoryExtData-404.json",
+						"part_names": [
+							4040,
+							4041,
+							4042,
+							4043,
+							4044,
+							4045,
+							4046,
+							4047,
+							4048,
+							4049
+						]
+					},
+					{
+						"name": "Parts 4050-4059",
+						"parts": "StoryExtData-405.json",
+						"part_names": [
+							4050,
+							4051,
+							4052,
+							4053,
+							4054,
+							4055,
+							4056,
+							4057,
+							4058,
+							4059
+						]
+					},
+					{
+						"name": "Parts 4060-4069",
+						"parts": "StoryExtData-406.json",
+						"part_names": [
+							4060,
+							4061,
+							4062,
+							4063,
+							4064,
+							4065,
+							4066,
+							4067,
+							4068,
+							4069
+						]
+					},
+					{
+						"name": "Parts 4070-4079",
+						"parts": "StoryExtData-407.json",
+						"part_names": [
+							4070,
+							4071,
+							4072
 						]
 					}
 				]
@@ -8602,499 +10376,646 @@
 		"type-1-3-chapter-2-910.json": "main-23-1",
 		"type-1-3-chapter-3-924.json": "main-23-2",
 		"type-6-101-chapter-1-830.json": "main-24-0",
-		"PartnerStory-1006.json": "event-0-0",
-		"PartnerStory-1003.json": "event-0-1",
-		"PartnerStory-1002.json": "event-0-2",
-		"PartnerStory-1004.json": "event-0-3",
-		"PartnerStory-1005.json": "event-0-4",
-		"PartnerStory-1007.json": "event-0-5",
-		"PartnerStory-1008.json": "event-0-6",
-		"PartnerStory-1009.json": "event-0-7",
-		"PartnerStory-1010.json": "event-0-8",
-		"PartnerStory-10201.json": "event-0-9",
-		"PartnerStory-1021.json": "event-0-10",
-		"PartnerStory-1022.json": "event-0-11",
-		"PartnerStory-1023.json": "event-0-12",
-		"PartnerStory-1024.json": "event-0-13",
-		"PartnerStory-1025.json": "event-0-14",
-		"PartnerStory-1027.json": "event-0-15",
-		"PartnerStory-1029.json": "event-0-16",
-		"PartnerStory-10311.json": "event-0-17",
-		"PartnerStory-1030.json": "event-0-18",
-		"PartnerStory-1032.json": "event-0-19",
-		"PartnerStory-1037.json": "event-0-20",
-		"PartnerStory-1036.json": "event-0-21",
-		"PartnerStory-1035.json": "event-0-22",
-		"PartnerStory-1046.json": "event-0-23",
-		"PartnerStory-1049.json": "event-0-24",
-		"PartnerStory-1050.json": "event-0-25",
-		"PartnerStory-1051.json": "event-0-26",
-		"PartnerStory-1052.json": "event-0-27",
-		"PartnerStory-1053.json": "event-0-28",
-		"PartnerStory-1054.json": "event-0-29",
-		"PartnerStory-1055.json": "event-0-30",
-		"PartnerStory-1062.json": "event-0-31",
-		"PartnerStory-1063.json": "event-0-32",
-		"PartnerStory-1064.json": "event-0-33",
-		"PartnerStory-1068.json": "event-0-34",
-		"PartnerStory-1069.json": "event-0-35",
-		"PartnerStory-1070.json": "event-0-36",
-		"PartnerStory-1071.json": "event-0-37",
-		"PartnerStory-1072.json": "event-0-38",
-		"PartnerStory-1073.json": "event-0-39",
-		"PartnerStory-1074.json": "event-0-40",
-		"PartnerStory-1075.json": "event-0-41",
-		"PartnerStory-1076.json": "event-0-42",
-		"PartnerStory-1077.json": "event-0-43",
-		"PartnerStory-1078.json": "event-0-44",
-		"PartnerStory-1079.json": "event-0-45",
-		"PartnerStory-1080.json": "event-0-46",
-		"PartnerStory-1081.json": "event-0-47",
-		"PartnerStory-1085.json": "event-0-48",
-		"PartnerStory-1091.json": "event-0-49",
-		"ExtData-3055-3061.json": "event-1-0",
-		"ExtData-1657-1666.json": "event-1-1",
-		"ExtData-1722-1726.json": "event-1-2",
-		"ExtData-1755-1764.json": "event-1-3",
-		"ExtData-1764-1770.json": "event-1-4",
-		"ExtData-1804-1813.json": "event-1-5",
-		"ExtData-1813-1822.json": "event-1-6",
-		"ExtData-1830-1858.json": "event-1-7",
-		"ExtData-1858-1862.json": "event-1-8",
-		"ExtData-1862-1865.json": "event-1-9",
-		"ExtData-1865-1871.json": "event-1-10",
-		"ExtData-1885-1894.json": "event-1-11",
-		"ExtData-1930-1940.json": "event-1-12",
-		"ExtData-2424-2432.json": "event-1-13",
-		"ExtData-2464-2470.json": "event-1-14",
-		"ExtData-2470-2479.json": "event-1-15",
-		"ExtData-2524-2535.json": "event-1-16",
-		"ExtData-2077-2082.json": "event-1-17",
-		"ExtData-3805-3097.json": "event-1-18",
-		"ExtData-3100-3109.json": "event-1-19",
-		"ExtData-1260-1268.json": "event-1-20",
-		"ExtData-390-408.json": "event-1-21",
-		"StoryExtData-0.json": "event-2-0",
-		"StoryExtData-1.json": "event-2-1",
-		"StoryExtData-2.json": "event-2-2",
-		"StoryExtData-3.json": "event-2-3",
-		"StoryExtData-4.json": "event-2-4",
-		"StoryExtData-5.json": "event-2-5",
-		"StoryExtData-6.json": "event-2-6",
-		"StoryExtData-7.json": "event-2-7",
-		"StoryExtData-8.json": "event-2-8",
-		"StoryExtData-9.json": "event-2-9",
-		"StoryExtData-10.json": "event-2-10",
-		"StoryExtData-11.json": "event-2-11",
-		"StoryExtData-12.json": "event-2-12",
-		"StoryExtData-13.json": "event-2-13",
-		"StoryExtData-14.json": "event-2-14",
-		"StoryExtData-15.json": "event-2-15",
-		"StoryExtData-16.json": "event-2-16",
-		"StoryExtData-17.json": "event-2-17",
-		"StoryExtData-18.json": "event-2-18",
-		"StoryExtData-19.json": "event-2-19",
-		"StoryExtData-20.json": "event-2-20",
-		"StoryExtData-21.json": "event-2-21",
-		"StoryExtData-22.json": "event-2-22",
-		"StoryExtData-23.json": "event-2-23",
-		"StoryExtData-24.json": "event-2-24",
-		"StoryExtData-25.json": "event-2-25",
-		"StoryExtData-26.json": "event-2-26",
-		"StoryExtData-27.json": "event-2-27",
-		"StoryExtData-28.json": "event-2-28",
-		"StoryExtData-29.json": "event-2-29",
-		"StoryExtData-30.json": "event-2-30",
-		"StoryExtData-31.json": "event-2-31",
-		"StoryExtData-32.json": "event-2-32",
-		"StoryExtData-33.json": "event-2-33",
-		"StoryExtData-34.json": "event-2-34",
-		"StoryExtData-35.json": "event-2-35",
-		"StoryExtData-36.json": "event-2-36",
-		"StoryExtData-37.json": "event-2-37",
-		"StoryExtData-38.json": "event-2-38",
-		"StoryExtData-39.json": "event-2-39",
-		"StoryExtData-40.json": "event-2-40",
-		"StoryExtData-41.json": "event-2-41",
-		"StoryExtData-42.json": "event-2-42",
-		"StoryExtData-43.json": "event-2-43",
-		"StoryExtData-44.json": "event-2-44",
-		"StoryExtData-45.json": "event-2-45",
-		"StoryExtData-46.json": "event-2-46",
-		"StoryExtData-47.json": "event-2-47",
-		"StoryExtData-48.json": "event-2-48",
-		"StoryExtData-49.json": "event-2-49",
-		"StoryExtData-50.json": "event-2-50",
-		"StoryExtData-51.json": "event-2-51",
-		"StoryExtData-52.json": "event-2-52",
-		"StoryExtData-53.json": "event-2-53",
-		"StoryExtData-54.json": "event-2-54",
-		"StoryExtData-55.json": "event-2-55",
-		"StoryExtData-56.json": "event-2-56",
-		"StoryExtData-57.json": "event-2-57",
-		"StoryExtData-58.json": "event-2-58",
-		"StoryExtData-59.json": "event-2-59",
-		"StoryExtData-60.json": "event-2-60",
-		"StoryExtData-61.json": "event-2-61",
-		"StoryExtData-62.json": "event-2-62",
-		"StoryExtData-63.json": "event-2-63",
-		"StoryExtData-64.json": "event-2-64",
-		"StoryExtData-65.json": "event-2-65",
-		"StoryExtData-66.json": "event-2-66",
-		"StoryExtData-67.json": "event-2-67",
-		"StoryExtData-68.json": "event-2-68",
-		"StoryExtData-69.json": "event-2-69",
-		"StoryExtData-70.json": "event-2-70",
-		"StoryExtData-71.json": "event-2-71",
-		"StoryExtData-72.json": "event-2-72",
-		"StoryExtData-73.json": "event-2-73",
-		"StoryExtData-74.json": "event-2-74",
-		"StoryExtData-75.json": "event-2-75",
-		"StoryExtData-76.json": "event-2-76",
-		"StoryExtData-77.json": "event-2-77",
-		"StoryExtData-78.json": "event-2-78",
-		"StoryExtData-79.json": "event-2-79",
-		"StoryExtData-80.json": "event-2-80",
-		"StoryExtData-81.json": "event-2-81",
-		"StoryExtData-82.json": "event-2-82",
-		"StoryExtData-83.json": "event-2-83",
-		"StoryExtData-84.json": "event-2-84",
-		"StoryExtData-85.json": "event-2-85",
-		"StoryExtData-86.json": "event-2-86",
-		"StoryExtData-87.json": "event-2-87",
-		"StoryExtData-88.json": "event-2-88",
-		"StoryExtData-89.json": "event-2-89",
-		"StoryExtData-90.json": "event-2-90",
-		"StoryExtData-91.json": "event-2-91",
-		"StoryExtData-92.json": "event-2-92",
-		"StoryExtData-93.json": "event-2-93",
-		"StoryExtData-94.json": "event-2-94",
-		"StoryExtData-95.json": "event-2-95",
-		"StoryExtData-96.json": "event-2-96",
-		"StoryExtData-97.json": "event-2-97",
-		"StoryExtData-98.json": "event-2-98",
-		"StoryExtData-99.json": "event-2-99",
-		"StoryExtData-100.json": "event-2-100",
-		"StoryExtData-101.json": "event-2-101",
-		"StoryExtData-102.json": "event-2-102",
-		"StoryExtData-103.json": "event-2-103",
-		"StoryExtData-104.json": "event-2-104",
-		"StoryExtData-105.json": "event-2-105",
-		"StoryExtData-106.json": "event-2-106",
-		"StoryExtData-107.json": "event-2-107",
-		"StoryExtData-108.json": "event-2-108",
-		"StoryExtData-109.json": "event-2-109",
-		"StoryExtData-110.json": "event-2-110",
-		"StoryExtData-111.json": "event-2-111",
-		"StoryExtData-112.json": "event-2-112",
-		"StoryExtData-113.json": "event-2-113",
-		"StoryExtData-114.json": "event-2-114",
-		"StoryExtData-115.json": "event-2-115",
-		"StoryExtData-116.json": "event-2-116",
-		"StoryExtData-117.json": "event-2-117",
-		"StoryExtData-118.json": "event-2-118",
-		"StoryExtData-119.json": "event-2-119",
-		"StoryExtData-120.json": "event-2-120",
-		"StoryExtData-121.json": "event-2-121",
-		"StoryExtData-122.json": "event-2-122",
-		"StoryExtData-123.json": "event-2-123",
-		"StoryExtData-124.json": "event-2-124",
-		"StoryExtData-125.json": "event-2-125",
-		"StoryExtData-126.json": "event-2-126",
-		"StoryExtData-127.json": "event-2-127",
-		"StoryExtData-128.json": "event-2-128",
-		"StoryExtData-129.json": "event-2-129",
-		"StoryExtData-130.json": "event-2-130",
-		"StoryExtData-131.json": "event-2-131",
-		"StoryExtData-132.json": "event-2-132",
-		"StoryExtData-133.json": "event-2-133",
-		"StoryExtData-134.json": "event-2-134",
-		"StoryExtData-135.json": "event-2-135",
-		"StoryExtData-136.json": "event-2-136",
-		"StoryExtData-137.json": "event-2-137",
-		"StoryExtData-138.json": "event-2-138",
-		"StoryExtData-139.json": "event-2-139",
-		"StoryExtData-140.json": "event-2-140",
-		"StoryExtData-141.json": "event-2-141",
-		"StoryExtData-142.json": "event-2-142",
-		"StoryExtData-143.json": "event-2-143",
-		"StoryExtData-144.json": "event-2-144",
-		"StoryExtData-145.json": "event-2-145",
-		"StoryExtData-146.json": "event-2-146",
-		"StoryExtData-147.json": "event-2-147",
-		"StoryExtData-148.json": "event-2-148",
-		"StoryExtData-149.json": "event-2-149",
-		"StoryExtData-150.json": "event-2-150",
-		"StoryExtData-151.json": "event-2-151",
-		"StoryExtData-152.json": "event-2-152",
-		"StoryExtData-153.json": "event-2-153",
-		"StoryExtData-154.json": "event-2-154",
-		"StoryExtData-155.json": "event-2-155",
-		"StoryExtData-156.json": "event-2-156",
-		"StoryExtData-157.json": "event-2-157",
-		"StoryExtData-158.json": "event-2-158",
-		"StoryExtData-159.json": "event-2-159",
-		"StoryExtData-160.json": "event-2-160",
-		"StoryExtData-161.json": "event-2-161",
-		"StoryExtData-162.json": "event-2-162",
-		"StoryExtData-163.json": "event-2-163",
-		"StoryExtData-164.json": "event-2-164",
-		"StoryExtData-165.json": "event-2-165",
-		"StoryExtData-166.json": "event-2-166",
-		"StoryExtData-167.json": "event-2-167",
-		"StoryExtData-168.json": "event-2-168",
-		"StoryExtData-169.json": "event-2-169",
-		"StoryExtData-170.json": "event-2-170",
-		"StoryExtData-171.json": "event-2-171",
-		"StoryExtData-172.json": "event-2-172",
-		"StoryExtData-173.json": "event-2-173",
-		"StoryExtData-174.json": "event-2-174",
-		"StoryExtData-175.json": "event-2-175",
-		"StoryExtData-176.json": "event-2-176",
-		"StoryExtData-177.json": "event-2-177",
-		"StoryExtData-178.json": "event-2-178",
-		"StoryExtData-179.json": "event-2-179",
-		"StoryExtData-180.json": "event-2-180",
-		"StoryExtData-181.json": "event-2-181",
-		"StoryExtData-182.json": "event-2-182",
-		"StoryExtData-183.json": "event-2-183",
-		"StoryExtData-184.json": "event-2-184",
-		"StoryExtData-185.json": "event-2-185",
-		"StoryExtData-186.json": "event-2-186",
-		"StoryExtData-187.json": "event-2-187",
-		"StoryExtData-188.json": "event-2-188",
-		"StoryExtData-189.json": "event-2-189",
-		"StoryExtData-190.json": "event-2-190",
-		"StoryExtData-191.json": "event-2-191",
-		"StoryExtData-192.json": "event-2-192",
-		"StoryExtData-193.json": "event-2-193",
-		"StoryExtData-194.json": "event-2-194",
-		"StoryExtData-195.json": "event-2-195",
-		"StoryExtData-196.json": "event-2-196",
-		"StoryExtData-197.json": "event-2-197",
-		"StoryExtData-198.json": "event-2-198",
-		"StoryExtData-199.json": "event-2-199",
-		"StoryExtData-200.json": "event-2-200",
-		"StoryExtData-201.json": "event-2-201",
-		"StoryExtData-202.json": "event-2-202",
-		"StoryExtData-203.json": "event-2-203",
-		"StoryExtData-204.json": "event-2-204",
-		"StoryExtData-205.json": "event-2-205",
-		"StoryExtData-206.json": "event-2-206",
-		"StoryExtData-207.json": "event-2-207",
-		"StoryExtData-208.json": "event-2-208",
-		"StoryExtData-209.json": "event-2-209",
-		"StoryExtData-210.json": "event-2-210",
-		"StoryExtData-211.json": "event-2-211",
-		"StoryExtData-212.json": "event-2-212",
-		"StoryExtData-213.json": "event-2-213",
-		"StoryExtData-214.json": "event-2-214",
-		"StoryExtData-215.json": "event-2-215",
-		"StoryExtData-216.json": "event-2-216",
-		"StoryExtData-217.json": "event-2-217",
-		"StoryExtData-218.json": "event-2-218",
-		"StoryExtData-219.json": "event-2-219",
-		"StoryExtData-220.json": "event-2-220",
-		"StoryExtData-221.json": "event-2-221",
-		"StoryExtData-222.json": "event-2-222",
-		"StoryExtData-223.json": "event-2-223",
-		"StoryExtData-224.json": "event-2-224",
-		"StoryExtData-225.json": "event-2-225",
-		"StoryExtData-226.json": "event-2-226",
-		"StoryExtData-227.json": "event-2-227",
-		"StoryExtData-228.json": "event-2-228",
-		"StoryExtData-229.json": "event-2-229",
-		"StoryExtData-230.json": "event-2-230",
-		"StoryExtData-231.json": "event-2-231",
-		"StoryExtData-232.json": "event-2-232",
-		"StoryExtData-233.json": "event-2-233",
-		"StoryExtData-234.json": "event-2-234",
-		"StoryExtData-235.json": "event-2-235",
-		"StoryExtData-236.json": "event-2-236",
-		"StoryExtData-237.json": "event-2-237",
-		"StoryExtData-238.json": "event-2-238",
-		"StoryExtData-239.json": "event-2-239",
-		"StoryExtData-240.json": "event-2-240",
-		"StoryExtData-241.json": "event-2-241",
-		"StoryExtData-242.json": "event-2-242",
-		"StoryExtData-243.json": "event-2-243",
-		"StoryExtData-244.json": "event-2-244",
-		"StoryExtData-245.json": "event-2-245",
-		"StoryExtData-246.json": "event-2-246",
-		"StoryExtData-247.json": "event-2-247",
-		"StoryExtData-248.json": "event-2-248",
-		"StoryExtData-249.json": "event-2-249",
-		"StoryExtData-250.json": "event-2-250",
-		"StoryExtData-251.json": "event-2-251",
-		"StoryExtData-252.json": "event-2-252",
-		"StoryExtData-253.json": "event-2-253",
-		"StoryExtData-254.json": "event-2-254",
-		"StoryExtData-255.json": "event-2-255",
-		"StoryExtData-256.json": "event-2-256",
-		"StoryExtData-257.json": "event-2-257",
-		"StoryExtData-258.json": "event-2-258",
-		"StoryExtData-259.json": "event-2-259",
-		"StoryExtData-260.json": "event-2-260",
-		"StoryExtData-261.json": "event-2-261",
-		"StoryExtData-262.json": "event-2-262",
-		"StoryExtData-263.json": "event-2-263",
-		"StoryExtData-264.json": "event-2-264",
-		"StoryExtData-265.json": "event-2-265",
-		"StoryExtData-266.json": "event-2-266",
-		"StoryExtData-267.json": "event-2-267",
-		"StoryExtData-268.json": "event-2-268",
-		"StoryExtData-269.json": "event-2-269",
-		"StoryExtData-270.json": "event-2-270",
-		"StoryExtData-271.json": "event-2-271",
-		"StoryExtData-272.json": "event-2-272",
-		"StoryExtData-273.json": "event-2-273",
-		"StoryExtData-274.json": "event-2-274",
-		"StoryExtData-275.json": "event-2-275",
-		"StoryExtData-276.json": "event-2-276",
-		"StoryExtData-277.json": "event-2-277",
-		"StoryExtData-278.json": "event-2-278",
-		"StoryExtData-279.json": "event-2-279",
-		"StoryExtData-280.json": "event-2-280",
-		"StoryExtData-281.json": "event-2-281",
-		"StoryExtData-290.json": "event-2-282",
-		"StoryExtData-291.json": "event-2-283",
-		"StoryExtData-292.json": "event-2-284",
-		"StoryExtData-293.json": "event-2-285",
-		"StoryExtData-294.json": "event-2-286",
-		"StoryExtData-295.json": "event-2-287",
-		"StoryExtData-296.json": "event-2-288",
-		"StoryExtData-297.json": "event-2-289",
-		"StoryExtData-298.json": "event-2-290",
-		"StoryExtData-299.json": "event-2-291",
-		"StoryExtData-300.json": "event-2-292",
-		"StoryExtData-301.json": "event-2-293",
-		"StoryExtData-302.json": "event-2-294",
-		"StoryExtData-303.json": "event-2-295",
-		"StoryExtData-304.json": "event-2-296",
-		"StoryExtData-305.json": "event-2-297",
-		"StoryExtData-306.json": "event-2-298",
-		"StoryExtData-307.json": "event-2-299",
-		"StoryExtData-308.json": "event-2-300",
-		"StoryExtData-309.json": "event-2-301",
-		"StoryExtData-310.json": "event-2-302",
-		"StoryExtData-311.json": "event-2-303",
-		"StoryExtData-312.json": "event-2-304",
-		"StoryExtData-313.json": "event-2-305",
-		"StoryExtData-314.json": "event-2-306",
-		"StoryExtData-315.json": "event-2-307",
-		"StoryExtData-316.json": "event-2-308",
-		"StoryExtData-317.json": "event-2-309",
-		"StoryExtData-318.json": "event-2-310",
-		"StoryExtData-319.json": "event-2-311",
-		"StoryExtData-320.json": "event-2-312",
-		"StoryExtData-321.json": "event-2-313",
-		"StoryExtData-322.json": "event-2-314",
-		"StoryExtData-323.json": "event-2-315",
-		"StoryExtData-324.json": "event-2-316",
-		"StoryExtData-325.json": "event-2-317",
-		"StoryExtData-326.json": "event-2-318",
-		"StoryExtData-327.json": "event-2-319",
-		"StoryExtData-328.json": "event-2-320",
-		"StoryExtData-329.json": "event-2-321",
-		"StoryExtData-330.json": "event-2-322",
-		"StoryExtData-331.json": "event-2-323",
-		"StoryExtData-332.json": "event-2-324",
-		"StoryExtData-333.json": "event-2-325",
-		"StoryExtData-334.json": "event-2-326",
-		"StoryExtData-335.json": "event-2-327",
-		"StoryExtData-336.json": "event-2-328",
-		"StoryExtData-337.json": "event-2-329",
-		"StoryExtData-338.json": "event-2-330",
-		"StoryExtData-339.json": "event-2-331",
-		"StoryExtData-340.json": "event-2-332",
-		"StoryExtData-341.json": "event-2-333",
-		"StoryExtData-342.json": "event-2-334",
-		"StoryExtData-343.json": "event-2-335",
-		"StoryExtData-344.json": "event-2-336",
-		"StoryExtData-345.json": "event-2-337",
-		"StoryExtData-346.json": "event-2-338",
-		"StoryExtData-347.json": "event-2-339",
-		"StoryExtData-348.json": "event-2-340",
-		"StoryExtData-349.json": "event-2-341",
-		"StoryExtData-350.json": "event-2-342",
-		"StoryExtData-351.json": "event-2-343",
-		"StoryExtData-352.json": "event-2-344",
-		"StoryExtData-353.json": "event-2-345",
-		"StoryExtData-354.json": "event-2-346",
-		"StoryExtData-355.json": "event-2-347",
-		"StoryExtData-356.json": "event-2-348",
-		"StoryExtData-357.json": "event-2-349",
-		"StoryExtData-358.json": "event-2-350",
-		"StoryExtData-359.json": "event-2-351",
-		"StoryExtData-360.json": "event-2-352",
-		"StoryExtData-361.json": "event-2-353",
-		"StoryExtData-362.json": "event-2-354",
-		"StoryExtData-363.json": "event-2-355",
-		"StoryExtData-364.json": "event-2-356",
-		"StoryExtData-365.json": "event-2-357",
-		"StoryExtData-366.json": "event-2-358",
-		"StoryExtData-367.json": "event-2-359",
-		"StoryExtData-368.json": "event-2-360",
-		"StoryExtData-369.json": "event-2-361",
-		"StoryExtData-370.json": "event-2-362",
-		"StoryExtData-371.json": "event-2-363",
-		"StoryExtData-372.json": "event-2-364",
-		"StoryExtData-373.json": "event-2-365",
-		"StoryExtData-374.json": "event-2-366",
-		"StoryExtData-375.json": "event-2-367",
-		"StoryExtData-376.json": "event-2-368",
-		"StoryExtData-377.json": "event-2-369",
-		"StoryExtData-378.json": "event-2-370",
-		"StoryExtData-379.json": "event-2-371",
-		"StoryExtData-380.json": "event-2-372",
-		"StoryExtData-381.json": "event-2-373",
-		"StoryExtData-382.json": "event-2-374",
-		"StoryExtData-383.json": "event-2-375",
-		"StoryExtData-384.json": "event-2-376",
-		"StoryExtData-385.json": "event-2-377",
-		"StoryExtData-386.json": "event-2-378",
-		"StoryExtData-387.json": "event-2-379",
-		"StoryExtData-388.json": "event-2-380",
-		"StoryExtData-389.json": "event-2-381",
-		"StoryExtData-390.json": "event-2-382",
-		"StoryExtData-391.json": "event-2-383",
-		"StoryExtData-392.json": "event-2-384",
-		"StoryExtData-393.json": "event-2-385",
-		"StoryExtData-394.json": "event-2-386",
-		"StoryExtData-395.json": "event-2-387",
-		"StoryExtData-396.json": "event-2-388",
-		"StoryExtData-397.json": "event-2-389",
-		"StoryExtData-398.json": "event-2-390",
-		"StoryExtData-399.json": "event-2-391",
-		"StoryExtData-400.json": "event-2-392",
-		"StorySubData-0.json": "event-3-0",
-		"StorySubData-1.json": "event-3-1",
-		"StorySubData-2.json": "event-3-2",
-		"StorySubData-3.json": "event-3-3",
-		"StorySubData-4.json": "event-3-4",
-		"StorySubData-5.json": "event-3-5",
-		"StorySubData-6.json": "event-3-6",
-		"StorySubData-7.json": "event-3-7",
-		"StorySubData-8.json": "event-3-8",
-		"StorySubData-9.json": "event-3-9",
-		"StorySubData-10.json": "event-3-10",
-		"StorySubData-11.json": "event-3-11",
-		"StorySubData-12.json": "event-3-12",
-		"StorySubData-13.json": "event-3-13",
-		"ExtData-1680-1686.json": "event-4-0",
-		"ExtData-1686-1692.json": "event-4-1",
-		"ExtData-1692-1696.json": "event-4-2",
-		"ExtData-1696-1701.json": "event-4-3",
-		"ExtData-1749-1755.json": "event-4-4",
-		"ExtData-1770-1776.json": "event-4-5",
-		"ExtData-1776-1782.json": "event-4-6",
-		"ExtData-89-90.json": "event-5-0",
-		"ExtData-90-91.json": "event-5-1",
-		"ExtData-99-102.json": "event-5-2",
-		"ExtData-102-104.json": "event-5-3",
-		"ExtData-144-150.json": "event-5-4",
-		"ExtData-150-154.json": "event-5-5",
-		"storyinsidedata.json": "event-6-0",
+		"StoryKyusyoData-chapter-0-2.json": "side-0-0",
+		"StoryKyusyoData-chapter-0-3.json": "side-0-1",
+		"StoryKyusyoData-chapter-0-4.json": "side-0-2",
+		"StoryKyusyoData-chapter-1-5.json": "side-1-0",
+		"StoryKyusyoData-chapter-1-6.json": "side-1-1",
+		"StoryKyusyoData-chapter-1-7.json": "side-1-2",
+		"StoryKyusyoData-chapter-1-8.json": "side-1-3",
+		"StoryKyusyoData-chapter-1-13.json": "side-1-4",
+		"StoryKyusyoData-chapter-1-14.json": "side-1-5",
+		"StoryKyusyoData-chapter-1-15.json": "side-1-6",
+		"StoryKyusyoData-chapter-1-16.json": "side-1-7",
+		"StoryKyusyoData-chapter-1-17.json": "side-1-8",
+		"StoryKyusyoData-chapter-1-18.json": "side-1-9",
+		"StoryKyusyoData-chapter-1-19.json": "side-1-10",
+		"StoryKyusyoData-chapter-1-20.json": "side-1-11",
+		"StoryKyusyoData-chapter-1-21.json": "side-1-12",
+		"StoryKyusyoData-chapter-1-22.json": "side-1-13",
+		"StoryKyusyoData-chapter-2-9.json": "side-2-0",
+		"StoryKyusyoData-chapter-2-10.json": "side-2-1",
+		"StoryKyusyoData-chapter-2-11.json": "side-2-2",
+		"StoryKyusyoData-chapter-2-12.json": "side-2-3",
+		"StoryKyusyoData-chapter-2-23.json": "side-2-4",
+		"StoryKyusyoData-chapter-2-24.json": "side-2-5",
+		"StoryKyusyoData-chapter-2-25.json": "side-2-6",
+		"StoryKyusyoData-chapter-2-26.json": "side-2-7",
+		"StoryKyusyoData-chapter-2-27.json": "side-2-8",
+		"StoryKyusyoData-chapter-2-28.json": "side-2-9",
+		"StoryKyusyoData-chapter-2-29.json": "side-2-10",
+		"StoryKyusyoData-chapter-2-30.json": "side-2-11",
+		"StoryKyusyoData-chapter-2-31.json": "side-2-12",
+		"StoryKyusyoData-chapter-3-33.json": "side-3-0",
+		"StoryKyusyoData-chapter-3-34.json": "side-3-1",
+		"StoryKyusyoData-chapter-3-35.json": "side-3-2",
+		"StoryKyusyoData-chapter-3-36.json": "side-3-3",
+		"StoryKyusyoData-chapter-3-37.json": "side-3-4",
+		"StoryKyusyoData-chapter-3-39.json": "side-3-5",
+		"StoryKyusyoData-chapter-3-40.json": "side-3-6",
+		"StoryKyusyoData-chapter-3-41.json": "side-3-7",
+		"StoryKyusyoData-chapter-3-42.json": "side-3-8",
+		"StoryKyusyoData-chapter-3-43.json": "side-3-9",
+		"StoryKyusyoData-chapter-3-45.json": "side-3-10",
+		"StoryKyusyoData-chapter-3-46.json": "side-3-11",
+		"StoryKyusyoData-chapter-3-47.json": "side-3-12",
+		"StoryKyusyoData-chapter-3-48.json": "side-3-13",
+		"StoryKyusyoData-chapter-3-49.json": "side-3-14",
+		"StoryKyusyoData-chapter-3-50.json": "side-3-15",
+		"StoryKyusyoData-chapter-4-51.json": "side-4-0",
+		"StoryKyusyoData-chapter-4-52.json": "side-4-1",
+		"StoryKyusyoData-chapter-4-53.json": "side-4-2",
+		"StoryKyusyoData-chapter-4-54.json": "side-4-3",
+		"StoryKyusyoData-chapter-4-55.json": "side-4-4",
+		"StoryKyusyoData-chapter-4-56.json": "side-4-5",
+		"StoryKyusyoData-chapter-4-57.json": "side-4-6",
+		"StoryKyusyoData-chapter-4-59.json": "side-4-7",
+		"StoryKyusyoData-chapter-4-60.json": "side-4-8",
+		"StoryKyusyoData-chapter-4-61.json": "side-4-9",
+		"StoryKyusyoData-chapter-4-62.json": "side-4-10",
+		"StoryKyusyoData-chapter-4-63.json": "side-4-11",
+		"StoryKyusyoData-chapter-4-64.json": "side-4-12",
+		"StoryKyusyoData-chapter-4-65.json": "side-4-13",
+		"StoryKyusyoData-chapter-5-66.json": "side-5-0",
+		"StoryKyusyoData-chapter-5-67.json": "side-5-1",
+		"StoryKyusyoData-chapter-5-68.json": "side-5-2",
+		"StoryKyusyoData-chapter-5-69.json": "side-5-3",
+		"StoryKyusyoData-chapter-5-70.json": "side-5-4",
+		"StoryKyusyoData-chapter-5-71.json": "side-5-5",
+		"StoryKyusyoData-chapter-5-72.json": "side-5-6",
+		"StoryKyusyoData-chapter-5-73.json": "side-5-7",
+		"StoryKyusyoData-chapter-5-74.json": "side-5-8",
+		"StoryKyusyoData-chapter-5-75.json": "side-5-9",
+		"StoryKyusyoData-chapter-5-76.json": "side-5-10",
+		"StoryKyusyoData-chapter-5-78.json": "side-5-11",
+		"StoryKyusyoData-chapter-5-79.json": "side-5-12",
+		"StoryKyusyoData-chapter-5-80.json": "side-5-13",
+		"StoryKyusyoData-chapter-5-81.json": "side-5-14",
+		"StoryKyusyoData-chapter-5-82.json": "side-5-15",
+		"StoryKyusyoData-chapter-5-83.json": "side-5-16",
+		"StoryKyusyoData-chapter-6-84.json": "side-6-0",
+		"StoryKyusyoData-chapter-6-85.json": "side-6-1",
+		"StoryKyusyoData-chapter-6-86.json": "side-6-2",
+		"StoryKyusyoData-chapter-6-87.json": "side-6-3",
+		"StoryKyusyoData-chapter-6-88.json": "side-6-4",
+		"StoryKyusyoData-chapter-6-89.json": "side-6-5",
+		"StoryKyusyoData-chapter-6-90.json": "side-6-6",
+		"StoryKyusyoData-chapter-6-91.json": "side-6-7",
+		"StoryKyusyoData-chapter-6-92.json": "side-6-8",
+		"StoryKyusyoData-chapter-6-93.json": "side-6-9",
+		"StoryKyusyoData-chapter-6-94.json": "side-6-10",
+		"StoryKyusyoData-chapter-6-95.json": "side-6-11",
+		"StoryKyusyoData-chapter-6-97.json": "side-6-12",
+		"StoryKyusyoData-chapter-6-98.json": "side-6-13",
+		"StoryKyusyoData-chapter-6-99.json": "side-6-14",
+		"StoryKyusyoData-chapter-6-100.json": "side-6-15",
+		"StoryKyusyoData-chapter-6-101.json": "side-6-16",
+		"StoryKyusyoData-chapter-6-102.json": "side-6-17",
+		"StoryKyusyoData-chapter-6-103.json": "side-6-18",
+		"StoryKyusyoData-chapter-6-104.json": "side-6-19",
+		"StoryKyusyoData-chapter-7-105.json": "side-7-0",
+		"StoryKyusyoData-chapter-7-106.json": "side-7-1",
+		"StoryKyusyoData-chapter-7-107.json": "side-7-2",
+		"StoryKyusyoData-chapter-7-108.json": "side-7-3",
+		"StoryKyusyoData-chapter-7-109.json": "side-7-4",
+		"StoryKyusyoData-chapter-7-110.json": "side-7-5",
+		"StoryKyusyoData-chapter-7-111.json": "side-7-6",
+		"StoryKyusyoData-chapter-7-112.json": "side-7-7",
+		"StoryKyusyoData-chapter-7-113.json": "side-7-8",
+		"StoryKyusyoData-chapter-7-114.json": "side-7-9",
+		"StoryKyusyoData-chapter-7-115.json": "side-7-10",
+		"StoryKyusyoData-chapter-7-116.json": "side-7-11",
+		"StoryKyusyoData-chapter-7-117.json": "side-7-12",
+		"StoryKyusyoData-chapter-7-118.json": "side-7-13",
+		"StoryKyusyoData-chapter-7-119.json": "side-7-14",
+		"StoryKyusyoData-chapter-7-120.json": "side-7-15",
+		"StoryKyusyoData-chapter-7-121.json": "side-7-16",
+		"StoryKyusyoData-chapter-2-32.json": "side-8-0",
+		"StoryKyusyoData-chapter-3-38.json": "side-8-1",
+		"StoryKyusyoData-chapter-4-58.json": "side-8-2",
+		"StoryKyusyoData-chapter-5-77.json": "side-8-3",
+		"DLC2-0-2": "event-0-0",
+		"DLC2-3-6": "event-0-1",
+		"DLC2-7-9": "event-0-2",
+		"DLC2-10-10": "event-0-3",
+		"DLC2-11-11": "event-0-4",
+		"DLC2-12-13": "event-0-5",
+		"DLC2-14-14": "event-0-6",
+		"DLC2-15-15": "event-0-7",
+		"DLC2-16-16": "event-0-8",
+		"DLC2-16-17": "event-1-0",
+		"DLC2-18-18": "event-1-1",
+		"DLC2-19-19": "event-1-2",
+		"DLC2-20-22": "event-1-3",
+		"DLC2-23-23": "event-1-4",
+		"DLC2-24-24": "event-1-5",
+		"DLC2-25-27": "event-1-6",
+		"DLC2-28-28": "event-1-7",
+		"DLC2-29-29": "event-1-8",
+		"DLC2-30-30": "event-1-9",
+		"DLC2-31-33": "event-1-10",
+		"DLC2-34-34": "event-1-11",
+		"DLC2-35-35": "event-1-12",
+		"PartnerStory-1006.json": "event-2-0",
+		"PartnerStory-1003.json": "event-2-1",
+		"PartnerStory-1002.json": "event-2-2",
+		"PartnerStory-1004.json": "event-2-3",
+		"PartnerStory-1005.json": "event-2-4",
+		"PartnerStory-1007.json": "event-2-5",
+		"PartnerStory-1008.json": "event-2-6",
+		"PartnerStory-1009.json": "event-2-7",
+		"PartnerStory-1010.json": "event-2-8",
+		"PartnerStory-10201.json": "event-2-9",
+		"PartnerStory-1021.json": "event-2-10",
+		"PartnerStory-1022.json": "event-2-11",
+		"PartnerStory-1023.json": "event-2-12",
+		"PartnerStory-1024.json": "event-2-13",
+		"PartnerStory-1025.json": "event-2-14",
+		"PartnerStory-1027.json": "event-2-15",
+		"PartnerStory-1029.json": "event-2-16",
+		"PartnerStory-10311.json": "event-2-17",
+		"PartnerStory-1030.json": "event-2-18",
+		"PartnerStory-1032.json": "event-2-19",
+		"PartnerStory-1037.json": "event-2-20",
+		"PartnerStory-1036.json": "event-2-21",
+		"PartnerStory-1035.json": "event-2-22",
+		"PartnerStory-1046.json": "event-2-23",
+		"PartnerStory-1049.json": "event-2-24",
+		"PartnerStory-1050.json": "event-2-25",
+		"PartnerStory-1051.json": "event-2-26",
+		"PartnerStory-1052.json": "event-2-27",
+		"PartnerStory-1053.json": "event-2-28",
+		"PartnerStory-1054.json": "event-2-29",
+		"PartnerStory-1055.json": "event-2-30",
+		"PartnerStory-1062.json": "event-2-31",
+		"PartnerStory-1063.json": "event-2-32",
+		"PartnerStory-1064.json": "event-2-33",
+		"PartnerStory-1068.json": "event-2-34",
+		"PartnerStory-1069.json": "event-2-35",
+		"PartnerStory-1070.json": "event-2-36",
+		"PartnerStory-1071.json": "event-2-37",
+		"PartnerStory-1072.json": "event-2-38",
+		"PartnerStory-1073.json": "event-2-39",
+		"PartnerStory-1074.json": "event-2-40",
+		"PartnerStory-1075.json": "event-2-41",
+		"PartnerStory-1076.json": "event-2-42",
+		"PartnerStory-1077.json": "event-2-43",
+		"PartnerStory-1078.json": "event-2-44",
+		"PartnerStory-1079.json": "event-2-45",
+		"PartnerStory-1080.json": "event-2-46",
+		"PartnerStory-1081.json": "event-2-47",
+		"PartnerStory-1085.json": "event-2-48",
+		"PartnerStory-1091.json": "event-2-49",
+		"ExtData-3055-3061.json": "event-3-0",
+		"ExtData-1657-1666.json": "event-3-1",
+		"ExtData-1722-1726.json": "event-3-2",
+		"ExtData-1755-1764.json": "event-3-3",
+		"ExtData-1764-1770.json": "event-3-4",
+		"ExtData-1804-1813.json": "event-3-5",
+		"ExtData-1813-1822.json": "event-3-6",
+		"ExtData-1830-1858.json": "event-3-7",
+		"ExtData-1858-1862.json": "event-3-8",
+		"ExtData-1862-1865.json": "event-3-9",
+		"ExtData-1865-1871.json": "event-3-10",
+		"ExtData-1885-1894.json": "event-3-11",
+		"ExtData-1930-1940.json": "event-3-12",
+		"ExtData-2424-2432.json": "event-3-13",
+		"ExtData-2464-2470.json": "event-3-14",
+		"ExtData-2470-2479.json": "event-3-15",
+		"ExtData-2524-2535.json": "event-3-16",
+		"ExtData-2077-2082.json": "event-3-17",
+		"ExtData-3805-3097.json": "event-3-18",
+		"ExtData-3100-3109.json": "event-3-19",
+		"ExtData-1260-1268.json": "event-3-20",
+		"ExtData-390-408.json": "event-3-21",
+		"StoryExtData-0.json": "event-4-0",
+		"StoryExtData-1.json": "event-4-1",
+		"StoryExtData-2.json": "event-4-2",
+		"StoryExtData-3.json": "event-4-3",
+		"StoryExtData-4.json": "event-4-4",
+		"StoryExtData-5.json": "event-4-5",
+		"StoryExtData-6.json": "event-4-6",
+		"StoryExtData-7.json": "event-4-7",
+		"StoryExtData-8.json": "event-4-8",
+		"StoryExtData-9.json": "event-4-9",
+		"StoryExtData-10.json": "event-4-10",
+		"StoryExtData-11.json": "event-4-11",
+		"StoryExtData-12.json": "event-4-12",
+		"StoryExtData-13.json": "event-4-13",
+		"StoryExtData-14.json": "event-4-14",
+		"StoryExtData-15.json": "event-4-15",
+		"StoryExtData-16.json": "event-4-16",
+		"StoryExtData-17.json": "event-4-17",
+		"StoryExtData-18.json": "event-4-18",
+		"StoryExtData-19.json": "event-4-19",
+		"StoryExtData-20.json": "event-4-20",
+		"StoryExtData-21.json": "event-4-21",
+		"StoryExtData-22.json": "event-4-22",
+		"StoryExtData-23.json": "event-4-23",
+		"StoryExtData-24.json": "event-4-24",
+		"StoryExtData-25.json": "event-4-25",
+		"StoryExtData-26.json": "event-4-26",
+		"StoryExtData-27.json": "event-4-27",
+		"StoryExtData-28.json": "event-4-28",
+		"StoryExtData-29.json": "event-4-29",
+		"StoryExtData-30.json": "event-4-30",
+		"StoryExtData-31.json": "event-4-31",
+		"StoryExtData-32.json": "event-4-32",
+		"StoryExtData-33.json": "event-4-33",
+		"StoryExtData-34.json": "event-4-34",
+		"StoryExtData-35.json": "event-4-35",
+		"StoryExtData-36.json": "event-4-36",
+		"StoryExtData-37.json": "event-4-37",
+		"StoryExtData-38.json": "event-4-38",
+		"StoryExtData-39.json": "event-4-39",
+		"StoryExtData-40.json": "event-4-40",
+		"StoryExtData-41.json": "event-4-41",
+		"StoryExtData-42.json": "event-4-42",
+		"StoryExtData-43.json": "event-4-43",
+		"StoryExtData-44.json": "event-4-44",
+		"StoryExtData-45.json": "event-4-45",
+		"StoryExtData-46.json": "event-4-46",
+		"StoryExtData-47.json": "event-4-47",
+		"StoryExtData-48.json": "event-4-48",
+		"StoryExtData-49.json": "event-4-49",
+		"StoryExtData-50.json": "event-4-50",
+		"StoryExtData-51.json": "event-4-51",
+		"StoryExtData-52.json": "event-4-52",
+		"StoryExtData-53.json": "event-4-53",
+		"StoryExtData-54.json": "event-4-54",
+		"StoryExtData-55.json": "event-4-55",
+		"StoryExtData-56.json": "event-4-56",
+		"StoryExtData-57.json": "event-4-57",
+		"StoryExtData-58.json": "event-4-58",
+		"StoryExtData-59.json": "event-4-59",
+		"StoryExtData-60.json": "event-4-60",
+		"StoryExtData-61.json": "event-4-61",
+		"StoryExtData-62.json": "event-4-62",
+		"StoryExtData-63.json": "event-4-63",
+		"StoryExtData-64.json": "event-4-64",
+		"StoryExtData-65.json": "event-4-65",
+		"StoryExtData-66.json": "event-4-66",
+		"StoryExtData-67.json": "event-4-67",
+		"StoryExtData-68.json": "event-4-68",
+		"StoryExtData-69.json": "event-4-69",
+		"StoryExtData-70.json": "event-4-70",
+		"StoryExtData-71.json": "event-4-71",
+		"StoryExtData-72.json": "event-4-72",
+		"StoryExtData-73.json": "event-4-73",
+		"StoryExtData-74.json": "event-4-74",
+		"StoryExtData-75.json": "event-4-75",
+		"StoryExtData-76.json": "event-4-76",
+		"StoryExtData-77.json": "event-4-77",
+		"StoryExtData-78.json": "event-4-78",
+		"StoryExtData-79.json": "event-4-79",
+		"StoryExtData-80.json": "event-4-80",
+		"StoryExtData-81.json": "event-4-81",
+		"StoryExtData-82.json": "event-4-82",
+		"StoryExtData-83.json": "event-4-83",
+		"StoryExtData-84.json": "event-4-84",
+		"StoryExtData-85.json": "event-4-85",
+		"StoryExtData-86.json": "event-4-86",
+		"StoryExtData-87.json": "event-4-87",
+		"StoryExtData-88.json": "event-4-88",
+		"StoryExtData-89.json": "event-4-89",
+		"StoryExtData-90.json": "event-4-90",
+		"StoryExtData-91.json": "event-4-91",
+		"StoryExtData-92.json": "event-4-92",
+		"StoryExtData-93.json": "event-4-93",
+		"StoryExtData-94.json": "event-4-94",
+		"StoryExtData-95.json": "event-4-95",
+		"StoryExtData-96.json": "event-4-96",
+		"StoryExtData-97.json": "event-4-97",
+		"StoryExtData-98.json": "event-4-98",
+		"StoryExtData-99.json": "event-4-99",
+		"StoryExtData-100.json": "event-4-100",
+		"StoryExtData-101.json": "event-4-101",
+		"StoryExtData-102.json": "event-4-102",
+		"StoryExtData-103.json": "event-4-103",
+		"StoryExtData-104.json": "event-4-104",
+		"StoryExtData-105.json": "event-4-105",
+		"StoryExtData-106.json": "event-4-106",
+		"StoryExtData-107.json": "event-4-107",
+		"StoryExtData-108.json": "event-4-108",
+		"StoryExtData-109.json": "event-4-109",
+		"StoryExtData-110.json": "event-4-110",
+		"StoryExtData-111.json": "event-4-111",
+		"StoryExtData-112.json": "event-4-112",
+		"StoryExtData-113.json": "event-4-113",
+		"StoryExtData-114.json": "event-4-114",
+		"StoryExtData-115.json": "event-4-115",
+		"StoryExtData-116.json": "event-4-116",
+		"StoryExtData-117.json": "event-4-117",
+		"StoryExtData-118.json": "event-4-118",
+		"StoryExtData-119.json": "event-4-119",
+		"StoryExtData-120.json": "event-4-120",
+		"StoryExtData-121.json": "event-4-121",
+		"StoryExtData-122.json": "event-4-122",
+		"StoryExtData-123.json": "event-4-123",
+		"StoryExtData-124.json": "event-4-124",
+		"StoryExtData-125.json": "event-4-125",
+		"StoryExtData-126.json": "event-4-126",
+		"StoryExtData-127.json": "event-4-127",
+		"StoryExtData-128.json": "event-4-128",
+		"StoryExtData-129.json": "event-4-129",
+		"StoryExtData-130.json": "event-4-130",
+		"StoryExtData-131.json": "event-4-131",
+		"StoryExtData-132.json": "event-4-132",
+		"StoryExtData-133.json": "event-4-133",
+		"StoryExtData-134.json": "event-4-134",
+		"StoryExtData-135.json": "event-4-135",
+		"StoryExtData-136.json": "event-4-136",
+		"StoryExtData-137.json": "event-4-137",
+		"StoryExtData-138.json": "event-4-138",
+		"StoryExtData-139.json": "event-4-139",
+		"StoryExtData-140.json": "event-4-140",
+		"StoryExtData-141.json": "event-4-141",
+		"StoryExtData-142.json": "event-4-142",
+		"StoryExtData-143.json": "event-4-143",
+		"StoryExtData-144.json": "event-4-144",
+		"StoryExtData-145.json": "event-4-145",
+		"StoryExtData-146.json": "event-4-146",
+		"StoryExtData-147.json": "event-4-147",
+		"StoryExtData-148.json": "event-4-148",
+		"StoryExtData-149.json": "event-4-149",
+		"StoryExtData-150.json": "event-4-150",
+		"StoryExtData-151.json": "event-4-151",
+		"StoryExtData-152.json": "event-4-152",
+		"StoryExtData-153.json": "event-4-153",
+		"StoryExtData-154.json": "event-4-154",
+		"StoryExtData-155.json": "event-4-155",
+		"StoryExtData-156.json": "event-4-156",
+		"StoryExtData-157.json": "event-4-157",
+		"StoryExtData-158.json": "event-4-158",
+		"StoryExtData-159.json": "event-4-159",
+		"StoryExtData-160.json": "event-4-160",
+		"StoryExtData-161.json": "event-4-161",
+		"StoryExtData-162.json": "event-4-162",
+		"StoryExtData-163.json": "event-4-163",
+		"StoryExtData-164.json": "event-4-164",
+		"StoryExtData-165.json": "event-4-165",
+		"StoryExtData-166.json": "event-4-166",
+		"StoryExtData-167.json": "event-4-167",
+		"StoryExtData-168.json": "event-4-168",
+		"StoryExtData-169.json": "event-4-169",
+		"StoryExtData-170.json": "event-4-170",
+		"StoryExtData-171.json": "event-4-171",
+		"StoryExtData-172.json": "event-4-172",
+		"StoryExtData-173.json": "event-4-173",
+		"StoryExtData-174.json": "event-4-174",
+		"StoryExtData-175.json": "event-4-175",
+		"StoryExtData-176.json": "event-4-176",
+		"StoryExtData-177.json": "event-4-177",
+		"StoryExtData-178.json": "event-4-178",
+		"StoryExtData-179.json": "event-4-179",
+		"StoryExtData-180.json": "event-4-180",
+		"StoryExtData-181.json": "event-4-181",
+		"StoryExtData-182.json": "event-4-182",
+		"StoryExtData-183.json": "event-4-183",
+		"StoryExtData-184.json": "event-4-184",
+		"StoryExtData-185.json": "event-4-185",
+		"StoryExtData-186.json": "event-4-186",
+		"StoryExtData-187.json": "event-4-187",
+		"StoryExtData-188.json": "event-4-188",
+		"StoryExtData-189.json": "event-4-189",
+		"StoryExtData-190.json": "event-4-190",
+		"StoryExtData-191.json": "event-4-191",
+		"StoryExtData-192.json": "event-4-192",
+		"StoryExtData-193.json": "event-4-193",
+		"StoryExtData-194.json": "event-4-194",
+		"StoryExtData-195.json": "event-4-195",
+		"StoryExtData-196.json": "event-4-196",
+		"StoryExtData-197.json": "event-4-197",
+		"StoryExtData-198.json": "event-4-198",
+		"StoryExtData-199.json": "event-4-199",
+		"StoryExtData-200.json": "event-4-200",
+		"StoryExtData-201.json": "event-4-201",
+		"StoryExtData-202.json": "event-4-202",
+		"StoryExtData-203.json": "event-4-203",
+		"StoryExtData-204.json": "event-4-204",
+		"StoryExtData-205.json": "event-4-205",
+		"StoryExtData-206.json": "event-4-206",
+		"StoryExtData-207.json": "event-4-207",
+		"StoryExtData-208.json": "event-4-208",
+		"StoryExtData-209.json": "event-4-209",
+		"StoryExtData-210.json": "event-4-210",
+		"StoryExtData-211.json": "event-4-211",
+		"StoryExtData-212.json": "event-4-212",
+		"StoryExtData-213.json": "event-4-213",
+		"StoryExtData-214.json": "event-4-214",
+		"StoryExtData-215.json": "event-4-215",
+		"StoryExtData-216.json": "event-4-216",
+		"StoryExtData-217.json": "event-4-217",
+		"StoryExtData-218.json": "event-4-218",
+		"StoryExtData-219.json": "event-4-219",
+		"StoryExtData-220.json": "event-4-220",
+		"StoryExtData-221.json": "event-4-221",
+		"StoryExtData-222.json": "event-4-222",
+		"StoryExtData-223.json": "event-4-223",
+		"StoryExtData-224.json": "event-4-224",
+		"StoryExtData-225.json": "event-4-225",
+		"StoryExtData-226.json": "event-4-226",
+		"StoryExtData-227.json": "event-4-227",
+		"StoryExtData-228.json": "event-4-228",
+		"StoryExtData-229.json": "event-4-229",
+		"StoryExtData-230.json": "event-4-230",
+		"StoryExtData-231.json": "event-4-231",
+		"StoryExtData-232.json": "event-4-232",
+		"StoryExtData-233.json": "event-4-233",
+		"StoryExtData-234.json": "event-4-234",
+		"StoryExtData-235.json": "event-4-235",
+		"StoryExtData-236.json": "event-4-236",
+		"StoryExtData-237.json": "event-4-237",
+		"StoryExtData-238.json": "event-4-238",
+		"StoryExtData-239.json": "event-4-239",
+		"StoryExtData-240.json": "event-4-240",
+		"StoryExtData-241.json": "event-4-241",
+		"StoryExtData-242.json": "event-4-242",
+		"StoryExtData-243.json": "event-4-243",
+		"StoryExtData-244.json": "event-4-244",
+		"StoryExtData-245.json": "event-4-245",
+		"StoryExtData-246.json": "event-4-246",
+		"StoryExtData-247.json": "event-4-247",
+		"StoryExtData-248.json": "event-4-248",
+		"StoryExtData-249.json": "event-4-249",
+		"StoryExtData-250.json": "event-4-250",
+		"StoryExtData-251.json": "event-4-251",
+		"StoryExtData-252.json": "event-4-252",
+		"StoryExtData-253.json": "event-4-253",
+		"StoryExtData-254.json": "event-4-254",
+		"StoryExtData-255.json": "event-4-255",
+		"StoryExtData-256.json": "event-4-256",
+		"StoryExtData-257.json": "event-4-257",
+		"StoryExtData-258.json": "event-4-258",
+		"StoryExtData-259.json": "event-4-259",
+		"StoryExtData-260.json": "event-4-260",
+		"StoryExtData-261.json": "event-4-261",
+		"StoryExtData-262.json": "event-4-262",
+		"StoryExtData-263.json": "event-4-263",
+		"StoryExtData-264.json": "event-4-264",
+		"StoryExtData-265.json": "event-4-265",
+		"StoryExtData-266.json": "event-4-266",
+		"StoryExtData-267.json": "event-4-267",
+		"StoryExtData-268.json": "event-4-268",
+		"StoryExtData-269.json": "event-4-269",
+		"StoryExtData-270.json": "event-4-270",
+		"StoryExtData-271.json": "event-4-271",
+		"StoryExtData-272.json": "event-4-272",
+		"StoryExtData-273.json": "event-4-273",
+		"StoryExtData-274.json": "event-4-274",
+		"StoryExtData-275.json": "event-4-275",
+		"StoryExtData-276.json": "event-4-276",
+		"StoryExtData-277.json": "event-4-277",
+		"StoryExtData-278.json": "event-4-278",
+		"StoryExtData-279.json": "event-4-279",
+		"StoryExtData-280.json": "event-4-280",
+		"StoryExtData-281.json": "event-4-281",
+		"StoryExtData-290.json": "event-4-282",
+		"StoryExtData-291.json": "event-4-283",
+		"StoryExtData-292.json": "event-4-284",
+		"StoryExtData-293.json": "event-4-285",
+		"StoryExtData-294.json": "event-4-286",
+		"StoryExtData-295.json": "event-4-287",
+		"StoryExtData-296.json": "event-4-288",
+		"StoryExtData-297.json": "event-4-289",
+		"StoryExtData-298.json": "event-4-290",
+		"StoryExtData-299.json": "event-4-291",
+		"StoryExtData-300.json": "event-4-292",
+		"StoryExtData-301.json": "event-4-293",
+		"StoryExtData-302.json": "event-4-294",
+		"StoryExtData-303.json": "event-4-295",
+		"StoryExtData-304.json": "event-4-296",
+		"StoryExtData-305.json": "event-4-297",
+		"StoryExtData-306.json": "event-4-298",
+		"StoryExtData-307.json": "event-4-299",
+		"StoryExtData-308.json": "event-4-300",
+		"StoryExtData-309.json": "event-4-301",
+		"StoryExtData-310.json": "event-4-302",
+		"StoryExtData-311.json": "event-4-303",
+		"StoryExtData-312.json": "event-4-304",
+		"StoryExtData-313.json": "event-4-305",
+		"StoryExtData-314.json": "event-4-306",
+		"StoryExtData-315.json": "event-4-307",
+		"StoryExtData-316.json": "event-4-308",
+		"StoryExtData-317.json": "event-4-309",
+		"StoryExtData-318.json": "event-4-310",
+		"StoryExtData-319.json": "event-4-311",
+		"StoryExtData-320.json": "event-4-312",
+		"StoryExtData-321.json": "event-4-313",
+		"StoryExtData-322.json": "event-4-314",
+		"StoryExtData-323.json": "event-4-315",
+		"StoryExtData-324.json": "event-4-316",
+		"StoryExtData-325.json": "event-4-317",
+		"StoryExtData-326.json": "event-4-318",
+		"StoryExtData-327.json": "event-4-319",
+		"StoryExtData-328.json": "event-4-320",
+		"StoryExtData-329.json": "event-4-321",
+		"StoryExtData-330.json": "event-4-322",
+		"StoryExtData-331.json": "event-4-323",
+		"StoryExtData-332.json": "event-4-324",
+		"StoryExtData-333.json": "event-4-325",
+		"StoryExtData-334.json": "event-4-326",
+		"StoryExtData-335.json": "event-4-327",
+		"StoryExtData-336.json": "event-4-328",
+		"StoryExtData-337.json": "event-4-329",
+		"StoryExtData-338.json": "event-4-330",
+		"StoryExtData-339.json": "event-4-331",
+		"StoryExtData-340.json": "event-4-332",
+		"StoryExtData-341.json": "event-4-333",
+		"StoryExtData-342.json": "event-4-334",
+		"StoryExtData-343.json": "event-4-335",
+		"StoryExtData-344.json": "event-4-336",
+		"StoryExtData-345.json": "event-4-337",
+		"StoryExtData-346.json": "event-4-338",
+		"StoryExtData-347.json": "event-4-339",
+		"StoryExtData-348.json": "event-4-340",
+		"StoryExtData-349.json": "event-4-341",
+		"StoryExtData-350.json": "event-4-342",
+		"StoryExtData-351.json": "event-4-343",
+		"StoryExtData-352.json": "event-4-344",
+		"StoryExtData-353.json": "event-4-345",
+		"StoryExtData-354.json": "event-4-346",
+		"StoryExtData-355.json": "event-4-347",
+		"StoryExtData-356.json": "event-4-348",
+		"StoryExtData-357.json": "event-4-349",
+		"StoryExtData-358.json": "event-4-350",
+		"StoryExtData-359.json": "event-4-351",
+		"StoryExtData-360.json": "event-4-352",
+		"StoryExtData-361.json": "event-4-353",
+		"StoryExtData-362.json": "event-4-354",
+		"StoryExtData-363.json": "event-4-355",
+		"StoryExtData-364.json": "event-4-356",
+		"StoryExtData-365.json": "event-4-357",
+		"StoryExtData-366.json": "event-4-358",
+		"StoryExtData-367.json": "event-4-359",
+		"StoryExtData-368.json": "event-4-360",
+		"StoryExtData-369.json": "event-4-361",
+		"StoryExtData-370.json": "event-4-362",
+		"StoryExtData-371.json": "event-4-363",
+		"StoryExtData-372.json": "event-4-364",
+		"StoryExtData-373.json": "event-4-365",
+		"StoryExtData-374.json": "event-4-366",
+		"StoryExtData-375.json": "event-4-367",
+		"StoryExtData-376.json": "event-4-368",
+		"StoryExtData-377.json": "event-4-369",
+		"StoryExtData-378.json": "event-4-370",
+		"StoryExtData-379.json": "event-4-371",
+		"StoryExtData-380.json": "event-4-372",
+		"StoryExtData-381.json": "event-4-373",
+		"StoryExtData-382.json": "event-4-374",
+		"StoryExtData-383.json": "event-4-375",
+		"StoryExtData-384.json": "event-4-376",
+		"StoryExtData-385.json": "event-4-377",
+		"StoryExtData-386.json": "event-4-378",
+		"StoryExtData-387.json": "event-4-379",
+		"StoryExtData-388.json": "event-4-380",
+		"StoryExtData-389.json": "event-4-381",
+		"StoryExtData-390.json": "event-4-382",
+		"StoryExtData-391.json": "event-4-383",
+		"StoryExtData-392.json": "event-4-384",
+		"StoryExtData-393.json": "event-4-385",
+		"StoryExtData-394.json": "event-4-386",
+		"StoryExtData-395.json": "event-4-387",
+		"StoryExtData-396.json": "event-4-388",
+		"StoryExtData-397.json": "event-4-389",
+		"StoryExtData-398.json": "event-4-390",
+		"StoryExtData-399.json": "event-4-391",
+		"StoryExtData-400.json": "event-4-392",
+		"StoryExtData-401.json": "event-4-393",
+		"StoryExtData-402.json": "event-4-394",
+		"StoryExtData-403.json": "event-4-395",
+		"StoryExtData-404.json": "event-4-396",
+		"StoryExtData-405.json": "event-4-397",
+		"StoryExtData-406.json": "event-4-398",
+		"StoryExtData-407.json": "event-4-399",
+		"StorySubData-0.json": "event-5-0",
+		"StorySubData-1.json": "event-5-1",
+		"StorySubData-2.json": "event-5-2",
+		"StorySubData-3.json": "event-5-3",
+		"StorySubData-4.json": "event-5-4",
+		"StorySubData-5.json": "event-5-5",
+		"StorySubData-6.json": "event-5-6",
+		"StorySubData-7.json": "event-5-7",
+		"StorySubData-8.json": "event-5-8",
+		"StorySubData-9.json": "event-5-9",
+		"StorySubData-10.json": "event-5-10",
+		"StorySubData-11.json": "event-5-11",
+		"StorySubData-12.json": "event-5-12",
+		"StorySubData-13.json": "event-5-13",
+		"ExtData-1680-1686.json": "event-6-0",
+		"ExtData-1686-1692.json": "event-6-1",
+		"ExtData-1692-1696.json": "event-6-2",
+		"ExtData-1696-1701.json": "event-6-3",
+		"ExtData-1749-1755.json": "event-6-4",
+		"ExtData-1770-1776.json": "event-6-5",
+		"ExtData-1776-1782.json": "event-6-6",
+		"ExtData-89-90.json": "event-7-0",
+		"ExtData-90-91.json": "event-7-1",
+		"ExtData-99-102.json": "event-7-2",
+		"ExtData-102-104.json": "event-7-3",
+		"ExtData-144-150.json": "event-7-4",
+		"ExtData-150-154.json": "event-7-5",
+		"storyinsidedata.json": "event-8-0",
 		"hg2-gfl-old.json": "crossover-0-0",
 		"ggz-hi3-hos-1.json": "crossover-1-0",
 		"ggz-hi3-hos-2.json": "crossover-1-1",

@@ -1,16 +1,18 @@
 #!/usr/bin/env python3.8
 import os
 import json
-from typing import List,Union,Dict
+from typing import List,Union,Dict,Any
+from BuildSpeakerPortraitDatabase import StoryFigureSettingDataStruct
+import sys
 			
 #PosterID	FigureID	Type	PersonatedMaxIntimacy	PosterName	TalkList	facelist	cvlist	height	threesize	seriesname	description	brithday	hobby	FirstSightDialogue	SeriesID	Live2D	Group	GroupName	IsOpen	BackGround	DialogueX	DialogueY	isPDAS	IsEntry	PartsNum
 class PartnerPosterData():
-	def __init__(self, info:List[str],textMap:Dict[int,List[str]],storyFigueSettingData=None):
+	def __init__(self, info:List[str],textMap:Dict[int,List[str]],storyFigueSettingData:Union[Dict[int,StoryFigureSettingDataStruct],None]=None):
 		self.PosterID=int(info[0])
 		self.PortraitID=int(info[1])
 		if storyFigueSettingData:
 			if self.PortraitID in storyFigueSettingData:
-				self.PortraitFile=storyFigueSettingData[self.PortraitID]
+				self.PortraitFile:str=storyFigueSettingData[self.PortraitID].pic
 			else:
 				print("Portrait ID "+str(self.PortraitID)+" missing from DB.")
 				#self.PortraitFile=""
@@ -48,6 +50,19 @@ class PartnerPosterData():
 				s+="
 			#s+=str("""
 
+class PartnerStoryHeadData():
+	def __init__(self,tsv:List[str],textMap:Dict[int,List[str]]) -> None:
+		self.StoryID=int(tsv[0])
+		#BackgroundID is never used
+		self.Title:List[str]=textMap[int(tsv[2])] #For short stories (usually 1 paragraph, NOT the full cutscenes)
+		self.ShortStory:List[str]=textMap[int(tsv[3])] #The short story
+		self.Poster=int(tsv[4]) #ID of the 'poster', refers to ID in PartnerPosterData
+		self.StoryOrder=int(tsv[5]) #IntimacyRequire, but stories are sorted by intimacy
+		pass
+
+	def __str__(self)->str:
+		return str(vars(self))
+
 if __name__=='__main__':
 	USE_EXTERNAL_DATABASES=False
 
@@ -64,7 +79,7 @@ if __name__=='__main__':
 				line[-1]=line[-1].rstrip() #Strip newline char
 				textMap[int(line[0])]=line[1:]
 				
-	storyFigueSettingData=None
+	storyFigueSettingData:Dict[int,StoryFigureSettingDataStruct] = None #type: ignore
 	if USE_EXTERNAL_DATABASES==False:
 		storyFigueSettingData = {}
 		with open("GameData/StoryFigueSettingData.tsv",'r') as f:
@@ -77,8 +92,31 @@ if __name__=='__main__':
 				if not line:
 					break
 				info=line.split('\t')
-				storyFigueSettingData[int(info[0])]=info[1]
+				storyFigueSettingData[int(info[0])]=StoryFigureSettingDataStruct(info)
 
+	#Indexed by poster ID, a list of stories.
+	partnerStoryHeadData:Dict[int,List[PartnerStoryHeadData]]={}
+	with open("GameData/PartnerStoryHeadData.tsv",'r') as f:
+		f.readline()
+		lastPoster=-1
+		while True:
+			line = f.readline()
+			if not line:
+				break
+			d = PartnerStoryHeadData(line.split('\t'),textMap)
+			
+			if d.Poster not in partnerStoryHeadData:
+				partnerStoryHeadData[d.Poster]=[]
+			partnerStoryHeadData[d.Poster].append(d)
+
+			if lastPoster==-1:
+				lastPoster=d.Poster
+			elif lastPoster!=d.Poster:
+				partnerStoryHeadData[lastPoster].sort(key=lambda x: x.StoryOrder)
+			lastPoster=d.Poster
+
+	print(partnerStoryHeadData[120])
+	#sys.exit(-1)
 	newData={}
 	with open("GameData/PartnerPosterData.tsv",'r') as f:
 		f.readline()
@@ -90,6 +128,17 @@ if __name__=='__main__':
 			
 			data = PartnerPosterData(info,textMap,storyFigueSettingData)
 			newData[data.PosterID]=data.getTable()
+			if data.PosterID in partnerStoryHeadData:
+				#newData[data.PosterID].
+				stories = []
+				for st in partnerStoryHeadData[data.PosterID]:
+					stories.append({
+						'sortOrder':st.StoryOrder,
+						'title':st.Title,
+						'story':st.ShortStory
+					})
+				newData[data.PosterID]["stories"]=stories
+
 			#print(data.getTable())
 			#break
 	with open('biographies.json','wb') as f:

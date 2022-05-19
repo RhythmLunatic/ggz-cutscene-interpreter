@@ -2,6 +2,7 @@ avgtexture/*
 avgtxt/*
 pic/*
 audio/*
+sfx/*
 build/test/*
 build/GameData/*
 build/dialogue.tab

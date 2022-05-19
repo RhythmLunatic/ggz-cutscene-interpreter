@@ -8,28 +8,7 @@ from scipy.misc import face
 import png
 import sys
 
-"""
-ID	PNGName	DevY	StorySide	FigueName	FacePosition	FlipOnOtherSide	Scale
-0	图片路径	立绘y轴的偏移	非九霄中人物的默认站位，1为左，2为右	人物名字	脸的位置（替换）	当立绘放在storyside另一边时，是否翻转	大小
-Picture path	The offset of the y-axis of the vertical picture	is not the default position of the characters in Jiuxiao, 1 is left, 2 is the right	Character name	Position of the face (replacement)	When the vertical picture is placed on the other side of the storyside, whether to flip	the size
-int	string	float	int	int	List<float>	bool	float
-"""
-class StoryFigureSettingDataStruct():
-	def __init__(self, info):
-		self.pic=info[1]
-		self.DevY=info[2]
-		self.StorySide=float(info[4])    #What the fuck is this even for???
-		self.SpeakerName=int(info[5])  #This is a TextID, pulled from textMap_en
-		                               #x,y coords of replacement face
-		self.FacePosition=[round(float(h)) for h in info[6].split(";")]
-		self.FlipOnOtherSide=(info[7]=="1")
-		self.Scale=float(info[8])
-		
-	def getNormalizedFacePosition(self): #It's centered, so subtract half
-		return (self.FacePosition[0]-128,1024-self.FacePosition[1]-128)
-
-	def __str__(self) -> str:
-		return ', '.join("%s: %s" % item for item in vars(self).items())
+from BuildSpeakerPortraitDatabase import StoryFigureSettingDataStruct
 		
 
 basePath = os.path.join(os.getcwd(),"../pic") #Normally "figure" but I renamed it

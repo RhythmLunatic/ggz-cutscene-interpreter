@@ -1545,8 +1545,11 @@ I have no idea how it works
 			{
 				case OPCODES.BGM:
 					let newPlayBGMButton = playBGMbutton.cloneNode(true);
+					//console.log(structuredLines[i][1])
+					let audio = MUSIC[structuredLines[i][1]] || structuredLines[i][1];
+					
 					//
-					newPlayBGMButton.setAttribute("onclick","playNewAudio('audio/"+structuredLines[i][1]+"')")
+					newPlayBGMButton.setAttribute("onclick","playNewAudio('audio/"+audio+"')")
 					thisPartDiv.appendChild(newPlayBGMButton);
 					break;
 				case OPCODES.SE1:
@@ -2649,6 +2652,7 @@ I have no idea how it works
 			console.log("database.json loaded!");
 			PORTRAITS = json['portraits'];
 			NAMES = json['speakers'];
+			MUSIC = json['music'];
 
 			fetch('chapterDatabase.json')
 			.then(response => response.json())
@@ -3349,10 +3353,10 @@ I have no idea how it works
 		<source class='sfx_ogg' src="" type="audio/ogg">
 	</audio>
 	<p>Greets to /hig/. Brought to you by the man who wrote the <a href="https://gfl.amaryllisworks.pw">Girls' Frontline Cutscene Interpreter</a>. You thought I'd stop at GFL?</p>
-	<p>Special thanks to the guys at <a href="https://hoyostans.be/">Hoyostans</a> and special thanks to Mister Spaceman, Darkmiz, and everyone else for retranslating the dialogue!</p>
+	<p>Special thanks to the guys at <a href="https://hoyostans.be/">Hoyostans</a> including Mister Spaceman, Demonbanex, Bun Bun, Max, Darkmiz, and anyone else I forgot for retranslation, sorting, and more.</p>
 	<p>If you want a feature or something is broken, <a onmousemove="(function(self){self.href='mailto:PatchouliSama765'+String.fromCharCode(64)+'gmail.com'})(this)" href="mailto:'hover mouse over the link twice to pass the bot check'"><b>email me</b></a>.</p>
 	<p><a href='/LICENSE.html'>The interpreter is free and open source software and licensed under AGPLv3.</a> Source code is available <a href="https://github.com/RhythmLunatic/ggz-cutscene-interpreter">here.</a></p>
 	<p>Designed using <a href='https://materializecss.com'>Materialize</a>. <a href='https://github.com/Dogfalo/materialize/blob/master/LICENSE'>MIT license</a></p>
 	<hr>
-	<p>I'm currently jobless so if you're reading this and you need a programmer, email me. I have 5 years of experience with lua and some experience with Python, C++, JavaScript, and C#.</p>
+	<p>Need a programmer for something GFL or GGZ related? email me. I have 5 years of experience with lua and some experience with Python, C++, JavaScript, and C#.</p>
 </body>

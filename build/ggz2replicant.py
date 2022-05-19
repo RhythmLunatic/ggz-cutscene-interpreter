@@ -93,17 +93,18 @@ def convertCutscene(chapterFull:Dict[str,List],toConvert:str)->str:
 					output+=" ## "+choice[langs[col]] #+1 because idx 0 is the msg command
 			
 			#This is where the fun begins
-			output+="\ncondjmp_c\tc2dest\t2"
-			dests = cutscene[i+1][2:]
-			for j in range(len(dests)):
-				output+="\nlabel\tc"+str(j+1)+"dest"
-				output+=convertCutscene(chapterFull,str(dests[j]))
-				if j==0:
-					output+='\njmp\tend_choices'
-			output+='\nlabel\tend_choices'
-				#for col in langs:
-				#	outputAdditional[langs[col]]+=outputAdd_tmp[langs[col]] #+1 because idx 0 is the msg command
-			#print(dests)
+			if i+1 < len(cutscene):
+				output+="\ncondjmp_c\tc2dest\t2"
+				dests = cutscene[i+1][2:]
+				for j in range(len(dests)):
+					output+="\nlabel\tc"+str(j+1)+"dest"
+					output+=convertCutscene(chapterFull,str(dests[j]))
+					if j==0:
+						output+='\njmp\tend_choices'
+				output+='\nlabel\tend_choices'
+					#for col in langs:
+					#	outputAdditional[langs[col]]+=outputAdd_tmp[langs[col]] #+1 because idx 0 is the msg command
+				#print(dests)
 
 		elif cmnd[0]=="bg":
 			output+="\nbg\t"+cmnd[1]
