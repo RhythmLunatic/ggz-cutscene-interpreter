@@ -26,6 +26,7 @@ class LDType(Enum):
 #ID	Icon	Type	DrawingID	DevX	DevY	AvatarID	Scale	AvatarOffX	AvatarOffY	Charaname	Age	Birth	Des	Skill	Voice	Voicename	EliteID	EliteName	EliteDes	IsUnlock
 class LibraryData():
 	def __init__(self,info):
+		self.charID:int = int(info[0])
 		self.icon:int = int(info[1])
 		self.type:LDType = LDType(int(info[2]))
 		self.drawingID:str = info[3]
@@ -79,6 +80,7 @@ for d in libraryDatas:
 	for i in range(len(d.description)):
 		l=d.description[i]
 		txt+="<p><b>"+toStr[i]+" </b>"+l.replace("#n","<br>")+"</p>"
+	txt+="<p>"+d.drawingID+"</p><p>"+str(d.charID)+"</p>"
 	txt+="<br><br>"
 
 with open("LibraryData.html", 'w') as f:

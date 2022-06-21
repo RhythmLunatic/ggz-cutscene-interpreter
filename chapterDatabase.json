@@ -977,7 +977,7 @@
 						"description": "Head to #(Metro#) and #(Gate#) to assist the Fire Moths"
 					},
 					{
-						"name": "Patrol",
+						"name": "(Sub) Patrol",
 						"parts": "StoryKyusyoData-chapter-1-13.json",
 						"part_names": [
 							1001,
@@ -992,10 +992,10 @@
 							1010,
 							1011
 						],
-						"description": "Go to #(Discovery#),  beat Houkai creatures"
+						"description": "Go to #(Discovery#),  beat Houkai creatures<br>Unlocked after mission \"Loot\""
 					},
 					{
-						"name": "Rescue",
+						"name": "(Sub) Rescue",
 						"parts": "StoryKyusyoData-chapter-1-14.json",
 						"part_names": [
 							1012,
@@ -1005,10 +1005,10 @@
 							1016,
 							1017
 						],
-						"description": "Go to #(Extended point#), protect Homu and save people"
+						"description": "Go to #(Extended point#), protect Homu and save people<br>Unlocked after mission \"Loot\""
 					},
 					{
-						"name": "Recycle",
+						"name": "(Sub) Recycle",
 						"parts": "StoryKyusyoData-chapter-1-15.json",
 						"part_names": [
 							1018,
@@ -1019,10 +1019,10 @@
 							1023,
 							1024
 						],
-						"description": "One Hommie robot is missing, find it in #(Security#) with Emesa"
+						"description": "One Hommie robot is missing, find it in #(Security#) with Emesa<br>Unlocked after mission \"Loot\""
 					},
 					{
-						"name": "Search",
+						"name": "(Sub) Search",
 						"parts": "StoryKyusyoData-chapter-1-16.json",
 						"part_names": [
 							1025,
@@ -1031,10 +1031,10 @@
 							1028,
 							1029
 						],
-						"description": "Go to the #(Mall#) and search for anything usable to reduce resource consumption in the base."
+						"description": "Go to the #(Mall#) and search for anything usable to reduce resource consumption in the base.<br>Unlocked after mission \"Sacrifice\""
 					},
 					{
-						"name": "Check out",
+						"name": "(Sub) Check out",
 						"parts": "StoryKyusyoData-chapter-1-17.json",
 						"part_names": [
 							1030,
@@ -1044,10 +1044,10 @@
 							1034,
 							1035
 						],
-						"description": "Go to #(Relic#) beat Houkai creatures"
+						"description": "Go to #(Relic#) beat Houkai creatures<br>Unlocked after mission \"Sacrifice\""
 					},
 					{
-						"name": "New home",
+						"name": "(Sub) New home",
 						"parts": "StoryKyusyoData-chapter-1-18.json",
 						"part_names": [
 							1036,
@@ -1056,7 +1056,7 @@
 						"description": "Go to #(Tunnel#) with Yssring"
 					},
 					{
-						"name": "Recall",
+						"name": "(Sub) Recall",
 						"parts": "StoryKyusyoData-chapter-1-19.json",
 						"part_names": [
 							1038,
@@ -1064,10 +1064,10 @@
 							1040,
 							1041
 						],
-						"description": "Go to #(Isolated point#) and #(Assistant point#)"
+						"description": "Go to #(Isolated point#) and #(Assistant point#)<br>Unlocked after mission \"Dawn\""
 					},
 					{
-						"name": "Pave",
+						"name": "(Sub) Pave",
 						"parts": "StoryKyusyoData-chapter-1-20.json",
 						"part_names": [
 							1042,
@@ -1075,10 +1075,10 @@
 							1044,
 							1045
 						],
-						"description": "Go to #(Sentinel#)"
+						"description": "Go to #(Sentinel#)<br>Unlocked after mission \"Dawn\""
 					},
 					{
-						"name": "Repair",
+						"name": "(Sub) Repair",
 						"parts": "StoryKyusyoData-chapter-1-21.json",
 						"part_names": [
 							1046,
@@ -1086,10 +1086,10 @@
 							1048,
 							1049
 						],
-						"description": "Go to #(Repair#) to help Yssring"
+						"description": "Go to #(Repair#) to help Yssring<br>Unlocked after mission \"Back\""
 					},
 					{
-						"name": "Test",
+						"name": "(Sub) Test",
 						"parts": "StoryKyusyoData-chapter-1-22.json",
 						"part_names": [
 							1050,
@@ -1097,7 +1097,7 @@
 							1052,
 							1053
 						],
-						"description": "Go to #(Flatlands#) and #(Hills#)"
+						"description": "Go to #(Flatlands#) and #(Hills#)<br>Unlocked after mission \"Back\""
 					}
 				]
 			},
@@ -1163,7 +1163,7 @@
 						"description": "Go to take a shower"
 					},
 					{
-						"name": "Mop up",
+						"name": "(Sub) Mop up",
 						"parts": "StoryKyusyoData-chapter-2-23.json",
 						"part_names": [
 							1054,
@@ -1174,10 +1174,10 @@
 							1059,
 							1060
 						],
-						"description": "Check out #(Carousel#)"
+						"description": "Check out #(Carousel#)<br>Unlocked after mission \"Throne\""
 					},
 					{
-						"name": "Treasure",
+						"name": "(Sub) Treasure",
 						"parts": "StoryKyusyoData-chapter-2-24.json",
 						"part_names": [
 							1061,
@@ -1185,10 +1185,10 @@
 							1063,
 							1064
 						],
-						"description": "Go to #(Maze#) to help Seele"
+						"description": "Go to #(Maze#) to help Seele<br>Unlocked after mission \"Throne\""
 					},
 					{
-						"name": "Secret mission",
+						"name": "(Sub) Secret mission",
 						"parts": "StoryKyusyoData-chapter-2-25.json",
 						"part_names": [
 							1065,
@@ -1207,10 +1207,10 @@
 							"If choice 2 was picked:",
 							1079
 						],
-						"description": "Emesa asks you go to #(City boundary#) and #(Sea rover#)"
+						"description": "Emesa asks you go to #(City boundary#) and #(Sea rover#)<br>Unlocked after mission \"Throne\""
 					},
 					{
-						"name": "Lost children",
+						"name": "(Sub) Lost children",
 						"parts": "StoryKyusyoData-chapter-2-26.json",
 						"part_names": [
 							1080,
@@ -1219,10 +1219,10 @@
 							1083,
 							1084
 						],
-						"description": "Find lost children in #(Frontierland#) and #(Center lake#)"
+						"description": "Find lost children in #(Frontierland#) and #(Center lake#)<br>Unlocked after mission \"Throne\""
 					},
 					{
-						"name": "Picture",
+						"name": "(Sub) Picture",
 						"parts": "StoryKyusyoData-chapter-2-27.json",
 						"part_names": [
 							1085,
@@ -1236,10 +1236,10 @@
 							"If choice 2 was picked:",
 							1094
 						],
-						"description": "Give pictures to Emesa"
+						"description": "Give pictures to Emesa<br>Unlocked after mission \"Throne\""
 					},
 					{
-						"name": "Sampling",
+						"name": "(Sub) Sampling",
 						"parts": "StoryKyusyoData-chapter-2-28.json",
 						"part_names": [
 							1095,
@@ -1247,10 +1247,10 @@
 							1097,
 							1098
 						],
-						"description": "Go to #(Circus city#) and #(Roller coaster#) beat Houkai creatures"
+						"description": "Go to #(Circus city#) and #(Roller coaster#) beat Houkai creatures<br>Unlocked after mission \"Throne\""
 					},
 					{
-						"name": "Chaser",
+						"name": "(Sub) Chaser",
 						"parts": "StoryKyusyoData-chapter-2-29.json",
 						"part_names": [
 							1099,
@@ -1260,10 +1260,10 @@
 							1103,
 							1104
 						],
-						"description": "Go to #(Carriage#) and #(Hunting area#) beat Houkai creatures"
+						"description": "Go to #(Carriage#) and #(Hunting area#) beat Houkai creatures<br>Unlocked after mission \"Throne\""
 					},
 					{
-						"name": "Plan",
+						"name": "(Sub) Plan",
 						"parts": "StoryKyusyoData-chapter-2-30.json",
 						"part_names": [
 							1105,
@@ -1272,10 +1272,10 @@
 							1108,
 							1109
 						],
-						"description": "Find enemies in #(Weapon room#) or #(Torture chamber #)"
+						"description": "Find enemies in #(Weapon room#) or #(Torture chamber #)<br>Unlocked after mission \"Throne\""
 					},
 					{
-						"name": "Queen",
+						"name": "(Sub) Queen",
 						"parts": "StoryKyusyoData-chapter-2-31.json",
 						"part_names": [
 							1110,
@@ -1284,7 +1284,7 @@
 							1113,
 							1114
 						],
-						"description": "Beat the Queen in #(Living room#)"
+						"description": "Beat the Queen in #(Living room#)<br>Unlocked after mission \"Throne\""
 					}
 				]
 			},
@@ -1373,7 +1373,7 @@
 						"description": "Go to #(Hyperion#)"
 					},
 					{
-						"name": "Armour",
+						"name": "(Sub) Armour",
 						"parts": "StoryKyusyoData-chapter-3-39.json",
 						"part_names": [
 							1115,
@@ -1385,10 +1385,10 @@
 							1121,
 							1122
 						],
-						"description": "Go to #(Treelawn#)"
+						"description": "Go to #(Treelawn#)<br>Unlocked after mission \"Be dying\""
 					},
 					{
-						"name": "Weapon",
+						"name": "(Sub) Weapon",
 						"parts": "StoryKyusyoData-chapter-3-40.json",
 						"part_names": [
 							1136,
@@ -1400,10 +1400,10 @@
 							"If choice 2 was picked:",
 							1143
 						],
-						"description": "Go to #(Underground parking #)"
+						"description": "Go to #(Underground parking #)<br>Unlocked after mission \"Armour\""
 					},
 					{
-						"name": "Resource",
+						"name": "(Sub) Resource",
 						"parts": "StoryKyusyoData-chapter-3-41.json",
 						"part_names": [
 							1123,
@@ -1420,10 +1420,10 @@
 							1134,
 							1135
 						],
-						"description": "Go to #(Outbound track#)"
+						"description": "Go to #(Outbound track#)<br>Unlocked after mission \"Be dying\""
 					},
 					{
-						"name": "Core",
+						"name": "(Sub) Core",
 						"parts": "StoryKyusyoData-chapter-3-42.json",
 						"part_names": [
 							1144,
@@ -1431,10 +1431,10 @@
 							1146,
 							1147
 						],
-						"description": "Go to #(Resource center#)"
+						"description": "Go to #(Resource center#)<br>Unlocked after mission \"Protect\""
 					},
 					{
-						"name": "Black box",
+						"name": "(Sub) Black box",
 						"parts": "StoryKyusyoData-chapter-3-43.json",
 						"part_names": [
 							1148,
@@ -1444,10 +1444,10 @@
 							1152,
 							1153
 						],
-						"description": "Go to #(Disassembly room#)"
+						"description": "Go to #(Disassembly room#)<br>Unlocked after mission \"Protect\""
 					},
 					{
-						"name": "Produce line",
+						"name": "(Sub) Produce line",
 						"parts": "StoryKyusyoData-chapter-3-45.json",
 						"part_names": [
 							1154,
@@ -1459,10 +1459,10 @@
 							1160,
 							1161
 						],
-						"description": "Go to #(Artery#)"
+						"description": "Go to #(Artery#)<br>Unlocked after mission \"Resolution\""
 					},
 					{
-						"name": "Thinking",
+						"name": "(Sub) Thinking",
 						"parts": "StoryKyusyoData-chapter-3-46.json",
 						"part_names": [
 							1162,
@@ -1474,10 +1474,10 @@
 							1168,
 							1169
 						],
-						"description": "Go to #(Thrown lobby#)"
+						"description": "Go to #(Thrown lobby#)<br>Unlocked after mission \"Resolution\""
 					},
 					{
-						"name": "Recall flower",
+						"name": "(Sub) Recall flower",
 						"parts": "StoryKyusyoData-chapter-3-47.json",
 						"part_names": [
 							1187,
@@ -1485,10 +1485,10 @@
 							1189,
 							1190
 						],
-						"description": "Go to #(B416 factory#)"
+						"description": "Go to #(B416 factory#)<br>Unlocked after mission \"Resolution\""
 					},
 					{
-						"name": "Broken pictures",
+						"name": "(Sub) Broken pictures",
 						"parts": "StoryKyusyoData-chapter-3-48.json",
 						"part_names": [
 							1170,
@@ -1499,10 +1499,10 @@
 							1175,
 							1176
 						],
-						"description": "Go to #(Zone border#)"
+						"description": "Go to #(Zone border#)<br>Unlocked after mission \"Picture\""
 					},
 					{
-						"name": "Night",
+						"name": "(Sub) Night",
 						"parts": "StoryKyusyoData-chapter-3-49.json",
 						"part_names": [
 							1177,
@@ -1513,17 +1513,17 @@
 							1182,
 							1183
 						],
-						"description": "Go to #(Seaside#)"
+						"description": "Go to #(Seaside#)<br>Unlocked after mission \"Resolution\""
 					},
 					{
-						"name": "Pre night",
+						"name": "(Sub) Pre night",
 						"parts": "StoryKyusyoData-chapter-3-50.json",
 						"part_names": [
 							1184,
 							1185,
 							1186
 						],
-						"description": "Go to #(Ruins#)"
+						"description": "Go to #(Ruins#)<br>Unlocked after mission \"Transfer\""
 					}
 				]
 			},
@@ -1629,7 +1629,7 @@
 						"description": "To be continued"
 					},
 					{
-						"name": "Emergency Repair",
+						"name": "(Sub) Emergency Repair",
 						"parts": "StoryKyusyoData-chapter-4-59.json",
 						"part_names": [
 							1191,
@@ -1643,10 +1643,10 @@
 							1199,
 							1200
 						],
-						"description": "Protect Yssring till she finishes repairing the powering furnace and lure the Houkai Beasts to the #(Engine Room#)."
+						"description": "Protect Yssring till she finishes repairing the powering furnace and lure the Houkai Beasts to the #(Engine Room#).<br>Unlocked after mission \"Lingering Warmth\""
 					},
 					{
-						"name": "Armored Ally",
+						"name": "(Sub) Armored Ally",
 						"parts": "StoryKyusyoData-chapter-4-60.json",
 						"part_names": [
 							1201,
@@ -1657,10 +1657,10 @@
 							1206,
 							1207
 						],
-						"description": "Start the mecha in the #(Hangar#) to fight the Houkai Beasts."
+						"description": "Start the mecha in the #(Hangar#) to fight the Houkai Beasts.<br>Unlocked after mission \"Lingering Warmth\""
 					},
 					{
-						"name": "Road Signs",
+						"name": "(Sub) Road Signs",
 						"parts": "StoryKyusyoData-chapter-4-61.json",
 						"part_names": [
 							1208,
@@ -1672,10 +1672,10 @@
 							1214,
 							1215
 						],
-						"description": "Help Himeko and the Graymoth Squad with the waypoint setting and the exploration in the #(Marked Area#)."
+						"description": "Help Himeko and the Graymoth Squad with the waypoint setting and the exploration in the #(Marked Area#).<br>Unlocked after mission \"Remaining\""
 					},
 					{
-						"name": "Clearance",
+						"name": "(Sub) Clearance",
 						"parts": "StoryKyusyoData-chapter-4-62.json",
 						"part_names": [
 							1216,
@@ -1689,10 +1689,10 @@
 							"If choice 2 was picked:",
 							1225
 						],
-						"description": "Find the items listed by Yssring in the #(Outskirts of the Parking Lot#)."
+						"description": "Find the items listed by Yssring in the #(Outskirts of the Parking Lot#).<br>Unlocked after mission \"Remaining\""
 					},
 					{
-						"name": "Blocking the Door",
+						"name": "(Sub) Blocking the Door",
 						"parts": "StoryKyusyoData-chapter-4-63.json",
 						"part_names": [
 							1226,
@@ -1703,10 +1703,10 @@
 							1231,
 							1232
 						],
-						"description": "Close the door in the #(Isolation Cabin#) to stop the Houkai Beasts from invading Hyperion."
+						"description": "Close the door in the #(Isolation Cabin#) to stop the Houkai Beasts from invading Hyperion.<br>Unlocked after mission \"Threat\""
 					},
 					{
-						"name": "Gap Repair",
+						"name": "(Sub) Gap Repair",
 						"parts": "StoryKyusyoData-chapter-4-64.json",
 						"part_names": [
 							1233,
@@ -1720,10 +1720,10 @@
 							1241,
 							1242
 						],
-						"description": "Protect the engineering robot when it is repairing the #(Outer Wall#)."
+						"description": "Protect the engineering robot when it is repairing the #(Outer Wall#).<br>Unlocked after mission \"Threat\""
 					},
 					{
-						"name": "Line Reconnection",
+						"name": "(Sub) Line Reconnection",
 						"parts": "StoryKyusyoData-chapter-4-65.json",
 						"part_names": [
 							1243,
@@ -1732,7 +1732,7 @@
 							1246,
 							1247
 						],
-						"description": "Protect Yssring when she is connecting the lines in the Main Armament Room."
+						"description": "Protect Yssring when she is connecting the lines in the Main Armament Room.<br>Unlocked after mission \"Threat\""
 					}
 				]
 			},
@@ -1849,7 +1849,7 @@
 						"description": "To be continued…"
 					},
 					{
-						"name": "Bridge Rush",
+						"name": "(Sub) Bridge Rush",
 						"parts": "StoryKyusyoData-chapter-5-78.json",
 						"part_names": [
 							1280,
@@ -1860,10 +1860,10 @@
 							1285,
 							1286
 						],
-						"description": "On #(Bridge Floor#), look for vehicle to pass through the Bridge Floor."
+						"description": "On #(Bridge Floor#), look for vehicle to pass through the Bridge Floor.<br>Unlocked after mission \"March\""
 					},
 					{
-						"name": "Distort City",
+						"name": "(Sub) Distort City",
 						"parts": "StoryKyusyoData-chapter-5-79.json",
 						"part_names": [
 							1287,
@@ -1871,10 +1871,10 @@
 							1289,
 							1290
 						],
-						"description": "Go to #(Broken Building#) to find the right way."
+						"description": "Go to #(Broken Building#) to find the right way.<br>Unlocked after mission \"Homecoming \""
 					},
 					{
-						"name": "Therapeutic Agent",
+						"name": "(Sub) Therapeutic Agent",
 						"parts": "StoryKyusyoData-chapter-5-80.json",
 						"part_names": [
 							1291,
@@ -1889,10 +1889,10 @@
 							1300,
 							1301
 						],
-						"description": "Go to #(General Hospital#) and help Emisha find what she needs."
+						"description": "Go to #(General Hospital#) and help Emisha find what she needs.<br>Unlocked after mission \"Old Friend\""
 					},
 					{
-						"name": "Night Watchman",
+						"name": "(Sub) Night Watchman",
 						"parts": "StoryKyusyoData-chapter-5-81.json",
 						"part_names": [
 							1309,
@@ -1905,10 +1905,10 @@
 							1316,
 							1317
 						],
-						"description": "Head to #(Out of Safe Area#) for Theresa's guidance."
+						"description": "Head to #(Out of Safe Area#) for Theresa's guidance.<br>Unlocked after mission \"Tragedies\""
 					},
 					{
-						"name": "Emergency Treatment",
+						"name": "(Sub) Emergency Treatment",
 						"parts": "StoryKyusyoData-chapter-5-82.json",
 						"part_names": [
 							1318,
@@ -1923,7 +1923,7 @@
 						"description": "Go to #(Inspection Door#), let the last remaining big sword stand in the broken world."
 					},
 					{
-						"name": "Place of Memories",
+						"name": "(Sub) Place of Memories",
 						"parts": "StoryKyusyoData-chapter-5-83.json",
 						"part_names": [
 							1302,
@@ -1934,7 +1934,7 @@
 							"If choice 2 was picked:",
 							1308
 						],
-						"description": "Go to #(Outside Hospital#) and help Emisha find what she needs."
+						"description": "Go to #(Outside Hospital#) and help Emisha find what she needs.<br>Unlocked after mission \"Therapeutic Agent\""
 					}
 				]
 			},
@@ -2058,7 +2058,7 @@
 						"description": "In the heat of the moment, the person who made the most decisive decision was her..."
 					},
 					{
-						"name": "Sub: Avenger",
+						"name": "(Sub) Sub: Avenger",
 						"parts": "StoryKyusyoData-chapter-6-97.json",
 						"part_names": [
 							1358,
@@ -2068,10 +2068,10 @@
 							1362,
 							1363
 						],
-						"description": "Help Bronya find the missing members in #(Bridge Peripheral#) before departure."
+						"description": "Help Bronya find the missing members in #(Bridge Peripheral#) before departure.<br>Unlocked after mission \"Truth\""
 					},
 					{
-						"name": "Sub: Homeland",
+						"name": "(Sub) Sub: Homeland",
 						"parts": "StoryKyusyoData-chapter-6-98.json",
 						"part_names": [
 							1364,
@@ -2082,10 +2082,10 @@
 							1369,
 							1370
 						],
-						"description": "The wreckage of the broken ME society fell down. In order to shelter, help the team clean up the surrounding #(Building wreckage#)."
+						"description": "The wreckage of the broken ME society fell down. In order to shelter, help the team clean up the surrounding #(Building wreckage#).<br>Unlocked after mission \"Sub: Avenger\""
 					},
 					{
-						"name": "Sub: Little Hope",
+						"name": "(Sub) Sub: Little Hope",
 						"parts": "StoryKyusyoData-chapter-6-99.json",
 						"part_names": [
 							1371,
@@ -2099,10 +2099,10 @@
 							1379,
 							1380
 						],
-						"description": "Help bronya protect the ME and stop the attacking in #(Temporary security#)."
+						"description": "Help bronya protect the ME and stop the attacking in #(Temporary security#).<br>Unlocked after mission \"Sub: Homeland\""
 					},
 					{
-						"name": "Sub: Search Direction",
+						"name": "(Sub) Sub: Search Direction",
 						"parts": "StoryKyusyoData-chapter-6-100.json",
 						"part_names": [
 							1381,
@@ -2113,10 +2113,10 @@
 							1386,
 							1387
 						],
-						"description": "Protect Yssring from danger in #(Expansion area#)."
+						"description": "Protect Yssring from danger in #(Expansion area#).<br>Unlocked after mission \"New Friend\""
 					},
 					{
-						"name": "Sub: Fault",
+						"name": "(Sub) Sub: Fault",
 						"parts": "StoryKyusyoData-chapter-6-101.json",
 						"part_names": [
 							1388,
@@ -2128,10 +2128,10 @@
 							1394,
 							1395
 						],
-						"description": "Cross #(space fault #) with Yssring and Sin to St. Freya HS."
+						"description": "Cross #(space fault #) with Yssring and Sin to St. Freya HS.<br>Unlocked after mission \"Entrance\""
 					},
 					{
-						"name": "Sub: End Game",
+						"name": "(Sub) Sub: End Game",
 						"parts": "StoryKyusyoData-chapter-6-102.json",
 						"part_names": [
 							1396,
@@ -2140,10 +2140,10 @@
 							1399,
 							1400
 						],
-						"description": "Look for signs of the battle at #(Academy Ruin#) St. Freya HS."
+						"description": "Look for signs of the battle at #(Academy Ruin#) St. Freya HS.<br>Unlocked after mission \"St. Freya HS\""
 					},
 					{
-						"name": "Sub: Password cracking",
+						"name": "(Sub) Sub: Password cracking",
 						"parts": "StoryKyusyoData-chapter-6-103.json",
 						"part_names": [
 							1401,
@@ -2157,10 +2157,10 @@
 							1409,
 							1410
 						],
-						"description": "Help Yssring to break in Power Core from #(Pit Lane#)"
+						"description": "Help Yssring to break in Power Core from #(Pit Lane#)<br>Unlocked after mission \"Wreckage\""
 					},
 					{
-						"name": "Sub: Heart",
+						"name": "(Sub) Sub: Heart",
 						"parts": "StoryKyusyoData-chapter-6-104.json",
 						"part_names": [
 							1411,
@@ -2313,7 +2313,7 @@
 						"description": "As long as you believe in yourself, you are the dawn of the world."
 					},
 					{
-						"name": "Set out",
+						"name": "(Sub) Set out",
 						"parts": "StoryKyusyoData-chapter-7-119.json",
 						"part_names": [
 							1413,
@@ -2321,10 +2321,10 @@
 							1415,
 							1416
 						],
-						"description": "Huberlian is about to blast off. Plz first take the children and the wounded to #(Refude Area#)."
+						"description": "Huberlian is about to blast off. Plz first take the children and the wounded to #(Refude Area#).<br>Unlocked after mission \"Wings\""
 					},
 					{
-						"name": "Dragon Hunter",
+						"name": "(Sub) Dragon Hunter",
 						"parts": "StoryKyusyoData-chapter-7-120.json",
 						"part_names": [
 							1417,
@@ -2332,10 +2332,10 @@
 							1419,
 							1420
 						],
-						"description": "Lead Dragon to #(Stop Area#)"
+						"description": "Lead Dragon to #(Stop Area#)<br>Unlocked after mission \"Old Enemy\""
 					},
 					{
-						"name": "Alive Tower",
+						"name": "(Sub) Alive Tower",
 						"parts": "StoryKyusyoData-chapter-7-121.json",
 						"part_names": [
 							1421,
@@ -2344,7 +2344,15 @@
 							1424,
 							1425
 						],
-						"description": "Danger is everywhere. Find the way to Tower Top in #(Keratinized region#)"
+						"description": "Danger is everywhere. Find the way to Tower Top in #(Keratinized region#)<br>Unlocked after mission \"Wish\""
+					},
+					{
+						"name": "(Sub) Home",
+						"parts": "StoryKyusyoData-chapter-7-122.json",
+						"part_names": [
+							1426
+						],
+						"description": "The beginning of everything, the end of everything. #(Senba High#)"
 					}
 				]
 			},
@@ -10490,6 +10498,7 @@
 		"StoryKyusyoData-chapter-7-119.json": "side-7-14",
 		"StoryKyusyoData-chapter-7-120.json": "side-7-15",
 		"StoryKyusyoData-chapter-7-121.json": "side-7-16",
+		"StoryKyusyoData-chapter-7-122.json": "side-7-17",
 		"StoryKyusyoData-chapter-2-32.json": "side-8-0",
 		"StoryKyusyoData-chapter-3-38.json": "side-8-1",
 		"StoryKyusyoData-chapter-4-58.json": "side-8-2",

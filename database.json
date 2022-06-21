@@ -12521,7 +12521,11 @@
 			"partner/1537.png"
 		],
 		"1538": [
-			"partner/1538.png"
+			"partner/1538.png",
+			"partner/1538.png",
+			"partner/1538_002.png",
+			"partner/1538_003.png",
+			"partner/1538_004.png"
 		],
 		"1539": [
 			"partner/1539.png",
@@ -14244,19 +14248,36 @@
 			"partner/1581.png"
 		],
 		"30266": [
-			"seele/30266.png"
+			"seele/30266.png",
+			"seele/30266.png",
+			"seele/30266_002.png",
+			"seele/30266_003.png",
+			"seele/30266_004.png"
 		],
 		"30267": [
-			"seele/30267.png"
+			"seele/30267.png",
+			"seele/30267.png",
+			"seele/30267_002.png",
+			"seele/30267_003.png",
+			"seele/30267_004.png"
 		],
 		"30270": [
-			"seele/30270.png"
+			"seele/30270.png",
+			"seele/30270.png",
+			"seele/30270_002.png",
+			"seele/30270_003.png",
+			"seele/30270_004.png",
+			"seele/30270_005.png"
 		],
 		"30271": [
-			"seele/30271.png"
+			"seele/30271.png",
+			"seele/30271.png",
+			"seele/30271_002.png"
 		],
 		"30272": [
-			"seele/30271.png"
+			"seele/30271.png",
+			"seele/30271.png",
+			"seele/30271_002.png"
 		],
 		"30273": [
 			"partner/1600.png"
@@ -14326,7 +14347,9 @@
 			"gakuen/30297.png"
 		],
 		"30298": [
-			"kiana/30298.png"
+			"kiana/30298.png",
+			"kiana/30298.png",
+			"kiana/30298_002.png"
 		],
 		"30299": [
 			"mei/30299.png"
@@ -14350,7 +14373,15 @@
 			"femirins/30305.png"
 		],
 		"30316": [
-			"seele/30316.png"
+			"seele/30316.png",
+			"seele/30316.png",
+			"seele/30316_002.png",
+			"seele/30316_003.png",
+			"seele/30316_004.png",
+			"seele/30316_005.png",
+			"seele/30316_006.png",
+			"seele/30316_007.png",
+			"seele/30316_008.png"
 		],
 		"30317": [
 			"seele/30317.png"
@@ -14369,7 +14400,11 @@
 			"tales/30204_010.png"
 		],
 		"30307": [
-			"seele/30267.png"
+			"seele/30267.png",
+			"seele/30267.png",
+			"seele/30267_002.png",
+			"seele/30267_003.png",
+			"seele/30267_004.png"
 		],
 		"30308": [
 			"smriti/30288.png"

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.8
 import os
 import sys
-from typing import Text
+from typing import Text,Dict,List
 
 from quart import Quart, websocket, request
 from quart_cors import cors
@@ -10,7 +10,7 @@ import discord
 from discord.commands import Option
 from discord.ext import commands, tasks
 import json
-import ini
+import ini #https://github.com/shawarmaje/ini.py
 import math
 
 from thefuzz import fuzz
@@ -29,13 +29,14 @@ config = ini.parse(open('config.ini','r').read())
 
 discordChannel = int(config['discord_channel_id_en_re'])
 discordGuild = int(config['discord_guild_id'])
+SITE_URL = config['site_url']
 
 class TextMapManager:
 	def __init__(self) -> None:
 		self.full = {}
 		self.langs = {"en_re":{},"pt":{}}
 		self.origLangs = {"en_re":"en", "pt":"jp"}
-		self.columns = ['en','cn','jp','kr']
+		self.columns = ['en','cn','jp','en_re','pt','deepl_cn','deepl_jp']
 
 	def getLangColumn(self,lang:str)->int:
 		return self.columns.index(lang)
@@ -95,6 +96,10 @@ for lang in TEXTMAPMAN.langs.keys():
 	else:
 		print("The textmap for language "+lang+" does not exist. If this is the first run, ignore this message.")
 			
+
+database:Dict[str,str] = {}
+with open('../chapterDatabase.json','r') as f:
+	database = json.load(f)['routing']
 
 
 def write_database():
@@ -187,7 +192,7 @@ async def handleFilePost():
 	API_KEY = False
 	lang="en_re"
 	if "API_KEY" in newTextMap:
-		API_KEY = (newTextMap["API_KEY"] == config['override_password'])
+		API_KEY = (newTextMap["API_KEY"] == config['override_password'] or config['override_password']=="_")
 
 	if "LANGUAGE" in newTextMap:
 		if newTextMap["LANGUAGE"] not in TEXTMAPMAN.langs:
@@ -254,13 +259,26 @@ async def hello(ctx, name: str = None):
 	await ctx.respond(f"Hello {name}!")
 
 @bot.slash_command(guild_ids=[discordGuild])
+@discord.option(
+	"lang",
+	str,
+	description="Language to overwrite",
+	choices=["en_re","pt"],
+	#default="en_re",
+	required=True
+)
+@discord.option(
+	"key",
+	int,
+	required=True
+)
+@discord.option(
+	"new_text",
+	str,
+	required=True
+)
 async def override_key(ctx, 
-	lang: discord.commands.Option(
-		str,
-		"Language to overwrite",
-		choices=["en_re","pt"],
-		default="en_re"
-	),
+	lang:str,
 	key: int,
 	new_text:str
 	):
@@ -280,13 +298,21 @@ async def override_key(ctx,
 		await ctx.respond(msg)
 
 @bot.slash_command(guild_ids=[discordGuild])
+@discord.option(
+	"lang",
+	str,
+	description="Language to overwrite",
+	choices=["en_re","pt"],
+	#default="en_re",
+	required=True
+)
+@discord.option(
+	"key",
+	int,
+	required=True
+)
 async def delete_key(ctx, 
-	lang: discord.commands.Option(
-		str,
-		"Language to overwrite",
-		choices=["en_re","pt"],
-		default="en_re"
-	),
+	lang:str,
 	key:int
 	):
 	TextMap = TEXTMAPMAN.langs[lang]
@@ -297,16 +323,110 @@ async def delete_key(ctx,
 	else:
 		await ctx.respond("This key wasn't found in the database.")
 
+
+#IT'S MEANT TO BE A STRUCT NOT A CLASS OK
+class SearchResult():
+	def __init__(self,textID:int,match:str,partNum:int):
+		self.textID:int=textID
+		self.match:str = match
+		self.partNum:int = partNum
+
+
 @bot.slash_command(guild_ids=[discordGuild])
-async def search_orig_text(ctx,  
-	lang: discord.commands.Option(
-		str,
-		"Language to overwrite",
-		choices=['en','cn','jp','kr'],
-		default="en"
-	),
-	search:str
+@discord.option(
+	"search",
+	str,
+	description="The search term, duh."
+)
+@discord.option(
+	"lang",
+	str,
+	description="Language to search for. Not all languages have values.",
+	choices=TEXTMAPMAN.columns,
+	default="en"
+)
+@discord.option(
+	"limit",
+	int,
+	description="How many results to find before giving up.",
+	min_value=1, max_value=10, default=5
+)
+@discord.option(
+	"fuzzy",
+	bool,
+	description="Whether to search exactly or roughly. The search is case insensitive no matter what.",
+	default=False
+)
+async def search_text(ctx,  
+	search:str,
+	lang: str,
+	limit: int,
+	fuzzy: bool
 	):
+	"""Search for text within all indexed cutscenes. If there are no results, try /search_textmap instead."""
+	#await ctx.respond("Please wait... (Discord is garbage and slash commands must respond within 3 seconds)")
+	col = TEXTMAPMAN.getLangColumn(lang)+2 #0 is command name, 1 is always key, so add 2.
+	print("Searching for "+search+" in column "+str(col))
+
+	messagesFound:Dict[str,SearchResult]={}
+
+	searchLower = search.lower()
+	for fileName in database.keys():
+		with open('../avgtxt/'+fileName,'r') as f:
+			#print("Opened "+fileName)
+			chapterFull:Dict[str,List] = json.load(f)
+			foundAlready=False
+			for partNum,structuredLines in chapterFull.items():
+				for cmnd in structuredLines:
+					if cmnd[0]=="msg" and len(cmnd)>col and cmnd[col]!=None:
+						txt:str = str(cmnd[col]).lower()
+						if txt.startswith(searchLower):
+							messagesFound[fileName]=SearchResult(cmnd[1],cmnd[col],int(partNum))
+							foundAlready=True
+							break
+				if foundAlready:
+					break
+		if len(messagesFound) >= limit:
+			break
+	
+	#message_channel = bot.get_channel(discordChannel)
+	if len(messagesFound) > 0:
+		msg = ""
+		for m in messagesFound:
+			msg+=SITE_URL+"/#"+database[m] +" - Part ID "+str(messagesFound[m].partNum)+" - \""+messagesFound[m].match+"\"\n"
+		if len(messagesFound)==limit:
+			msg+="\nFound enough messages to give up early. If you would like to deepen your search, try with an increased limit."
+		#await message_channel.send(msg) #type:ignore
+		await ctx.respond(msg)
+	else:
+		#await message_channel.send("Nothing found!!! Try a different search.") #type:ignore
+		await ctx.respond("Nothing found!!! Try a different search.")
+
+@bot.slash_command(guild_ids=[discordGuild])
+@discord.option(
+	"search",
+	str,
+	description="The search term, duh."
+)
+@discord.option(
+	"lang",
+	str,
+	description="Language to search for",
+	choices=TEXTMAPMAN.columns,
+	default="en"
+)
+@discord.option(
+	"fuzzy",
+	bool,
+	description="Whether to search exactly or roughly. The search is case insensitive no matter what.",
+	default=False
+)
+async def search_textmap(ctx,  
+	search:str,
+	lang: str,
+	fuzzy: bool
+	):
+	"""Search for text within GGZ's TextMap."""
 	await ctx.respond("Please wait... (Discord is garbage and slash commands must respond within 3 seconds)")
 	print("Searching for "+search)
 	col = TEXTMAPMAN.getLangColumn(lang)
@@ -324,7 +444,7 @@ async def search_orig_text(ctx,
 		#msg += "\n"+"%"+str(numLength)+'s'
 		msg += ("\n`{:<"+str(numLength)+"}` ").format(r[2])+r[0]
 	message_channel = bot.get_channel(discordChannel)
-	await message_channel.send(msg)
+	await message_channel.send(msg) #type: ignore
 
 @bot.slash_command(guild_ids=[discordGuild])
 async def get_key(ctx, 
@@ -395,6 +515,6 @@ async def on_ready():
 	print("Add me with https://discord.com/oauth2/authorize?client_id="+str(bot.user.id)+ "&permissions=18432&scope=bot%20applications.commands")
 	#await client.change_presence(status=discord.Status.online, activity=discord.Game(serverCount()))
 
-bot.loop.create_task(quartServer.run_task('0.0.0.0',port=8880))
+bot.loop.create_task(quartServer.run_task('0.0.0.0',port=18880))
 job.start()
 bot.run(config['discord_token'])

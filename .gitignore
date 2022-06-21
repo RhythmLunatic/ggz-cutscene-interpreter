@@ -7,5 +7,6 @@ build/test/*
 build/GameData/*
 build/dialogue.tab
 build/TextMap_aio.tsv
+build/deepl_translations.json
 translation-server/config.ini
 __pycache__/

@@ -717,7 +717,9 @@ I have no idea how it works
 		"cn":2,
 		"jp":3,
 		"en_re":4,
-		"pt":5
+		"pt":5,
+		//"deepl_cn":6,
+		//"deepl_jp":7
 		//"tcn":5,
 		//"en_re":6
 	}
@@ -727,7 +729,8 @@ I have no idea how it works
 		"Chinese",
 		"Japanese",
 		"English (Retranslated)",
-		"Portuguese (Fan translation)"
+		"Portuguese (Fan translation)",
+		//"DeepL Translated Japanese"
 		//"Korean",
 		//"Traditional Chinese(?)",
 	]
@@ -2008,6 +2011,17 @@ I have no idea how it works
 										let trInner = "<td>"
 											trInner += langName;
 										trInner+="</td><td>"
+										if (document.getElementById("deeplEnabled").checked)
+										{
+											if (ii==3&&dialogue[7])
+											{
+												text+="<br>"+dialogue[7]
+											}
+											else if (ii==4&&dialogue[8])
+											{
+												text+="<br>"+dialogue[8]
+											}
+										}
 										trInner+=text+"</td>"
 										tr.innerHTML=trInner
 										tbody.appendChild(tr)
@@ -2522,6 +2536,7 @@ I have no idea how it works
 		setCheckboxFromCookie('skipGenerationOfDuplicateBoxes',false);
 		setCheckboxFromCookie('showSFXButtons',false);
 		setCheckboxFromCookie('multilanguageEnabled',false);
+		setCheckboxFromCookie('deeplEnabled',false);
 		
 		//Set up language options
 		let lang = getCookie("language")
@@ -3169,6 +3184,20 @@ I have no idea how it works
 							<select id="language3" class='LanguageSelect'>
 							</select>
 							<label>Tertiary Language</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:100%">
+						<span class="title">Show DeepL translations under Chinese/Japanese</span>
+						<p>Some text is MTLed into English, you can use it here.</p>
+					</td>
+					<td>
+						<div class="switch">
+							<label>
+							  <input type="checkbox" id="deeplEnabled" onclick="setCookieFromCheckbox('deeplEnabled'); runFromRoutableKeyString()">
+							  <span class="lever"></span>
+							</label>
 						</div>
 					</td>
 				</tr>

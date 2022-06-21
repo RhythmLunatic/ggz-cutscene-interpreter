@@ -25,6 +25,25 @@ CGID = points to a PNG file
 BGID = points to a PNG file
 """
 
+class bcolors:
+	HEADER = '\033[95m'
+	OKBLUE = '\033[94m'
+	OKGREEN = '\033[92m'
+	WARNING = '\033[93m'
+	FAIL = '\033[91m'
+	ENDC = '\033[0m'
+	BOLD = '\033[1m'
+	UNDERLINE = '\033[4m'
+    
+def printWarn(text:str):
+	print(bcolors.WARNING + text + bcolors.ENDC)
+	
+def printError(text:str):
+	print(bcolors.FAIL + text + bcolors.ENDC)
+	
+def printOK(text:str):
+	print(bcolors.OKGREEN + text + bcolors.ENDC)
+
 def RepresentsInt(s):
 	try: 
 		int(s)
@@ -95,6 +114,20 @@ for fn,n in {"TextMap_retranslated_en_re.json":3, "TextMap_retranslated_pt.json"
 				if tID in textMap:
 					textMap[tID][n] = textMap_retranslated[fakeID].replace("{","<").replace("}",">")
 			print("Added "+fn+" to column "+str(n))
+if os.path.exists("deepl_translations.json"):
+	with open("deepl_translations.json",'r') as f:
+		translations:Dict[str,Dict[str,str]] = JSON.load(f)
+		mappings = {"zh":5,"ja":6}
+		for lang in translations:
+			for k in translations[lang]:
+				realKey = int(k)
+				if len(textMap[realKey]) < 7:
+					diff_len=7-len(textMap[realKey])
+					textMap[realKey]+=[None]*diff_len
+				textMap[realKey][mappings[lang]]=translations[lang][k]
+		#for fn,n in {"deepl_cn":5,"deepl_jp":6}.items():
+
+
 #sys.exit(-1)
 #Remove "XXX"
 for _id in textMap:
@@ -413,6 +446,8 @@ def convertPart(section:dict,partNumber:int,colMap:Dict[str,int],_type=0,choiceD
 			commandsList.append(['choice',c.Choice1Text,c.Choice2Text])
 			if c.Choice1Story and c.Choice2Story:
 				commandsList.append(['nop','CHOICE_DESTS',c.Choice1Story,c.Choice2Story])
+			elif c.MergedStory!=0:
+				commandsList.append(['nop','BRIDGED_PART',c.MergedStory])
 			#print(StoryTextV2)
 	return commandsList
 
@@ -526,10 +561,13 @@ def getIndexFromKey(k:str):
 class PlayBackStoryTitleDataStruct():
 	def __init__(self,info) -> None:
 		d = info.split("\t")
-		#Story types:
-		#1 = Main?
-		#2 = Side stories? Halloween event is here?
 		self.StoryType = int(d[1])
+		'''
+		Story types:
+		1 = Main?
+		2 = Side stories? Halloween event is here?
+		'''
+
 		self.ExType = int(d[2]) #Seems to control grouping. Genkai Room and Mysterious Deep are supposed to be in the same group and are both Group 6.
 		tmp = int(d[3]) #The chapter title, but I'm not sure how it's determined when there are two different titles in the same group.
 		self.StoryTitle:list =[tmp]+textMap[tmp]
@@ -542,8 +580,12 @@ class PlayBackStoryTitleDataStruct():
 		#Column 10 is unused
 		self.PartName = int(d[11]) #Segment 1, Segment 2, etc. Sometimes there's names though
 		#Column 12 is unused
-		self.DialogueID = int(d[13]) #part to pull from in PlaybackStoryData
-		self.IsSub = d[14]=="1" #Marks extra chapters
+		
+		self.DialogueID = int(d[13])
+		'''part to pull from in PlaybackStoryData'''
+
+		self.IsSub:bool = d[14]=="1"
+		'''If true, this chapter is an extra chapter'''
 	
 	def getChapterName(self)->str:
 		if self.EpisodePrefix==self.EpisodeTitle:
@@ -627,14 +669,15 @@ class KyusyoMissionDataStruct():
 		#d[2] is useless
 		#self.ParentStoryID = int(d[3])
 		#MarkForMemoryID = d[4]
-		#ShowType: Main line = 1, branch line = 2
-		#self.ShowType = int(d[5])
+
+		self.ShowType = int(d[5])
+		'''ShowType: Main line = 1, branch line = 2'''
 		
 		# 1 general; 2 limited time; 3 daily; 4 weekly reset;
 		#self.DependType = int(d[6])
 		#LevelRequiredMin = d[7]
 		#LevelRequiredMax is never used (d[8])
-		self.MissionName = textMap[int(d[9])][0]
+		self.MissionName:str = textMap[int(d[9])][0]
 		if d[10] != "0":
 			txtArr = textMap[int(d[10])]
 			#if textArr[5]:
@@ -648,11 +691,13 @@ class KyusyoMissionDataStruct():
 		#Since the end tag makes no sense, I'm just going to guess by finding the next closest start.
 		self.StoryIDStart = int(d[11])
 		self.StoryIDEnd = int(d[12])
-		# "Story id triggered after being set as a recall item"... Whatever that means.
+
 		self.StoryIDMemory = int(d[13])
+		'''"Story id triggered after being set as a recall item"... Whatever that means.'''
+
 		self.ChapterNum = int(d[16])
 
-kyusyoMissionDatas = []
+kyusyoMissionDatas:List[KyusyoMissionDataStruct] = []
 with open("GameData/KyusyoMissionData.tsv",'r') as f:
 	f.readline()
 	f.readline()
@@ -681,6 +726,8 @@ KyusyoStoryPartsList = []
 for mission in kyusyoMissionDatas:
 	KyusyoStoryPartsList.append(mission.StoryIDStart)
 KyusyoStoryPartsList.sort()
+
+#print([mission.StoryIDStart for mission in kyusyoMissionDatas])
 #print(KyusyoStoryPartsList)
 #sys.exit(0)
 
@@ -694,7 +741,8 @@ def getNextClosestEndPart(start:int)->int:
 		else:
 			#print("Closest to "+str(start)+" is "+str(n))
 			return n
-	return KyusyoStoryPartsList[-1]
+	#print("No end, returning final part")
+	return 1429
 
 def writeFireMothData():
 	#ConvertedKyusyoData = []
@@ -709,7 +757,7 @@ def writeFireMothData():
 	})
 	for i in range(len(kyusyoMissionDatas)):
 		thisMission:KyusyoMissionDataStruct = kyusyoMissionDatas[i]
-		parts = {}
+		parts:Dict[int,List[Any]] = {}
 		#print("START: "+str(thisMission.StoryIDStart)+" | END: "+str(getNextClosestEndPart(thisMission.StoryIDStart)))
 		#Mission has no story?
 		if thisMission.StoryIDStart==0:
@@ -720,15 +768,22 @@ def writeFireMothData():
 			if j in unconvertedLines_Kyusyo:
 				parts[j] = convertPart(unconvertedLines_Kyusyo,j,colMap_Kyusyo,3,KyusyoChoicePartsList)
 				if j==223:
-					parts[j].insert(0,['bgm',"Significance"]) #Faltering Prayer - Dawn Breeze might also work?
+					parts[j].insert(0,['bgm',"Nier/Significance"]) #Faltering Prayer - Dawn Breeze might also work?
 				elif j==226:
-					parts[j].insert(0,['bgm','Blissful Death'])
+					parts[j].insert(0,['bgm','Nier/Blissful Death'])
 				elif j==227:
-					parts[j].insert(0,['bgm',"Faltering Prayer - Starry Sky"])
+					parts[j].insert(0,['bgm',"Nier/Faltering Prayer - Starry Sky"])
 				elif j==228:
-					parts[j].insert(0,['bgm',"Faltering Prayer - No Vocals"])
+					parts[j].insert(0,['bgm',"Nier/Faltering Prayer - No Vocals"])
 				elif j==242:
-					parts[j].insert(0,['bgm',"Weight of the World - No Vocals"])
+					parts[j].insert(0,['bgm',"Nier/Weight of the World - No Vocals"])
+				elif j==157:
+					for p in range(len(parts[j])):
+						cmnd = parts[j][p]
+						if cmnd[0]=='msg' and cmnd[1]==301586:
+							parts[j].insert(p,['bgm',"Nier/The Dark Colossus Destroys All"])
+							break
+
 			#else:
 			#	print("No DialogueID "+str(j))
 		print(parts.keys())
@@ -741,7 +796,7 @@ def writeFireMothData():
 				parts[thisMission.StoryIDEnd] = convertPart(unconvertedLines_Kyusyo,thisMission.StoryIDEnd,colMap_Kyusyo,3)
 				toAdd=8
 
-			part_names = list(parts.keys())
+			part_names:List[Any] = list(parts.keys())
 			#print(part_names)
 			for pn in range(len(part_names)):
 				for c in KyusyoChoicePartsList.values():
@@ -753,16 +808,26 @@ def writeFireMothData():
 					elif c.Choice2Story==part_names[pn]:
 						part_names[pn]="If choice 2 was picked:"
 
+			mName = thisMission.MissionName
+			if thisMission.ShowType==2:
+				mName="(Sub) "+mName
 			story['side'][toAdd]['episodes'].append({
-				"name":thisMission.MissionName,
+				"name":mName,
 				"parts":fName,
 				"part_names":part_names
 			})
 			if thisMission.MissionDesc != "":
 				story['side'][thisMission.ChapterNum]['episodes'][-1]["description"]=thisMission.MissionDesc
+				if thisMission.ShowType==2:
+					for m in kyusyoMissionDatas:
+						if m.MissionID==thisMission.ParentID[0]:
+							story['side'][thisMission.ChapterNum]['episodes'][-1]["description"]+="<br>Unlocked after mission \""+m.MissionName+"\""
+							break
 			with open("../avgtxt/"+fName,'wb') as f:
 				f.write(JSON.dumps(parts, sort_keys=False, indent='\t', separators=(',', ': '), ensure_ascii=False).encode('utf8'))
-				print("Generated "+fName)
+				printOK("Generated "+fName)
+		else:
+			printWarn("Mission with ID "+str(thisMission.MissionID)+" had no parts?")
 
 	#I think we have every single part, so this isn't necessary
 	"""unknownKyusyoData = []

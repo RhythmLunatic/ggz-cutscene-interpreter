@@ -3,7 +3,7 @@ import json
 import sys
 from typing import List, Any, Dict,Tuple
 
-if len(sys.argv) < 4:
+if len(sys.argv) < 3:
 	print("usage: "+sys.argv[0]+" <file.json> <part number> <output filename>")
 	sys.exit(1)
 
@@ -11,7 +11,7 @@ database:dict = {}
 with open("../database.json",'r') as f:
 	database=json.loads(f.read())
 
-langs = {"ch":2,"ja":3}
+langs = {"ch":2,"jp":3}
 
 #BEHOLD, OVERENGINEERED GARBAGE
 #Because we opted to separate each translation into its own file
@@ -41,18 +41,25 @@ def convertCutscene(chapterFull:Dict[str,List],toConvert:str)->str:
 				for i in range(len(b)):
 					output+="\nemote\t"+a[i]+"\t"+b[i]
 		elif cmnd[0]=="msg":
-			tmp_msg = '\nmsg\t'+str(cmnd[1])+'\t'
+			tmp_msg = '\nmsg\t'+str(cmnd[1])+'\t' #cmnd[1] = key
 			if cmnd[5]!=None:
 				tmp_txt = str(cmnd[5].replace("//n","\\n"))
 				if "(TN:" in tmp_txt:
 					start = tmp_txt.find("(TN:")
 					end = tmp_txt.find(")",start)
 					tmp_msg+=tmp_txt[0:start]+tmp_txt[end+1:] #Append message
-					output+="\ntn\t"+tmp_txt[start+5:end] #Append TL note
+					output+="\ntn\t0\t"+tmp_txt[start+5:end] #Append TL note
 				else:
 					tmp_msg+=str(tmp_txt)
+			elif len(tmp_msg) > 2:
+				if cmnd[2]==None: #Fall back to CN
+					tmp_msg+=cmnd[3] 
+				else:
+					tmp_msg+=cmnd[2]
 			else:
-				tmp_msg+=cmnd[2]
+				print("Error: Empty message encountered.")
+				print(cmnd)
+				break
 			for col in langs:
 				tmp_msg+="\t"+cmnd[langs[col]+1] #+1 because idx 0 is the msg command
 			output+=tmp_msg
@@ -85,29 +92,34 @@ def convertCutscene(chapterFull:Dict[str,List],toConvert:str)->str:
 			#	outputAdditional[langs[col]]+="\nchoice"
 
 			for choice in cmnd[1:]:
+				output+='\t'+str(choice[0])+" ## " #cmnd[1] = key
 				if choice[4]!=None:
-					output+="\t"+choice[4]
+					output+=choice[4]
 				else:
-					output+="\t"+choice[1]
+					output+=choice[1]
 				for col in langs:
 					output+=" ## "+choice[langs[col]] #+1 because idx 0 is the msg command
 			
 			#This is where the fun begins
 			if i+1 < len(cutscene):
-				output+="\ncondjmp_c\tc2dest\t2"
-				dests = cutscene[i+1][2:]
-				for j in range(len(dests)):
-					output+="\nlabel\tc"+str(j+1)+"dest"
-					output+=convertCutscene(chapterFull,str(dests[j]))
-					if j==0:
-						output+='\njmp\tend_choices'
-				output+='\nlabel\tend_choices'
-					#for col in langs:
-					#	outputAdditional[langs[col]]+=outputAdd_tmp[langs[col]] #+1 because idx 0 is the msg command
-				#print(dests)
-
+				if cutscene[i+1][1]=="CHOICE_DESTS":
+					output+="\ncondjmp_c\tc2dest\t2"
+					dests = cutscene[i+1][2:]
+					for j in range(len(dests)):
+						output+="\nlabel\tc"+str(j+1)+"dest"
+						output+=convertCutscene(chapterFull,str(dests[j]))
+						if j==0:
+							output+='\njmp\tend_choices'
+					output+='\nlabel\tend_choices'
+						#for col in langs:
+						#	outputAdditional[langs[col]]+=outputAdd_tmp[langs[col]] #+1 because idx 0 is the msg command
+					#print(dests)
+				elif cutscene[i+1][1]=="BRIDGED_PART":
+					output+=convertCutscene(chapterFull,str(cutscene[i+1][2]))
 		elif cmnd[0]=="bg":
 			output+="\nbg\t"+cmnd[1]
+		elif cmnd[0]=="soundEffect1":
+			output+="\nse\t"+cmnd[1]
 
 	return output
 
